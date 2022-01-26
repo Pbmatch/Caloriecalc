@@ -1,3 +1,61 @@
 <resources>
-    <string name="app_name">Caloriecalc</string>
+    <string name="button_next">Далее</string>
+    <string name="button_clearly">Понятно</string>
+    <!-- Entry. -->
+    <string name="first_entry_title">Добро пожаловать в приложение!</string>
+    <string name="first_entry_text">Чтобы не потерять данные, пройдите регистрацию</string>
+    <string name="first_entry_button_registration">Зарегистрироваться</string>
+    <string name="first_entry_button_auth">Войти</string>
+    <string name="first_entry_conditions">Регистрируясь, вы принимаете Условия использования и Политику конфиденциальности</string>
+    <!-- Registration. -->
+    <string name="registration_bar">Регистрация</string>
+
+    <string name="registration_goal_title">Ваша цель?</string>
+    <string name="registration_goal_reduce">Снизить вес</string>
+    <string name="registration_goal_dial">Набрать вес</string>
+    <string name="registration_goal_support">Поддерживать вес</string>
+
+    <string name="registration_lifestyle_title">Ваш образ жизни?</string>
+    <string name="registration_lifestyle_1_title">Не занимаюсь спортом</string>
+    <string name="registration_lifestyle_1_text">Сидячая работа, отсутствие физических нагрузок</string>
+    <string name="registration_lifestyle_2_title">Занимаюсь спортом 1–2 раз в неделю</string>
+    <string name="registration_lifestyle_2_text">Совершаю пробежки или занимаюсь спортом 1–2 раза в неделю</string>
+    <string name="registration_lifestyle_3_title">Занимаюсь спортом 3–5 раз в неделю</string>
+    <string name="registration_lifestyle_3_text">Бегаю или делаю тренировки 3–5 раз в неделю</string>
+    <string name="registration_lifestyle_4_title">Занимаюсь спортом почти каждый день</string>
+    <string name="registration_lifestyle_4_text">Бегаю или занимаюсь спортом 6–7 раз в неделю</string>
+
+    <string name="registration_gender">Пол</string>
+    <string name="registration_birthdate">Дата рождения</string>
+
+    <string name="registration_height">Рост</string>
+    <string name="registration_weight">Текущий вес</string>
+    <string name="registration_weight_goal">Цель веса</string>
+
+    <string name="registration_name_title">Укажите имя</string>
+    <string name="registration_name_text">Имя будет отображаться в профиле.</string>
+    <string name="registration_name_hint">Имя</string>
+    <string name="registration_email_title">Электронная почта</string>
+    <string name="registration_email_text">или используйте свой</string>
+    <string name="registration_googleacc">Google аккаунт</string>
+    <string name="registration_pass_title">Придумайте пароль</string>
+    <string name="registration_pass_text">Пароль должен содержать более 6 символов</string>
+    <string name="registration_pass_title_second">Повторите пароль</string>
+    <string name="registration_pass_text_wrong">Пароль введен неверно</string>
+    <string name="registration_success">Регистрация прошла успешно!</string>
+    <string name="registration_success_text">На почту было отправлено письмо для подтверждения регистрации.</string>
+
+    <!-- Authorization. -->
+    <string name="authorization_email_title">Введите электронную почту, указанную при регистрации</string>
+    <string name="authorization_email_hint">Электронная почта</string>
+    <string name="authorization_email_text">или используйте свой</string>
+    <string name="authorization_googleacc">Google аккаунт</string>
+    <string name="authorization_pass_title">Укажите пароль</string>
+    <string name="authorization_pass_hint">Пароль</string>
+    <string name="authorization_pass_forget">Забыли пароль?</string>
+    <string name="authorization_success">Вход выполнен успешно</string>
+
+    <string name="authorization_remind_title">Укажите электронную почту, указанную при регистрации</string>
+    <string name="authorization_remind_send_success">На указанную почту было направлено письмо для восстановления пароля</string>
+    <string name="authorization_remind_text_wrong">Пользователь с такой электронной почтой не найден</string>
 </resources>

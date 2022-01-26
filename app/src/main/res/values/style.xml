@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><style name="splashScreenTheme" parent="Theme.Caloriecalc">
+    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="colorPrimaryVariant">@color/splash_screen</item>
+    <item name="android:windowLightStatusBar">false</item>
+</style></resources>
