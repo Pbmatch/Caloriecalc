@@ -10,6 +10,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRegGoal1Binding;
@@ -52,6 +53,27 @@ public class GoalFragment1 extends Fragment {
     void initViews(final View rootView, final Bundle savedInstanceState)
     {
         binding = FragmentRegGoal1Binding.bind(rootView);
-        binding.checkBox1.setText(Html.fromHtml(getString(R.string.registration_lifestyle_1_title)));
+        binding.checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)binding.cardview1.setCardBackgroundColor(getContext().getColor(R.color.button_green));
+                else binding.cardview1.setCardBackgroundColor(getContext().getColor(R.color.white));
+            }
+        });
+        binding.checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)binding.cardview2.setCardBackgroundColor(getContext().getColor(R.color.button_green));
+                else binding.cardview2.setCardBackgroundColor(getContext().getColor(R.color.white));
+            }
+        });
+        binding.checkBox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)binding.cardview3.setCardBackgroundColor(getContext().getColor(R.color.button_green));
+                else binding.cardview3.setCardBackgroundColor(getContext().getColor(R.color.white));
+            }
+        });
+
     }
 }

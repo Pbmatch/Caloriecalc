@@ -7,13 +7,19 @@
     tools:context=".signup.RegistrationsBaseFragment">
 
 
-    <ProgressBar
+    <com.calorie.calc.utils.progressbar.SegmentedProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_margin ="10dp"
+        app:container_color="@color/progress_off"
+        app:fill_color="@color/progress_on"
+        app:gap_size="10dp"
+        app:segment_count="10"
+        app:corner_radius="5dp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +38,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/button_next"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:fontFamily="@font/roboto_bold"
         android:background="@drawable/button_green"
+        android:padding="18dp"
+        android:textColor="@color/white"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        android:translationZ="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

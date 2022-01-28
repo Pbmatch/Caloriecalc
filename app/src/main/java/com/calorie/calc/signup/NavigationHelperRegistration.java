@@ -16,6 +16,13 @@ public class NavigationHelperRegistration extends NavigationHelper {
                 .addToBackStack(null)
                 .commit();
     }
+    public static void openStartFragment(final FragmentManager fragmentManager) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragmentContainerViewActivityReg, StartFragment.newInstance())
+                .addToBackStack(null)
+                .commit();
+    }
     public static void openGoalFragment1(final FragmentManager fragmentManager) {
 
         defaultTransaction(fragmentManager)

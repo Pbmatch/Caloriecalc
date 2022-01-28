@@ -18,7 +18,7 @@
         android:id="@+id/srt_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimaryVariant"
+        app:titleTextColor="?android:textColor"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
         >

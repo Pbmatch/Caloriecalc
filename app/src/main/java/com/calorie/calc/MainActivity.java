@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.Theme_Caloriecalc);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-          Intent mIntent = new Intent(this, RegistrationActivity.class);
+        Intent mIntent = new Intent(this, RegistrationActivity.class);
         startActivity(mIntent);
     }
 }

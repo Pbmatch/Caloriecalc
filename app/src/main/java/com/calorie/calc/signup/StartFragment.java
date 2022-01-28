@@ -8,30 +8,25 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.FragmentRegBaseBinding;
 import com.calorie.calc.databinding.FragmentRegGoal1Binding;
+import com.calorie.calc.databinding.FragmentStartBinding;
 
 
-public class RegistrationsBaseFragment extends Fragment {
+public class StartFragment extends Fragment {
 
-
-    FragmentRegBaseBinding binding;
-    public RegistrationsBaseFragment() {
-
+   FragmentStartBinding binding;
+    public StartFragment() {
+        // Required empty public constructor
     }
 
 
-    public static RegistrationsBaseFragment newInstance() {
-        RegistrationsBaseFragment fragment = new RegistrationsBaseFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
+    public static StartFragment newInstance( ) {
+        StartFragment fragment = new StartFragment();
         return fragment;
     }
 
@@ -45,37 +40,32 @@ public class RegistrationsBaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_reg_base, container, false);
+        return inflater.inflate(R.layout.fragment_start, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setTitle();
-        NavigationHelperRegistration.openGoalFragment1(getChildFragmentManager());
         initViews(view, savedInstanceState);
     }
-
     void initViews(final View rootView, final Bundle savedInstanceState)
     {
-        binding = FragmentRegBaseBinding.bind(rootView);
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        binding = FragmentStartBinding.bind(rootView);
+        binding.buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.progressBar.setCompletedSegments(2);
-                NavigationHelperRegistration.openLifeStyleFragment2(getChildFragmentManager());
+                final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+                if (actionBar != null) {
+                    actionBar.show();
+                }
+                NavigationHelperRegistration.openBaseRegFragment(getParentFragmentManager());
+
             }
         });
-
-        binding.progressBar.setCompletedSegments(1);
-    }
-
-    void setTitle()
-    {
         final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (actionBar != null) {
 
-            actionBar.setTitle(R.string.registration_actionBar);
+        if (actionBar != null) {
+            actionBar.hide();
         }
 
     }

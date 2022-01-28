@@ -8,6 +8,7 @@ import com.calorie.calc.databinding.ActivityRegistrationBinding;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class RegistrationActivity extends AppCompatActivity {
    ActivityRegistrationBinding binding;
@@ -19,7 +20,8 @@ public class RegistrationActivity extends AppCompatActivity {
         binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.regToolbarLayout.srtToolbar);
-        NavigationHelperRegistration.openBaseRegFragment(getSupportFragmentManager());
+        NavigationHelperRegistration.openStartFragment(getSupportFragmentManager());
+
     }
 
     @Override
@@ -28,6 +30,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(true);
+
         }
 
         return super.onCreateOptionsMenu(menu);

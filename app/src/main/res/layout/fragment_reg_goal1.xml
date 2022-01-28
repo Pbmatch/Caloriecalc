@@ -6,11 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".signup.regfragments.GoalFragment1">
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registration_goal_title"
         android:layout_margin="16dp"
+        style="@style/text_view_registration_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -20,16 +21,30 @@
         android:layout_width="match_parent"
         android:layout_margin="16dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="15dp"
+        android:elevation="4dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle">
 
         <CheckBox
             android:id="@+id/checkBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp"
+            android:textSize="22sp"
+            android:layout_marginStart="16dp"
+            android:button="@drawable/checkbox_reg_selector"
+             android:paddingHorizontal="16dp"
+            android:fontFamily="@font/roboto_medium"
             android:lines="2"
             android:text="@string/registration_goal_reduce" />
     </androidx.cardview.widget.CardView>
@@ -38,15 +53,30 @@
         android:layout_width="match_parent"
         android:layout_margin="16dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="15dp"
+        android:elevation="4dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardview1">
+
         <CheckBox
             android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingHorizontal="16dp"
+            android:button="@drawable/checkbox_reg_selector"
+            android:layout_marginStart="16dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp"
+            android:textSize="22sp"
             android:text="@string/registration_goal_support" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -54,7 +84,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="15dp"
+        android:elevation="4dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardview2">
@@ -62,6 +99,16 @@
             android:id="@+id/checkBox3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+
+            android:layout_marginStart="16dp"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp"
+            android:textSize="22sp"
+
+            android:fontFamily="@font/roboto_medium"
+            android:button="@drawable/checkbox_reg_selector"
             android:layout_gravity="center_vertical"
             android:text="@string/registration_goal_dial" />
     </androidx.cardview.widget.CardView>
