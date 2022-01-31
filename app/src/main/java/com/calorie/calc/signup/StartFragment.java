@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.FragmentRegGoal1Binding;
 import com.calorie.calc.databinding.FragmentStartBinding;
 
 
@@ -53,20 +52,11 @@ public class StartFragment extends Fragment {
         binding.buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
-                if (actionBar != null) {
-                    actionBar.show();
-                }
-                NavigationHelperRegistration.openBaseRegFragment(getParentFragmentManager());
+                NavigationHelperReg.openBaseRegFragment(getParentFragmentManager());
 
             }
         });
-        final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-
-        if (actionBar != null) {
-            actionBar.hide();
-        }
 
     }
 }

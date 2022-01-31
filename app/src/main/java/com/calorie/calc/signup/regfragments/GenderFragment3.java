@@ -10,21 +10,14 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GenderFragment3#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class GenderFragment3 extends Fragment {
 
 
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public GenderFragment3() {
-        // Required empty public constructor
+
     }
 
 

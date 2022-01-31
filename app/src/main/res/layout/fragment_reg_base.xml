@@ -4,9 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signup.RegistrationsBaseFragment">
+    tools:context=".signup.BaseFragment">
 
-
+    <include
+        android:id="@+id/reg_toolbar_layout"
+        layout="@layout/toolbar_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <com.calorie.calc.utils.progressbar.SegmentedProgressBar
         android:id="@+id/progressBar"
 
@@ -21,7 +27,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/reg_toolbar_layout" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewRegBase"

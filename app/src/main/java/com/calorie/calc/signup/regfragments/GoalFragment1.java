@@ -16,41 +16,29 @@ import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRegGoal1Binding;
 
 
-public class GoalFragment1 extends Fragment {
+public class GoalFragment1 extends RegBaseFragment {
 
      FragmentRegGoal1Binding binding;
     public GoalFragment1() {
 
     }
 
-
-    public static GoalFragment1 newInstance( ) {
-        GoalFragment1 fragment = new GoalFragment1();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
+    public static Fragment newInstance() {
+        if(fragment==null)
+        {
+            fragment= new GoalFragment1();
+        }
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_reg_goal1, container, false);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initViews(view, savedInstanceState);
-    }
-    void initViews(final View rootView, final Bundle savedInstanceState)
+
+    protected void initViews(final View rootView, final Bundle savedInstanceState)
     {
         binding = FragmentRegGoal1Binding.bind(rootView);
         binding.checkBox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

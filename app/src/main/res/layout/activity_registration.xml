@@ -8,13 +8,7 @@
 
 
 
-    <include
-        android:id="@+id/reg_toolbar_layout"
-        layout="@layout/toolbar_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewActivityReg"
@@ -23,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_toolbar_layout"
+        app:layout_constraintTop_toTopOf="parent"
 
         />
 

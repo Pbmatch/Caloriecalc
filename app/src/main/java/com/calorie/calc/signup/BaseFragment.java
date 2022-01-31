@@ -6,29 +6,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.text.Html;
 import android.view.LayoutInflater;
+
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRegBaseBinding;
-import com.calorie.calc.databinding.FragmentRegGoal1Binding;
+import com.calorie.calc.utils.BackPressable;
 
 
-public class RegistrationsBaseFragment extends Fragment {
+public class BaseFragment extends Fragment implements BackPressable {
 
 
     FragmentRegBaseBinding binding;
-    public RegistrationsBaseFragment() {
+    public BaseFragment() {
 
     }
 
 
-    public static RegistrationsBaseFragment newInstance() {
-        RegistrationsBaseFragment fragment = new RegistrationsBaseFragment();
+    public static BaseFragment newInstance() {
+        BaseFragment fragment = new BaseFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -45,16 +47,28 @@ public class RegistrationsBaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_reg_base, container, false);
+        View view= inflater.inflate(R.layout.fragment_reg_base, container, false);
+        Toolbar toolbar =   view.findViewById(R.id.srt_toolbar);
+
+
+
+        //for crate home button
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setTitle();
-        NavigationHelperRegistration.openGoalFragment1(getChildFragmentManager());
+        NavigationHelperReg.openGoalFragment1(getChildFragmentManager());
         initViews(view, savedInstanceState);
     }
+
+
 
     void initViews(final View rootView, final Bundle savedInstanceState)
     {
@@ -63,7 +77,7 @@ public class RegistrationsBaseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 binding.progressBar.setCompletedSegments(2);
-                NavigationHelperRegistration.openLifeStyleFragment2(getChildFragmentManager());
+                NavigationHelperReg.openLifeStyleFragment2(getChildFragmentManager());
             }
         });
 
@@ -78,5 +92,17 @@ public class RegistrationsBaseFragment extends Fragment {
             actionBar.setTitle(R.string.registration_actionBar);
         }
 
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        final Fragment fragmentPanel = getChildFragmentManager()
+                .findFragmentById(R.id.fragmentContainerViewRegBase);
+
+        if (fragmentPanel instanceof BackPressable&&getChildFragmentManager().getBackStackEntryCount()>1) {
+            return ((BackPressable) fragmentPanel).onBackPressed();
+
+        }
+     return false;
     }
 }

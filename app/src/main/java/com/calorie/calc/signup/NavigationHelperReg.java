@@ -8,19 +8,19 @@ import com.calorie.calc.signup.regfragments.GenderFragment3;
 import com.calorie.calc.signup.regfragments.GoalFragment1;
 import com.calorie.calc.signup.regfragments.LifestyleFragment2;
 
-public class NavigationHelperRegistration extends NavigationHelper {
+  class NavigationHelperReg extends com.calorie.calc.NavigationHelper {
     public static void openBaseRegFragment(final FragmentManager fragmentManager) {
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragmentContainerViewActivityReg, RegistrationsBaseFragment.newInstance())
-                .addToBackStack(null)
+                .replace(R.id.fragmentContainerViewActivityReg, BaseFragment.newInstance())
+                .addToBackStack("base")
                 .commit();
     }
     public static void openStartFragment(final FragmentManager fragmentManager) {
 
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragmentContainerViewActivityReg, StartFragment.newInstance())
-                .addToBackStack(null)
+
                 .commit();
     }
     public static void openGoalFragment1(final FragmentManager fragmentManager) {
