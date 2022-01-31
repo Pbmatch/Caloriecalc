@@ -10,6 +10,7 @@
     <color name="gray">#E8EFF6</color>
     <color name="splash_screen">#22B042</color>
     <color name="button_green">#22B042</color>
+    <color name="button_disabled">#A7CAC4</color>
     <color name="text_title_color">#211F1D</color>
     <color name="text_secondary_color">#6A6A6A</color>
     <color name="progress_off">#A7CAC4</color>

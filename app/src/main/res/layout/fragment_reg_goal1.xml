@@ -35,7 +35,7 @@
 
         <CheckBox
             android:id="@+id/checkBox1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingTop="32dp"
@@ -67,7 +67,7 @@
 
         <CheckBox
             android:id="@+id/checkBox2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/roboto_medium"
@@ -97,10 +97,8 @@
         app:layout_constraintTop_toBottomOf="@+id/cardview2">
         <CheckBox
             android:id="@+id/checkBox3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-
             android:layout_marginStart="16dp"
             android:paddingHorizontal="16dp"
             android:paddingTop="32dp"

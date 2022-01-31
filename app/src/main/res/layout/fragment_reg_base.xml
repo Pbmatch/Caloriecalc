@@ -47,7 +47,7 @@
         android:gravity="center"
         android:textSize="18dp"
         android:fontFamily="@font/roboto_bold"
-        android:background="@drawable/button_green"
+        android:background="@drawable/button_selector"
         android:padding="18dp"
         android:textColor="@color/white"
         android:elevation="6dp"

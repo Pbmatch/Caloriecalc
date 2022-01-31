@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
 
@@ -17,6 +18,8 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRegBaseBinding;
+import com.calorie.calc.signup.state.ButtonState;
+import com.calorie.calc.signup.state.RegStateHandler;
 import com.calorie.calc.utils.BackPressable;
 
 
@@ -77,11 +80,20 @@ public class BaseFragment extends Fragment implements BackPressable {
             @Override
             public void onClick(View v) {
                 binding.progressBar.setCompletedSegments(2);
-                NavigationHelperReg.openLifeStyleFragment2(getChildFragmentManager());
+                NavigationHelperReg.openDateFragment3(getChildFragmentManager());
             }
         });
 
         binding.progressBar.setCompletedSegments(1);
+
+        RegStateHandler.getButtonState().observe(getViewLifecycleOwner(), new Observer<ButtonState>() {
+            @Override
+            public void onChanged(ButtonState buttonState) {
+                if(buttonState instanceof ButtonState.ButtonOff)
+                {binding.button.setEnabled(false);}
+                else {binding.button.setEnabled(true);}
+            }
+        });
     }
 
     void setTitle()

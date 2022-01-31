@@ -2,8 +2,8 @@ package com.calorie.calc.signup;
 
 import androidx.fragment.app.FragmentManager;
 
-import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
+import com.calorie.calc.signup.regfragments.DateFragment;
 import com.calorie.calc.signup.regfragments.GenderFragment3;
 import com.calorie.calc.signup.regfragments.GoalFragment1;
 import com.calorie.calc.signup.regfragments.LifestyleFragment2;
@@ -44,4 +44,11 @@ import com.calorie.calc.signup.regfragments.LifestyleFragment2;
                 .addToBackStack(null)
                 .commit();
     }
+      public static void openDateFragment3(final FragmentManager fragmentManager) {
+
+          defaultTransaction(fragmentManager)
+                  .replace(R.id.fragmentContainerViewRegBase, DateFragment.newInstance())
+                  .addToBackStack(null)
+                  .commit();
+      }
 }

@@ -16,12 +16,12 @@
     <string name="registration_goal_dial">Набрать вес</string>
     <string name="registration_goal_support">Поддерживать вес</string>
 
-    <string name="registration_lifestyle_1"><![CDATA[<b>Не занимаюсь спортом</b> <br><font color=\"#6A6A6A\">Сидячая работа, отсутствие физических нагрузок</font> ]]></string>
+    <string name="registration_lifestyle_1"><![CDATA[<b><big>Не занимаюсь спортом</big></b> <br><font color=\"#6A6A6A\">Сидячая работа, отсутствие физических нагрузок</font> ]]></string>
     <string name="registration_lifestyle_title">Ваш образ жизни?</string>
 
-    <string name="registration_lifestyle_2"><![CDATA[<b> Занимаюсь спортом 1–2 раз в неделю </b> </br> <font color=\"#6A6A6A\">Совершаю пробежки или занимаюсь спортом 1–2 раза в неделю</font>]]></string>
-    <string name="registration_lifestyle_3"><![CDATA[<b>Занимаюсь спортом 3–5 раз в неделю</b> <br><font color=\"#6A6A6A\">Бегаю или делаю тренировки 3–5 раз в неделю</font>]]></string>
-    <string name="registration_lifestyle_4"><![CDATA[<b>Занимаюсь спортом почти каждый день</b> <br><font color=\"#6A6A6A\">Бегаю или занимаюсь спортом 6–7 раз в неделю</font>]]></string>
+    <string name="registration_lifestyle_2"><![CDATA[<b><big>Занимаюсь спортом 1–2 раз в неделю</big></b> </br> <font color=\"#6A6A6A\">Совершаю пробежки или занимаюсь спортом 1–2 раза в неделю</font>]]></string>
+    <string name="registration_lifestyle_3"><![CDATA[<b><big>Занимаюсь спортом 3–5 раз в неделю</big></b> <br><font color=\"#6A6A6A\">Бегаю или делаю тренировки 3–5 раз в неделю</font>]]></string>
+    <string name="registration_lifestyle_4"><![CDATA[<b><big>Занимаюсь спортом почти каждый день</big></b> <br><font color=\"#6A6A6A\">Бегаю или занимаюсь спортом 6–7 раз в неделю</font>]]></string>
 
     <string name="registration_gender">Пол</string>
     <string name="registration_birthdate">Дата рождения</string>

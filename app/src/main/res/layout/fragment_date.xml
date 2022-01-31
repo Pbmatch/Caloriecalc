@@ -12,27 +12,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/registration_gender"
+        android:text="@string/registration_birthdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageViewFemale"
+    <TextView
+        android:id="@+id/textViewText"
+        style="@style/text_minim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/female"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTitle"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="Сидячая работа, отсутствие физических \n нагрузок"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <ImageView
-        android:id="@+id/imageViewMan"
+    <com.aigestudio.wheelpicker.widgets.WheelDatePicker
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/man"
-        app:layout_constraintStart_toEndOf="@+id/textViewTitle"
-        app:layout_constraintTop_toTopOf="@+id/imageViewFemale" />
+        android:layout_height="180dp"
+
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewText"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

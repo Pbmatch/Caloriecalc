@@ -11,7 +11,7 @@ import com.calorie.calc.utils.BackPressable;
 
 public abstract class RegBaseFragment  extends Fragment implements BackPressable {
 
-    static Fragment fragment;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
