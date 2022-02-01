@@ -1,14 +1,19 @@
-package com.calorie.calc.signup;
+package com.calorie.calc.signup.regfragments;
 
 import androidx.fragment.app.FragmentManager;
 
 import com.calorie.calc.R;
+import com.calorie.calc.databinding.FragmentNamePassBinding;
+import com.calorie.calc.signup.BaseFragment;
+import com.calorie.calc.signup.StartFragment;
 import com.calorie.calc.signup.regfragments.DateFragment;
 import com.calorie.calc.signup.regfragments.GenderFragment3;
 import com.calorie.calc.signup.regfragments.GoalFragment1;
-import com.calorie.calc.signup.regfragments.LifestyleFragment2;
 
-  class NavigationHelperReg extends com.calorie.calc.NavigationHelper {
+import com.calorie.calc.signup.regfragments.LifestyleFragment2;
+import com.calorie.calc.signup.regfragments.NamePassFragment;
+
+class NavigationHelperReg extends com.calorie.calc.NavigationHelper {
     public static void openBaseRegFragment(final FragmentManager fragmentManager) {
 
         defaultTransaction(fragmentManager)
@@ -47,7 +52,7 @@ import com.calorie.calc.signup.regfragments.LifestyleFragment2;
       public static void openDateFragment3(final FragmentManager fragmentManager) {
 
           defaultTransaction(fragmentManager)
-                  .replace(R.id.fragmentContainerViewRegBase, DateFragment.newInstance())
+                  .replace(R.id.fragmentContainerViewRegBase, NamePassFragment.newInstance())
                   .addToBackStack(null)
                   .commit();
       }

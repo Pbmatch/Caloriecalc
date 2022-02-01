@@ -11,17 +11,16 @@ import android.view.ViewGroup;
 import com.calorie.calc.R;
 
 
-public class HeightFragment extends Fragment {
+public class NamePassFragment extends Fragment {
 
 
-
-    public HeightFragment() {
+    public NamePassFragment() {
         // Required empty public constructor
     }
 
 
-    public static HeightFragment newInstance( ) {
-        HeightFragment fragment = new HeightFragment();
+    public static NamePassFragment newInstance( ) {
+        NamePassFragment fragment = new NamePassFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -38,6 +37,6 @@ public class HeightFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_height, container, false);
+        return inflater.inflate(R.layout.fragment_name_pass, container, false);
     }
 }

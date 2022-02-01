@@ -35,7 +35,7 @@
     <string name="registration_name_hint">Имя</string>
     <string name="registration_email_title">Электронная почта</string>
     <string name="registration_email_text">или используйте свой</string>
-    <string name="registration_googleacc">Google аккаунт</string>
+    <string name="registration_googleacc">  GOOGLE АККАУНТ</string>
     <string name="registration_pass_title">Придумайте пароль</string>
     <string name="registration_pass_text">Пароль должен содержать более 6 символов</string>
     <string name="registration_pass_title_second">Повторите пароль</string>

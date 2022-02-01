@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/registration_lifestyle_title"
         android:layout_margin="16dp"
-        style="@style/text_view_registration_title"
+        style="@style/text_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

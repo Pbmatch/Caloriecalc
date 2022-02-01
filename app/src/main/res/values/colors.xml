@@ -15,4 +15,5 @@
     <color name="text_secondary_color">#6A6A6A</color>
     <color name="progress_off">#A7CAC4</color>
     <color name="progress_on">#22B042</color>
+    <color name="password_failure">#F25509</color>
 </resources>

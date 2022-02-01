@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRegBaseBinding;
+import com.calorie.calc.signup.regfragments.NavigationHelperReg;
 import com.calorie.calc.signup.state.ButtonState;
 import com.calorie.calc.signup.state.RegStateHandler;
 import com.calorie.calc.utils.BackPressable;

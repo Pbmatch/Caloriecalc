@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        style="@style/text_view_registration_title"
+        style="@style/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.ActivityRegistrationBinding;
+import com.calorie.calc.signup.regfragments.NavigationHelperReg;
 import com.calorie.calc.utils.BackPressable;
 
 import android.os.Bundle;

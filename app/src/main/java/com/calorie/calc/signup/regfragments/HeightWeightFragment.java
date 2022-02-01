@@ -1,35 +1,30 @@
 package com.calorie.calc.signup.regfragments;
 
-import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.RequiresApi;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.FragmentDateBinding;
-import com.calorie.calc.databinding.FragmentRegGoal1Binding;
+import com.calorie.calc.databinding.FragmentHeightWeightBinding;
 
 
-public class DateFragment extends RegBaseFragment {
+class HeightWeightFragment extends RegBaseFragment {
 
+    FragmentHeightWeightBinding binding;
 
-     FragmentDateBinding binding;
-    public DateFragment() {
+    public HeightWeightFragment() {
         // Required empty public constructor
     }
 
 
-    public static DateFragment newInstance( ) {
-        DateFragment fragment = new DateFragment();
-        Bundle args = new Bundle();
+    public static HeightWeightFragment newInstance( ) {
 
-        fragment.setArguments(args);
-        return fragment;
+        return new HeightWeightFragment();
     }
 
     @Override
@@ -42,12 +37,13 @@ public class DateFragment extends RegBaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_date, container, false);
+        return inflater.inflate(R.layout.fragment_height_weight, container, false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
-        binding = FragmentDateBinding.bind(rootView);
+        binding = FragmentHeightWeightBinding.bind(rootView);
 
 
     }
