@@ -1,23 +1,27 @@
 package com.calorie.calc.signup.regfragments;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.FragmentNamePassBinding;
+import com.calorie.calc.signup.AuthBaseFragment;
 import com.calorie.calc.signup.BaseFragment;
+import com.calorie.calc.signup.RegistrationBaseFragment;
 import com.calorie.calc.signup.StartFragment;
-import com.calorie.calc.signup.regfragments.DateFragment;
-import com.calorie.calc.signup.regfragments.GenderFragment3;
-import com.calorie.calc.signup.regfragments.GoalFragment1;
+import com.calorie.calc.signup.SuccesFragment;
 
-import com.calorie.calc.signup.regfragments.LifestyleFragment2;
-import com.calorie.calc.signup.regfragments.NamePassFragment;
-
-class NavigationHelperReg extends com.calorie.calc.NavigationHelper {
-    public static void openBaseRegFragment(final FragmentManager fragmentManager) {
+public class NavigationHelperReg extends com.calorie.calc.NavigationHelper {
+    public static void openRegistrationFragments(final FragmentManager fragmentManager) {
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragmentContainerViewActivityReg, BaseFragment.newInstance())
+                .replace(R.id.fragmentContainerViewActivityReg, new RegistrationBaseFragment())
+                .addToBackStack("base")
+                .commit();
+    }
+    public static void openAuthorizationFragments(final FragmentManager fragmentManager) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragmentContainerViewActivityReg, new AuthBaseFragment())
                 .addToBackStack("base")
                 .commit();
     }
@@ -28,32 +32,18 @@ class NavigationHelperReg extends com.calorie.calc.NavigationHelper {
 
                 .commit();
     }
-    public static void openGoalFragment1(final FragmentManager fragmentManager) {
+    public static void openSuccesFragment(final FragmentManager fragmentManager, Fragment fragment) {
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragmentContainerViewRegBase, GoalFragment1.newInstance())
+                .replace(R.id.fragmentContainerViewActivityReg, fragment)
+                .commit();
+    }
+    public static void openNextFragment(final FragmentManager fragmentManager, Fragment fragment) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragmentContainerViewRegBase, fragment)
                 .addToBackStack(null)
                 .commit();
     }
-    public static void openLifeStyleFragment2(final FragmentManager fragmentManager) {
 
-        defaultTransaction(fragmentManager)
-                .replace(R.id.fragmentContainerViewRegBase, LifestyleFragment2.newInstance())
-                .addToBackStack(null)
-                .commit();
-    }
-    public static void openGenderFragment3(final FragmentManager fragmentManager) {
-
-        defaultTransaction(fragmentManager)
-                .replace(R.id.fragmentContainerViewRegBase, GenderFragment3.newInstance())
-                .addToBackStack(null)
-                .commit();
-    }
-      public static void openDateFragment3(final FragmentManager fragmentManager) {
-
-          defaultTransaction(fragmentManager)
-                  .replace(R.id.fragmentContainerViewRegBase, NamePassFragment.newInstance())
-                  .addToBackStack(null)
-                  .commit();
-      }
 }

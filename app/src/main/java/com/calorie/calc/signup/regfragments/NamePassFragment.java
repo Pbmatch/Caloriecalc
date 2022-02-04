@@ -2,41 +2,34 @@ package com.calorie.calc.signup.regfragments;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.calorie.calc.R;
+import com.calorie.calc.databinding.FragmentNameBinding;
 
 
-public class NamePassFragment extends Fragment {
 
+public abstract class NamePassFragment extends RegBaseFragment {
 
-    public NamePassFragment() {
-        // Required empty public constructor
+      FragmentNameBinding binding;
+    public NamePassFragment(FragmentType type) {
+        super(type);
     }
 
-
-    public static NamePassFragment newInstance( ) {
-        NamePassFragment fragment = new NamePassFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_name_pass, container, false);
+
+        return inflater.inflate(R.layout.fragment_name, container, false);
     }
+
+    @Override
+    protected void initViews(View rootView, Bundle savedInstanceState) {
+        binding = FragmentNameBinding.bind(rootView);
+        setViews();
+    }
+    abstract void setViews();
 }

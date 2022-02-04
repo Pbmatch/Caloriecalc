@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="14dp"
         android:gravity="center"
-        android:text="Сидячая работа, отсутствие физических \n нагрузок"
+        android:text="@string/registration_success_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
@@ -36,10 +36,10 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/mailbig"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewText" />
 

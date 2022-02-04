@@ -52,8 +52,15 @@ public class StartFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                NavigationHelperReg.openBaseRegFragment(getParentFragmentManager());
+                NavigationHelperReg.openRegistrationFragments(getParentFragmentManager());
 
+
+            }
+        });
+        binding.textViewEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelperReg.openAuthorizationFragments(getParentFragmentManager());
             }
         });
 

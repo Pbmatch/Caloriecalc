@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
@@ -16,34 +17,39 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.calorie.calc.BuildConfig;
 import com.calorie.calc.R;
+import com.calorie.calc.User;
 import com.calorie.calc.databinding.FragmentRegBaseBinding;
+import com.calorie.calc.signup.regfragments.Builder;
+import com.calorie.calc.signup.regfragments.GoalFragment1;
 import com.calorie.calc.signup.regfragments.NavigationHelperReg;
+import com.calorie.calc.signup.regfragments.RegBaseFragment;
 import com.calorie.calc.signup.state.ButtonState;
+import com.calorie.calc.signup.state.RegFragmentState;
 import com.calorie.calc.signup.state.RegStateHandler;
 import com.calorie.calc.utils.BackPressable;
 
 
-public class BaseFragment extends Fragment implements BackPressable {
+public abstract class BaseFragment extends Fragment implements BackPressable, View.OnClickListener {
 
 
     FragmentRegBaseBinding binding;
+    FragmentBuilder builder;
+
     public BaseFragment() {
-
     }
 
-
-    public static BaseFragment newInstance() {
+   /* public static BaseFragment newInstance() {
         BaseFragment fragment = new BaseFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
         return fragment;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        User user = new User();
+        RegStateHandler.getUserState().setValue(user);
 
     }
 
@@ -53,39 +59,38 @@ public class BaseFragment extends Fragment implements BackPressable {
 
         View view= inflater.inflate(R.layout.fragment_reg_base, container, false);
         Toolbar toolbar =   view.findViewById(R.id.srt_toolbar);
+       builder= setBuilder();
 
-
-
-        //for crate home button
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
+
         return view;
     }
+    public abstract FragmentBuilder setBuilder();
+    public abstract void setProgressBar();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setTitle();
-        NavigationHelperReg.openGoalFragment1(getChildFragmentManager());
+        NavigationHelperReg.openNextFragment(getChildFragmentManager(),builder.getNextFragment());
         initViews(view, savedInstanceState);
+        setProgressBar();
     }
 
+//Базовому фрагменту подсовывать следующие под нажатие кнопки далее
+    //выстроить фрагменты
+    //записывать значение куда то
 
 
     void initViews(final View rootView, final Bundle savedInstanceState)
     {
         binding = FragmentRegBaseBinding.bind(rootView);
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.progressBar.setCompletedSegments(2);
-                NavigationHelperReg.openDateFragment3(getChildFragmentManager());
-            }
-        });
+        binding.button.setOnClickListener(this);
 
-        binding.progressBar.setCompletedSegments(1);
+
 
         RegStateHandler.getButtonState().observe(getViewLifecycleOwner(), new Observer<ButtonState>() {
             @Override
@@ -95,6 +100,7 @@ public class BaseFragment extends Fragment implements BackPressable {
                 else {binding.button.setEnabled(true);}
             }
         });
+
     }
 
     void setTitle()
@@ -102,10 +108,11 @@ public class BaseFragment extends Fragment implements BackPressable {
         final ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
 
-            actionBar.setTitle(R.string.registration_actionBar);
+            actionBar.setTitle(getAcionBarTitleresource());
         }
 
     }
+    public abstract int getAcionBarTitleresource();
 
     @Override
     public boolean onBackPressed() {
@@ -113,9 +120,16 @@ public class BaseFragment extends Fragment implements BackPressable {
                 .findFragmentById(R.id.fragmentContainerViewRegBase);
 
         if (fragmentPanel instanceof BackPressable&&getChildFragmentManager().getBackStackEntryCount()>1) {
+
+                if(RegStateHandler.getButtonState().getValue() instanceof ButtonState.ButtonOff)
+                    RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+
             return ((BackPressable) fragmentPanel).onBackPressed();
+
 
         }
      return false;
     }
+
+
 }

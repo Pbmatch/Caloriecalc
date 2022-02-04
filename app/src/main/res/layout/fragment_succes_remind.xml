@@ -8,12 +8,16 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        style="@style/text_title"
+        style="@style/text_title_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/registration_pass_title"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="160dp"
+        android:gravity="center"
+        android:text="@string/authorization_remind_send_success"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,51 +27,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="14dp"
-        android:visibility="invisible"
         android:gravity="center"
-        android:text="Сидячая работа, отсутствие физических \n нагрузок"
+        android:visibility="gone"
+        android:text="@string/registration_success_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="36dp"
-        android:background="@drawable/edittext_selector"
-        android:hint="@string/registration_pass_hint"
-        android:padding="16dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/mailbig"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewText" />
 
-
-    <TextView
-        android:id="@+id/textViewrules"
-        style="@style/text_nano"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/buttonOk"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="8dp"
-
-
-        android:text="@string/registration_pass_text"
-
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_selector"
+        android:elevation="6dp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:padding="18dp"
+        android:stateListAnimator="@null"
+        android:text="@string/button_clearly"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-    <ImageView
-        android:id="@+id/imageViewEye"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/eye_closed"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/editText" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

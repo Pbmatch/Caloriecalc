@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".signup.regfragments.GoalFragment1">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        style="@style/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/registration_weight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/date_picker_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+
+        app:np_dividerColor="@color/white"
+
+        app:np_dividerThickness="0dp"
+        app:np_max="100"
+        app:np_min="0"
+        app:np_textSize="16dp"
+        app:np_value="20" />
+
+    <TextView
+        android:id="@+id/textViewUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:gravity="bottom"
+        android:text="см"
+        style="@style/text_standart"
+        app:layout_constraintBottom_toBottomOf="@+id/date_picker_actions"
+        app:layout_constraintStart_toEndOf="@+id/date_picker_actions"
+        app:layout_constraintTop_toTopOf="@+id/date_picker_actions" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

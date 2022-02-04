@@ -1,9 +1,8 @@
-package com.calorie.calc.signup.regfragments;
+package com.calorie.calc.signup.auth;
 
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -11,40 +10,33 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.FragmentEmailBinding;
+import com.calorie.calc.databinding.FragmentRemindMailBinding;
+import com.calorie.calc.signup.regfragments.RegBaseFragment;
 import com.calorie.calc.signup.state.ButtonState;
 import com.calorie.calc.signup.state.RegStateHandler;
 
 
-public class EmailFragment  extends RegBaseFragment {
+public class RemindMailFragment extends RegBaseFragment {
 
-    public   FragmentEmailBinding binding;
-    public EmailFragment(FragmentType type) {
+   FragmentRemindMailBinding binding;
+    public RemindMailFragment(FragmentType type) {
         super(type);
     }
 
     @Override
-    protected void initViews(View rootView, Bundle savedInstanceState) {
-    binding=FragmentEmailBinding.bind(rootView);
-    setViews();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_email, container, false);
-    }
     void setViews() {
-        ((AppCompatActivity)getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
-
+        binding.editText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(binding.editText, InputMethodManager.SHOW_IMPLICIT);
         binding.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -65,12 +57,15 @@ public class EmailFragment  extends RegBaseFragment {
         });
     }
     @Override
-    public void onPause() {
-        onSettingPause();
-        ((AppCompatActivity)getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        super.onPause();
+    protected void initViews(View rootView, Bundle savedInstanceState) {
+        binding = FragmentRemindMailBinding.bind(rootView);
+        setViews();
     }
-    public void onSettingPause()
-    {user.setEmail(binding.editText.getText().toString());
-        }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_remind_mail, container, false);
+    }
 }

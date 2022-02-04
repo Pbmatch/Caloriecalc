@@ -22,7 +22,7 @@
         app:container_color="@color/progress_off"
         app:fill_color="@color/progress_on"
         app:gap_size="10dp"
-        app:segment_count="10"
+        app:segment_count="11"
         app:corner_radius="5dp"
 
         app:layout_constraintEnd_toEndOf="parent"

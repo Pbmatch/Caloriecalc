@@ -2,31 +2,22 @@ package com.calorie.calc.signup.regfragments;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.calorie.calc.R;
+import com.calorie.calc.User;
+import com.calorie.calc.databinding.FragmentRegGender3Binding;
+import com.calorie.calc.signup.state.ButtonState;
+import com.calorie.calc.signup.state.RegStateHandler;
 
 
-public class GenderFragment3 extends Fragment {
+public class GenderFragment3 extends RegBaseFragment {
 
-
-
-
-    public GenderFragment3() {
-
-    }
-
-
-    public static GenderFragment3 newInstance( ) {
-        GenderFragment3 fragment = new GenderFragment3();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
+      FragmentRegGender3Binding binding;
+    public GenderFragment3(FragmentType type) {
+        super(type);
     }
 
     @Override
@@ -34,6 +25,31 @@ public class GenderFragment3 extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
+    @Override
+    protected void initViews(View rootView, Bundle savedInstanceState) {
+      binding = FragmentRegGender3Binding.bind(rootView);
+        RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
+      binding.imageViewFemale.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              binding.imageViewFemale.setImageResource(R.drawable.femalegreen);
+              binding.imageViewMan.setImageResource(R.drawable.man);
+              user.setGender(User.Gender.FEMALE);
+              RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+          }
+      });
+        binding.imageViewMan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.imageViewFemale.setImageResource(R.drawable.female);
+                binding.imageViewMan.setImageResource(R.drawable.mangreen);
+                user.setGender(User.Gender.MALE);
+                RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+            }
+        });
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

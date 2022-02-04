@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Cc</string>
     <string name="button_next">ДАЛЕЕ</string>
-    <string name="button_clearly">Понятно</string>
+    <string name="button_clearly">ПОНЯТНО</string>
     <!-- Entry. -->
     <string name="registration_first_entry_title">Добро пожаловать в приложение!</string>
     <string name="registration_first_entry_text">Чтобы не потерять данные, \n пройдите регистрацию</string>
@@ -29,28 +29,31 @@
     <string name="registration_height">Рост</string>
     <string name="registration_weight">Текущий вес</string>
     <string name="registration_weight_goal">Цель веса</string>
+    <string name="registration_weight_unit">кг</string>
 
     <string name="registration_name_title">Укажите имя</string>
     <string name="registration_name_text">Имя будет отображаться в профиле.</string>
     <string name="registration_name_hint">Имя</string>
     <string name="registration_email_title">Электронная почта</string>
     <string name="registration_email_text">или используйте свой</string>
-    <string name="registration_googleacc">  GOOGLE АККАУНТ</string>
+    <string name="registration_googleacc"> GOOGLE АККАУНТ</string>
     <string name="registration_pass_title">Придумайте пароль</string>
     <string name="registration_pass_text">Пароль должен содержать более 6 символов</string>
     <string name="registration_pass_title_second">Повторите пароль</string>
     <string name="registration_pass_text_wrong">Пароль введен неверно</string>
+    <string name="registration_pass_text_ok">Пароль введен верно!</string>
     <string name="registration_success">Регистрация прошла успешно!</string>
     <string name="registration_success_text">На почту было отправлено письмо для подтверждения регистрации.</string>
 
     <!-- Authorization. -->
     <string name="authorization_email_title">Введите электронную почту, указанную при регистрации</string>
+    <string name="authorization_toolbar">Вход</string>
     <string name="authorization_email_hint">Электронная почта</string>
     <string name="authorization_email_text">или используйте свой</string>
     <string name="authorization_googleacc">Google аккаунт</string>
     <string name="authorization_pass_title">Укажите пароль</string>
     <string name="authorization_pass_hint">Пароль</string>
-    <string name="authorization_pass_forget">Забыли пароль?</string>
+    <string name="authorization_pass_forget"><u>Забыли пароль?</u></string>
     <string name="authorization_success">Вход выполнен успешно</string>
 
     <string name="authorization_remind_title">Укажите электронную почту, указанную при регистрации</string>
@@ -58,4 +61,10 @@
     <string name="authorization_remind_text_wrong">Пользователь с такой электронной почтой не найден</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="registration_pass_hint">Пароль</string>
+    <string name="tracker">Счетчик</string>
+    <string name="recipe">Рецепты</string>
+    <string name="sport">Спорт</string>
+    <string name="profile">Профиль</string>
+
 </resources>

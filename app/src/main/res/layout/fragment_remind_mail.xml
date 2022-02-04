@@ -8,11 +8,12 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        style="@style/text_title"
+        style="@style/text_title_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/registration_pass_title"
+        android:gravity="center"
+        android:text="@string/authorization_remind_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,9 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="14dp"
-        android:visibility="invisible"
         android:gravity="center"
-        android:text="Сидячая работа, отсутствие физических \n нагрузок"
+        android:visibility="gone"
+        android:text="@string/registration_name_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
@@ -35,14 +36,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="36dp"
-        android:background="@drawable/edittext_selector"
-        android:hint="@string/registration_pass_hint"
+        android:hint="@string/authorization_email_hint"
         android:padding="16dp"
+        android:background="@drawable/edittext_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewText" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textViewText"/>
     <TextView
         android:id="@+id/textViewrules"
         style="@style/text_nano"
@@ -51,6 +50,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
 
 
         android:text="@string/registration_pass_text"
@@ -58,16 +58,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/editText"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-    <ImageView
-        android:id="@+id/imageViewEye"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/eye_closed"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/editText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
