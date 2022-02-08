@@ -1,15 +1,13 @@
 package com.calorie.calc.signup.regfragments;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentEmailBinding;
@@ -49,6 +47,12 @@ public class EmailFragment  extends InsideBaseFragment implements OnKeyboardVisi
     void setViews() {
 
         addKeyboardListener();
+        binding.buttonGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((RegistrationActivity)getActivity()).signIn();
+            }
+        });
         RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
 
         binding.editText.addTextChangedListener(new TextWatcher() {
