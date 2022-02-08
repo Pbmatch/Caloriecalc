@@ -40,6 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
 
     private FirebaseAuth mAuth;
+    Fragment successFragment;
     // [END declare_auth]
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -137,7 +138,8 @@ public class RegistrationActivity extends AppCompatActivity {
         if(globalListener!=null)
             parentView.getViewTreeObserver().removeOnGlobalLayoutListener(globalListener);
     }
-    public void signIn() {
+    public void signIn(Fragment fragment) {
+        this.successFragment=fragment;
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -172,7 +174,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = mAuth.getCurrentUser();
-                            NavigationHelperRegistration.openSuccesFragment(getSupportFragmentManager(),new SuccesRegFragment(InsideBaseFragment.FragmentType.SUCCES));
+                            NavigationHelperRegistration.openSuccesFragment(getSupportFragmentManager(),successFragment);
                             // updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

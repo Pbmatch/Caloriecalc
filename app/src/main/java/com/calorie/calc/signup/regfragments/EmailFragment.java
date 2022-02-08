@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentEmailBinding;
 import com.calorie.calc.signup.InsideBaseFragment;
@@ -44,13 +46,17 @@ public class EmailFragment  extends InsideBaseFragment implements OnKeyboardVisi
         ((RegistrationActivity)getActivity()).setKeyboardVisibilityListener(this);
 
     }
+   protected Fragment getSuccesFragment()
+    {
+        return new SuccesRegFragment(InsideBaseFragment.FragmentType.SUCCES);
+    }
     void setViews() {
 
         addKeyboardListener();
         binding.buttonGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((RegistrationActivity)getActivity()).signIn();
+                ((RegistrationActivity)getActivity()).signIn(getSuccesFragment());
             }
         });
         RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
