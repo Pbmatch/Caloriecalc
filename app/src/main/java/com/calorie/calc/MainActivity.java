@@ -8,6 +8,9 @@ import android.os.Bundle;
 import com.calorie.calc.databinding.ActivityMainBinding;
 import com.calorie.calc.signup.RegistrationActivity;
 import com.calorie.calc.signup.state.RegStateHandler;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,19 +22,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding =  ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
-        Intent mIntent = new Intent(this, RegistrationActivity.class);
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.setLanguageCode(Locale.getDefault().getLanguage());
+        FirebaseAuth.getInstance().signOut();
+      /*  if(firebaseAuth.getCurrentUser()==null)
+         {*/
+             Intent mIntent = new Intent(this, RegistrationActivity.class);
         startActivity(mIntent);
+       /*  }*/
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-      /*  System.out.println("ONRESUME");
-        if(RegStateHandler.getUserState().getValue()!=null)
-        {
-            User user = RegStateHandler.getUserState().getValue();
-            binding.textView.setText("name:"+user.getName()+" mail:"+user.getEmail()+" pass:"+user.getPassword());
 
-        }*/
-    }
 }

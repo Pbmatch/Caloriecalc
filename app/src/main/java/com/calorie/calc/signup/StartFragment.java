@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentStartBinding;
-import com.calorie.calc.signup.regfragments.NavigationHelperReg;
 
 
 public class StartFragment extends Fragment {
@@ -52,7 +51,7 @@ public class StartFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                NavigationHelperReg.openRegistrationFragments(getParentFragmentManager());
+                NavigationHelperRegistration.openRegistrationFragments(getParentFragmentManager());
 
 
             }
@@ -60,7 +59,7 @@ public class StartFragment extends Fragment {
         binding.textViewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelperReg.openAuthorizationFragments(getParentFragmentManager());
+                NavigationHelperRegistration.openAuthorizationFragments(getParentFragmentManager());
             }
         });
 

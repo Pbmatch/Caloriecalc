@@ -2,24 +2,19 @@ package com.calorie.calc.signup.regfragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
 import com.calorie.calc.R;
 import com.calorie.calc.User;
-import com.calorie.calc.databinding.FragmentRegGoal1Binding;
 import com.calorie.calc.databinding.FragmentRegLifestyle2Binding;
+import com.calorie.calc.signup.InsideBaseFragment;
 
 
-public class LifestyleFragment2 extends RegBaseFragment {
+public class LifestyleFragment2 extends InsideBaseFragment {
 
 
     FragmentRegLifestyle2Binding binding;

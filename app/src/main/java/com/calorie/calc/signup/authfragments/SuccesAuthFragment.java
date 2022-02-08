@@ -1,4 +1,4 @@
-package com.calorie.calc.signup.auth;
+package com.calorie.calc.signup.authfragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,22 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.FragmentSuccesRemindBinding;
 import com.calorie.calc.databinding.FragmentSuccessAuthBinding;
-import com.calorie.calc.signup.SuccesFragment;
-import com.calorie.calc.signup.regfragments.RegBaseFragment;
+import com.calorie.calc.signup.InsideBaseFragment;
 
-public class SuccessRemindFragment extends RegBaseFragment {
+public class SuccesAuthFragment extends InsideBaseFragment {
 
-    FragmentSuccesRemindBinding binding;
-
-    public SuccessRemindFragment(FragmentType type) {
+    FragmentSuccessAuthBinding binding;
+    public SuccesAuthFragment(FragmentType type) {
         super(type);
     }
 
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
-        binding= FragmentSuccesRemindBinding.bind(rootView);
+        binding=FragmentSuccessAuthBinding.bind(rootView);
         binding.buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,8 +28,9 @@ public class SuccessRemindFragment extends RegBaseFragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_succes_remind, container, false);
+        return inflater.inflate(R.layout.fragment_success_auth, container, false);
     }
 }

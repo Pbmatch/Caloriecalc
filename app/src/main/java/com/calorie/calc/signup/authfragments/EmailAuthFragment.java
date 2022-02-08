@@ -1,4 +1,4 @@
-package com.calorie.calc.signup.auth;
+package com.calorie.calc.signup.authfragments;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,15 +6,11 @@ import android.view.View;
 import com.calorie.calc.R;
 import com.calorie.calc.signup.regfragments.EmailFragment;
 
-public class AuthEmailFragment extends EmailFragment {
-    public AuthEmailFragment(FragmentType type) {
+public class EmailAuthFragment extends EmailFragment {
+    public EmailAuthFragment(FragmentType type) {
         super(type);
     }
 
-    @Override
-    public void onSettingPause() {
-
-    }
 
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {

@@ -1,9 +1,6 @@
 package com.calorie.calc.signup.regfragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
 
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,13 +10,13 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentDateBinding;
-import com.calorie.calc.databinding.FragmentRegGoal1Binding;
+import com.calorie.calc.signup.InsideBaseFragment;
 import com.calorie.calc.utils.DataPickerToDate;
 
 import java.util.Date;
 
 
-public class DateFragment4 extends RegBaseFragment {
+public class DateFragment4 extends InsideBaseFragment {
 
 
      FragmentDateBinding binding;

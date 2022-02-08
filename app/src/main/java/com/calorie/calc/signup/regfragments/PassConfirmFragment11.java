@@ -2,7 +2,6 @@ package com.calorie.calc.signup.regfragments;
 
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
@@ -11,11 +10,12 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentPassBinding;
+import com.calorie.calc.signup.InsideBaseFragment;
 import com.calorie.calc.signup.state.ButtonState;
 import com.calorie.calc.signup.state.RegStateHandler;
 
-public class ConfirmPassFragment11 extends RegBaseFragment {
-    public ConfirmPassFragment11(FragmentType type) {
+public class PassConfirmFragment11 extends InsideBaseFragment {
+    public PassConfirmFragment11(FragmentType type) {
         super(type);
     }
     FragmentPassBinding binding;

@@ -1,9 +1,6 @@
 package com.calorie.calc.signup.regfragments;
 
-import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +8,10 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentHeightWeightBinding;
+import com.calorie.calc.signup.InsideBaseFragment;
 
 
-public abstract class HeightWeightFragment extends RegBaseFragment {
+public abstract class HeightWeightFragment extends InsideBaseFragment {
 
     FragmentHeightWeightBinding binding;
 

@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import com.calorie.calc.R;
 import com.calorie.calc.User;
 import com.calorie.calc.databinding.FragmentRegGoal1Binding;
+import com.calorie.calc.signup.InsideBaseFragment;
 import com.calorie.calc.signup.state.ButtonState;
 import com.calorie.calc.signup.state.RegStateHandler;
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class GoalFragment1 extends RegBaseFragment {
+public class GoalFragment1 extends InsideBaseFragment {
 
     FragmentRegGoal1Binding binding;
     List<CheckBox> ckeckList = new ArrayList<>();

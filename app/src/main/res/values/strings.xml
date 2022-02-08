@@ -66,5 +66,6 @@
     <string name="recipe">Рецепты</string>
     <string name="sport">Спорт</string>
     <string name="profile">Профиль</string>
+    <string name="networkerr">Нет сети</string>
 
 </resources>

@@ -8,40 +8,37 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
-import com.calorie.calc.BuildConfig;
 import com.calorie.calc.R;
 import com.calorie.calc.User;
 import com.calorie.calc.databinding.FragmentRegBaseBinding;
-import com.calorie.calc.signup.regfragments.Builder;
-import com.calorie.calc.signup.regfragments.GoalFragment1;
-import com.calorie.calc.signup.regfragments.NavigationHelperReg;
-import com.calorie.calc.signup.regfragments.RegBaseFragment;
+import com.calorie.calc.signup.fragmentbuilders.FragmentBuilder;
 import com.calorie.calc.signup.state.ButtonState;
-import com.calorie.calc.signup.state.RegFragmentState;
+import com.calorie.calc.signup.state.FirebaseAuthCompliteListener;
 import com.calorie.calc.signup.state.RegStateHandler;
 import com.calorie.calc.utils.BackPressable;
+import com.google.firebase.auth.AuthResult;
 
 
-public abstract class BaseFragment extends Fragment implements BackPressable, View.OnClickListener {
+public abstract class OutsideBaseFragment extends Fragment implements BackPressable, View.OnClickListener, FirebaseAuthCompliteListener {
 
 
     FragmentRegBaseBinding binding;
     FragmentBuilder builder;
 
-    public BaseFragment() {
+    public OutsideBaseFragment() {
     }
 
-   /* public static BaseFragment newInstance() {
-        BaseFragment fragment = new BaseFragment();
+   /* public static OutsideBaseFragment newInstance() {
+        OutsideBaseFragment fragment = new OutsideBaseFragment();
         return fragment;
     }*/
 
@@ -75,7 +72,7 @@ public abstract class BaseFragment extends Fragment implements BackPressable, Vi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setTitle();
-        NavigationHelperReg.openNextFragment(getChildFragmentManager(),builder.getNextFragment());
+        NavigationHelperRegistration.openNextFragment(getChildFragmentManager(),builder.getNextFragment());
         initViews(view, savedInstanceState);
         setProgressBar();
     }
@@ -131,5 +128,27 @@ public abstract class BaseFragment extends Fragment implements BackPressable, Vi
      return false;
     }
 
+    @Override
+    public void onStartLoad(Boolean start) {
+        if(!start) Toast.makeText(getContext(), R.string.networkerr,Toast.LENGTH_LONG).show();
+        else
+        {
+            binding.progressBarLoad.setVisibility(View.VISIBLE);
+        }
+    }
 
+    @Override
+    public void onComplete() {
+        binding.progressBarLoad.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onFailure(Exception e) {
+        Toast.makeText(getContext(), e.getMessage(),Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSuccess(AuthResult authResult) {
+        NavigationHelperRegistration.openSuccesFragment(getParentFragmentManager(),builder.getNextFragment());
+    }
 }

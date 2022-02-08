@@ -1,24 +1,22 @@
 package com.calorie.calc.signup.regfragments;
 
+import static com.calorie.calc.utils.Config.PASS_LENGHT;
+
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.FragmentNameBinding;
 import com.calorie.calc.databinding.FragmentPassBinding;
+import com.calorie.calc.signup.InsideBaseFragment;
 import com.calorie.calc.signup.state.ButtonState;
 import com.calorie.calc.signup.state.RegStateHandler;
 
-public class PassFragment10 extends RegBaseFragment {
+public class PassFragment10 extends InsideBaseFragment {
     public PassFragment10(FragmentType type) {
         super(type);
     }
@@ -56,7 +54,7 @@ public class PassFragment10 extends RegBaseFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()>0)
+                if(s.toString().length()>PASS_LENGHT)
                     RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
                 else RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
             }

@@ -1,21 +1,21 @@
 package com.calorie.calc.signup.state;
 
-import com.calorie.calc.signup.regfragments.RegBaseFragment;
+import com.calorie.calc.signup.InsideBaseFragment;
 
 public class RegFragmentState {
 
-    RegBaseFragment.FragmentType type;
+    InsideBaseFragment.FragmentType type;
 
 
-    public RegFragmentState(RegBaseFragment.FragmentType type) {
+    public RegFragmentState(InsideBaseFragment.FragmentType type) {
         this.type = type;
     }
 
-    public RegBaseFragment.FragmentType getType() {
+    public InsideBaseFragment.FragmentType getType() {
         return type;
     }
 
-    public void setType(RegBaseFragment.FragmentType type) {
+    public void setType(InsideBaseFragment.FragmentType type) {
         this.type = type;
     }
 
@@ -24,7 +24,7 @@ public class RegFragmentState {
 
     {
 
-        public FragmetType(RegBaseFragment.FragmentType type) {
+        public FragmetType(InsideBaseFragment.FragmentType type) {
             super(type);
         }
     }

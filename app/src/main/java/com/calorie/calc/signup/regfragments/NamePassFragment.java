@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentNameBinding;
+import com.calorie.calc.signup.InsideBaseFragment;
 
 
-
-public abstract class NamePassFragment extends RegBaseFragment {
+public abstract class NamePassFragment extends InsideBaseFragment {
 
       FragmentNameBinding binding;
     public NamePassFragment(FragmentType type) {

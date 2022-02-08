@@ -1,27 +1,25 @@
-package com.calorie.calc.signup.regfragments;
+package com.calorie.calc.signup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.calorie.calc.R;
-import com.calorie.calc.signup.AuthBaseFragment;
-import com.calorie.calc.signup.BaseFragment;
-import com.calorie.calc.signup.RegistrationBaseFragment;
+import com.calorie.calc.signup.AuthOutsideBaseFragment;
+import com.calorie.calc.signup.RegistrationOutsideBaseFragment;
 import com.calorie.calc.signup.StartFragment;
-import com.calorie.calc.signup.SuccesFragment;
 
-public class NavigationHelperReg extends com.calorie.calc.NavigationHelper {
+public class NavigationHelperRegistration extends com.calorie.calc.NavigationHelper {
     public static void openRegistrationFragments(final FragmentManager fragmentManager) {
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragmentContainerViewActivityReg, new RegistrationBaseFragment())
+                .replace(R.id.fragmentContainerViewActivityReg, new RegistrationOutsideBaseFragment())
                 .addToBackStack("base")
                 .commit();
     }
     public static void openAuthorizationFragments(final FragmentManager fragmentManager) {
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragmentContainerViewActivityReg, new AuthBaseFragment())
+                .replace(R.id.fragmentContainerViewActivityReg, new AuthOutsideBaseFragment())
                 .addToBackStack("base")
                 .commit();
     }

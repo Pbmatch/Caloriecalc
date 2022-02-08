@@ -1,4 +1,4 @@
-package com.calorie.calc.signup.regfragments;
+package com.calorie.calc.signup;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,11 +13,11 @@ import com.calorie.calc.signup.state.RegFragmentState;
 import com.calorie.calc.signup.state.RegStateHandler;
 import com.calorie.calc.utils.BackPressable;
 
-public abstract class RegBaseFragment  extends Fragment implements BackPressable {
-    protected    User user;
+public abstract class InsideBaseFragment extends Fragment implements BackPressable {
+    protected   User user;
     protected FragmentType type;
 
-    public RegBaseFragment(FragmentType type) {
+    public InsideBaseFragment(FragmentType type) {
         this.type = type;
     }
     @Override

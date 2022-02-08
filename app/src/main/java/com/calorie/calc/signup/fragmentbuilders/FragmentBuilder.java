@@ -1,4 +1,4 @@
-package com.calorie.calc.signup;
+package com.calorie.calc.signup.fragmentbuilders;
 
 import android.content.Context;
 

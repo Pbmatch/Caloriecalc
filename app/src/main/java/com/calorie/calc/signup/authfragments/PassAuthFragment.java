@@ -1,4 +1,4 @@
-package com.calorie.calc.signup.auth;
+package com.calorie.calc.signup.authfragments;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentPassAuthBinding;
-import com.calorie.calc.signup.regfragments.NavigationHelperReg;
-import com.calorie.calc.signup.regfragments.RegBaseFragment;
+import com.calorie.calc.signup.InsideBaseFragment;
+import com.calorie.calc.signup.NavigationHelperRegistration;
 import com.calorie.calc.signup.state.ButtonState;
 import com.calorie.calc.signup.state.RegStateHandler;
 
 
-public class PassAuthFragment extends RegBaseFragment {
+public class PassAuthFragment extends InsideBaseFragment {
 
     FragmentPassAuthBinding binding;
 
@@ -44,7 +44,7 @@ public class PassAuthFragment extends RegBaseFragment {
         binding.textViewrules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelperReg.openNextFragment(getParentFragmentManager(),new RemindMailFragment(RegBaseFragment.FragmentType.REMIND_MAIL_SUCCES));
+                NavigationHelperRegistration.openNextFragment(getParentFragmentManager(),new EmailRemindFragment(InsideBaseFragment.FragmentType.REMIND_MAIL_SUCCES));
             }
         });
         binding.editText.addTextChangedListener(new TextWatcher() {
@@ -83,6 +83,11 @@ public class PassAuthFragment extends RegBaseFragment {
 
             }
         });
+    }
+    @Override
+    public void onPause() {
+        user.setPassword(binding.editText.getText().toString());
+        super.onPause();
     }
 
     @Override

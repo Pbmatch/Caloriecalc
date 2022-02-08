@@ -1,8 +1,6 @@
-package com.calorie.calc.signup;
+package com.calorie.calc.signup.regfragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +8,13 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentSuccesBinding;
-import com.calorie.calc.signup.regfragments.RegBaseFragment;
+import com.calorie.calc.signup.InsideBaseFragment;
 
 
-public class SuccesFragment extends RegBaseFragment {
+public class SuccesRegFragment extends InsideBaseFragment {
 
     FragmentSuccesBinding binding;
-    public SuccesFragment(FragmentType type) {
+    public SuccesRegFragment(FragmentType type) {
         super(type);
     }
 

@@ -1,10 +1,8 @@
 package com.calorie.calc.signup.regfragments;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,15 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentEmailBinding;
+import com.calorie.calc.signup.InsideBaseFragment;
+import com.calorie.calc.signup.OnKeyboardVisibilityListener;
+import com.calorie.calc.signup.RegistrationActivity;
 import com.calorie.calc.signup.state.ButtonState;
 import com.calorie.calc.signup.state.RegStateHandler;
 
 
-public class EmailFragment  extends RegBaseFragment {
+public class EmailFragment  extends InsideBaseFragment implements OnKeyboardVisibilityListener {
 
     public   FragmentEmailBinding binding;
     public EmailFragment(FragmentType type) {
@@ -41,8 +41,14 @@ public class EmailFragment  extends RegBaseFragment {
 
         return inflater.inflate(R.layout.fragment_email, container, false);
     }
+    public void addKeyboardListener()
+    {
+        ((RegistrationActivity)getActivity()).setKeyboardVisibilityListener(this);
+
+    }
     void setViews() {
-        ((AppCompatActivity)getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        addKeyboardListener();
         RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
 
         binding.editText.addTextChangedListener(new TextWatcher() {
@@ -58,19 +64,36 @@ public class EmailFragment  extends RegBaseFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()>0)
+                if(isEmailValid(s.toString())){
                     RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+                    user.setEmail(s.toString());
+                }
                 else RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
+            }
+            boolean isEmailValid(CharSequence email) {
+                return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
             }
         });
     }
+
     @Override
-    public void onPause() {
-        onSettingPause();
-        ((AppCompatActivity)getContext()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        super.onPause();
+    public void onDestroyView() {
+        ((RegistrationActivity)getActivity()).removeKeyboardListener();
+        super.onDestroyView();
     }
-    public void onSettingPause()
-    {user.setEmail(binding.editText.getText().toString());
-        }
+
+
+
+    @Override
+    public void onVisibilityChanged(boolean visible) {
+        if(visible)
+        {
+            binding.buttonGoogle.setVisibility(View.GONE);
+            binding.textViewText.setVisibility(View.GONE);
+
+        } else
+        {binding.buttonGoogle.setVisibility(View.VISIBLE);
+            binding.textViewText.setVisibility(View.VISIBLE);}
+            System.out.println("OnVisibile"+visible);
+    }
 }

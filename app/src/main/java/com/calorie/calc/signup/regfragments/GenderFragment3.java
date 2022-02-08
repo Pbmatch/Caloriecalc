@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import com.calorie.calc.R;
 import com.calorie.calc.User;
 import com.calorie.calc.databinding.FragmentRegGender3Binding;
+import com.calorie.calc.signup.InsideBaseFragment;
 import com.calorie.calc.signup.state.ButtonState;
 import com.calorie.calc.signup.state.RegStateHandler;
 
 
-public class GenderFragment3 extends RegBaseFragment {
+public class GenderFragment3 extends InsideBaseFragment {
 
       FragmentRegGender3Binding binding;
     public GenderFragment3(FragmentType type) {
