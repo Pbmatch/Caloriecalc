@@ -28,25 +28,27 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
 
-    ActivityMainBinding binding;
+   // ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Caloriecalc);
 
         super.onCreate(savedInstanceState);
-        binding =  ActivityMainBinding.inflate(getLayoutInflater());
+    //    binding =  ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
 
+      //  binding.bottomBar.setMenu();
+     //   binding.bottomBar.getMenu().clear();
+     //   binding.bottomBar.inflateMenu(R.menu.bottom_navigation);
+//
+        /* FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-
-         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
-        FirebaseAuth.getInstance().signOut();
+      //  FirebaseAuth.getInstance().signOut();
        if(firebaseAuth.getCurrentUser()==null)
          {
              Intent mIntent = new Intent(this, RegistrationActivity.class);
         startActivity(mIntent);
-        }
+        }*/
     }
 
 

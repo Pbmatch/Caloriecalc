@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/_srt_home"
@@ -8,8 +9,16 @@
 
     <item
         android:id="@+id/_srt_trending"
-        android:icon="@drawable/recipe"
-        android:title="@string/recipe" />
+        android:icon="@drawable/recipes"
+        android:title="@string/recipe"
+        />
+    <item
+        android:id="@+id/skip"
+        android:checkable="false"
+        android:checked="false"
+        android:enabled="false"
+        android:title=" "
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/_srt_subscribers"
