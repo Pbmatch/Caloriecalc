@@ -38,7 +38,7 @@ public class DateFragment4 extends InsideBaseFragment {
     protected void initViews(View rootView, Bundle savedInstanceState) {
         binding = FragmentDateBinding.bind(rootView);
         binding.datePickerActions.setMaxDate(new Date().getTime());
-        binding.textViewText.setText(Html.fromHtml(getString(user.getLifestyle().getResourceText())));
+
     }
 
     @Override
