@@ -1,5 +1,7 @@
 package com.calorie.calc;
 
+import static com.calorie.calc.NavigationHelper.openMainFragment;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,14 +30,15 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
 
-   // ActivityMainBinding binding;
+    ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Caloriecalc);
 
         super.onCreate(savedInstanceState);
-    //    binding =  ActivityMainBinding.inflate(getLayoutInflater());
+
         setContentView(R.layout.activity_main);
+        openMainFragment(getSupportFragmentManager());
 
       //  binding.bottomBar.setMenu();
      //   binding.bottomBar.getMenu().clear();

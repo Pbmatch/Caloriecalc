@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/_srt_home"
+        android:id="@+id/menu_tracker"
         android:icon="@drawable/tracker"
         android:title="@string/tracker" />
 
     <item
-        android:id="@+id/_srt_trending"
+        android:id="@+id/menu_recipes"
         android:icon="@drawable/recipes"
         android:title="@string/recipe"
         />
@@ -21,11 +21,11 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/_srt_subscribers"
+        android:id="@+id/menu_sport"
         android:icon="@drawable/sport_timer"
         android:title="@string/sport" />
     <item
-        android:id="@+id/_srt_library"
+        android:id="@+id/menu_profile"
         android:icon="@drawable/profile"
         android:title="@string/profile" />
 
