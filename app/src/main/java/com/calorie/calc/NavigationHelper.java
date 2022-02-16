@@ -6,7 +6,8 @@ import android.app.Activity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.calorie.calc.signup.fragments.MainFragment;
+
+import com.calorie.calc.fragments.MainFragment;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
 public class NavigationHelper {
