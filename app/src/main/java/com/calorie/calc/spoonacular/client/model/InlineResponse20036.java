@@ -1,12 +1,12 @@
 package com.calorie.calc.spoonacular.client.model;
 
-import com.spoonacular.client.model.InlineResponse20028Nutrition;
-import com.spoonacular.client.model.InlineResponse20028Servings;
-import java.math.BigDecimal;
-import java.util.*;
-
-import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 
 @ApiModel(description = "")

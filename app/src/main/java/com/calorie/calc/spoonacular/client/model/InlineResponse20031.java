@@ -2,7 +2,8 @@ package com.calorie.calc.spoonacular.client.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 
 @ApiModel(description = "")
