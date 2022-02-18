@@ -1,4 +1,4 @@
-package com.calorie.calc.spoonacular.network;
+package com.calorie.calc.edamam.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 public abstract class Recipient {
 
     protected final Context context;
-    private final String BASEURL = "https://api.spoonacular.com/";
+    private final String BASEURL = "https://api.edamam.com/api/";
     public IRetrofitInterface retrofitInterface;
     private final Retrofit retrofit;
     protected final int CODE_OK=200;

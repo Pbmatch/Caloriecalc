@@ -1,4 +1,4 @@
-package com.calorie.calc.spoonacular.network;
+package com.calorie.calc.edamam.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
