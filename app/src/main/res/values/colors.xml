@@ -17,4 +17,5 @@
     <color name="progress_off">#A7CAC4</color>
     <color name="progress_on">#22B042</color>
     <color name="password_failure">#F25509</color>
+    <color name="edit_text_recipe">#F5F5ED</color>
 </resources>

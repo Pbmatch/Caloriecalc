@@ -7,7 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.calorie.calc.databinding.ActivityMainBinding;
-import com.calorie.calc.spoonacular.network.RecipeRecipient;
+import com.calorie.calc.edamam.network.RecipeRecipient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         openMainFragment(getSupportFragmentManager());
-        getDataFromServer();
+       // getDataFromServer();
 
     /*    IngredientsApi apiInstance = new IngredientsApi();
         String query = burger; // String | The (natural language) search query.

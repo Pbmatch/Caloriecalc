@@ -68,5 +68,6 @@
     <string name="profile">Профиль</string>
     <string name="networkerr">Нет сети</string>
     <string name="default_web_client_idstr">396791155438-1r9kn0v9c66ae56uvsed4frfrg3fi19h.apps.googleusercontent.com</string>
+    <string name="recipe_hint">Поиск рецептов</string>
 
 </resources>
