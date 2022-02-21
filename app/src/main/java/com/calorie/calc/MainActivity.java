@@ -12,6 +12,7 @@ import com.calorie.calc.edamam.network.RecipeRecipient;
 public class MainActivity extends AppCompatActivity {
 
 
+    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");;
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

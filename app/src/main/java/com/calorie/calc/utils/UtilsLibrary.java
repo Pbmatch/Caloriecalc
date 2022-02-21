@@ -17,4 +17,24 @@ public class UtilsLibrary {
 
         return res;
     }
+    public static boolean isBlank(final String string) {
+        if (isNullOrEmpty(string)) {
+            return true;
+        }
+
+        final int length = string.length();
+        for (int i = 0; i < length; i++) {
+            if (!isWhitespace(string.codePointAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public static boolean isNullOrEmpty(final String str) {
+        return str == null || str.isEmpty();
+    }
+    public static boolean isWhitespace(final int c) {
+        return c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\r';
+    }
 }

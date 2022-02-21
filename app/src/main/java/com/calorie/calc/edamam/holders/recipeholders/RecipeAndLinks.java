@@ -14,4 +14,20 @@ public class RecipeAndLinks implements Serializable {
     @Expose
     private RecipeSearch.Links links;
     private final static long serialVersionUID = 4169649893548118679L;
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public RecipeSearch.Links getLinks() {
+        return links;
+    }
+
+    public void setLinks(RecipeSearch.Links links) {
+        this.links = links;
+    }
 }
