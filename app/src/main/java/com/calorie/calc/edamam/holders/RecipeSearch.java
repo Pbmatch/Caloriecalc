@@ -1,6 +1,6 @@
 package com.calorie.calc.edamam.holders;
 
-import com.calorie.calc.edamam.holders.recipeholders.RecipeHolder;
+import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -23,7 +23,7 @@ public class RecipeSearch implements Serializable {
     private Links links;
     @SerializedName("hits")
     @Expose
-    private List<RecipeHolder> hits = new ArrayList<>();
+    private List<RecipeAndLinks> hits = new ArrayList<>();
     private final static long serialVersionUID = -819237844779022930L;
 
     public long getFrom() {
@@ -58,11 +58,11 @@ public class RecipeSearch implements Serializable {
         this.links = links;
     }
 
-    public List<RecipeHolder> getHits() {
+    public List<RecipeAndLinks> getHits() {
         return hits;
     }
 
-    public void setHits(List<RecipeHolder> hits) {
+    public void setHits(List<RecipeAndLinks> hits) {
         this.hits = hits;
     }
 

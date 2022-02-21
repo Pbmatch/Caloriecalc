@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class RecipeHolder implements Serializable {
+public class RecipeAndLinks implements Serializable {
     @SerializedName("recipe")
     @Expose
     private Recipe recipe;

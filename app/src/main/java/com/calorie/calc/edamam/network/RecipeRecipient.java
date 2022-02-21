@@ -17,8 +17,8 @@ import retrofit2.Response;
 public class RecipeRecipient extends Recipient {
 
 
-    String APP_KEY = "df47a981d80b7d7f5c1deb614701691c";
-    String APP_ID = "4772da4b";
+    String APP_KEY_RECIPE = "df47a981d80b7d7f5c1deb614701691c";
+    String APP_ID_RECIPE = "4772da4b";
     String APP_KEY_FOOD = "3fb0249a92fd83b77bb0f3e57d62a8e8";
     String APP_ID_FOOD = "df7288a0";
     private Callback<RecipeSearch> callback;
