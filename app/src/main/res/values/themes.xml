@@ -32,6 +32,13 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
 
     </style>
+    <style name="text_title_nano" parent="@android:style/Widget.TextView">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textColor">@color/text_title_color</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+
+    </style>
     <style name="text_standart" parent="@android:style/Widget.TextView">
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
         <item name="android:textColor">@color/text_title_color</item>

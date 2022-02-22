@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         openMainFragment(getSupportFragmentManager());
-       // getDataFromServer();
+        getDataFromServer();
 
     /*    IngredientsApi apiInstance = new IngredientsApi();
         String query = burger; // String | The (natural language) search query.

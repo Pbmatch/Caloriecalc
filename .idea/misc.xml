@@ -35,6 +35,7 @@
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/drawable/selector_bottom_navig.xml" value="0.21302083333333333" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/drawable/shadow_background.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/drawable/splash.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/drawable/waist_1.xml" value="0.3260416666666667" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/activity_main.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/activity_main2.xml" value="0.196875" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/activity_registration.xml" value="0.3145833333333333" />
@@ -48,8 +49,9 @@
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_pass_auth.xml" value="0.2988679352838745" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_pass_verific.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_profile.xml" value="0.2980072463768116" />
-        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_recipe.xml" value="0.4528302049755674" />
-        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_recipe_main.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_recipe.xml" value="0.2740286298568507" />
+        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_recipe_inner_horiz.xml" value="0.12874251497005987" />
+        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_recipe_main.xml" value="0.24567474048442905" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_reg_base.xml" value="0.2988679352838745" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_reg_gender3.xml" value="0.1921875" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_reg_goal1.xml" value="0.2264151024877837" />
@@ -62,7 +64,7 @@
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_succes_remind.xml" value="0.1703125" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_success_auth.xml" value="0.1703125" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_tracker.xml" value="0.2980072463768116" />
-        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/list_recipe_horizontal_item.xml" value="0.4528302049755674" />
+        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/list_recipe_horizontal_item.xml" value="0.18113208199022698" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/list_recipe_item.xml" value="0.1671875" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/list_recipe_liked_item.xml" value="0.1671875" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/menu_items.xml" value="0.302536231884058" />

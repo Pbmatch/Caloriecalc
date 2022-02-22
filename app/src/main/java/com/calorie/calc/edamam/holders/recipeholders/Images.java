@@ -52,7 +52,7 @@ public class Images implements Serializable{
         this.large = large;
     }
 
-    class Large extends ImageSize{ }
+    public class Large extends ImageSize{ }
 
     class Regular extends ImageSize{ }
 
@@ -60,7 +60,7 @@ public class Images implements Serializable{
 
     class Thumbnail  extends ImageSize{ }
 
-    abstract class ImageSize implements Serializable
+   public abstract class ImageSize implements Serializable
     {
         @SerializedName("url")
         @Expose

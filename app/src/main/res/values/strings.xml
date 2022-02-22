@@ -69,5 +69,12 @@
     <string name="networkerr">Нет сети</string>
     <string name="default_web_client_idstr">396791155438-1r9kn0v9c66ae56uvsed4frfrg3fi19h.apps.googleusercontent.com</string>
     <string name="recipe_hint">Поиск рецептов</string>
+    <string name="all">Все</string>
+    <string name="recipe_1">План питания</string>
+    <string name="recipe_2">Популярные рецепты</string>
+    <string name="recipe_3">Добавленные рецепты</string>
+    <string name="recipe_4">Завтраки</string>
+    <string name="recipe_5">Обеды и ужины</string>
+    <string name="recipe_6">Перекусы</string>
 
 </resources>

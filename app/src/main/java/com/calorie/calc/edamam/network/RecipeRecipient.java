@@ -3,6 +3,7 @@ package com.calorie.calc.edamam.network;
 
 import android.content.Context;
 
+import com.calorie.calc.RecipeStateAdapter;
 import com.calorie.calc.edamam.holders.RecipeSearch;
 
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class RecipeRecipient extends Recipient {
                 if (response.body() != null) {
                     RecipeSearch recipeSearch= response.body();
                     System.out.println("onResponce" + recipeSearch.getCount()+"onResponceSize"+recipeSearch.getHits().size());
+                    RecipeStateAdapter.getRecipeState().postValue(recipeSearch.getHits());
 
                 } else {
                     try {
@@ -67,7 +69,7 @@ public class RecipeRecipient extends Recipient {
          param.put("type", "public");
          param.put("q", "chicken");
       //   param.put("ingr", "chicken");
-         retrofitInterface.recipe(APP_ID, APP_KEY, param).enqueue(callback);
+         retrofitInterface.recipe(APP_ID_RECIPE, APP_KEY_RECIPE, param).enqueue(callback);
       //  retrofitInterface.recipeId("recipe_04d73a0b27e84a6680cd370eeecbb636",APP_ID, APP_KEY, param).enqueue(callback);
       //  retrofitInterface.foodParser(APP_ID_FOOD, APP_KEY_FOOD, param).enqueue(callback);
     }

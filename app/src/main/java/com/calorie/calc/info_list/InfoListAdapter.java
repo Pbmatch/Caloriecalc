@@ -23,7 +23,7 @@ import java.util.List;
 
 public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final String TAG = InfoListAdapter.class.getSimpleName();
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     private static final int HEADER_TYPE = 0;
     private static final int FOOTER_TYPE = 1;
@@ -280,10 +280,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    @Override
+/*    @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position,
                                  @NonNull final List<Object> payloads) {
-  /*      if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
+  *//*      if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
             for (final Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
                     ((InfoItemHolder) holder).updateState(infoItemList
@@ -293,10 +293,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             .get(header == null ? position : position - 1) );
                 }
             }
-        } else {*/
-            onBindViewHolder(holder, position);
+        } else {*//*
+        //    onBindViewHolder(holder, position);
        // }
-    }
+    }*/
 
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {
         return new GridLayoutManager.SpanSizeLookup() {

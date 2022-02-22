@@ -31,11 +31,6 @@ public class App  extends Application {
 
 
         app = this;
-
-
-
-
-
         PicassoHelper.init(this);
         PicassoHelper.setShouldLoadImages(true);
         PicassoHelper.setIndicatorsEnabled(MainActivity.DEBUG

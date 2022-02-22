@@ -3,6 +3,7 @@ package com.calorie.calc;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -27,6 +28,13 @@ public class NavigationHelper {
         defaultTransaction(fragmentManager)
                 .replace(R.id.main_activ_container, new MainFragment())
                 .addToBackStack(MAIN_FRAGMENT_TAG)
+                .commit();
+    }
+    public static void openRecipeMainFragment(final FragmentManager fragmentManager, Fragment fragment) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.recipe_container, fragment)
+                //.addToBackStack(null)
                 .commit();
     }
 }

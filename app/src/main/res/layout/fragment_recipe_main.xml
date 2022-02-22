@@ -10,54 +10,54 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_view_plan"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_plan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_view_popular"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_popular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_plan"  />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_added"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view_plan"  />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_view_added"
+        app:layout_constraintTop_toBottomOf="@+id/container_popular"  />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_breakfast"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/container_added"  />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_dinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view_popular"  />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_view_breakfast"
+        app:layout_constraintTop_toBottomOf="@+id/container_breakfast"  />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_snack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view_popular"  />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_view_dinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view_breakfast"  />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_view_snack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view_dinner"  />
+        app:layout_constraintTop_toBottomOf="@+id/container_dinner"  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

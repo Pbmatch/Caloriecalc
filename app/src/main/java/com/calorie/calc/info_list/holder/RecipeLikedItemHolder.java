@@ -6,7 +6,7 @@ import com.calorie.calc.R;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoItemBuilder;
 
-public class RecipeLikedItemHolder extends InfoItemHolder {
+public class RecipeLikedItemHolder extends RecipeItemHolder {
 
     public RecipeLikedItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_recipe_liked_item, parent);
