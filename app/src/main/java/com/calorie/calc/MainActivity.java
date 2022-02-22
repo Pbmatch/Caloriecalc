@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.calorie.calc.databinding.ActivityMainBinding;
-import com.calorie.calc.edamam.network.RecipeRecipient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         openMainFragment(getSupportFragmentManager());
-        getDataFromServer();
+
 
     /*    IngredientsApi apiInstance = new IngredientsApi();
         String query = burger; // String | The (natural language) search query.
@@ -49,11 +48,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(mIntent);
         }*/
     }
-    public void getDataFromServer() {
 
-        RecipeRecipient recipient = new RecipeRecipient(this );
-        recipient.getRecipe();
-    }
 
 
 

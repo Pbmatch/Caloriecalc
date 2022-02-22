@@ -3,12 +3,14 @@ package com.calorie.calc.edamam.network;
 
 import android.content.Context;
 
-import com.calorie.calc.RecipeStateAdapter;
+import androidx.lifecycle.MutableLiveData;
+
 import com.calorie.calc.edamam.holders.RecipeSearch;
+import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.RecipeMainType;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,6 +19,14 @@ import retrofit2.Response;
 
 public class RecipeRecipient extends Recipient {
 
+    MutableLiveData<List<RecipeAndLinks>> recipeState;
+    RecipeMainType type;
+
+    public RecipeRecipient(Context context, MutableLiveData<List<RecipeAndLinks>> recipeState, RecipeMainType type) {
+        super(context);
+        this.recipeState = recipeState;
+        this.type = type;
+    }
 
     String APP_KEY_RECIPE = "df47a981d80b7d7f5c1deb614701691c";
     String APP_ID_RECIPE = "4772da4b";
@@ -40,7 +50,7 @@ public class RecipeRecipient extends Recipient {
                 if (response.body() != null) {
                     RecipeSearch recipeSearch= response.body();
                     System.out.println("onResponce" + recipeSearch.getCount()+"onResponceSize"+recipeSearch.getHits().size());
-                    RecipeStateAdapter.getRecipeState().postValue(recipeSearch.getHits());
+                    recipeState.postValue(recipeSearch.getHits());
 
                 } else {
                     try {
@@ -65,11 +75,9 @@ public class RecipeRecipient extends Recipient {
         if (!connectOk()) {
             return;
         }
-        Map<String, String> param = new HashMap<>();
-         param.put("type", "public");
-         param.put("q", "chicken");
+
       //   param.put("ingr", "chicken");
-         retrofitInterface.recipe(APP_ID_RECIPE, APP_KEY_RECIPE, param).enqueue(callback);
+         retrofitInterface.recipe(APP_ID_RECIPE, APP_KEY_RECIPE, type.getParams()).enqueue(callback);
       //  retrofitInterface.recipeId("recipe_04d73a0b27e84a6680cd370eeecbb636",APP_ID, APP_KEY, param).enqueue(callback);
       //  retrofitInterface.foodParser(APP_ID_FOOD, APP_KEY_FOOD, param).enqueue(callback);
     }

@@ -37,4 +37,11 @@ public class NavigationHelper {
                 //.addToBackStack(null)
                 .commit();
     }
+    public static void openFragment(final FragmentManager fragmentManager, Fragment fragment,int container) {
+
+        defaultTransaction(fragmentManager)
+                .replace(container, fragment)
+                //.addToBackStack(null)
+                .commit();
+    }
 }
