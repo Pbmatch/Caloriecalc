@@ -10,26 +10,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRecipeInnerHorizBinding;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
-import com.calorie.calc.edamam.network.RecipeRecipient;
 import com.calorie.calc.info_list.InfoListAdapter;
 
 import java.util.List;
 
 
-public class RecipeInnerHorizFragment extends Fragment {
+public abstract class RecipeInnerHorizFragment<T> extends Fragment {
 
 
-  private   RecyclerView itemsList;
+    protected   RecyclerView itemsList;
     private FragmentRecipeInnerHorizBinding binding;
-    private InfoListAdapter infoListAdapter;
-    RecipeMainType type;
+    protected InfoListAdapter<T> infoListAdapter;
+    protected RecipeMainType type;
     private String textTitle;
 
     MutableLiveData<List<RecipeAndLinks>> recipeState;
@@ -39,6 +37,7 @@ public class RecipeInnerHorizFragment extends Fragment {
         this.type=type;
         this.recipeState = type.getRecipeState();
     }
+
 
     @Override
     public void onAttach(@NonNull final Context context) {
@@ -51,7 +50,7 @@ public class RecipeInnerHorizFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (infoListAdapter == null) {
-            infoListAdapter = new InfoListAdapter(getContext());
+            infoListAdapter = new InfoListAdapter<T>(getContext());
         }
     }
 
@@ -67,22 +66,21 @@ public class RecipeInnerHorizFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding= FragmentRecipeInnerHorizBinding.bind(view);
         initViews();
-        RecipeRecipient recipeRecipient = new RecipeRecipient(getContext(),recipeState,type);
-        recipeRecipient.getRecipe();
+        setListener();
+        startLoadData();
+
     }
+   abstract void startLoadData();
+
+    abstract void setListener();
+
 
     @Override
     public void onResume() {
 
         super.onResume();
 
-        recipeState.observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinks>>() {
-            @Override
-            public void onChanged(List<RecipeAndLinks> recipeAndLinks) {
 
-                infoListAdapter.addInfoItemList(recipeAndLinks);
-            }
-        });
 
     }
 

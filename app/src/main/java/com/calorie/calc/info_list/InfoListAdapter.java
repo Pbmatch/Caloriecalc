@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.DietType;
+import com.calorie.calc.info_list.holder.DietHolder;
 import com.calorie.calc.info_list.holder.FallbackViewHolder;
 import com.calorie.calc.info_list.holder.InfoItemHolder;
 import com.calorie.calc.info_list.holder.RecipeHorizontalMiniItemHolder;
@@ -21,7 +23,7 @@ import com.calorie.calc.utils.OnClickGesture;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final String TAG = InfoListAdapter.class.getSimpleName();
     private static final boolean DEBUG = true;
 
@@ -31,10 +33,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int RECIPE_HORIZONTAL_MINI_HOLDER_TYPE = 0x100;
     private static final int RECIPE_VERTICAL_BIG_HOLDER_TYPE = 0x101;
     private static final int RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE = 0x102;
-
+    private static final int DIET_HOLDER_TYPE = 0x103;
 
     private final InfoItemBuilder infoItemBuilder;
-    private final ArrayList<RecipeAndLinks> infoItemList;
+    private final ArrayList<T> infoItemList;
 
     private boolean useRecipeHorizontalItem =false;
     private boolean useRecipeLikedItem =false;
@@ -66,7 +68,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-    public void addInfoItemList(@Nullable final List<? extends RecipeAndLinks> data) {
+    public void addInfoItemList(@Nullable final List<? extends T> data) {
         if (data == null) {
             return;
         }
@@ -78,7 +80,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             notifyItemMoved(offsetStart, footerNow);
         }
     }
-    public void setInfoItemList(@Nullable final List<? extends RecipeAndLinks> data) {
+    public void setInfoItemList(@Nullable final List<? extends T> data) {
         if (data == null) {
             return;
         }
@@ -88,7 +90,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
-    public void deleteItemFromItemList(RecipeAndLinks item)
+    public void deleteItemFromItemList(T item)
     {
         if(item!=null &&!infoItemList.isEmpty())
         {
@@ -105,7 +107,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
     }
-    public int findItemPosition(RecipeAndLinks item)
+    public int findItemPosition(T item)
     {
         if(item!=null &&!infoItemList.isEmpty())
         {
@@ -119,7 +121,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return -1;
     }
 
-    public void modifyItemToItemList(RecipeAndLinks item,int position)
+    public void modifyItemToItemList(T item,int position)
     {
         if(item!=null&&!infoItemList.isEmpty())
         {
@@ -131,7 +133,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
     }
-    public void addItemToItemList(RecipeAndLinks item,int position)
+    public void addItemToItemList(T item,int position)
     {
         if(item!=null )
         {
@@ -185,7 +187,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return i;
     }
 
-    public ArrayList<RecipeAndLinks> getItemsList() {
+    public ArrayList<T> getItemsList() {
         return infoItemList;
     }
 
@@ -223,11 +225,19 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return FOOTER_TYPE;
         }
 
+        if(infoItemList.get(position) instanceof RecipeAndLinks){
         return useRecipeHorizontalItem ? RECIPE_HORIZONTAL_MINI_HOLDER_TYPE: useRecipeLikedItem? RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE
-                :RECIPE_VERTICAL_BIG_HOLDER_TYPE;
+                :RECIPE_VERTICAL_BIG_HOLDER_TYPE;}
+
+        if(infoItemList.get(position) instanceof DietType)
+        {
+            return DIET_HOLDER_TYPE;
+
+        }
 
 
 
+         return 55;
 
     }
 
@@ -246,6 +256,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new RecipeHorizontalMiniItemHolder(infoItemBuilder,parent);
             case RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE:
                 return new RecipeLikedItemHolder(infoItemBuilder,parent);
+            case DIET_HOLDER_TYPE: return new DietHolder(infoItemBuilder,parent);
 
             case HEADER_TYPE:
                 return new HFHolder(header);

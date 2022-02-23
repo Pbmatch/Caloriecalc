@@ -7,23 +7,25 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
       <androidx.constraintlayout.widget.ConstraintLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:paddingBottom="8dp"
           android:scaleType="fitXY" >
 
           <ImageView
               android:id="@+id/list_recipe_imageview"
               android:layout_width="match_parent"
-              android:layout_height="100dp"
-
+              android:layout_height="110dp"
+              android:src="@drawable/recipe72"
               android:adjustViewBounds="true"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +33,7 @@
 
           <TextView
               android:id="@+id/list_recipe_textViewTitle"
-              style="@style/text_title_nano"
+              style="@style/text_standart_big"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_margin="8dp"
@@ -48,7 +50,7 @@
               style="@style/text_minim"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginVertical="8dp"
+              android:layout_marginTop="8dp"
               android:maxLines="1"
               app:layout_constraintBottom_toBottomOf="parent"
 

@@ -34,7 +34,7 @@ public class NavigationHelper {
 
         defaultTransaction(fragmentManager)
                 .replace(R.id.recipe_container, fragment)
-                //.addToBackStack(null)
+                 .addToBackStack(null)
                 .commit();
     }
     public static void openFragment(final FragmentManager fragmentManager, Fragment fragment,int container) {

@@ -1,5 +1,7 @@
 package com.calorie.calc.info_list.holder;
 
+import static com.calorie.calc.utils.MeasureUtils.getEnergyString;
+
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,7 +12,7 @@ import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.utils.PicassoHelper;
 
-public class RecipeItemHolder extends InfoItemHolder {
+public class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
 
     public ImageView itemThumbnailView;
     public TextView itemTitleView;
@@ -30,7 +32,8 @@ public class RecipeItemHolder extends InfoItemHolder {
     public void updateFromItem(RecipeAndLinks infoItem) {
 
         Recipe recipe = infoItem.getRecipe();
-        itemKkalView.setText(String.valueOf(recipe.getCalories()));
+        itemKkalView.setText(
+                getEnergyString(recipe.getCalories(),itemBuilder.getContext()));
         itemTitleView.setText(recipe.getLabel());
         if(recipe.getImage()!=null)
             PicassoHelper.loadRecipe(recipe.getImage()) .fit()

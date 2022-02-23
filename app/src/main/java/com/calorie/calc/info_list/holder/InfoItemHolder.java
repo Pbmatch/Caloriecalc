@@ -5,10 +5,9 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoItemBuilder;
 
-public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
+public abstract class InfoItemHolder<T> extends RecyclerView.ViewHolder {
     protected final InfoItemBuilder itemBuilder;
 
     public InfoItemHolder(final InfoItemBuilder infoItemBuilder, final int layoutId,
@@ -17,8 +16,8 @@ public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
         this.itemBuilder = infoItemBuilder;
 
     }
-    public abstract void updateFromItem(RecipeAndLinks infoItem
+    public abstract void updateFromItem(T infoItem
                                         );
 
-    public abstract void updateState(final RecipeAndLinks infoItem);
+    public abstract void updateState(final T infoItem);
 }
