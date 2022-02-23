@@ -57,11 +57,11 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public InfoListAdapter(final Context context) {
 
-        infoItemBuilder = new InfoItemBuilder(context);
+        infoItemBuilder = new InfoItemBuilder<T>(context);
         infoItemList = new ArrayList<>();
     }
 
-    public void setOnStreamSelectedListener(final OnClickGesture<RecipeAndLinks> listener) {
+    public void setOnItemSelectedListener(final OnClickGesture<T> listener) {
         infoItemBuilder.setOnRecipeClickListener(listener);
     }
 

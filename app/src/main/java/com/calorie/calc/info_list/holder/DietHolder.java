@@ -35,7 +35,13 @@ public class DietHolder  extends InfoItemHolder<DietType>{
         if(infoItem.getImageUrl()!=null)
             PicassoHelper.loadRecipe(infoItem.getImageUrl()) .fit()
                     .centerCrop().into(itemThumbnailView);
-
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemBuilder.getOnRecipeClickListener()!=null)
+                    itemBuilder.getOnRecipeClickListener().selected(infoItem);
+            }
+        });
     }
 
     @Override

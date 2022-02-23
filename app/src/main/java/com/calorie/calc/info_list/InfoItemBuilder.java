@@ -2,12 +2,11 @@ package com.calorie.calc.info_list;
 
 import android.content.Context;
 
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.utils.OnClickGesture;
 
-public class InfoItemBuilder {
+public class InfoItemBuilder<T> {
     Context context;
-    private OnClickGesture<RecipeAndLinks> onRecipeClickListener;
+    private OnClickGesture<T> onRecipeClickListener;
     public InfoItemBuilder(Context context) {
         this.context=context;
 
@@ -21,11 +20,11 @@ public class InfoItemBuilder {
         this.context = context;
     }
 
-    public void setOnRecipeClickListener(OnClickGesture<RecipeAndLinks> listener) {
+    public void setOnRecipeClickListener(OnClickGesture<T> listener) {
      this.onRecipeClickListener=listener;
     }
 
-    public OnClickGesture<RecipeAndLinks> getOnRecipeClickListener() {
+    public OnClickGesture<T> getOnRecipeClickListener() {
         return onRecipeClickListener;
     }
 }

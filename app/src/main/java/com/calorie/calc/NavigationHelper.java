@@ -44,4 +44,11 @@ public class NavigationHelper {
                 //.addToBackStack(null)
                 .commit();
     }
+    public static void openDietFragment(final FragmentManager fragmentManager, Fragment fragment ) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.main_activ_container, fragment)
+               .addToBackStack(null)
+                .commit();
+    }
 }

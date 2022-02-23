@@ -95,5 +95,7 @@ public abstract class RecipeInnerHorizFragment<T> extends Fragment {
             itemsList.setAdapter(infoListAdapter);
 
 
+
+
     }
 }

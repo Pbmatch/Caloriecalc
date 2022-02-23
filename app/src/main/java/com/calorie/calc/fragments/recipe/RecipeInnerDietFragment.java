@@ -1,5 +1,8 @@
 package com.calorie.calc.fragments.recipe;
 
+import com.calorie.calc.NavigationHelper;
+import com.calorie.calc.utils.OnClickGesture;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,11 @@ public class RecipeInnerDietFragment extends RecipeInnerHorizFragment<DietType>{
 
     @Override
     void setListener() {
-
+     infoListAdapter.setOnItemSelectedListener(new OnClickGesture<DietType>() {
+         @Override
+         public void selected(DietType selectedItem) {
+             NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new DietFragment(selectedItem));
+         }
+     });
     }
 }

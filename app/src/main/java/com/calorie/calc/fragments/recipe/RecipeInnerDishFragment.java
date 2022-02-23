@@ -7,6 +7,7 @@ import androidx.viewbinding.ViewBinding;
 import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.edamam.network.RecipeRecipient;
+import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.List;
 
@@ -36,6 +37,12 @@ public class RecipeInnerDishFragment extends RecipeInnerHorizFragment<RecipeAndL
                 }
                 else {infoListAdapter.setHeader(null);}
                 infoListAdapter.addInfoItemList(recipeAndLinks);
+            }
+        });
+        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
+            @Override
+            public void selected(RecipeAndLinks selectedItem) {
+
             }
         });
     }

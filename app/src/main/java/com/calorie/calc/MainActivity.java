@@ -5,8 +5,10 @@ import static com.calorie.calc.NavigationHelper.openMainFragment;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.databinding.ActivityMainBinding;
+import com.calorie.calc.utils.BackPressable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,7 +51,20 @@ public class MainActivity extends AppCompatActivity {
         }*/
     }
 
-
+    @Override
+    public void onBackPressed() {
+        final Fragment fragmentPanel = getSupportFragmentManager()
+                .findFragmentById(R.id.main_activ_container);
+        if (fragmentPanel instanceof BackPressable) {
+            ((BackPressable) fragmentPanel).onBackPressed();
+           /* if (!((BackPressable) fragmentPanel).onBackPressed())
+            {
+                getSupportFragmentManager().popBackStack();
+            }*/
+        }
+        else
+            super.onBackPressed();
+    }
 
 
 }

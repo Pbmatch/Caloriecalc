@@ -1,15 +1,14 @@
 package com.calorie.calc.fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentMainBinding;
@@ -50,11 +49,12 @@ public class MainFragment extends Fragment implements NavigationBarView.OnItemSe
     }
 
     private void initFragments() {
-        getChildFragmentManager().beginTransaction().
+        if(getChildFragmentManager().getFragments().size()==0)
+        {   getChildFragmentManager().beginTransaction().
             add(R.id.mainfragment_container, profileFragment, getString(R.string.profile)).hide(profileFragment).
             add(R.id.mainfragment_container, sportFragment, getString(R.string.sport)).hide(sportFragment).
                 add(R.id.mainfragment_container, recipeFragment, getString(R.string.recipe)).hide(recipeFragment).
-            add(R.id.mainfragment_container, trackerFragment, getString(R.string.tracker)).commit();
+            add(R.id.mainfragment_container, trackerFragment, getString(R.string.tracker)).commit();}
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.calorie.calc.info_list.holder;
 
 import static com.calorie.calc.utils.MeasureUtils.getEnergyString;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +39,13 @@ public class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
         if(recipe.getImage()!=null)
             PicassoHelper.loadRecipe(recipe.getImage()) .fit()
                     .centerCrop().into(itemThumbnailView);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemBuilder.getOnRecipeClickListener()!=null)
+                    itemBuilder.getOnRecipeClickListener().selected(infoItem);
+            }
+        });
     }
 
     @Override
