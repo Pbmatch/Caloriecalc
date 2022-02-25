@@ -17,7 +17,7 @@ public abstract class InfoItemHolder<T> extends RecyclerView.ViewHolder {
 
     }
     public abstract void updateFromItem(T infoItem
-                                        );
+                                        , int position);
 
     public abstract void updateState(final T infoItem);
 }

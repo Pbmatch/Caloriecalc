@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-
 import com.calorie.calc.fragments.MainFragment;
+import com.calorie.calc.fragments.recipe.WebViewFragment;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
 public class NavigationHelper {
@@ -26,7 +26,8 @@ public class NavigationHelper {
     protected static void openMainFragment(final FragmentManager fragmentManager) {
         fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         defaultTransaction(fragmentManager)
-                .replace(R.id.main_activ_container, new MainFragment())
+                 .replace(R.id.main_activ_container, new MainFragment())
+                //.replace(R.id.main_activ_container, new ScrollingFragment())
                 .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
     }
@@ -49,6 +50,13 @@ public class NavigationHelper {
         defaultTransaction(fragmentManager)
                 .replace(R.id.main_activ_container, fragment)
                .addToBackStack(null)
+                .commit();
+    }
+    public static void openWebViewFragment(final FragmentManager fragmentManager, String url ) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.container_web_view, new WebViewFragment(url))
+                .addToBackStack(null)
                 .commit();
     }
 }

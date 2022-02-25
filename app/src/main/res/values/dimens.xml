@@ -5,4 +5,6 @@
     <dimen name="recipe_end">12dp</dimen>
     <dimen name="thumbnail_width">120dp</dimen>
     <dimen name="start_dimen">8dp</dimen>
+    <dimen name="start_max_dimen">12dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

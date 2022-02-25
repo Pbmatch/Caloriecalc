@@ -15,9 +15,9 @@ import com.calorie.calc.utils.PicassoHelper;
 
 public class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
 
-    public ImageView itemThumbnailView;
-    public TextView itemTitleView;
-    public  TextView itemKkalView;
+    private ImageView itemThumbnailView;
+    private TextView itemTitleView;
+    private  TextView itemKkalView;
 
     public RecipeItemHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_recipe_item, parent);
@@ -30,7 +30,7 @@ public class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
     }
 
     @Override
-    public void updateFromItem(RecipeAndLinks infoItem) {
+    public void updateFromItem(RecipeAndLinks infoItem,int pos) {
 
         Recipe recipe = infoItem.getRecipe();
         itemKkalView.setText(

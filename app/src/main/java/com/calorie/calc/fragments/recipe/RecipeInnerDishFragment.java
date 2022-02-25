@@ -3,7 +3,7 @@ package com.calorie.calc.fragments.recipe;
 import androidx.lifecycle.Observer;
 import androidx.viewbinding.ViewBinding;
 
-
+import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.edamam.network.RecipeRecipient;
@@ -42,7 +42,7 @@ public class RecipeInnerDishFragment extends RecipeInnerHorizFragment<RecipeAndL
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override
             public void selected(RecipeAndLinks selectedItem) {
-
+                NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new ScrollingFragment(selectedItem));
             }
         });
     }

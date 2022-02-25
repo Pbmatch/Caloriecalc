@@ -51,6 +51,7 @@ public class DietFragment extends Fragment implements BackPressable {
         binding.textView5.setText(selectedItem.getTextRes());
         PicassoHelper.loadRecipe(selectedItem.getImageUrl()) .fit()
                 .centerCrop().into(binding.imageView3);
+
     }
 
     @Override

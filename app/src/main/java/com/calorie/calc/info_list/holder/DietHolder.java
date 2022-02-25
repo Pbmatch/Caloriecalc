@@ -11,9 +11,9 @@ import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.utils.PicassoHelper;
 
 public class DietHolder  extends InfoItemHolder<DietType>{
-    public ImageView itemThumbnailView;
-    public TextView itemTitleView;
-    public  TextView itemKkalView;
+    private ImageView itemThumbnailView;
+    private TextView itemTitleView;
+    private  TextView itemKkalView;
     public DietHolder(final InfoItemBuilder infoItemBuilder, final ViewGroup parent) {
         this(infoItemBuilder, R.layout.list_recipe_horizontal_item, parent);
     }
@@ -27,7 +27,7 @@ public class DietHolder  extends InfoItemHolder<DietType>{
     }
 
     @Override
-    public void updateFromItem(DietType infoItem) {
+    public void updateFromItem(DietType infoItem,int pos) {
         itemKkalView.setVisibility(View.GONE);
 
 

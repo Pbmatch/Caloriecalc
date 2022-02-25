@@ -10,11 +10,15 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.calorie.calc.edamam.holders.recipeholders.Ingredient;
+import com.calorie.calc.edamam.holders.recipeholders.Nutrient;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.DietType;
 import com.calorie.calc.info_list.holder.DietHolder;
 import com.calorie.calc.info_list.holder.FallbackViewHolder;
 import com.calorie.calc.info_list.holder.InfoItemHolder;
+import com.calorie.calc.info_list.holder.EnergyHolder;
+import com.calorie.calc.info_list.holder.IngredientHolder;
 import com.calorie.calc.info_list.holder.RecipeHorizontalMiniItemHolder;
 import com.calorie.calc.info_list.holder.RecipeItemHolder;
 import com.calorie.calc.info_list.holder.RecipeLikedItemHolder;
@@ -34,6 +38,8 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int RECIPE_VERTICAL_BIG_HOLDER_TYPE = 0x101;
     private static final int RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE = 0x102;
     private static final int DIET_HOLDER_TYPE = 0x103;
+    private static final int ENERGY_HOLDER_TYPE = 0x104;
+    private static final int INGREDIENT_HOLDER_TYPE = 0x105;
 
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<T> infoItemList;
@@ -234,6 +240,16 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             return DIET_HOLDER_TYPE;
 
         }
+        if(infoItemList.get(position) instanceof Nutrient)
+        {
+            return ENERGY_HOLDER_TYPE;
+
+        }
+        if(infoItemList.get(position) instanceof Ingredient)
+        {
+            return INGREDIENT_HOLDER_TYPE;
+
+        }
 
 
 
@@ -257,6 +273,8 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             case RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE:
                 return new RecipeLikedItemHolder(infoItemBuilder,parent);
             case DIET_HOLDER_TYPE: return new DietHolder(infoItemBuilder,parent);
+            case ENERGY_HOLDER_TYPE: return new EnergyHolder(infoItemBuilder,parent);
+            case INGREDIENT_HOLDER_TYPE: return new IngredientHolder(infoItemBuilder,parent);
 
             case HEADER_TYPE:
                 return new HFHolder(header);
@@ -282,7 +300,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
                 position--;
             }
 
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position) );
+            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position),position );
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset()

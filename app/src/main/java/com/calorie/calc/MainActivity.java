@@ -2,13 +2,16 @@ package com.calorie.calc;
 
 import static com.calorie.calc.NavigationHelper.openMainFragment;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.databinding.ActivityMainBinding;
 import com.calorie.calc.utils.BackPressable;
+import com.calorie.calc.utils.DisplaySize;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        setDisplaySize();
         openMainFragment(getSupportFragmentManager());
 
 
@@ -66,5 +70,15 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
     }
 
+    private void setDisplaySize() {
+
+        Display display = this.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        DisplaySize.setHEIGHT(size.y);
+        DisplaySize.setWIDTH(size.x);
+
+
+    }
 
 }

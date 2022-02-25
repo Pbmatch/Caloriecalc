@@ -12,4 +12,18 @@ public class MeasureUtils {
       return i+context.getString(R.string.kkal);
 
     }
+    public static String getNutrientString(double kKal,  String unit)
+    {
+        Double d = kKal;
+        Integer i = d.intValue();
+        return i+" "+unit;
+
+    }
+    public static String getIngrTitleString(Double yeld )
+    {
+        Double d = yeld;
+        Integer i = d.intValue();
+        return i + " "+"Порции";
+
+    }
 }
