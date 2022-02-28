@@ -4,6 +4,7 @@ import android.view.ViewGroup;
 
 import com.calorie.calc.R;
 import com.calorie.calc.info_list.InfoItemBuilder;
+import com.calorie.calc.utils.PicassoHelper;
 
 public class RecipeHorizontalMiniItemHolder extends RecipeItemHolder {
 
@@ -15,6 +16,11 @@ public class RecipeHorizontalMiniItemHolder extends RecipeItemHolder {
      RecipeHorizontalMiniItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
 
+    }
+    void loadImage(String imageUrl)
+    {
+        PicassoHelper.loadRecipe(imageUrl) .fit()
+                .centerCrop().into(itemThumbnailView);
     }
 
 

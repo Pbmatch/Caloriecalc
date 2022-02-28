@@ -2,6 +2,7 @@ package com.calorie.calc.fragments.recipe;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
@@ -37,5 +38,15 @@ public class RecipeInnerAddedDishFragment extends RecipeInnerHorizFragment<Recip
     @Override
     void setListener() {
 
+    }
+
+    @Override
+    boolean isHorizontalItem() {
+        return true;
+    }
+
+    @Override
+    int getLayoutManagerOrientation() {
+        return LinearLayoutManager.HORIZONTAL;
     }
 }

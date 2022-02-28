@@ -38,6 +38,13 @@ public class NavigationHelper {
                  .addToBackStack(null)
                 .commit();
     }
+    public static void openRecipeVerticalMainFragment(final FragmentManager fragmentManager, Fragment fragment) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.recipe_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
     public static void openFragment(final FragmentManager fragmentManager, Fragment fragment,int container) {
 
         defaultTransaction(fragmentManager)

@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/recipe_inner_textViewTitle" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recipe_inner_rec_view"
+            android:id="@+id/rec_view"
             android:layout_marginTop="@dimen/start_dimen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

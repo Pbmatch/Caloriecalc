@@ -1,6 +1,7 @@
 package com.calorie.calc.fragments.recipe;
 
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.NavigationHelper;
@@ -45,6 +46,16 @@ public class RecipeInnerDishFragment extends RecipeInnerHorizFragment<RecipeAndL
                 NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new ScrollingFragment(selectedItem));
             }
         });
+    }
+
+    @Override
+    boolean isHorizontalItem() {
+        return true;
+    }
+
+    @Override
+    int getLayoutManagerOrientation() {
+        return LinearLayoutManager.HORIZONTAL;
     }
 
 

@@ -89,7 +89,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rec_view_kkal"
+                android:id="@+id/rec_view_energy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/start_dimen"
@@ -101,13 +101,14 @@
             <TextView
                 android:id="@+id/textViewText"
 
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/start_dimen"
                 android:layout_marginTop="@dimen/start_max_dimen"
+                android:layout_marginHorizontal="@dimen/start_dimen"
                 android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rec_view_kkal" />
+                app:layout_constraintTop_toBottomOf="@+id/rec_view_energy" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_view_ingred"
                 android:layout_width="match_parent"
@@ -117,33 +118,34 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewText" />
+
             <LinearLayout
                 android:id="@+id/linear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rec_view_ingred">
+
                 <TextView
                     android:id="@+id/textViewInstruction"
-                    style="@style/text_standart"
+                    style="@style/text_standart_big"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/start_dimen"
                     android:layout_marginTop="@dimen/start_dimen"
-                    android:text="Развернуть инструкции"
-                  />
+                    android:text="Развернуть инструкции" />
+
                 <ImageView
                     android:id="@+id/detail_controls_view"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_marginStart="@dimen/start_dimen"
                     android:layout_marginTop="@dimen/start_dimen"
+                    android:layout_marginEnd="10dp"
 
                     app:srcCompat="@drawable/expand_more"
                     tools:ignore="ContentDescription" />
-
-
 
 
             </LinearLayout>
@@ -156,17 +158,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linear" />
+            <TextView
+                android:id="@+id/textViewNutrient"
+                style="@style/text_standart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/start_dimen"
+                android:layout_marginTop="@dimen/start_dimen"
+                android:text="Питательные вещества на 1 порцию"
 
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/container_web_view"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rec_view_structure"
+                android:id="@+id/rec_view_nutrients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/start_dimen"
-                android:layout_marginStart="@dimen/start_dimen"
+                android:layout_marginHorizontal="@dimen/start_dimen"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/container_web_view" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewNutrient" />
 
 
 
@@ -184,8 +197,18 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:text="Добавить в счетчик"
-        android:padding="12dp"
-        android:background="@color/button_green"
+        android:padding="10dp"
+        android:gravity="center"
+
+        android:textSize="16dp"
+        android:fontFamily="@font/roboto_bold"
+
+
+        android:textColor="@color/white"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        android:translationZ="4dp"
+        android:background="@drawable/button_green"
         android:layout_gravity="bottom|center"
         tools:layout_editor_absoluteX="144dp"
         tools:layout_editor_absoluteY="310dp" />
@@ -194,6 +217,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/start_dimen"
+        app:borderWidth="0dp"
+
         android:backgroundTint="@color/white"
         app:fabSize="mini"
         app:layout_anchor="@id/app_bar"

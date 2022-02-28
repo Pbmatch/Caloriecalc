@@ -36,11 +36,18 @@ public class ScrollingFragment extends Fragment {
 
     RecipeAndLinks recipeAndLinks;
     Recipe item;
-    InfoListAdapter<Nutrient> nutrientInfoListAdapter;
+    InfoListAdapter<Nutrient> energyInfoListAdapter;
     InfoListAdapter<Ingredient> ingredientInfoListAdapter;
+    InfoListAdapter<Nutrient> nutrientInfoListAdapter;
     public ScrollingFragment(RecipeAndLinks item) {
         this.recipeAndLinks = item;
         this.item=item.getRecipe();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -48,10 +55,19 @@ public class ScrollingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-       /* Window w = getActivity().getWindow();
+      /*   Window w = getActivity().getWindow();
+
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);*/
         return inflater.inflate(R.layout.fragment_scrolling, container, false);
 
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+     /*   Window w = getActivity().getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);*/
     }
 
     @Override
@@ -62,8 +78,22 @@ public class ScrollingFragment extends Fragment {
     }
     void initView()
     {
+
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fabState();
+            }
+        });
+
         binding.textViewTitle.setText(item.getLabel());
+        String time="";
+        if(item.getTotalTime()!=0.0)
         binding.textViewTime.setText(String.valueOf(item.getTotalTime()));
+        else
+        {
+            binding.textViewTime.setText(String.valueOf(item.getTotalWeight())+" g");
+        }
         if(item.getImage()!=null)
             PicassoHelper.loadRecipe(item.getImage()) .fit()
                     .centerCrop().into(binding.expandedImage);
@@ -81,6 +111,7 @@ public class ScrollingFragment extends Fragment {
         binding.textViewText.setText(ingredients);
         setEnergy();
         setIngredients();
+        setNutreints();
         binding.detailControlsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +120,22 @@ public class ScrollingFragment extends Fragment {
         });
 
 
+    }
+    void fabState()
+    {
+
+        if(!recipeAndLinks.isLiked())
+        {
+            binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favorite));
+            recipeAndLinks.setLiked(true);
+            LikedRecipeState.getRecipeAndLinksMutableLiveData().getValue().add(recipeAndLinks);
+        }
+        else
+            {
+            binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favoriteblank));
+                recipeAndLinks.setLiked(false);
+                LikedRecipeState.getRecipeAndLinksMutableLiveData().getValue().remove(recipeAndLinks);
+        }
     }
     private void toggleTitleAndSecondaryControls() {
         if (binding.containerWebView.getVisibility() == View.GONE) {
@@ -138,20 +185,32 @@ public class ScrollingFragment extends Fragment {
     void setEnergy()
     {
 
-        List<Nutrient> nutrientList=new ArrayList<>();
-        nutrientList.add( item.getTotalNutrients().getEnercKcal());
-        nutrientList.add(item.getTotalNutrients().getFat());
-        nutrientList.add(item.getTotalNutrients().getChocdf());
-        nutrientList.add(item.getTotalNutrients().getProcnt());
+        List<Nutrient> energyList=new ArrayList<>();
+        energyList.add( item.getTotalNutrients().getEnercKcal());
+        energyList.add(item.getTotalNutrients().getFat());
+        energyList.add(item.getTotalNutrients().getChocdf());
+        energyList.add(item.getTotalNutrients().getProcnt());
+        if (energyInfoListAdapter == null) {
+            energyInfoListAdapter = new InfoListAdapter<Nutrient>(getContext());
+        }
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        binding.recViewEnergy.setLayoutManager(layoutManager);
+        energyInfoListAdapter.setUseRecipeHorizontalItem(true);
+        binding.recViewEnergy.setAdapter(energyInfoListAdapter);
+        energyInfoListAdapter.setInfoItemList(energyList);
+
+    }
+    void setNutreints()
+    {
         if (nutrientInfoListAdapter == null) {
             nutrientInfoListAdapter = new InfoListAdapter<Nutrient>(getContext());
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        binding.recViewKkal.setLayoutManager(layoutManager);
-        nutrientInfoListAdapter.setUseRecipeHorizontalItem(true);
-        binding.recViewKkal.setAdapter(nutrientInfoListAdapter);
-        nutrientInfoListAdapter.setInfoItemList(nutrientList);
-
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        binding.recViewNutrients.setLayoutManager(layoutManager);
+        nutrientInfoListAdapter.setNutrient(true);
+        binding.recViewNutrients.setAdapter(nutrientInfoListAdapter);
+        nutrientInfoListAdapter.setInfoItemList(item.getTotalNutrients().getNutrientList());
     }
 }

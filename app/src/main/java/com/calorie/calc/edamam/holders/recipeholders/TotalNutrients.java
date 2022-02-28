@@ -4,8 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TotalNutrients implements Serializable {
+    private final static long serialVersionUID = -1829849523408963768L;
+    List<Nutrient> nutrientList;
     @SerializedName("ENERC_KCAL")
     @Expose
     private EnercKcal enercKcal;
@@ -111,8 +115,90 @@ public class TotalNutrients implements Serializable {
     @SerializedName("WATER")
     @Expose
     private Water water;
-    private final static long serialVersionUID = -1829849523408963768L;
 
+    public List<Nutrient> getNutrientList() {
+        initNutrientsList();
+        return nutrientList;
+    }
+
+    public void setNutrientList(List<Nutrient> nutrientList) {
+        this.nutrientList = nutrientList;
+    }
+
+    void initNutrientsList() {
+        nutrientList = new ArrayList<>();
+        addToList(enercKcal);
+        addToList(fat);
+        addToList(fasat);
+
+        addToList(fatrn);
+
+        addToList(fams);
+
+        addToList(fapu);
+
+        addToList(chocdf);
+
+        addToList(cHOCDFNet);
+
+        addToList(fibtg);
+
+        addToList(sugar);
+
+        addToList(sUGARAdded);
+
+        addToList(procnt);
+
+        addToList(chole);
+
+        addToList(na);
+
+        addToList(ca);
+
+        addToList(mg);
+
+        addToList(k);
+
+        addToList(fe);
+
+        addToList(zn);
+
+        addToList(p);
+
+        addToList(vitaRae);
+
+        addToList(vitc);
+
+        addToList(thia);
+
+        addToList(ribf);
+
+        addToList(nia);
+
+        addToList(vitb6a);
+
+        addToList(foldfe);
+
+        addToList(folfd);
+
+        addToList(folac);
+
+        addToList(vitb12);
+
+        addToList(vitd);
+
+        addToList(tocpha);
+
+        addToList(vitk1);
+
+        addToList(sugarAlcohol);
+
+        addToList(water);
+    }
+
+    void addToList(Nutrient item) {
+        nutrientList.add(item);
+    }
 
     public EnercKcal getEnercKcal() {
         return enercKcal;
@@ -393,7 +479,6 @@ public class TotalNutrients implements Serializable {
     public void setWater(Water water) {
         this.water = water;
     }
-
 
 
     private class EnercKcal extends Nutrient {

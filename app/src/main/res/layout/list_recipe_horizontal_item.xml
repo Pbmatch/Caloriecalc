@@ -4,6 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/start_dimen"
+    android:layout_marginVertical="@dimen/start_dimen"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView

@@ -19,6 +19,7 @@ import com.calorie.calc.info_list.holder.FallbackViewHolder;
 import com.calorie.calc.info_list.holder.InfoItemHolder;
 import com.calorie.calc.info_list.holder.EnergyHolder;
 import com.calorie.calc.info_list.holder.IngredientHolder;
+import com.calorie.calc.info_list.holder.NutrientHolder;
 import com.calorie.calc.info_list.holder.RecipeHorizontalMiniItemHolder;
 import com.calorie.calc.info_list.holder.RecipeItemHolder;
 import com.calorie.calc.info_list.holder.RecipeLikedItemHolder;
@@ -40,6 +41,8 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int DIET_HOLDER_TYPE = 0x103;
     private static final int ENERGY_HOLDER_TYPE = 0x104;
     private static final int INGREDIENT_HOLDER_TYPE = 0x105;
+    private static final int NUTRIENT_HOLDER_TYPE = 0x106;
+    private boolean isNutrient=false;
 
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<T> infoItemList;
@@ -55,6 +58,14 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void setUseRecipeHorizontalItem(boolean useRecipeHorizontalItem) {
         this.useRecipeHorizontalItem = useRecipeHorizontalItem;
+    }
+
+    public boolean isNutrient() {
+        return isNutrient;
+    }
+
+    public void setNutrient(boolean nutrient) {
+        isNutrient = nutrient;
     }
 
     public void setUseBigVariant(boolean useBigVariant) {
@@ -240,9 +251,11 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             return DIET_HOLDER_TYPE;
 
         }
-        if(infoItemList.get(position) instanceof Nutrient)
+        if(infoItemList.get(position) instanceof Nutrient )
         {
-            return ENERGY_HOLDER_TYPE;
+            return isNutrient?
+                    NUTRIENT_HOLDER_TYPE:
+                    ENERGY_HOLDER_TYPE;
 
         }
         if(infoItemList.get(position) instanceof Ingredient)
@@ -250,6 +263,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             return INGREDIENT_HOLDER_TYPE;
 
         }
+
 
 
 
@@ -275,6 +289,8 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             case DIET_HOLDER_TYPE: return new DietHolder(infoItemBuilder,parent);
             case ENERGY_HOLDER_TYPE: return new EnergyHolder(infoItemBuilder,parent);
             case INGREDIENT_HOLDER_TYPE: return new IngredientHolder(infoItemBuilder,parent);
+
+            case NUTRIENT_HOLDER_TYPE: return new NutrientHolder(infoItemBuilder,parent);
 
             case HEADER_TYPE:
                 return new HFHolder(header);

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <include
+        layout="@layout/toolbar_lite"
+        android:id="@+id/srt_toolbar_layout"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@+id/srt_toolbar_layout"
+        android:scrollbars="vertical"
+        />
+
+    <ProgressBar
+        android:id="@+id/srt_loading_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/srt_empty_state_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:paddingTop="85dp"
+
+        tools:visibility="visible">
+        <ImageView
+            android:id="@+id/srt_empty_state_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/basket"
+
+            android:textSize="24sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            style="@style/text_minim"
+            android:textSize="14sp"
+
+            android:text="Добавьте первый рецепт в список \n покупок,  и он появится здесь. "
+
+            tools:ignore="HardcodedText,UnusedAttribute" />
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

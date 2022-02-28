@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,8 +14,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.FragmentRecipeInnerHorizBinding;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoListAdapter;
 
@@ -25,12 +26,14 @@ public abstract class RecipeInnerHorizFragment<T> extends Fragment {
 
 
     protected   RecyclerView itemsList;
-    private FragmentRecipeInnerHorizBinding binding;
+
+    TextView textViewTitle;
+    TextView textViewText;
     protected InfoListAdapter<T> infoListAdapter;
     protected RecipeMainType type;
     private String textTitle;
 
-    MutableLiveData<List<RecipeAndLinks>> recipeState;
+    protected MutableLiveData<List<RecipeAndLinks>> recipeState;
 
     public RecipeInnerHorizFragment(RecipeMainType type) {
 
@@ -38,10 +41,14 @@ public abstract class RecipeInnerHorizFragment<T> extends Fragment {
         this.recipeState = type.getRecipeState();
     }
 
+    public RecipeInnerHorizFragment(MutableLiveData<List<RecipeAndLinks>> recipeState) {
+        this.recipeState = recipeState;
+    }
 
     @Override
     public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
+        if(type!=null)
         this.textTitle = getString(type.getTitleRecource());
 
     }
@@ -64,8 +71,8 @@ public abstract class RecipeInnerHorizFragment<T> extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding= FragmentRecipeInnerHorizBinding.bind(view);
-        initViews();
+        initViews(view);
+        initList(view);
         setListener();
         startLoadData();
 
@@ -83,16 +90,36 @@ public abstract class RecipeInnerHorizFragment<T> extends Fragment {
 
 
     }
+    abstract boolean isHorizontalItem();
+    abstract int getLayoutManagerOrientation();
 
-    void initViews()
+    void initViews(View rootView)
     {
-        itemsList= binding.recipeInnerRecView;
-        binding.recipeInnerTextViewTitle.setText(textTitle);
+
+        textViewTitle = rootView.findViewById(R.id.recipe_inner_textViewTitle);
+        textViewText = rootView.findViewById(R.id.recipe_inner_textViewText);
+        textViewTitle.setText(textTitle);
+        textViewText.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            NavigationHelper.openRecipeVerticalMainFragment(getParentFragment().getParentFragmentManager(),new RecipeInnerVerticalFragment(recipeState));
+        }
+    });
+
+    }
+
+
+    void initList(View rootView)
+    {
+
+        itemsList=rootView.findViewById(R.id.rec_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManager.setOrientation(getLayoutManagerOrientation());
         itemsList.setLayoutManager(layoutManager);
-            infoListAdapter.setUseRecipeHorizontalItem(true);
+            infoListAdapter.setUseRecipeHorizontalItem(isHorizontalItem());
             itemsList.setAdapter(infoListAdapter);
+
+
 
 
 

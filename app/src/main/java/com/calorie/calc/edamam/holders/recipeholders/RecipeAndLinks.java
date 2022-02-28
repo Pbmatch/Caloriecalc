@@ -15,6 +15,16 @@ public class RecipeAndLinks implements Serializable {
     private RecipeSearch.Links links;
     private final static long serialVersionUID = 4169649893548118679L;
 
+    boolean liked=false;
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
+
     public Recipe getRecipe() {
         return recipe;
     }
