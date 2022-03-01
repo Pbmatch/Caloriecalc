@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -18,6 +21,7 @@ import java.util.List;
 
 public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
 
+    LinearLayout linearLayout;
 
     public LikedFragment(MutableLiveData<List<RecipeAndLinks>> recipeState) {
         super(recipeState);
@@ -36,8 +40,18 @@ public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        linearLayout=view.findViewById(R.id.empty_state_view);
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    @Override
     void setListener() {
         infoListAdapter.addInfoItemList(recipeState.getValue());
+        if(recipeState.getValue()==null||recipeState.getValue().isEmpty())
+            linearLayout.setVisibility(View.VISIBLE);
+        else  linearLayout.setVisibility(View.GONE);
 
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override
@@ -45,6 +59,11 @@ public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
                 NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new ScrollingFragment(selectedItem));
             }
         });
+    }
+
+    @Override
+    void initViews(View rootView) {
+       // super.initViews(rootView);
     }
 
     @Override

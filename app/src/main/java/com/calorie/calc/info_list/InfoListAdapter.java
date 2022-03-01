@@ -15,13 +15,12 @@ import com.calorie.calc.edamam.holders.recipeholders.Nutrient;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.DietType;
 import com.calorie.calc.info_list.holder.DietHolder;
+import com.calorie.calc.info_list.holder.EnergyHolder;
 import com.calorie.calc.info_list.holder.FallbackViewHolder;
 import com.calorie.calc.info_list.holder.InfoItemHolder;
-import com.calorie.calc.info_list.holder.EnergyHolder;
 import com.calorie.calc.info_list.holder.IngredientHolder;
 import com.calorie.calc.info_list.holder.NutrientHolder;
 import com.calorie.calc.info_list.holder.RecipeHorizontalMiniItemHolder;
-import com.calorie.calc.info_list.holder.RecipeItemHolder;
 import com.calorie.calc.info_list.holder.RecipeLikedItemHolder;
 import com.calorie.calc.utils.OnClickGesture;
 
@@ -281,7 +280,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
         }
         switch (type) {
             case RECIPE_VERTICAL_BIG_HOLDER_TYPE:
-                return new RecipeItemHolder(infoItemBuilder,parent);
+                return new RecipeLikedItemHolder(infoItemBuilder,parent);
             case RECIPE_HORIZONTAL_MINI_HOLDER_TYPE:
                 return new RecipeHorizontalMiniItemHolder(infoItemBuilder,parent);
             case RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE:

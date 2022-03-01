@@ -77,6 +77,9 @@ public class Recipe implements Serializable
     @SerializedName("digest")
     @Expose
     private List<Digest> digest = new ArrayList<>();
+
+
+
     private final static long serialVersionUID = -1901686580229603220L;
 
     public String getUri() {

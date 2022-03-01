@@ -17,11 +17,18 @@ public class RecipeHorizontalMiniItemHolder extends RecipeItemHolder {
         super(infoItemBuilder, layoutId, parent);
 
     }
-    void loadImage(String imageUrl)
-    {
+
+    @Override
+    public void loadImage(String imageUrl) {
         PicassoHelper.loadRecipe(imageUrl) .fit()
                 .centerCrop().into(itemThumbnailView);
     }
+ /*   @Override
+    void loadImage(String imageUrl)
+    {
+
+    }
+    */
 
 
 }

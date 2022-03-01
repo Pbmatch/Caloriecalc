@@ -1,5 +1,7 @@
 package com.calorie.calc.fragments.recipe;
 
+import static com.calorie.calc.fragments.recipe.FabHandler.fabClickState;
+import static com.calorie.calc.fragments.recipe.FabHandler.getFabState;
 import static com.calorie.calc.utils.MeasureUtils.getIngrTitleString;
 import static com.calorie.calc.utils.ViewUtilsKt.animateRotation;
 
@@ -82,9 +84,15 @@ public class ScrollingFragment extends Fragment {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fabState();
+                fabClickState(recipeAndLinks,getContext(),binding.fab);
             }
         });
+        if(getFabState(recipeAndLinks))
+        {
+            binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favorite));
+            recipeAndLinks.setLiked(true);
+        }
+        else {binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favoriteblank));  recipeAndLinks.setLiked(false);}
 
         binding.textViewTitle.setText(item.getLabel());
         String time="";
@@ -121,22 +129,7 @@ public class ScrollingFragment extends Fragment {
 
 
     }
-    void fabState()
-    {
 
-        if(!recipeAndLinks.isLiked())
-        {
-            binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favorite));
-            recipeAndLinks.setLiked(true);
-            LikedRecipeState.getRecipeAndLinksMutableLiveData().getValue().add(recipeAndLinks);
-        }
-        else
-            {
-            binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favoriteblank));
-                recipeAndLinks.setLiked(false);
-                LikedRecipeState.getRecipeAndLinksMutableLiveData().getValue().remove(recipeAndLinks);
-        }
-    }
     private void toggleTitleAndSecondaryControls() {
         if (binding.containerWebView.getVisibility() == View.GONE) {
 

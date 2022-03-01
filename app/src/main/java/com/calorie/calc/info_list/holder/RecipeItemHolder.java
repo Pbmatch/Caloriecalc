@@ -13,11 +13,9 @@ import com.calorie.calc.R;
 import com.calorie.calc.edamam.holders.recipeholders.Recipe;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoItemBuilder;
-import com.calorie.calc.utils.DisplaySize;
-import com.calorie.calc.utils.PicassoHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
+public abstract class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
 
     protected ImageView itemThumbnailView;
     protected TextView itemTitleView;
@@ -53,16 +51,11 @@ public class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
                     itemBuilder.getOnRecipeClickListener().selected(infoItem);
             }
         });
-    }
-    void loadImage(String imageUrl)
-    {
-        ViewGroup.LayoutParams params = itemThumbnailView.getLayoutParams();
 
-        params.height = (int) (DisplaySize.getHEIGHT()/3);
-        itemThumbnailView.setLayoutParams(params);
-        PicassoHelper.loadRecipe(imageUrl) .fit()
-                .centerCrop() .into(itemThumbnailView);
     }
+
+   public abstract void loadImage(String imageUrl);
+
 
     @Override
     public void updateState(RecipeAndLinks infoItem) {
