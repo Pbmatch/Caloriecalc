@@ -14,6 +14,7 @@ import com.calorie.calc.edamam.holders.recipeholders.Ingredient;
 import com.calorie.calc.edamam.holders.recipeholders.Nutrient;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.DietType;
+import com.calorie.calc.info_list.holder.DietCheckboxHolder;
 import com.calorie.calc.info_list.holder.DietHolder;
 import com.calorie.calc.info_list.holder.EnergyHolder;
 import com.calorie.calc.info_list.holder.FallbackViewHolder;
@@ -41,6 +42,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int ENERGY_HOLDER_TYPE = 0x104;
     private static final int INGREDIENT_HOLDER_TYPE = 0x105;
     private static final int NUTRIENT_HOLDER_TYPE = 0x106;
+    private static final int DIET_CHECKBOX_HOLDER_TYPE = 0x107;
     private boolean isNutrient=false;
 
     private final InfoItemBuilder infoItemBuilder;
@@ -262,6 +264,11 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             return INGREDIENT_HOLDER_TYPE;
 
         }
+        if(infoItemList.get(position) instanceof String)
+        {
+            return DIET_CHECKBOX_HOLDER_TYPE;
+
+        }
 
 
 
@@ -290,6 +297,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             case INGREDIENT_HOLDER_TYPE: return new IngredientHolder(infoItemBuilder,parent);
 
             case NUTRIENT_HOLDER_TYPE: return new NutrientHolder(infoItemBuilder,parent);
+            case DIET_CHECKBOX_HOLDER_TYPE:return new DietCheckboxHolder(infoItemBuilder,parent);
 
             case HEADER_TYPE:
                 return new HFHolder(header);

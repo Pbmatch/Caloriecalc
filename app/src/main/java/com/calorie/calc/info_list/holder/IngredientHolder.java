@@ -26,7 +26,8 @@ public class IngredientHolder extends InfoItemHolder<Ingredient> {
     @Override
     public void updateFromItem(Ingredient infoItem,int pos) {
         itemTitleView.setText(infoItem.getFood());
-        String result=String.valueOf(infoItem.getQuantity()) +" "+ infoItem.getMeasure();
+        String quan = String.format("%.2f",infoItem.getQuantity());
+        String result=quan +" "+ infoItem.getMeasure();
         itemContView.setText(result);
         if(pos % 2 != 0) {
             csl.setBackgroundColor(itemBuilder.getContext().getColor(R.color.item_ingredient));

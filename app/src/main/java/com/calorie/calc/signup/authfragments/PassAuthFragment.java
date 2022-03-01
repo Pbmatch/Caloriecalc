@@ -61,7 +61,8 @@ public class PassAuthFragment extends InsideBaseFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().length() > 0)
-                    RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+                {   RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+                user.setPassword(binding.editText.getText().toString());}
                 else RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
             }
         });
@@ -86,7 +87,7 @@ public class PassAuthFragment extends InsideBaseFragment {
     }
     @Override
     public void onPause() {
-        user.setPassword(binding.editText.getText().toString());
+
         super.onPause();
     }
 

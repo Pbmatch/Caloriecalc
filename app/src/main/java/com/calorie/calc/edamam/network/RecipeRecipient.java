@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.calorie.calc.edamam.holders.RecipeSearch;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.LikedRecipeState;
 import com.calorie.calc.fragments.recipe.RecipeMainType;
 
 import java.io.IOException;
@@ -41,13 +42,18 @@ public class RecipeRecipient extends Recipient {
 
     }
 
+    public void setType(RecipeMainType type) {
+        this.type = type;
+    }
 
     @Override
     protected void setCallBack() {
         callback = new Callback<RecipeSearch>() {
             @Override
             public void onResponse(Call<RecipeSearch> call, Response<RecipeSearch> response) {
+                LikedRecipeState.getProgressBar().setValue(false);
                 if (response.body() != null) {
+
                     RecipeSearch recipeSearch= response.body();
                     System.out.println("onResponce" + recipeSearch.getCount()+"onResponceSize"+recipeSearch.getHits().size());
                     recipeState.postValue(recipeSearch.getHits());
@@ -64,6 +70,7 @@ public class RecipeRecipient extends Recipient {
 
             @Override
             public void onFailure(Call<RecipeSearch> call, Throwable t) {
+                LikedRecipeState.getProgressBar().setValue(false);
                 System.out.println("onFailure" + t.toString());
             }
         };
@@ -75,7 +82,7 @@ public class RecipeRecipient extends Recipient {
         if (!connectOk()) {
             return;
         }
-
+        LikedRecipeState.getProgressBar().setValue(true);
       //   param.put("ingr", "chicken");
          retrofitInterface.recipe(APP_ID_RECIPE, APP_KEY_RECIPE, type.getParams()).enqueue(callback);
       //  retrofitInterface.recipeId("recipe_04d73a0b27e84a6680cd370eeecbb636",APP_ID, APP_KEY, param).enqueue(callback);

@@ -82,6 +82,7 @@
     <string name="lacto_vegetarian">Lacto-Vegetarian</string>
     <string name="ovo_vegetarian">Ovo-Vegetarian</string>
     <string name="vegan">Vegan</string>
+    <string name="all_diet">ALL</string>
     <string name="pescetarian">Pescetarian</string>
     <string name="paleo">Paleo</string>
     <string name="primal">Primal</string>
@@ -98,7 +99,7 @@
     <string name="paleo_text"> Allowed ingredients include meat (especially grass fed), fish, eggs, vegetables, some oils (e.g. coconut and olive oil), and in smaller quantities, fruit, nuts, and sweet potatoes. We also allow honey and maple syrup (popular in Paleo desserts, but strict Paleo followers may disagree). Ingredients not allowed include legumes (e.g. beans and lentils), grains, dairy, refined sugar, and processed foods.</string>
     <string name="primal_text">  Very similar to Paleo, except dairy is allowed - think raw and full fat milk, butter, ghee, etc.</string>
     <string name="whole30_text"> Allowed ingredients include meat, fish/seafood, eggs, vegetables, fresh fruit, coconut oil, olive oil, small amounts of dried fruit and nuts/seeds. Ingredients not allowed include added sweeteners (natural and artificial, except small amounts of fruit juice), dairy (except clarified butter or ghee), alcohol, grains, legumes (except green beans, sugar snap peas, and snow peas), and food additives, such as carrageenan, MSG, and sulfites.</string>
-
+    <string name="all_text"> Какой то текст для диеты без ограничений </string>
     <string name="kkal">ккал</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

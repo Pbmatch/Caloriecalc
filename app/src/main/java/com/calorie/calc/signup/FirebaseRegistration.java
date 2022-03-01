@@ -62,6 +62,8 @@ public class FirebaseRegistration {
     void signInWithEmailAndPass(User user)
     {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        System.out.println("signInWithEmailAndPassuser"+user.getEmail() );
+        System.out.println("signInWithEmailAndPassuseaaaar"+user.getPassword() );
         firebaseAuth.signInWithEmailAndPassword(user.getEmail(),user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

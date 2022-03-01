@@ -12,10 +12,11 @@ import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentMainBinding;
+import com.calorie.calc.utils.BackPressable;
 import com.google.android.material.navigation.NavigationBarView;
 
 
-public class MainFragment extends Fragment implements NavigationBarView.OnItemSelectedListener {
+public class MainFragment extends Fragment implements BackPressable, NavigationBarView.OnItemSelectedListener {
 
     private Fragment trackerFragment = new TrackerFragment();
     private Fragment recipeFragment = new RecipeFragment();
@@ -83,5 +84,22 @@ public class MainFragment extends Fragment implements NavigationBarView.OnItemSe
         activeFragment = fragment;
        return true;
 
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        System.out.println(" onBackPressed MainFragmentBackPressed");
+        final Fragment fragmentPanel = getChildFragmentManager()
+                .findFragmentById(R.id.mainfragment_container);
+        if (activeFragment instanceof BackPressable) {
+            System.out.println("MainFragmentBackPressed");
+            System.out.println("MainFragmentBackPressed"+activeFragment);
+            ((BackPressable) activeFragment).onBackPressed();
+            return true;
+        }
+
+
+
+        return false;
     }
 }

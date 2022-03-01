@@ -58,6 +58,7 @@ public class GoalFragment1 extends InsideBaseFragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     view.setCardBackgroundColor(getContext().getColor(R.color.button_green));
+                    checkBox.setTextColor(getResources().getColor(R.color.white));
                     user.setGoalWeight((User.GoalWeight) checkBox.getTag());
                     for (CheckBox box : ckeckList) {
                         if (!box.equals(buttonView)) {
@@ -65,7 +66,12 @@ public class GoalFragment1 extends InsideBaseFragment {
                         }
                     }
 
-                } else view.setCardBackgroundColor(getContext().getColor(R.color.white));
+                } else
+                {view.setCardBackgroundColor(getContext().getColor(R.color.white));
+                    checkBox.setTextColor(getResources().getColor(R.color.black));
+                }
+
+
                 RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
             }
         });

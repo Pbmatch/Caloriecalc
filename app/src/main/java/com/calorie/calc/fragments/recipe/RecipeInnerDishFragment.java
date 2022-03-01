@@ -22,7 +22,20 @@ public class RecipeInnerDishFragment extends RecipeInnerHorizFragment<RecipeAndL
     @Override
     void startLoadData() {
         RecipeRecipient recipeRecipient = new RecipeRecipient(getContext(),recipeState,type);
-        recipeRecipient.getRecipe();
+        if(infoListAdapter==null||infoListAdapter.getItemsList()==null||infoListAdapter.getItemsList().size()==0)
+        {// recipeRecipient.getRecipe();}
+        }
+
+        LikedRecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietType>() {
+            @Override
+            public void onChanged(DietType dietType) {
+                System.out.println(" LikedRecipeState.getDietType().observe");
+
+                type.build(dietType.getMap());
+                recipeRecipient.setType(type);
+                recipeRecipient.getRecipe();
+            }
+        });
     }
 
     @Override
@@ -37,7 +50,7 @@ public class RecipeInnerDishFragment extends RecipeInnerHorizFragment<RecipeAndL
                     infoListAdapter.setHeader(viewBinding.getRoot());
                 }
                 else {infoListAdapter.setHeader(null);}
-                infoListAdapter.addInfoItemList(recipeAndLinks);
+                infoListAdapter.setInfoItemList(recipeAndLinks);
             }
         });
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {

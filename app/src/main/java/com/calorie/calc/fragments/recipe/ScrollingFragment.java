@@ -100,7 +100,8 @@ public class ScrollingFragment extends Fragment {
         binding.textViewTime.setText(String.valueOf(item.getTotalTime()));
         else
         {
-            binding.textViewTime.setText(String.valueOf(item.getTotalWeight())+" g");
+            String quan = String.format("%.2f",item.getTotalWeight());
+            binding.textViewTime.setText(quan+" g");
         }
         if(item.getImage()!=null)
             PicassoHelper.loadRecipe(item.getImage()) .fit()
@@ -120,7 +121,7 @@ public class ScrollingFragment extends Fragment {
         setEnergy();
         setIngredients();
         setNutreints();
-        binding.detailControlsView.setOnClickListener(new View.OnClickListener() {
+        binding.linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toggleTitleAndSecondaryControls();

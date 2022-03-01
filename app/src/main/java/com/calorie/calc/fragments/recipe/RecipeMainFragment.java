@@ -26,9 +26,7 @@ import com.calorie.calc.databinding.FragmentRecipeMainBinding;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoListAdapter;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class RecipeMainFragment extends Fragment {
@@ -67,6 +65,15 @@ public class RecipeMainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding= FragmentRecipeMainBinding.bind(view);
+        LikedRecipeState.getProgressBar().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean)
+                    binding.progressBarLoad.setVisibility(View.VISIBLE);
+                else binding.progressBarLoad.setVisibility(View.GONE);
+            }
+        });
+        LikedRecipeState.getProgressBar().setValue(false);
         initViews();
     }
 
@@ -85,28 +92,36 @@ public class RecipeMainFragment extends Fragment {
 
     }
 
-    void initViews()
+    void initViews( )
     {
-        Map<String, String> param = new HashMap<>();
-        param.put("type", "public");
-        param.put("q", "chicken");
-     DIET_PLAN.build();
-     POPULAR_RECIPE.build();
-     ADDED_RECIPE.build();
-     BREAKFAST.build();
-     DINNER.build();
-     SNACKS.build();
+
+        if(LikedRecipeState.getDietType().getValue()==null)
+        {
+        DietType.ALL.setSelect(true);
+        LikedRecipeState.getDietType().setValue(DietType.ALL);}
+        buildLists(LikedRecipeState.getDietType().getValue());
         openFragments();
+
+
+    }
+    void buildLists(DietType type)
+    {
+        DIET_PLAN.build(type.getMap());
+        POPULAR_RECIPE.build(type.getMap());
+        ADDED_RECIPE.build(type.getMap());
+        BREAKFAST.build(type.getMap());
+        DINNER.build(type.getMap());
+        SNACKS.build(type.getMap());
 
     }
     void openFragments()
     {
-       // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDietFragment(DIET_PLAN),DIET_PLAN.getContainer());
+        NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDietFragment(DIET_PLAN),DIET_PLAN.getContainer());
       //  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(POPULAR_RECIPE),POPULAR_RECIPE.getContainer());
        // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerAddedDishFragment(ADDED_RECIPE),ADDED_RECIPE.getContainer());
         NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(BREAKFAST),BREAKFAST.getContainer());
-       // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(DINNER),DINNER.getContainer());
-       // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(SNACKS),SNACKS.getContainer());
+         NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(DINNER),DINNER.getContainer());
+        // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(SNACKS),SNACKS.getContainer());
     }
 
 }

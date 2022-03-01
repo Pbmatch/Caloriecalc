@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.List;
 
 
-public class RecipeInnerVerticalFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
+public class RecipeInnerVerticalFragment extends RecipeInnerHorizFragment<RecipeAndLinks> implements BackPressable {
 
     public RecipeInnerVerticalFragment(MutableLiveData<List<RecipeAndLinks>> recipeState)
     {
@@ -63,5 +64,10 @@ public class RecipeInnerVerticalFragment extends RecipeInnerHorizFragment<Recipe
     @Override
     int getLayoutManagerOrientation() {
        return LinearLayoutManager.VERTICAL;
+    }
+
+    public boolean onBackPressed() {
+        getParentFragmentManager().popBackStack();
+        return true;
     }
 }

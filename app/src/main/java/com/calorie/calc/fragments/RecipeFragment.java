@@ -18,9 +18,10 @@ import com.calorie.calc.databinding.FragmentRecipeBinding;
 import com.calorie.calc.fragments.recipe.LikedFragment;
 import com.calorie.calc.fragments.recipe.LikedRecipeState;
 import com.calorie.calc.fragments.recipe.RecipeMainFragment;
+import com.calorie.calc.utils.BackPressable;
 
 
-public class RecipeFragment extends Fragment {
+public class RecipeFragment extends Fragment implements BackPressable {
 
 
     FragmentRecipeBinding binding;
@@ -80,5 +81,18 @@ public class RecipeFragment extends Fragment {
             }
         });*/
 
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        final Fragment fragmentPanel = getChildFragmentManager()
+                .findFragmentById(R.id.recipe_container);
+        if (fragmentPanel instanceof BackPressable) {
+            System.out.println("RecipeFragmentBackPressed");
+            System.out.println("RecipeFragmentBackPressed"+fragmentPanel);
+            ((BackPressable) fragmentPanel).onBackPressed();
+            return true;
+        }
+        return false;
     }
 }

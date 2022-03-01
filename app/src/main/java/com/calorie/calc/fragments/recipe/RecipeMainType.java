@@ -43,12 +43,13 @@ public enum RecipeMainType {
         return params;
     }
 
-    public RecipeMainType build() {
+    public RecipeMainType build( Map<String,String> params) {
 
         Map<String, String> param = new HashMap<>();
+        param.putAll(params);
         param.put("type", "public");
         param.put("q", "");
-        if (!mealType.isEmpty())
+        if (!mealType.isEmpty()&&!param.containsKey("mealType"))
             param.put("mealType", mealType);
         this.params = param;
         return this;

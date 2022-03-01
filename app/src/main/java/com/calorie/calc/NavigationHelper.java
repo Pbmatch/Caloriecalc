@@ -28,7 +28,7 @@ public class NavigationHelper {
         defaultTransaction(fragmentManager)
                  .replace(R.id.main_activ_container, new MainFragment())
                 //.replace(R.id.main_activ_container, new ScrollingFragment())
-                .addToBackStack(MAIN_FRAGMENT_TAG)
+               // .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
     }
     public static void openRecipeMainFragment(final FragmentManager fragmentManager, Fragment fragment) {

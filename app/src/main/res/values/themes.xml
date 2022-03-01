@@ -3,25 +3,25 @@
     <style name="Theme.Caloriecalc" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <!--  <item name="android:windowTranslucentStatus">true</item>
-       <item name="android:windowActionBarOverlay">true</item>
-       <item name="android:windowContentOverlay">@null</item>-->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item> -->
 
 
-          <item name="buttonStyle">@color/button_green</item>
-          <item name="colorPrimary">@color/white</item>
-          <item name="colorPrimaryVariant">@color/item_ingredient</item>
-          <item name="colorOnPrimary">@color/gray</item>
-          <item name="android:windowLightStatusBar">true</item>
-          <item name="android:textColor">@color/text_secondary_color</item>
-          <item name="android:textViewStyle">@color/button_green</item>
-          <item name="chatbubblebackbroundbolor">@color/button_green</item>
-          <!-- Secondary brand color. -->
+           <item name="buttonStyle">@color/button_green</item>
+           <item name="colorPrimary">@color/white</item>
+           <item name="colorPrimaryVariant">@color/item_ingredient</item>
+           <item name="colorOnPrimary">@color/gray</item>
+           <item name="android:windowLightStatusBar">true</item>
+           <item name="android:textColor">@color/text_secondary_color</item>
+           <item name="android:textViewStyle">@color/button_green</item>
+           <item name="chatbubblebackbroundbolor">@color/button_green</item>
+           <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/button_green</item>
         <item name="colorSecondaryVariant">@color/button_green</item>
-        <item name="colorOnSecondary">@color/edit_text_recipesss</item>
+        <item name="colorOnSecondary">@color/full_transparent</item>
 
         <!-- Status bar color. -->
-        <!-- <item name="android:statusBarColor"  >?attr/colorOnSecondary</item> -->
+        <item name="android:statusBarColor"  >?attr/colorOnSecondary</item>
         <!-- Customize your theme here. -->
     </style>
 

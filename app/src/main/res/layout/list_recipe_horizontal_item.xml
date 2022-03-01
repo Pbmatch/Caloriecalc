@@ -32,15 +32,36 @@
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
 
+          <ImageView
+              android:id="@+id/list_recipe_transparent"
+              android:layout_width="0dp"
+              android:layout_height="0dp"
+              android:background="@color/item_transparent"
+              android:visibility="gone"
+              app:layout_constraintBottom_toBottomOf="@+id/list_recipe_imageview"
+              app:layout_constraintEnd_toEndOf="@+id/list_recipe_imageview"
+              app:layout_constraintStart_toStartOf="@+id/list_recipe_imageview"
+              app:layout_constraintTop_toTopOf="@+id/list_recipe_imageview" />
+          <ImageView
+              android:id="@+id/list_recipe_check"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@color/item_transparent"
+              android:visibility="gone"
+               android:src="@drawable/ic_done_checkbox"
+              app:layout_constraintBottom_toBottomOf="@+id/list_recipe_imageview"
+              app:layout_constraintEnd_toEndOf="@+id/list_recipe_imageview"
+              app:layout_constraintStart_toStartOf="@+id/list_recipe_imageview"
+              app:layout_constraintTop_toTopOf="@+id/list_recipe_imageview" />
           <TextView
               android:id="@+id/list_recipe_textViewTitle"
               style="@style/text_standart_big"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_margin="8dp"
-              app:layout_constraintEnd_toEndOf="parent"
               android:ellipsize="end"
               android:maxLines="1"
+              app:layout_constraintEnd_toEndOf="parent"
 
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toBottomOf="@+id/list_recipe_imageview"

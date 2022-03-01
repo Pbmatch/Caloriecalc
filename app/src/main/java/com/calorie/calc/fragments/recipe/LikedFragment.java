@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import java.util.List;
 public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
 
     LinearLayout linearLayout;
+    ImageView imageViewClose;
 
     public LikedFragment(MutableLiveData<List<RecipeAndLinks>> recipeState) {
         super(recipeState);
@@ -42,6 +44,7 @@ public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         linearLayout=view.findViewById(R.id.empty_state_view);
+        imageViewClose=view.findViewById(R.id.imageViewBack);
         super.onViewCreated(view, savedInstanceState);
 
     }
@@ -64,6 +67,12 @@ public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
     @Override
     void initViews(View rootView) {
        // super.initViews(rootView);
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().popBackStack();
+            }
+        });
     }
 
     @Override

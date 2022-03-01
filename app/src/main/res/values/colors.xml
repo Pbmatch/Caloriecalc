@@ -20,4 +20,6 @@
     <color name="edit_text_recipe">#F5F5ED</color>
     <color name="edit_text_recipesss">#22F5F5ED</color>
     <color name="item_ingredient">#F6F6F6</color>
+    <color name="item_transparent">#51000000</color>
+    <color name="full_transparent">#00FFFFFF</color>
 </resources>

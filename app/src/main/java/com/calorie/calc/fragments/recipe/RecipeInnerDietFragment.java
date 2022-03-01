@@ -1,5 +1,8 @@
 package com.calorie.calc.fragments.recipe;
 
+import android.view.View;
+
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.calorie.calc.NavigationHelper;
@@ -16,6 +19,7 @@ public class RecipeInnerDietFragment extends RecipeInnerHorizFragment<DietType>{
     @Override
     void startLoadData() {
         List<DietType> dietTypes = new ArrayList<>();
+        dietTypes.add(DietType.ALL);
         dietTypes.add(DietType.GLUTEN_FREE);
         dietTypes.add(DietType.KETOGONIC);
         dietTypes.add(DietType.VEGAN );
@@ -30,9 +34,21 @@ public class RecipeInnerDietFragment extends RecipeInnerHorizFragment<DietType>{
      infoListAdapter.setOnItemSelectedListener(new OnClickGesture<DietType>() {
          @Override
          public void selected(DietType selectedItem) {
-             NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new DietFragment(selectedItem));
+
+            // LikedRecipeState.getDietType().setValue(selectedItem);
+            NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new DietFragment(selectedItem));
          }
      });
+
+        LikedRecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietType>() {
+            @Override
+            public void onChanged(DietType dietType) {
+                infoListAdapter.notifyDataSetChanged();
+            }
+        });
+
+        textViewText.setVisibility(View.GONE);
+
     }
 
     @Override
