@@ -2,7 +2,7 @@ package com.calorie.calc;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 
 import java.util.List;
 

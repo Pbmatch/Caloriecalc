@@ -9,16 +9,17 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.calorie.calc.NavigationHelper;
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.scrolling.ScrollingFragment;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.List;
 
 
-public class RecipeInnerVerticalFragment extends RecipeInnerHorizFragment<RecipeAndLinks> implements BackPressable {
+public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> implements BackPressable {
 
-    public RecipeInnerVerticalFragment(MutableLiveData<List<RecipeAndLinks>> recipeState)
+    public RecipeVerticalFragment(MutableLiveData<List<RecipeAndLinks>> recipeState)
     {
         super(recipeState);
     }
@@ -34,17 +35,16 @@ public class RecipeInnerVerticalFragment extends RecipeInnerHorizFragment<Recipe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textViewText.setVisibility(View.GONE);
-        textViewTitle.setVisibility(View.GONE);
-    }
-
-    @Override
-    void startLoadData() {
 
     }
 
     @Override
-    void setListener() {
+    public void startLoadData() {
+
+    }
+
+    @Override
+    public  void setListener() {
 
                 infoListAdapter.addInfoItemList(recipeState.getValue());
 
@@ -57,13 +57,18 @@ public class RecipeInnerVerticalFragment extends RecipeInnerHorizFragment<Recipe
     }
 
     @Override
-    boolean isHorizontalItem() {
+    public boolean isHorizontalItem() {
         return false;
     }
 
     @Override
-    int getLayoutManagerOrientation() {
+    public  int getLayoutManagerOrientation() {
        return LinearLayoutManager.VERTICAL;
+    }
+
+    @Override
+    public void initViews(View rootView) {
+
     }
 
     public boolean onBackPressed() {

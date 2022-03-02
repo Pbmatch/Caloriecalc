@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.calorie.calc.R;
-import com.calorie.calc.fragments.recipe.DietType;
+import com.calorie.calc.fragments.recipe.diet.DietType;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.utils.PicassoHelper;
 

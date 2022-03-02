@@ -1,4 +1,4 @@
-package com.calorie.calc.fragments.recipe;
+package com.calorie.calc.fragments.recipe.scrolling;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

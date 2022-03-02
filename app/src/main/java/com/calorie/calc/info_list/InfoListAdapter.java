@@ -10,10 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.calorie.calc.edamam.holders.recipeholders.Ingredient;
-import com.calorie.calc.edamam.holders.recipeholders.Nutrient;
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
-import com.calorie.calc.fragments.recipe.DietType;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.diet.DietType;
 import com.calorie.calc.info_list.holder.DietCheckboxHolder;
 import com.calorie.calc.info_list.holder.DietHolder;
 import com.calorie.calc.info_list.holder.EnergyHolder;
@@ -30,7 +30,7 @@ import java.util.List;
 
 public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final String TAG = InfoListAdapter.class.getSimpleName();
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private static final int HEADER_TYPE = 0;
     private static final int FOOTER_TYPE = 1;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/start_dimen"
     android:orientation="vertical"
-    tools:context=".fragments.recipe.RecipeInnerHorizFragment">
+    tools:context=".fragments.recipe.RecipeListFragment">
 
     <TextView
         android:id="@+id/recipe_inner_textViewTitle"

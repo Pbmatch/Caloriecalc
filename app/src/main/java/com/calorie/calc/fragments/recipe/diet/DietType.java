@@ -1,4 +1,4 @@
-package com.calorie.calc.fragments.recipe;
+package com.calorie.calc.fragments.recipe.diet;
 
 import com.calorie.calc.R;
 

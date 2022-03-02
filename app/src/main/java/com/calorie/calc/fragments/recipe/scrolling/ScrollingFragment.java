@@ -1,7 +1,7 @@
-package com.calorie.calc.fragments.recipe;
+package com.calorie.calc.fragments.recipe.scrolling;
 
-import static com.calorie.calc.fragments.recipe.FabHandler.fabClickState;
-import static com.calorie.calc.fragments.recipe.FabHandler.getFabState;
+import static com.calorie.calc.fragments.recipe.liked.FabHandler.fabClickState;
+import static com.calorie.calc.fragments.recipe.liked.FabHandler.getFabState;
 import static com.calorie.calc.utils.MeasureUtils.getIngrTitleString;
 import static com.calorie.calc.utils.ViewUtilsKt.animateRotation;
 
@@ -21,10 +21,10 @@ import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentScrollingBinding;
 import com.calorie.calc.databinding.ListFooterIngredientItemBinding;
 import com.calorie.calc.databinding.ListHeaderIngredientItemBinding;
-import com.calorie.calc.edamam.holders.recipeholders.Ingredient;
-import com.calorie.calc.edamam.holders.recipeholders.Nutrient;
-import com.calorie.calc.edamam.holders.recipeholders.Recipe;
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoListAdapter;
 import com.calorie.calc.utils.PicassoHelper;
 

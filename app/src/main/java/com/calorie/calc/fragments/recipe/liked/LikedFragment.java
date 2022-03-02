@@ -1,4 +1,4 @@
-package com.calorie.calc.fragments.recipe;
+package com.calorie.calc.fragments.recipe.liked;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,13 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.RecipeListFragment;
+import com.calorie.calc.fragments.recipe.scrolling.ScrollingFragment;
 import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.List;
 
 
-public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
+public class LikedFragment extends RecipeListFragment<RecipeAndLinks> {
 
     LinearLayout linearLayout;
     ImageView imageViewClose;
@@ -37,7 +39,7 @@ public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
     }
 
     @Override
-    void startLoadData() {
+    public void startLoadData() {
 
     }
 
@@ -50,7 +52,7 @@ public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
     }
 
     @Override
-    void setListener() {
+    public  void setListener() {
         infoListAdapter.addInfoItemList(recipeState.getValue());
         if(recipeState.getValue()==null||recipeState.getValue().isEmpty())
             linearLayout.setVisibility(View.VISIBLE);
@@ -65,8 +67,8 @@ public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
     }
 
     @Override
-    void initViews(View rootView) {
-       // super.initViews(rootView);
+    public  void initViews(View rootView) {
+
         imageViewClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,12 +78,12 @@ public class LikedFragment extends RecipeInnerHorizFragment<RecipeAndLinks> {
     }
 
     @Override
-    boolean isHorizontalItem() {
+    public  boolean isHorizontalItem() {
         return false;
     }
 
     @Override
-    int getLayoutManagerOrientation() {
+    public int getLayoutManagerOrientation() {
         return LinearLayoutManager.VERTICAL;
     }
 }

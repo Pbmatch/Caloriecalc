@@ -1,7 +1,7 @@
 package com.calorie.calc.edamam.network;
 
 
-import com.calorie.calc.edamam.holders.RecipeSearch;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
 
 import java.util.Map;
 

@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.calorie.calc.R;
-import com.calorie.calc.edamam.holders.recipeholders.Nutrient;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.utils.DisplaySize;
 

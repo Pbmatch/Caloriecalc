@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment;
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRecipeBinding;
-import com.calorie.calc.fragments.recipe.LikedFragment;
-import com.calorie.calc.fragments.recipe.LikedRecipeState;
+import com.calorie.calc.fragments.recipe.RecipeState;
+import com.calorie.calc.fragments.recipe.liked.LikedFragment;
 import com.calorie.calc.fragments.recipe.RecipeMainFragment;
 import com.calorie.calc.utils.BackPressable;
 
@@ -35,6 +35,7 @@ public class RecipeFragment extends Fragment implements BackPressable {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        openRecipeMainFragment(getChildFragmentManager(),new RecipeMainFragment());
         super.onCreate(savedInstanceState);
 
     }
@@ -47,10 +48,16 @@ public class RecipeFragment extends Fragment implements BackPressable {
     }
 
     @Override
+    public void onStop() {
+
+        super.onStop();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        openRecipeMainFragment(getChildFragmentManager(),new RecipeMainFragment());
+
         binding = FragmentRecipeBinding.bind(view);
         binding.editTextTextPersonName.setOnTouchListener((v, event) -> {
             final int DRAWABLE_LEFT = 0;
@@ -70,7 +77,7 @@ public class RecipeFragment extends Fragment implements BackPressable {
         binding.imageViewFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new LikedFragment(LikedRecipeState.getRecipeAndLinksMutableLiveData()));
+                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new LikedFragment(RecipeState.getRecipeAndLinksMutableLiveData()));
             }
         });
 
@@ -88,8 +95,7 @@ public class RecipeFragment extends Fragment implements BackPressable {
         final Fragment fragmentPanel = getChildFragmentManager()
                 .findFragmentById(R.id.recipe_container);
         if (fragmentPanel instanceof BackPressable) {
-            System.out.println("RecipeFragmentBackPressed");
-            System.out.println("RecipeFragmentBackPressed"+fragmentPanel);
+
             ((BackPressable) fragmentPanel).onBackPressed();
             return true;
         }

@@ -1,4 +1,4 @@
-package com.calorie.calc.fragments.recipe;
+package com.calorie.calc.fragments.recipe.diet;
 
 import android.view.View;
 
@@ -6,18 +6,21 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.calorie.calc.NavigationHelper;
+import com.calorie.calc.fragments.recipe.RecipeState;
+import com.calorie.calc.fragments.recipe.RecipeListFragment;
+import com.calorie.calc.fragments.recipe.RecipeType;
 import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeInnerDietFragment extends RecipeInnerHorizFragment<DietType>{
-    public RecipeInnerDietFragment(RecipeMainType type) {
+public class RecipeInnerDietFragment extends RecipeListFragment<DietType> {
+    public RecipeInnerDietFragment(RecipeType type) {
         super(type);
     }
 
     @Override
-    void startLoadData() {
+    public void startLoadData() {
         List<DietType> dietTypes = new ArrayList<>();
         dietTypes.add(DietType.ALL);
         dietTypes.add(DietType.GLUTEN_FREE);
@@ -30,34 +33,39 @@ public class RecipeInnerDietFragment extends RecipeInnerHorizFragment<DietType>{
     }
 
     @Override
-    void setListener() {
+    public void setListener() {
      infoListAdapter.setOnItemSelectedListener(new OnClickGesture<DietType>() {
          @Override
          public void selected(DietType selectedItem) {
 
-            // LikedRecipeState.getDietType().setValue(selectedItem);
+            // RecipeState.getDietType().setValue(selectedItem);
             NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new DietFragment(selectedItem));
          }
      });
 
-        LikedRecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietType>() {
+        RecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietType>() {
             @Override
             public void onChanged(DietType dietType) {
                 infoListAdapter.notifyDataSetChanged();
             }
         });
 
-        textViewText.setVisibility(View.GONE);
+      //  textViewText.setVisibility(View.GONE);
 
     }
 
     @Override
-    boolean isHorizontalItem() {
+    public  boolean isHorizontalItem() {
         return true;
     }
 
     @Override
-    int getLayoutManagerOrientation() {
+    public  int getLayoutManagerOrientation() {
         return LinearLayoutManager.HORIZONTAL;
+    }
+
+    @Override
+    public void initViews(View rootView) {
+
     }
 }

@@ -2,11 +2,12 @@ package com.calorie.calc.fragments.recipe;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.diet.DietType;
 
 import java.util.List;
 
-public class LikedRecipeState {
+public class RecipeState {
     public static    MutableLiveData<List<RecipeAndLinks>> recipeAndLinksMutableLiveData = new MutableLiveData<>();
     public static    MutableLiveData<Boolean> progressBar = new MutableLiveData<>();
 

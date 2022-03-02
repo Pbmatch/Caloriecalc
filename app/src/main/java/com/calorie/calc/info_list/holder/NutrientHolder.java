@@ -4,7 +4,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.calorie.calc.R;
-import com.calorie.calc.edamam.holders.recipeholders.Nutrient;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.info_list.InfoItemBuilder;
 
 public class NutrientHolder extends InfoItemHolder<Nutrient>{

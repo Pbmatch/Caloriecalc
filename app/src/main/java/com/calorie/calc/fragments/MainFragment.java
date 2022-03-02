@@ -30,6 +30,7 @@ public class MainFragment extends Fragment implements BackPressable, NavigationB
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        initFragments();
         super.onCreate(savedInstanceState);
 
     }
@@ -46,12 +47,14 @@ public class MainFragment extends Fragment implements BackPressable, NavigationB
         super.onViewCreated(view, savedInstanceState);
         binding = FragmentMainBinding.bind(view);
         binding.bottomNavigation.setOnItemSelectedListener(this);
-        initFragments();
+
     }
 
     private void initFragments() {
         if(getChildFragmentManager().getFragments().size()==0)
-        {   getChildFragmentManager().beginTransaction().
+        {
+            System.out.println("initFragments");
+            getChildFragmentManager().beginTransaction().
             add(R.id.mainfragment_container, profileFragment, getString(R.string.profile)).hide(profileFragment).
             add(R.id.mainfragment_container, sportFragment, getString(R.string.sport)).hide(sportFragment).
                 add(R.id.mainfragment_container, recipeFragment, getString(R.string.recipe)).hide(recipeFragment).
@@ -88,12 +91,10 @@ public class MainFragment extends Fragment implements BackPressable, NavigationB
 
     @Override
     public boolean onBackPressed() {
-        System.out.println(" onBackPressed MainFragmentBackPressed");
-        final Fragment fragmentPanel = getChildFragmentManager()
-                .findFragmentById(R.id.mainfragment_container);
+
+
         if (activeFragment instanceof BackPressable) {
-            System.out.println("MainFragmentBackPressed");
-            System.out.println("MainFragmentBackPressed"+activeFragment);
+
             ((BackPressable) activeFragment).onBackPressed();
             return true;
         }

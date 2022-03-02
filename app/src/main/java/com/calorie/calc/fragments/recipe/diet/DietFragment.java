@@ -1,4 +1,4 @@
-package com.calorie.calc.fragments.recipe;
+package com.calorie.calc.fragments.recipe.diet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentDietBinding;
+import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.info_list.InfoListAdapter;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.PicassoHelper;
@@ -71,7 +72,7 @@ public class DietFragment extends Fragment implements BackPressable {
             public void onClick(View v) {
                DietType.refreshSelected();
                 selectedItem.setSelect(true);
-                LikedRecipeState.getDietType().setValue(selectedItem);
+                RecipeState.getDietType().setValue(selectedItem);
                 onBackPressed();
             }
         });

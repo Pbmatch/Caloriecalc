@@ -1,13 +1,13 @@
 package com.calorie.calc.info_list.holder;
 
-import static com.calorie.calc.fragments.recipe.FabHandler.fabClickState;
-import static com.calorie.calc.fragments.recipe.FabHandler.getFabState;
+import static com.calorie.calc.fragments.recipe.liked.FabHandler.fabClickState;
+import static com.calorie.calc.fragments.recipe.liked.FabHandler.getFabState;
 
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.calorie.calc.R;
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.utils.DisplaySize;
 import com.calorie.calc.utils.PicassoHelper;

@@ -81,13 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.main_activ_container);
         if (fragmentPanel instanceof BackPressable) {
             {
-                ((BackPressable) fragmentPanel).onBackPressed();
-            return;
+              ((BackPressable) fragmentPanel).onBackPressed();
             }
-           /* if (!((BackPressable) fragmentPanel).onBackPressed())
-            {
-                getSupportFragmentManager().popBackStack();
-            }*/
+            return;
         }
         else
             super.onBackPressed();

@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.calorie.calc.R;
-import com.calorie.calc.edamam.holders.recipeholders.Recipe;
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

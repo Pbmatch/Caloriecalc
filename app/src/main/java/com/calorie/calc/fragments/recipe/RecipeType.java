@@ -3,13 +3,14 @@ package com.calorie.calc.fragments.recipe;
 import androidx.lifecycle.MutableLiveData;
 
 import com.calorie.calc.R;
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.diet.DietType;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public enum RecipeMainType {
+public enum RecipeType {
     DIET_PLAN(R.string.recipe_1, "", R.id.container_plan),
     POPULAR_RECIPE(R.string.recipe_2, "", R.id.container_popular),
     ADDED_RECIPE(R.string.recipe_3, "", R.id.container_added),
@@ -21,14 +22,23 @@ public enum RecipeMainType {
     private String mealType;
     private int titleRecource;
     private int container;
+    private DietType dietType;
     MutableLiveData<List<RecipeAndLinks>> recipeState = new MutableLiveData<>();
     Map<String, String> params;
 
-    RecipeMainType(int title, String mealType, int container) {
+    RecipeType(int title, String mealType, int container) {
         this.titleRecource = title;
         this.mealType = mealType;
         this.container = container;
 
+    }
+
+    public DietType getDietType() {
+        return dietType;
+    }
+
+    public void setDietType(DietType dietType) {
+        this.dietType = dietType;
     }
 
     public int getContainer() {
@@ -40,19 +50,41 @@ public enum RecipeMainType {
     }
 
     public Map<String, String> getParams() {
+
+
         return params;
     }
+    public static void setDietPlanToAll(DietType dietType1)
+    {
+        for(RecipeType type:RecipeType.values())
+            type.setDietType(dietType1);
 
-    public RecipeMainType build( Map<String,String> params) {
+
+        buildAll( );
+    }
+    public   void setDietPlanAndBuild(DietType dietType1)
+    {
+
+            setDietType(dietType1);
+            build( );
+    }
+    public static void buildAll( )
+    {
+        for(RecipeType type:RecipeType.values())
+            type.build();
+
+    }
+
+    private void build( ) {
 
         Map<String, String> param = new HashMap<>();
-        param.putAll(params);
+        param.putAll(dietType.getMap());
         param.put("type", "public");
         param.put("q", "");
         if (!mealType.isEmpty()&&!param.containsKey("mealType"))
             param.put("mealType", mealType);
         this.params = param;
-        return this;
+
     }
 
     public void setParams(Map<String, String> params) {

@@ -1,4 +1,4 @@
-package com.calorie.calc.edamam.holders.recipeholders;
+package com.calorie.calc.fragments.recipe.holders.recipeholders;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

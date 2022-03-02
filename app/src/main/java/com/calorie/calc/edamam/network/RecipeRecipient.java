@@ -5,10 +5,10 @@ import android.content.Context;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.calorie.calc.edamam.holders.RecipeSearch;
-import com.calorie.calc.edamam.holders.recipeholders.RecipeAndLinks;
-import com.calorie.calc.fragments.recipe.LikedRecipeState;
-import com.calorie.calc.fragments.recipe.RecipeMainType;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.RecipeState;
+import com.calorie.calc.fragments.recipe.RecipeType;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,9 +21,9 @@ import retrofit2.Response;
 public class RecipeRecipient extends Recipient {
 
     MutableLiveData<List<RecipeAndLinks>> recipeState;
-    RecipeMainType type;
+    RecipeType type;
 
-    public RecipeRecipient(Context context, MutableLiveData<List<RecipeAndLinks>> recipeState, RecipeMainType type) {
+    public RecipeRecipient(Context context, MutableLiveData<List<RecipeAndLinks>> recipeState, RecipeType type) {
         super(context);
         this.recipeState = recipeState;
         this.type = type;
@@ -42,7 +42,11 @@ public class RecipeRecipient extends Recipient {
 
     }
 
-    public void setType(RecipeMainType type) {
+    public RecipeType getType() {
+        return type;
+    }
+
+    public void setType(RecipeType type) {
         this.type = type;
     }
 
@@ -51,7 +55,7 @@ public class RecipeRecipient extends Recipient {
         callback = new Callback<RecipeSearch>() {
             @Override
             public void onResponse(Call<RecipeSearch> call, Response<RecipeSearch> response) {
-                LikedRecipeState.getProgressBar().setValue(false);
+                RecipeState.getProgressBar().setValue(false);
                 if (response.body() != null) {
 
                     RecipeSearch recipeSearch= response.body();
@@ -70,7 +74,7 @@ public class RecipeRecipient extends Recipient {
 
             @Override
             public void onFailure(Call<RecipeSearch> call, Throwable t) {
-                LikedRecipeState.getProgressBar().setValue(false);
+                RecipeState.getProgressBar().setValue(false);
                 System.out.println("onFailure" + t.toString());
             }
         };
@@ -82,7 +86,7 @@ public class RecipeRecipient extends Recipient {
         if (!connectOk()) {
             return;
         }
-        LikedRecipeState.getProgressBar().setValue(true);
+        RecipeState.getProgressBar().setValue(true);
       //   param.put("ingr", "chicken");
          retrofitInterface.recipe(APP_ID_RECIPE, APP_KEY_RECIPE, type.getParams()).enqueue(callback);
       //  retrofitInterface.recipeId("recipe_04d73a0b27e84a6680cd370eeecbb636",APP_ID, APP_KEY, param).enqueue(callback);

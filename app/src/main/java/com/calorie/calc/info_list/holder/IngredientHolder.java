@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.calorie.calc.R;
-import com.calorie.calc.edamam.holders.recipeholders.Ingredient;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.info_list.InfoItemBuilder;
 
 public class IngredientHolder extends InfoItemHolder<Ingredient> {
