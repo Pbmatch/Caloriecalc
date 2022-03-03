@@ -56,6 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
+
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
@@ -71,7 +72,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:layout_marginStart="@dimen/start_dimen"
+                android:layout_marginHorizontal="@dimen/start_dimen"
+                android:layout_marginTop="16dp"
+                android:ellipsize="end"
 
                 android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
@@ -98,66 +101,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewTime" />
 
-            <TextView
-                android:id="@+id/textViewText"
 
-                android:layout_width="0dp"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/container_data_view"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/start_max_dimen"
-                android:layout_marginHorizontal="@dimen/start_dimen"
-                android:text=""
+
+                android:layout_marginTop="@dimen/start_dimen"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rec_view_energy" />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rec_view_ingred"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/start_max_dimen"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewText" />
-
-            <LinearLayout
-                android:id="@+id/linear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rec_view_ingred">
-
-                <TextView
-                    android:id="@+id/textViewInstruction"
-                    style="@style/text_standart_big"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/start_dimen"
-                    android:layout_marginTop="@dimen/start_dimen"
-                    android:text="Развернуть инструкции" />
-
-                <ImageView
-                    android:id="@+id/detail_controls_view"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="@dimen/start_dimen"
-                    android:layout_marginTop="@dimen/start_dimen"
-                    android:layout_marginEnd="10dp"
-
-                    app:srcCompat="@drawable/expand_more"
-                    tools:ignore="ContentDescription" />
 
 
-            </LinearLayout>
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/container_web_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginStart="@dimen/start_dimen"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linear" />
             <TextView
                 android:id="@+id/textViewNutrient"
                 style="@style/text_standart"
@@ -168,7 +123,7 @@
                 android:text="Питательные вещества на 1 порцию"
 
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/container_web_view"
+                app:layout_constraintTop_toBottomOf="@+id/container_data_view"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -191,32 +146,13 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <Button
-        android:id="@+id/buttonAddToCounter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:text="Добавить в счетчик"
-        android:padding="10dp"
-        android:gravity="center"
 
-        android:textSize="16dp"
-        android:fontFamily="@font/roboto_bold"
-
-
-        android:textColor="@color/white"
-        android:elevation="6dp"
-        android:stateListAnimator="@null"
-        android:translationZ="4dp"
-        android:background="@drawable/button_green"
-        android:layout_gravity="bottom|center"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="310dp" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/start_dimen"
+        android:layout_marginEnd="@dimen/start_dimen"
+
         app:borderWidth="0dp"
 
         android:backgroundTint="@color/white"

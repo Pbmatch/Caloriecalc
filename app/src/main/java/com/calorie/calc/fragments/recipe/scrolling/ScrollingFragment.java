@@ -1,9 +1,9 @@
 package com.calorie.calc.fragments.recipe.scrolling;
 
+import static com.calorie.calc.NavigationHelper.openScrollingAddFragments;
+import static com.calorie.calc.NavigationHelper.openScrollingDataFragments;
 import static com.calorie.calc.fragments.recipe.liked.FabHandler.fabClickState;
 import static com.calorie.calc.fragments.recipe.liked.FabHandler.getFabState;
-import static com.calorie.calc.utils.MeasureUtils.getIngrTitleString;
-import static com.calorie.calc.utils.ViewUtilsKt.animateRotation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,33 +13,30 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewbinding.ViewBinding;
 
-import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentScrollingBinding;
-import com.calorie.calc.databinding.ListFooterIngredientItemBinding;
-import com.calorie.calc.databinding.ListHeaderIngredientItemBinding;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoListAdapter;
+import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.PicassoHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScrollingFragment extends Fragment {
+public class ScrollingFragment extends Fragment implements BackPressable {
 
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     FragmentScrollingBinding binding;
-
+    InfoListAdapter<Nutrient> energyInfoListAdapter;
     RecipeAndLinks recipeAndLinks;
     Recipe item;
-    InfoListAdapter<Nutrient> energyInfoListAdapter;
-    InfoListAdapter<Ingredient> ingredientInfoListAdapter;
+
+
     InfoListAdapter<Nutrient> nutrientInfoListAdapter;
     public ScrollingFragment(RecipeAndLinks item) {
         this.recipeAndLinks = item;
@@ -49,7 +46,7 @@ public class ScrollingFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        openScrollingDataFragments(getChildFragmentManager(),recipeAndLinks);
     }
 
     @Nullable
@@ -80,6 +77,17 @@ public class ScrollingFragment extends Fragment {
     }
     void initView()
     {
+        NavigationState.getOnNavigationClick().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean)
+                { openScrollingAddFragments(getChildFragmentManager());}
+                else
+                    {
+                        onBackPressed();
+                    }
+            }
+        });
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,65 +125,17 @@ public class ScrollingFragment extends Fragment {
         }
 
 
-        binding.textViewText.setText(ingredients);
+
         setEnergy();
-        setIngredients();
+
         setNutreints();
-        binding.linear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleTitleAndSecondaryControls();
-            }
-        });
+
 
 
     }
 
-    private void toggleTitleAndSecondaryControls() {
-        if (binding.containerWebView.getVisibility() == View.GONE) {
-
-            Fragment fragment = getChildFragmentManager().findFragmentById(R.id.container_web_view);
-            if(fragment==null)
-                NavigationHelper.openWebViewFragment(getChildFragmentManager(),item.getUrl());
-
-            animateRotation(binding.detailControlsView,
-                    DEFAULT_CONTROLS_DURATION, 180);
-            binding.containerWebView.setVisibility(View.VISIBLE);
-        } else {
-
-            animateRotation(binding.detailControlsView,
-                    DEFAULT_CONTROLS_DURATION, 0);
-            binding.containerWebView.setVisibility(View.GONE);
-        }
-        // view pager height has changed, update the tab layout
-
-    }
-    void setIngredients()
-    {
-        if (ingredientInfoListAdapter == null) {
-            ingredientInfoListAdapter = new InfoListAdapter<Ingredient>(getContext());
-        }
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        binding.recViewIngred.setLayoutManager(layoutManager);
-        ingredientInfoListAdapter.setUseRecipeHorizontalItem(true);
-        binding.recViewIngred.setAdapter(ingredientInfoListAdapter);
-        ListHeaderIngredientItemBinding viewBinding = ListHeaderIngredientItemBinding
-                .inflate(getLayoutInflater(), binding.recViewIngred, false);
-        viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
-        ingredientInfoListAdapter.setHeader(viewBinding.getRoot());
 
 
-        ViewBinding viewBindingFooter = ListFooterIngredientItemBinding
-                .inflate(getLayoutInflater(), binding.recViewIngred, false);
-
-        ingredientInfoListAdapter.setFooter(viewBindingFooter.getRoot());
-        ingredientInfoListAdapter.showFooter(true);
-
-        ingredientInfoListAdapter.setInfoItemList(item.getIngredients());
-
-
-    }
     void setEnergy()
     {
 
@@ -206,5 +166,18 @@ public class ScrollingFragment extends Fragment {
         nutrientInfoListAdapter.setNutrient(true);
         binding.recViewNutrients.setAdapter(nutrientInfoListAdapter);
         nutrientInfoListAdapter.setInfoItemList(item.getTotalNutrients().getNutrientList());
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        System.out.println("onBackPressed"+"ScrollingFragment");
+        final Fragment fragmentPanel = getChildFragmentManager()
+                .findFragmentById(R.id.container_data_view);
+        if (fragmentPanel instanceof BackPressable) {
+
+                ((BackPressable) fragmentPanel).onBackPressed();
+                return true;
+        }
+        return false;
     }
 }

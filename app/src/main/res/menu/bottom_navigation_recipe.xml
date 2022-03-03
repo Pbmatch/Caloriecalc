@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_description"
+        android:icon="@drawable/tracker"
+        android:title="@string/description" />
+    <item
+        android:id="@+id/skip"
+        android:checkable="false"
+        android:checked="false"
+        android:enabled="false"
+        android:title=" "
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_manual"
+        android:icon="@drawable/recipes"
+        android:title="@string/manual"
+        />
+
+
+</menu>

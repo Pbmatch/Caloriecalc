@@ -36,6 +36,10 @@ public abstract class RecipeListFragment<T> extends Fragment {
     public RecipeListFragment(MutableLiveData<List<T>> recipeState) {
         this.recipeState = recipeState;
     }
+    public RecipeListFragment( ) {
+
+
+    }
 
 
     @Override

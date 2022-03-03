@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.calorie.calc.fragments.recipe.scrolling.AddFragment;
-import com.calorie.calc.fragments.recipe.scrolling.WebViewFragment;
+import com.calorie.calc.fragments.MainFragment;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.scrolling.InnerAddFragment;
+import com.calorie.calc.fragments.recipe.scrolling.InnerDataFragment;
 import com.jakewharton.processphoenix.ProcessPhoenix;
 
 public class NavigationHelper {
@@ -27,7 +29,7 @@ public class NavigationHelper {
 
          fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         defaultTransaction(fragmentManager)
-                 .replace(R.id.main_activ_container, new AddFragment(),MAIN_FRAGMENT_TAG)
+                 .replace(R.id.main_activ_container, new MainFragment(),MAIN_FRAGMENT_TAG)
                 //.replace(R.id.main_activ_container, new ScrollingFragment())
                  .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
@@ -68,10 +70,18 @@ public class NavigationHelper {
                .addToBackStack(null)
                 .commit();
     }
-    public static void openWebViewFragment(final FragmentManager fragmentManager, String url ) {
+
+    public static void openScrollingDataFragments(final FragmentManager fragmentManager, RecipeAndLinks item) {
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.container_web_view, new WebViewFragment(url))
+                .replace(R.id.container_data_view, new InnerDataFragment(item))
+                .addToBackStack(null)
+                .commit();
+    }
+    public static void openScrollingAddFragments(final FragmentManager fragmentManager  ) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.container_data_view,new  InnerAddFragment())
                 .addToBackStack(null)
                 .commit();
     }

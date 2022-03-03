@@ -15,7 +15,7 @@ import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
 import com.calorie.calc.edamam.network.RecipeRecipient;
 import com.calorie.calc.fragments.recipe.diet.DietType;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
-import com.calorie.calc.fragments.recipe.scrolling.ScrollingFragment;
+import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.List;
@@ -95,7 +95,7 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override
             public void selected(RecipeAndLinks selectedItem) {
-                NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(), new ScrollingFragment(selectedItem));
+                NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
             }
         });
     }
