@@ -15,10 +15,13 @@ import androidx.fragment.app.Fragment;
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRecipeBinding;
+import com.calorie.calc.fragments.recipe.RecipeMainFragment;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.liked.LikedFragment;
-import com.calorie.calc.fragments.recipe.RecipeMainFragment;
+import com.calorie.calc.fragments.recipe.product.ProductContainerFragment;
 import com.calorie.calc.utils.BackPressable;
+
+import java.util.ArrayList;
 
 
 public class RecipeFragment extends Fragment implements BackPressable {
@@ -56,7 +59,9 @@ public class RecipeFragment extends Fragment implements BackPressable {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+       //TODO Перенести инициализацию спискка продуктов
+        if(RecipeState.getProductLiveData().getValue()==null)
+        {RecipeState.getProductLiveData().setValue(new ArrayList<>());}
 
         binding = FragmentRecipeBinding.bind(view);
         binding.editTextTextPersonName.setOnTouchListener((v, event) -> {
@@ -78,6 +83,12 @@ public class RecipeFragment extends Fragment implements BackPressable {
             @Override
             public void onClick(View v) {
                 NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new LikedFragment(RecipeState.getRecipeAndLinksMutableLiveData()));
+            }
+        });
+        binding.imageViewShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new ProductContainerFragment());
             }
         });
 

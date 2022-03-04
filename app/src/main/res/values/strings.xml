@@ -195,5 +195,7 @@
     <string name="add_to_shopping">+ ДОБАВИТЬ В СПИСОК ПОКУПОК</string>
     <string name="ingredients">Ингредиенты</string>
     <string name="add">Добавить</string>
+    <string name="product_toolbar_title">Список продуктов</string>
+    <string name="product_toolbar_add_title">Добавление в список продуктов</string>
 
 </resources>

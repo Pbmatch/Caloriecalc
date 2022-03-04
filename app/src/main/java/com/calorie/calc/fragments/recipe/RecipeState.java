@@ -10,7 +10,7 @@ import java.util.List;
 public class RecipeState {
     public static    MutableLiveData<List<RecipeAndLinks>> recipeAndLinksMutableLiveData = new MutableLiveData<>();
     public static    MutableLiveData<Boolean> progressBar = new MutableLiveData<>();
-
+    public static    MutableLiveData<List<RecipeAndLinks>> productLiveData = new MutableLiveData<>();
 
     public static    MutableLiveData<DietType> dietType = new MutableLiveData<>();
     public static MutableLiveData<List<RecipeAndLinks>> getRecipeAndLinksMutableLiveData() {
@@ -23,4 +23,10 @@ public class RecipeState {
     public static MutableLiveData<Boolean> getProgressBar() {
         return progressBar;
     }
+
+    public static MutableLiveData<List<RecipeAndLinks>> getProductLiveData() {
+        return productLiveData;
+    }
+
+
 }

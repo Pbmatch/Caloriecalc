@@ -1,5 +1,6 @@
 package com.calorie.calc.fragments.recipe.scrolling;
 
+import static com.calorie.calc.NavigationHelper.openAddProductFragment;
 import static com.calorie.calc.utils.MeasureUtils.getIngrTitleString;
 
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.calorie.calc.fragments.recipe.RecipeListFragment;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.product.ProductAddFragment;
 
 
 public class InnerDataFragment extends RecipeListFragment<Ingredient> {
@@ -59,6 +61,12 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
         ViewBinding viewBindingFooter = ListFooterIngredientItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
 
+        viewBindingFooter.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAddProductFragment(getActivity().getSupportFragmentManager(),new ProductAddFragment(recipeAndLinks));
+            }
+        });
         infoListAdapter.setFooter(viewBindingFooter.getRoot());
         infoListAdapter.showFooter(true);
 

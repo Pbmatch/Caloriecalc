@@ -63,6 +63,13 @@ public class NavigationHelper {
                  .addToBackStack("verrrtic")
                 .commit();
     }
+    public static void openSeeFragment(final FragmentManager fragmentManager, Fragment fragment,int container) {
+
+        defaultTransaction(fragmentManager)
+                .replace(container, fragment)
+                //.addToBackStack("verrrtic")
+                .commit();
+    }
     public static void openDietFragment(final FragmentManager fragmentManager, Fragment fragment ) {
 
         defaultTransaction(fragmentManager)
@@ -70,6 +77,14 @@ public class NavigationHelper {
                .addToBackStack(null)
                 .commit();
     }
+    public static void openNavigationFragment(final FragmentManager fragmentManager, Fragment fragment ) {
+          System.out.println("openNavigationFragment"+fragment);
+        defaultTransaction(fragmentManager)
+                .replace(R.id.main_activ_container, fragment)
+                 .addToBackStack(null)
+                .commit();
+    }
+
 
     public static void openScrollingDataFragments(final FragmentManager fragmentManager, RecipeAndLinks item) {
 
@@ -82,6 +97,13 @@ public class NavigationHelper {
 
         defaultTransaction(fragmentManager)
                 .replace(R.id.container_data_view,new  InnerAddFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+    public static void openAddProductFragment(final FragmentManager fragmentManager,Fragment fragment  ) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.main_activ_container,fragment)
                 .addToBackStack(null)
                 .commit();
     }

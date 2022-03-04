@@ -81,6 +81,7 @@ public enum RecipeType {
         param.putAll(dietType.getMap());
         param.put("type", "public");
         param.put("q", "");
+        param.put("random", "true");
         if (!mealType.isEmpty()&&!param.containsKey("mealType"))
             param.put("mealType", mealType);
         this.params = param;

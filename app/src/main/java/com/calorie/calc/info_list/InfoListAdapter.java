@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,9 +19,12 @@ import com.calorie.calc.info_list.holder.DietCheckboxHolder;
 import com.calorie.calc.info_list.holder.DietHolder;
 import com.calorie.calc.info_list.holder.EnergyHolder;
 import com.calorie.calc.info_list.holder.FallbackViewHolder;
+import com.calorie.calc.info_list.holder.FragmentHolder;
 import com.calorie.calc.info_list.holder.InfoItemHolder;
 import com.calorie.calc.info_list.holder.IngredientHolder;
 import com.calorie.calc.info_list.holder.NutrientHolder;
+import com.calorie.calc.info_list.holder.ProductEditHolder;
+import com.calorie.calc.info_list.holder.ProductHolder;
 import com.calorie.calc.info_list.holder.RecipeHorizontalMiniItemHolder;
 import com.calorie.calc.info_list.holder.RecipeLikedItemHolder;
 import com.calorie.calc.utils.OnClickGesture;
@@ -43,8 +47,15 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int INGREDIENT_HOLDER_TYPE = 0x105;
     private static final int NUTRIENT_HOLDER_TYPE = 0x106;
     private static final int DIET_CHECKBOX_HOLDER_TYPE = 0x107;
+    private static final int PRODUCT_HOLDER_TYPE = 0x108;
+    private static final int PRODUCT_EDIT_HOLDER_TYPE = 0x109;
+    private static final int FRAGMENT_HOLDER_TYPE = 0x110;
     private boolean isNutrient=false;
 
+
+
+    private boolean isProductFragment=false;
+    private boolean isProductEditType=false;
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<T> infoItemList;
 
@@ -86,91 +97,6 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
 
-    public void addInfoItemList(@Nullable final List<? extends T> data) {
-        if (data == null) {
-            return;
-        }
-        final int offsetStart = sizeConsideringHeaderOffset();
-        infoItemList.addAll(data);
-        notifyItemRangeInserted(offsetStart, data.size());
-        if (footer != null && showFooter) {
-            final int footerNow = sizeConsideringHeaderOffset();
-            notifyItemMoved(offsetStart, footerNow);
-        }
-    }
-    public void setInfoItemList(@Nullable final List<? extends T> data) {
-        if (data == null) {
-            return;
-        }
-
-        infoItemList.clear();
-        infoItemList.addAll(data);
-        notifyDataSetChanged();
-    }
-
-    public void deleteItemFromItemList(T item)
-    {
-        if(item!=null &&!infoItemList.isEmpty())
-        {
-
-            if(infoItemList.contains(item))
-            {
-                int index= infoItemList.indexOf(item);
-                index = index+(header != null ? 1 : 0);
-                infoItemList.remove(item);
-                notifyItemRemoved(index);
-
-
-            }
-        }
-
-    }
-    public int findItemPosition(T item)
-    {
-        if(item!=null &&!infoItemList.isEmpty())
-        {
-            if(infoItemList.contains(item)) {
-                int index = infoItemList.indexOf(item);
-                return  index + (header != null ? 1 : 0);
-            }
-
-        }
-
-        return -1;
-    }
-
-    public void modifyItemToItemList(T item,int position)
-    {
-        if(item!=null&&!infoItemList.isEmpty())
-        {
-            infoItemList.set(position,item);
-            notifyItemChanged(position);
-
-
-
-        }
-
-    }
-    public void addItemToItemList(T item,int position)
-    {
-        if(item!=null )
-        {
-            infoItemList.add(position,item);
-            int index = infoItemList.indexOf(item);
-            index=  index + (header != null ? 1 : 0);
-            notifyItemInserted(index);
-
-
-        }
-
-    }
-    public void clearStreamItemList() {
-        if (infoItemList.isEmpty()) {
-            return;
-        }
-        infoItemList.clear();
-        notifyDataSetChanged();
-    }
 
     public void setHeader(final View header) {
         final boolean changed = header != this.header;
@@ -261,12 +187,18 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
         }
         if(infoItemList.get(position) instanceof Ingredient)
         {
-            return INGREDIENT_HOLDER_TYPE;
+
+           return isProductFragment ? PRODUCT_HOLDER_TYPE :isProductEditType ? PRODUCT_EDIT_HOLDER_TYPE: INGREDIENT_HOLDER_TYPE;
 
         }
         if(infoItemList.get(position) instanceof String)
         {
             return DIET_CHECKBOX_HOLDER_TYPE;
+
+        }
+        if(infoItemList.get(position) instanceof Fragment)
+        {
+            return FRAGMENT_HOLDER_TYPE;
 
         }
 
@@ -295,9 +227,12 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             case DIET_HOLDER_TYPE: return new DietHolder(infoItemBuilder,parent);
             case ENERGY_HOLDER_TYPE: return new EnergyHolder(infoItemBuilder,parent);
             case INGREDIENT_HOLDER_TYPE: return new IngredientHolder(infoItemBuilder,parent);
+            case PRODUCT_EDIT_HOLDER_TYPE: return new ProductEditHolder(infoItemBuilder,parent);
+            case PRODUCT_HOLDER_TYPE: return new ProductHolder(infoItemBuilder,parent);
 
             case NUTRIENT_HOLDER_TYPE: return new NutrientHolder(infoItemBuilder,parent);
             case DIET_CHECKBOX_HOLDER_TYPE:return new DietCheckboxHolder(infoItemBuilder,parent);
+            case FRAGMENT_HOLDER_TYPE:return new FragmentHolder(infoItemBuilder,parent);
 
             case HEADER_TYPE:
                 return new HFHolder(header);
@@ -330,6 +265,106 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
                 && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
         }
+    }
+    public boolean isProductFragment() {
+        return isProductFragment;
+    }
+
+    public void setProductFragment(boolean productFragment) {
+        isProductFragment = productFragment;
+    }
+    public void addInfoItemList(@Nullable final List<? extends T> data) {
+        if (data == null) {
+            return;
+        }
+        final int offsetStart = sizeConsideringHeaderOffset();
+        infoItemList.addAll(data);
+        notifyItemRangeInserted(offsetStart, data.size());
+        if (footer != null && showFooter) {
+            final int footerNow = sizeConsideringHeaderOffset();
+            notifyItemMoved(offsetStart, footerNow);
+        }
+    }
+    public void setInfoItemList(@Nullable final List<? extends T> data) {
+        if (data == null) {
+            return;
+        }
+
+        infoItemList.clear();
+        infoItemList.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    public boolean isProductEditType() {
+        return isProductEditType;
+    }
+
+    public void setProductEditType(boolean productEditType) {
+        isProductEditType = productEditType;
+    }
+
+    public void deleteItemFromItemList(T item)
+    {
+        if(item!=null &&!infoItemList.isEmpty())
+        {
+
+            if(infoItemList.contains(item))
+            {
+                int index= infoItemList.indexOf(item);
+                index = index+(header != null ? 1 : 0);
+                infoItemList.remove(item);
+                notifyItemRemoved(index);
+
+
+            }
+        }
+
+    }
+    public int findItemPosition(T item)
+    {
+        if(item!=null &&!infoItemList.isEmpty())
+        {
+            if(infoItemList.contains(item)) {
+                int index = infoItemList.indexOf(item);
+                return  index + (header != null ? 1 : 0);
+            }
+
+        }
+
+        return -1;
+    }
+
+    public void modifyItemToItemList(T item,int position)
+    {
+        if(item!=null&&!infoItemList.isEmpty())
+        {
+            infoItemList.set(position,item);
+            notifyItemChanged(position);
+
+
+
+        }
+
+    }
+    public void addItemToItemList(T item,int position)
+    {
+        if(item!=null )
+        {
+            infoItemList.add(position,item);
+            int index = infoItemList.indexOf(item);
+            index=  index + (header != null ? 1 : 0);
+            notifyItemInserted(index);
+
+
+        }
+
+    }
+    public void clearStreamItemList() {
+        if (infoItemList.isEmpty()) {
+            return;
+        }
+        infoItemList.clear();
+        notifyDataSetChanged();
     }
 
 /*    @Override

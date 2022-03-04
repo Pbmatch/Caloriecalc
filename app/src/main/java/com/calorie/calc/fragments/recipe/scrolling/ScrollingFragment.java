@@ -80,10 +80,11 @@ public class ScrollingFragment extends Fragment implements BackPressable {
         NavigationState.getOnNavigationClick().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean)
+             if(aBoolean)
                 { openScrollingAddFragments(getChildFragmentManager());}
                 else
                     {
+
                         onBackPressed();
                     }
             }
@@ -178,6 +179,7 @@ public class ScrollingFragment extends Fragment implements BackPressable {
                 ((BackPressable) fragmentPanel).onBackPressed();
                 return true;
         }
+
         return false;
     }
 }

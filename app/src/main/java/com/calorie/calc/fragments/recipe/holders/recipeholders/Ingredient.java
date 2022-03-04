@@ -33,8 +33,26 @@ public class Ingredient implements Serializable
     @SerializedName("image")
     @Expose
     private String image;
+
+    boolean addToProductChecked = true;
+    boolean purchased = false;
     private final static long serialVersionUID = -3683974407136401961L;
 
+    public boolean isPurchased() {
+        return purchased;
+    }
+
+    public void setPurchased(boolean purchased) {
+        this.purchased = purchased;
+    }
+
+    public boolean isAddToProductChecked() {
+        return addToProductChecked;
+    }
+
+    public void setAddToProductChecked(boolean addToProductChecked) {
+        this.addToProductChecked = addToProductChecked;
+    }
 
     public String getText() {
         return text;

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
-import com.calorie.calc.fragments.recipe.scrolling.ScrollingFragment;
+import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.OnClickGesture;
 
@@ -46,12 +46,12 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
     @Override
     public  void setListener() {
 
-                infoListAdapter.addInfoItemList(recipeState.getValue());
+                infoListAdapter.setInfoItemList(recipeState.getValue());
 
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override
             public void selected(RecipeAndLinks selectedItem) {
-                NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new ScrollingFragment(selectedItem));
+                 NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
             }
         });
     }

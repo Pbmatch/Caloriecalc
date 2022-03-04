@@ -95,7 +95,7 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override
             public void selected(RecipeAndLinks selectedItem) {
-                NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
+                NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
             }
         });
     }

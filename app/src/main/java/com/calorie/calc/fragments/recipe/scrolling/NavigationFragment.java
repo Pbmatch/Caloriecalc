@@ -1,5 +1,6 @@
 package com.calorie.calc.fragments.recipe.scrolling;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -37,7 +38,8 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        initFragments();
+        System.out.println("public void onCreate");
+
         super.onCreate(savedInstanceState);
 
     }
@@ -45,16 +47,18 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        System.out.println("public void onCreateView");
         return inflater.inflate(R.layout.fragment_navigation_recipe, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        System.out.println("public void onViewCreated");
         binding = FragmentNavigationRecipeBinding.bind(view);
         binding.bottomNavigation.setOnItemSelectedListener(this);
         NavigationState.getOnNavigationClick().setValue(false);
+        initFragments();
         binding.fab.setTag(false);
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +74,7 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
                 {
                     loadFragment(scrollingFragment);
                     NavigationState.getOnNavigationClick().setValue(true);
-                    binding.fab.setImageResource(R.drawable.close);
+                    binding.fab.setImageResource(R.drawable.close_fab);
                     binding.fab.setTag(true);
                 }
 
@@ -79,7 +83,14 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
 
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        System.out.println("public void public void onAttach" );
+    }
+
     private void initFragments() {
+        System.out.println("public void initFragments"+getChildFragmentManager().getFragments().size());
         if(getChildFragmentManager().getFragments().size()==0)
         {
 
