@@ -22,12 +22,12 @@ import com.calorie.calc.utils.PicassoHelper;
 public class DietFragment extends Fragment implements BackPressable {
 
 
-    DietType selectedItem;
+    DietMainPageType selectedItem;
     FragmentDietBinding binding;
     InfoListAdapter<String> adapter;
     RecyclerView itemsList;
 
-    public DietFragment(DietType selectedItem) {
+    public DietFragment(DietMainPageType selectedItem) {
         this.selectedItem = selectedItem;
     }
 
@@ -70,7 +70,7 @@ public class DietFragment extends Fragment implements BackPressable {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               DietType.refreshSelected();
+               DietMainPageType.refreshSelected();
                 selectedItem.setSelect(true);
                 RecipeState.getDietType().setValue(selectedItem);
                 onBackPressed();

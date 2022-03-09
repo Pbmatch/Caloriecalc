@@ -16,8 +16,8 @@ import com.calorie.calc.utils.OnClickGesture;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeInnerDietFragment extends RecipeListFragment<DietType> {
-    List<DietType> dietTypes = new ArrayList<>();
+public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType> {
+    List<DietMainPageType> dietMainPageTypes = new ArrayList<>();
     TextView textViewtext;
     public RecipeInnerDietFragment(RecipeType type) {
         super(type);
@@ -25,31 +25,31 @@ public class RecipeInnerDietFragment extends RecipeListFragment<DietType> {
 
     @Override
     public void startLoadData() {
-     if( dietTypes .isEmpty()){
-        dietTypes.add(DietType.ALL);
-        dietTypes.add(DietType.GLUTEN_FREE);
-        dietTypes.add(DietType.KETOGONIC);
-        dietTypes.add(DietType.VEGAN );
-        dietTypes.add(DietType. VEGATARIAN);
-        dietTypes.add(DietType. PESTERIAN);
-        dietTypes.add(DietType.  PALEO );}
-        infoListAdapter.setInfoItemList(dietTypes);
+     if( dietMainPageTypes.isEmpty()){
+        dietMainPageTypes.add(DietMainPageType.ALL);
+        dietMainPageTypes.add(DietMainPageType.GLUTEN_FREE);
+        dietMainPageTypes.add(DietMainPageType.KETOGONIC);
+        dietMainPageTypes.add(DietMainPageType.VEGAN );
+        dietMainPageTypes.add(DietMainPageType. VEGATARIAN);
+        dietMainPageTypes.add(DietMainPageType. PESTERIAN);
+        dietMainPageTypes.add(DietMainPageType.  PALEO );}
+        infoListAdapter.setInfoItemList(dietMainPageTypes);
     }
 
     @Override
     public void setListener() {
-     infoListAdapter.setOnItemSelectedListener(new OnClickGesture<DietType>() {
+     infoListAdapter.setOnItemSelectedListener(new OnClickGesture<DietMainPageType>() {
          @Override
-         public void selected(DietType selectedItem) {
+         public void selected(DietMainPageType selectedItem) {
 
             // RecipeState.getDietType().setValue(selectedItem);
             NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new DietFragment(selectedItem));
          }
      });
 
-        RecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietType>() {
+        RecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietMainPageType>() {
             @Override
-            public void onChanged(DietType dietType) {
+            public void onChanged(DietMainPageType dietMainPageType) {
                 infoListAdapter.notifyDataSetChanged();
             }
         });

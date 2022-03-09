@@ -3,7 +3,7 @@ package com.calorie.calc.fragments.recipe;
 import androidx.lifecycle.MutableLiveData;
 
 import com.calorie.calc.R;
-import com.calorie.calc.fragments.recipe.diet.DietType;
+import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public enum RecipeType {
     private String mealType;
     private int titleRecource;
     private int container;
-    private DietType dietType;
+    private DietMainPageType dietMainPageType;
     MutableLiveData<List<RecipeAndLinks>> recipeState = new MutableLiveData<>();
     Map<String, String> params;
 
@@ -33,12 +33,12 @@ public enum RecipeType {
 
     }
 
-    public DietType getDietType() {
-        return dietType;
+    public DietMainPageType getDietType() {
+        return dietMainPageType;
     }
 
-    public void setDietType(DietType dietType) {
-        this.dietType = dietType;
+    public void setDietType(DietMainPageType dietMainPageType) {
+        this.dietMainPageType = dietMainPageType;
     }
 
     public int getContainer() {
@@ -54,18 +54,18 @@ public enum RecipeType {
 
         return params;
     }
-    public static void setDietPlanToAll(DietType dietType1)
+    public static void setDietPlanToAll(DietMainPageType dietMainPageType1)
     {
         for(RecipeType type:RecipeType.values())
-            type.setDietType(dietType1);
+            type.setDietType(dietMainPageType1);
 
 
         buildAll( );
     }
-    public   void setDietPlanAndBuild(DietType dietType1)
+    public   void setDietPlanAndBuild(DietMainPageType dietMainPageType1)
     {
 
-            setDietType(dietType1);
+            setDietType(dietMainPageType1);
             build( );
     }
     public static void buildAll( )
@@ -78,7 +78,7 @@ public enum RecipeType {
     private void build( ) {
 
         Map<String, String> param = new HashMap<>();
-        param.putAll(dietType.getMap());
+        param.putAll(dietMainPageType.getMap());
         param.put("type", "public");
         param.put("q", "");
         param.put("random", "true");

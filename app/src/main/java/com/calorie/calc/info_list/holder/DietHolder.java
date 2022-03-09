@@ -6,11 +6,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.calorie.calc.R;
-import com.calorie.calc.fragments.recipe.diet.DietType;
+import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.utils.PicassoHelper;
 
-public class DietHolder  extends InfoItemHolder<DietType>{
+public class DietHolder  extends InfoItemHolder<DietMainPageType>{
     private ImageView itemThumbnailView;
     private TextView itemTitleView;
     private  TextView itemKkalView;
@@ -32,7 +32,7 @@ public class DietHolder  extends InfoItemHolder<DietType>{
     }
 
     @Override
-    public void updateFromItem(DietType infoItem,int pos) {
+    public void updateFromItem(DietMainPageType infoItem, int pos) {
         itemKkalView.setVisibility(View.GONE);
         if(infoItem.isSelect())
         { imageViewCheck.setVisibility(View.VISIBLE);
@@ -57,7 +57,7 @@ public class DietHolder  extends InfoItemHolder<DietType>{
     }
 
     @Override
-    public void updateState(DietType infoItem) {
+    public void updateState(DietMainPageType infoItem) {
 
     }
 }

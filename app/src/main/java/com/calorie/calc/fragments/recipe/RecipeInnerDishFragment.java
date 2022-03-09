@@ -13,7 +13,7 @@ import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
 import com.calorie.calc.edamam.network.RecipeRecipient;
-import com.calorie.calc.fragments.recipe.diet.DietType;
+import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.OnClickGesture;
@@ -42,13 +42,13 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
             recipeRecipient.getRecipe();
         }
 
-        RecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietType>() {
+        RecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietMainPageType>() {
             @Override
-            public void onChanged(DietType dietType) {
+            public void onChanged(DietMainPageType dietMainPageType) {
 
 
-                if (recipeRecipient.getType().getDietType().equals(dietType)) return;
-                type.setDietPlanAndBuild(dietType);
+                if (recipeRecipient.getType().getDietType().equals(dietMainPageType)) return;
+                type.setDietPlanAndBuild(dietMainPageType);
                 recipeRecipient.setType(type);
                 recipeRecipient.getRecipe();
             }

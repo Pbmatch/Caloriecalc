@@ -19,7 +19,7 @@ import androidx.lifecycle.Observer;
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRecipeMainBinding;
-import com.calorie.calc.fragments.recipe.diet.DietType;
+import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 import com.calorie.calc.fragments.recipe.diet.RecipeInnerDietFragment;
 
 
@@ -82,14 +82,14 @@ public class RecipeMainFragment extends Fragment {
 
         if(RecipeState.getDietType().getValue()==null)
         {
-        DietType.ALL.setSelect(true);
-        RecipeState.getDietType().setValue(DietType.ALL);}
+        DietMainPageType.ALL.setSelect(true);
+        RecipeState.getDietType().setValue(DietMainPageType.ALL);}
         buildLists(RecipeState.getDietType().getValue());
         openFragments();
 
 
     }
-    void buildLists(DietType type)
+    void buildLists(DietMainPageType type)
     {
         RecipeType.setDietPlanToAll(type);
 

@@ -3,7 +3,7 @@ package com.calorie.calc.fragments.recipe;
 import androidx.lifecycle.MutableLiveData;
 
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
-import com.calorie.calc.fragments.recipe.diet.DietType;
+import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 
 import java.util.List;
 
@@ -12,11 +12,11 @@ public class RecipeState {
     public static    MutableLiveData<Boolean> progressBar = new MutableLiveData<>();
     public static    MutableLiveData<List<RecipeAndLinks>> productLiveData = new MutableLiveData<>();
 
-    public static    MutableLiveData<DietType> dietType = new MutableLiveData<>();
+    public static    MutableLiveData<DietMainPageType> dietType = new MutableLiveData<>();
     public static MutableLiveData<List<RecipeAndLinks>> getRecipeAndLinksMutableLiveData() {
         return recipeAndLinksMutableLiveData;
     }
-    public static MutableLiveData<DietType> getDietType() {
+    public static MutableLiveData<DietMainPageType> getDietType() {
         return dietType;
     }
 

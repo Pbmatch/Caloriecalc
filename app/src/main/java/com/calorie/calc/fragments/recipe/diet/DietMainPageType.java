@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public enum DietType {
+public enum DietMainPageType {
     ALL(R.string.all_diet,R.string.all_text,"https://slenderform.ru/wp-content/uploads/2020/08/intuitivnoe-pitanie-768x512.jpg",null,null),
     VEGAN(R.string.vegan,R.string.vegan_text,"https://i.ytimg.com/vi/Alnm1uF0NdA/hqdefault.jpg","health","vegan"),
     VEGATARIAN(R.string.vegetarian,R.string.vegetarian_text,"https://www.gaziantep27.net/d/news/99735.jpg","health","vegetarian"),
@@ -23,7 +23,7 @@ public enum DietType {
     private Map<String,String> map = new HashMap<String,String>();
     List<String> checkboxText = new ArrayList<>();
 
-    DietType(int titleRes, int textRes, String imageUrl, String key, String value) {
+    DietMainPageType(int titleRes, int textRes, String imageUrl, String key, String value) {
         if(key!=null)
         map.put(key, value);
         checkboxText.add("Снижает вес");
@@ -37,7 +37,7 @@ public enum DietType {
     }
     public static void refreshSelected()
     {
-        for(DietType type:DietType.values())
+        for(DietMainPageType type: DietMainPageType.values())
             type.setSelect(false);
 
     }
