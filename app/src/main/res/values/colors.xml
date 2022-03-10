@@ -22,4 +22,5 @@
     <color name="item_ingredient">#F6F6F6</color>
     <color name="item_transparent">#51000000</color>
     <color name="full_transparent">#00FFFFFF</color>
+    <color name="filter_gray">#686766</color>
 </resources>

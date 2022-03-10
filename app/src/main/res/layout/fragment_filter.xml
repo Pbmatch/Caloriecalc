@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    tools:context=".fragments.recipe.filter.FilterFragment">
+
+    <include
+        android:id="@+id/srt_toolbar_layout"
+        layout="@layout/toolbar_lite_right_text"
+
+
+        />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/textViewDiet"
+                style="@style/text_standart_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/start_max_dimen"
+                android:layout_marginTop="@dimen/filter_txv"
+                android:text="Диета"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_diet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDiet"
+                app:showDivider="beginning|middle"
+
+                />
+
+            <TextView
+                android:id="@+id/textViewMeal"
+                style="@style/text_standart_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/start_max_dimen"
+                android:layout_marginTop="@dimen/filter_txv"
+                android:text="Приём пищи"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flex_box_diet" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_meal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMeal"
+                app:showDivider="beginning|middle" />
+
+            <TextView
+                android:id="@+id/textViewDishtype"
+                style="@style/text_standart_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/start_max_dimen"
+                android:layout_marginTop="@dimen/filter_txv"
+                android:text="Блюда"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flex_box_meal" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_Dishtype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDishtype"
+                app:showDivider="beginning|middle" />
+
+            <TextView
+                android:id="@+id/textViewHealthType"
+                style="@style/text_standart_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/start_max_dimen"
+                android:layout_marginTop="@dimen/filter_txv"
+                android:text="Тип"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flex_box_Dishtype" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_HealthType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewHealthType"
+                app:showDivider="beginning|middle" />
+
+            <TextView
+                android:id="@+id/textViewCuisineType"
+                style="@style/text_standart_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/start_max_dimen"
+                android:layout_marginTop="@dimen/filter_txv"
+                android:text="Страна"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flex_box_HealthType" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_CuisineType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCuisineType"
+                app:showDivider="beginning|middle"
+
+                />
+
+            <TextView
+                android:id="@+id/textViewEnergyType"
+                style="@style/text_standart_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/start_max_dimen"
+                android:layout_marginTop="@dimen/filter_txv"
+                android:text="Калорийность"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flex_box_CuisineType" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_EnergyType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewEnergyType"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:showDivider="beginning|middle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

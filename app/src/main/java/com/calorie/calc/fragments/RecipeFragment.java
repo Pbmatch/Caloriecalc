@@ -17,6 +17,7 @@ import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRecipeBinding;
 import com.calorie.calc.fragments.recipe.RecipeMainFragment;
 import com.calorie.calc.fragments.recipe.RecipeState;
+import com.calorie.calc.fragments.recipe.filter.FilterFragment;
 import com.calorie.calc.fragments.recipe.liked.LikedFragment;
 import com.calorie.calc.fragments.recipe.product.ProductContainerFragment;
 import com.calorie.calc.utils.BackPressable;
@@ -89,6 +90,13 @@ public class RecipeFragment extends Fragment implements BackPressable {
             @Override
             public void onClick(View v) {
                 NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new ProductContainerFragment());
+            }
+        });
+
+        binding.imageViewFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new FilterFragment());
             }
         });
 

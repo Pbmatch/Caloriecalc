@@ -1,5 +1,10 @@
 package com.calorie.calc.fragments.recipe.query;
 
+import android.graphics.Color;
+import android.widget.Button;
+
+import com.calorie.calc.R;
+
 public enum DietType implements QueryType{
 
    Balanced	("balanced","Balanced","Protein/Fat/Carb values in 15/35/50 ratio"),
@@ -15,7 +20,7 @@ public enum DietType implements QueryType{
     boolean included = false;
     String label;
     String description;
-
+    Button button;
     DietType(String parametr, String label, String description) {
         this.parametr = parametr;
         this.label = label;
@@ -50,6 +55,27 @@ public enum DietType implements QueryType{
 
     @Override
     public void setInclude(Boolean include) {
+        if (button!=null)
+        {
+            if( include)
+            {
+                button.setBackgroundResource(R.drawable.button_filter_on);
+                button.setTextColor(Color.WHITE);
+            }
+            else
+            {button.setBackgroundResource(R.drawable.button_filter_off);
+                button.setTextColor(button.getContext().getColor(R.color.text_title_color));
+            }
+        }
         this.included=include;
+    }
+
+    @Override
+    public Button getTextViewButton() {
+        return button;
+    }
+    @Override
+    public void setButton(Button button) {
+        this.button=button;
     }
 }

@@ -7,4 +7,5 @@
     <dimen name="start_dimen">8dp</dimen>
     <dimen name="start_max_dimen">12dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="filter_txv">16dp</dimen>
 </resources>

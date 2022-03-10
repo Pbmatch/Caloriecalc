@@ -5,21 +5,24 @@ import android.widget.Button;
 
 import com.calorie.calc.R;
 
-public enum MealType implements QueryType{
+public enum EnergyType implements QueryType{
 
-     Breakfast("Breakfast","Breakfast",""),
-     Lunch("Lunch","Lunch",""),
-     Dinner("Dinner","Dinner",""),
-     Snack("Snack","Snack",""),
-     Teatime("Teatime","Teatime","");
+    Ener100("100","До 100 ккал",""),
+    Ener200("100-200","100-200 ккал",""),
+    Ener300("200-300","200-300 ккал",""),
+    Ener400("300-400","300-400 ккал",""),
+    Ener500("400-500","400-500 ккал",""),
+    Ener600("500-600","500-600 ккал",""),
+    Ener700("600-700","600-700 ккал",""),
+    Ener800("700%2B","более 700 ккал","");
 
     String queryString="mealType";
-     String parametr;
+    String parametr;
     boolean included = false;
     String label;
     String description;
     Button button;
-    MealType(String parametr, String label, String description) {
+    EnergyType(String parametr, String label, String description) {
         this.parametr = parametr;
         this.label = label;
         this.description = description;

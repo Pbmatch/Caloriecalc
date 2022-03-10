@@ -97,12 +97,12 @@ public class RecipeMainFragment extends Fragment {
     }
     void openFragments()
     {
-        NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDietFragment(DIET_PLAN),DIET_PLAN.getContainer());
+     //   NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDietFragment(DIET_PLAN),DIET_PLAN.getContainer());
       //  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(POPULAR_RECIPE),POPULAR_RECIPE.getContainer());
        // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerAddedDishFragment(ADDED_RECIPE),ADDED_RECIPE.getContainer());
-        NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(BREAKFAST),BREAKFAST.getContainer());
-        NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(DINNER),DINNER.getContainer());
-         NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(SNACKS),SNACKS.getContainer());
+      //  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(BREAKFAST),BREAKFAST.getContainer());
+       // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(DINNER),DINNER.getContainer());
+        // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(SNACKS),SNACKS.getContainer());
     }
 
 }
