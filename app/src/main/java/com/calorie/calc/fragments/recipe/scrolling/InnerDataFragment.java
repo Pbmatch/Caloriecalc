@@ -21,6 +21,8 @@ import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.product.ProductAddFragment;
 
+import java.util.List;
+
 
 public class InnerDataFragment extends RecipeListFragment<Ingredient> {
     RecipeAndLinks recipeAndLinks;
@@ -55,6 +57,42 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
         ListHeaderIngredientItemBinding viewBinding = ListHeaderIngredientItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
         viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
+        viewBinding.buttonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Ingredient> list = item.getIngredients();
+
+                    double newYield = item.getYield()+1;
+                    for(Ingredient ingredient:list)
+                    {
+                        ingredient.setQuantity(ingredient.getQuantity()/item.getYield()*newYield);
+
+                    }
+                    item.setYield(newYield);
+                viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
+                    infoListAdapter.notifyDataSetChanged();
+
+            }
+        });
+        viewBinding.buttonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Ingredient> list = item.getIngredients();
+                if(item.getYield()>1)
+                {
+                    double newYield = item.getYield()-1;
+
+                    for(Ingredient ingredient:list)
+                    {
+                        ingredient.setQuantity(ingredient.getQuantity()/item.getYield()*newYield);
+
+                    }
+                    item.setYield(newYield);
+                    viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
+                    infoListAdapter.notifyDataSetChanged();
+                }
+            }
+        });
         infoListAdapter.setHeader(viewBinding.getRoot());
 
 

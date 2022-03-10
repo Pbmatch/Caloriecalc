@@ -47,6 +47,7 @@ public class ScrollingFragment extends Fragment implements BackPressable {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         openScrollingDataFragments(getChildFragmentManager(),recipeAndLinks);
+
     }
 
     @Nullable
@@ -166,12 +167,24 @@ public class ScrollingFragment extends Fragment implements BackPressable {
         binding.recViewNutrients.setLayoutManager(layoutManager);
         nutrientInfoListAdapter.setNutrient(true);
         binding.recViewNutrients.setAdapter(nutrientInfoListAdapter);
-        nutrientInfoListAdapter.setInfoItemList(item.getTotalNutrients().getNutrientList());
+        nutrientInfoListAdapter.setInfoItemList(getNutrientList());
+    }
+    public List<Nutrient> getNutrientList() {
+        List<Nutrient> list = item.getTotalNutrients().getNutrientList();
+
+        for(Nutrient nutrient:list)
+        {
+            if(item.getYield()!=0){
+                nutrient.setQuantity(nutrient.getQuantity()/item.getYield());
+            }
+        }
+
+        return list;
     }
 
     @Override
     public boolean onBackPressed() {
-        System.out.println("onBackPressed"+"ScrollingFragment");
+
         final Fragment fragmentPanel = getChildFragmentManager()
                 .findFragmentById(R.id.container_data_view);
         if (fragmentPanel instanceof BackPressable) {

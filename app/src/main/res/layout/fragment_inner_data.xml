@@ -22,7 +22,7 @@
         android:id="@+id/rec_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/start_max_dimen"
+        android:layout_marginHorizontal="@dimen/start_dimen"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
