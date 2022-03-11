@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.query.CuisineType;
 import com.calorie.calc.fragments.recipe.query.DietType;
@@ -61,6 +63,13 @@ public class FilterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 QueryType.clearAll();
+            }
+        });
+        Button button = view.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openDietFragment(getParentFragmentManager(), new FilterVerticalFragment());
             }
         });
 

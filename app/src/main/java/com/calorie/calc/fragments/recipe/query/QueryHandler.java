@@ -1,5 +1,9 @@
 package com.calorie.calc.fragments.recipe.query;
 
+import android.text.TextUtils;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,10 +54,39 @@ public class QueryHandler {
         }
         if(!stringList.isEmpty())
         {
+
+           // queryMap.putAll(  getPathMap(query,stringList));
             queryMap.put(query,stringList);
         }
 
 
 
+    }
+
+    public static Map<String, String> getPathMap(String key, List<String> params) {
+        Map<String, String> paramMap = new HashMap<>();
+        String paramValue;
+
+        for (String param  : params) {
+            if (!TextUtils.isEmpty(param)) {
+                try {
+                    if (paramMap.containsKey(key )) {
+                        // Add the duplicate key and new value onto the previous value
+                        // so (key, value) will now look like (key, value&key=value2)
+                        // which is a hack to work with Retrofit's QueryMap
+                        paramValue = paramMap.get(key );
+                        paramValue += ", " + key + "=" + URLEncoder.encode(String.valueOf(param), "UTF-8");
+                    } else {
+                        // This is the first value, so directly map it
+                        paramValue = URLEncoder.encode(String.valueOf(param), "UTF-8");
+                    }
+                    paramMap.put(key, paramValue);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return paramMap;
     }
 }

@@ -24,7 +24,7 @@ public enum RecipeType {
     private int container;
     private DietMainPageType dietMainPageType;
     MutableLiveData<List<RecipeAndLinks>> recipeState = new MutableLiveData<>();
-    Map<String, String> params;
+    Map<String, Object> params;
 
     RecipeType(int title, String mealType, int container) {
         this.titleRecource = title;
@@ -49,7 +49,7 @@ public enum RecipeType {
         return titleRecource;
     }
 
-    public Map<String, String> getParams() {
+    public Map<String, Object> getParams() {
 
 
         return params;
@@ -77,7 +77,7 @@ public enum RecipeType {
 
     private void build( ) {
 
-        Map<String, String> param = new HashMap<>();
+        Map<String, Object> param = new HashMap<>();
         param.putAll(dietMainPageType.getMap());
         param.put("type", "public");
         param.put("q", "");
@@ -88,7 +88,7 @@ public enum RecipeType {
 
     }
 
-    public void setParams(Map<String, String> params) {
+    public void setParams(Map<String, Object> params) {
         this.params = params;
     }
 

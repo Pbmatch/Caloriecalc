@@ -24,7 +24,8 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
         super(recipeState);
     }
 
-
+    public RecipeVerticalFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

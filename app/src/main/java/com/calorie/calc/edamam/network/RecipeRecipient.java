@@ -5,13 +5,14 @@ import android.content.Context;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.RecipeType;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,7 +65,8 @@ public class RecipeRecipient extends Recipient {
 
                 } else {
                     try {
-                        System.out.println("onResponceError" + response.errorBody().string() + response.message());
+                        System.out.println("onResponceError" + response.errorBody().string() + response.message() + call.toString());
+                        System.out.println("onResponceErrorUrl" +   response.raw().request().url() );
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -86,13 +88,49 @@ public class RecipeRecipient extends Recipient {
         if (!connectOk()) {
             return;
         }
+        System.out.println(type.getParams());
         RecipeState.getProgressBar().setValue(true);
       //   param.put("ingr", "chicken");
          retrofitInterface.recipe(APP_ID_RECIPE, APP_KEY_RECIPE, type.getParams()).enqueue(callback);
       //  retrofitInterface.recipeId("recipe_04d73a0b27e84a6680cd370eeecbb636",APP_ID, APP_KEY, param).enqueue(callback);
       //  retrofitInterface.foodParser(APP_ID_FOOD, APP_KEY_FOOD, param).enqueue(callback);
     }
+    public void getRecipe(Map<String, Object> params) {
+        if (!connectOk()) {
+            return;
+        }
+        RecipeState.getProgressBar().setValue(true);
+        //   param.put("ingr", "chicken");
 
+            System.out.println(params);
+        String query = "";
+        for(Map.Entry m:params.entrySet()) {
+
+            if (m.getValue() instanceof List){
+
+            for (String id : (List<String>) m.getValue()) {
+                query += m.getKey() +"="+ id  + "&";
+            }
+
+
+
+        }
+            if  (m.getValue() instanceof String)
+            {
+                query+=m.getKey()+"="+(String)m.getValue()  + "&";
+            }
+        }
+        query+="type"+"="+"public"  + "&";
+        query ="recipes/v2?"+query;
+        query = query.substring(0, query.length() - 1);
+
+
+        System.out.println(query);
+
+        retrofitInterface.recipeFilter(query,APP_ID_RECIPE, APP_KEY_RECIPE).enqueue(callback);
+        //  retrofitInterface.recipeId("recipe_04d73a0b27e84a6680cd370eeecbb636",APP_ID, APP_KEY, param).enqueue(callback);
+        //  retrofitInterface.foodParser(APP_ID_FOOD, APP_KEY_FOOD, param).enqueue(callback);
+    }
     @Override
     protected void onNetwork() {
       //  if (!callBackOk) getRecipe();

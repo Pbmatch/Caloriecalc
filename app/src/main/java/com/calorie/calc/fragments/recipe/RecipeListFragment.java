@@ -26,7 +26,7 @@ public abstract class RecipeListFragment<T> extends Fragment {
     public InfoListAdapter<T> infoListAdapter;
     public RecipeType type;
     public MutableLiveData<List<T>> recipeState;
-    RecipeRecipient recipeRecipient;
+    public  RecipeRecipient recipeRecipient;
 
     public RecipeListFragment(RecipeType type) {
 

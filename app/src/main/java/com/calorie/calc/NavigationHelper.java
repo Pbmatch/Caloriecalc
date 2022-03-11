@@ -78,7 +78,7 @@ public class NavigationHelper {
                 .commit();
     }
     public static void openNavigationFragment(final FragmentManager fragmentManager, Fragment fragment ) {
-          System.out.println("openNavigationFragment"+fragment);
+
         defaultTransaction(fragmentManager)
                 .replace(R.id.main_activ_container, fragment)
                  .addToBackStack(null)
