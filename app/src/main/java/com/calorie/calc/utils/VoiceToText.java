@@ -16,7 +16,13 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 
 public class VoiceToText {
-  static   void doPermAudio(Activity activity)
+    VoiceToTextInterface textInterface;
+
+    public VoiceToText(VoiceToTextInterface textInterface) {
+        this.textInterface = textInterface;
+    }
+
+    static   void doPermAudio(Activity activity)
     {
         int MY_PERMISSIONS_RECORD_AUDIO = 1;
 
@@ -31,7 +37,7 @@ public class VoiceToText {
         }
 
 }
-    public static void start(Activity activity,Context context)
+    public void start(Activity activity,Context context )
     {
         doPermAudio(activity);
 
@@ -51,10 +57,13 @@ public class VoiceToText {
                 if (voiceResults == null) {
                     System.out.println("No voice results");
                 } else {
+                    StringBuilder result= new StringBuilder();
                     System.out.println("Printing matches: ");
                     for (String match : voiceResults) {
+                        result.append(match);
                         System.out.println(match);
                     }
+                    textInterface.getText(result.toString());
                 }
             }
 
@@ -118,5 +127,9 @@ public class VoiceToText {
         };
         recognizer.setRecognitionListener(listener);
         recognizer.startListening(intent);
+    }
+    public interface VoiceToTextInterface
+    {
+        void getText(String result);
     }
 }

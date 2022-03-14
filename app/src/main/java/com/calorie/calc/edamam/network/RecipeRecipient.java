@@ -125,11 +125,10 @@ public class RecipeRecipient extends Recipient {
         query = query.substring(0, query.length() - 1);
 
 
-        System.out.println(query);
+
 
         retrofitInterface.recipeFilter(query,APP_ID_RECIPE, APP_KEY_RECIPE).enqueue(callback);
-        //  retrofitInterface.recipeId("recipe_04d73a0b27e84a6680cd370eeecbb636",APP_ID, APP_KEY, param).enqueue(callback);
-        //  retrofitInterface.foodParser(APP_ID_FOOD, APP_KEY_FOOD, param).enqueue(callback);
+
     }
     @Override
     protected void onNetwork() {

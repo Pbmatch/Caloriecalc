@@ -3,6 +3,8 @@ package com.calorie.calc.fragments;
 import static com.calorie.calc.NavigationHelper.openRecipeMainFragment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,14 +23,17 @@ import com.calorie.calc.fragments.recipe.filter.FilterFragment;
 import com.calorie.calc.fragments.recipe.liked.LikedFragment;
 import com.calorie.calc.fragments.recipe.product.ProductContainerFragment;
 import com.calorie.calc.utils.BackPressable;
+import com.calorie.calc.utils.VoiceToText;
 
 import java.util.ArrayList;
 
 
-public class RecipeFragment extends Fragment implements BackPressable {
+public class RecipeFragment extends Fragment implements BackPressable, VoiceToText.VoiceToTextInterface {
 
 
     FragmentRecipeBinding binding;
+    boolean editTextIsEmpty=true;
+    VoiceToText voiceToText;
 
     public RecipeFragment() {
         // Required empty public constructor
@@ -63,7 +68,19 @@ public class RecipeFragment extends Fragment implements BackPressable {
        //TODO Перенести инициализацию спискка продуктов
         if(RecipeState.getProductLiveData().getValue()==null)
         {RecipeState.getProductLiveData().setValue(new ArrayList<>());}
-
+        voiceToText = new VoiceToText(this);
+        View.OnClickListener onFilterClick = (new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new FilterFragment());
+            }
+        });
+        View.OnClickListener onSendClick = (new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new FilterFragment());
+            }
+        });
         binding = FragmentRecipeBinding.bind(view);
         binding.editTextTextPersonName.setOnTouchListener((v, event) -> {
             final int DRAWABLE_LEFT = 0;
@@ -73,13 +90,51 @@ public class RecipeFragment extends Fragment implements BackPressable {
 
             if(event.getAction() == MotionEvent.ACTION_UP) {
                 if(event.getRawX() >= (binding.editTextTextPersonName.getRight() - binding.editTextTextPersonName.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                    // your action here
+                   if(!editTextIsEmpty)
+                   {
+                       binding.editTextTextPersonName.setText("");
+                   }
+                   else
+                   {
+                       voiceToText.start(getActivity(),getContext());
+                   }
 
                     return true;
                 }
             }
             return false;
         });
+        binding.editTextTextPersonName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty())
+                {
+                    binding.editTextTextPersonName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.searching, 0, R.drawable.close, 0);
+                    editTextIsEmpty=false;
+                    binding.imageViewFilter.setImageResource(R.drawable.arrow_right);
+                    binding.imageViewFilter.setOnClickListener(onSendClick);
+
+                }
+                else{
+                    binding.editTextTextPersonName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.searching, 0, R.drawable.mic, 0);
+                    editTextIsEmpty=true;
+                    binding.imageViewFilter.setImageResource(R.drawable.ic_filter);
+                    binding.imageViewFilter.setOnClickListener(onFilterClick);
+
+            }
+        }
+        }
+            );
         binding.imageViewFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,12 +148,7 @@ public class RecipeFragment extends Fragment implements BackPressable {
             }
         });
 
-        binding.imageViewFilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new FilterFragment());
-            }
-        });
+
 
       /*  binding.imageView5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,5 +169,10 @@ public class RecipeFragment extends Fragment implements BackPressable {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void getText(String result) {
+        binding.editTextTextPersonName.setText(result);
     }
 }
