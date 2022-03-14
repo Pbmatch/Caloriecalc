@@ -5,10 +5,14 @@ import static com.calorie.calc.NavigationHelper.openRecipeMainFragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -78,10 +82,25 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
         View.OnClickListener onSendClick = (new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new FilterFragment());
+                onFindClick();
             }
         });
         binding = FragmentRecipeBinding.bind(view);
+
+
+        binding.editTextTextPersonName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                   if(!binding.editTextTextPersonName.getText().toString().isEmpty()) onFindClick();
+                   else Toast.makeText(getContext(),"Введите текст",Toast.LENGTH_LONG).show();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
         binding.editTextTextPersonName.setOnTouchListener((v, event) -> {
             final int DRAWABLE_LEFT = 0;
             final int DRAWABLE_TOP = 1;
@@ -150,14 +169,11 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
 
 
 
-      /*  binding.imageView5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VoiceToText.start(getActivity(),getContext());
-            }
-        });*/
+
 
     }
+    void onFindClick()
+    {}
 
     @Override
     public boolean onBackPressed() {

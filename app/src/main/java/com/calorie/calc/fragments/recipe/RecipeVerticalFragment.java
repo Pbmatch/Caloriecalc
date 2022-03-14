@@ -76,4 +76,9 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
         getParentFragmentManager().popBackStack();
         return true;
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }

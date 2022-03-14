@@ -19,7 +19,7 @@ import com.calorie.calc.info_list.InfoListAdapter;
 import java.util.List;
 
 
-public abstract class RecipeListFragment<T> extends Fragment {
+public abstract class RecipeListFragment<T> extends Fragment implements OnRefresh{
 
 
     public RecyclerView itemsList;

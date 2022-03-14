@@ -111,4 +111,8 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
     }
 
 
+    @Override
+    public void refresh() {
+
+    }
 }

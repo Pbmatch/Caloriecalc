@@ -73,4 +73,9 @@ public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType
         textViewtext=rootView.findViewById(R.id. recipe_inner_textViewText);
         textViewtext.setVisibility(View.GONE);
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }

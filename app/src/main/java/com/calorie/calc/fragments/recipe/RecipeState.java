@@ -13,6 +13,12 @@ public class RecipeState {
     public static    MutableLiveData<List<RecipeAndLinks>> productLiveData = new MutableLiveData<>();
 
     public static    MutableLiveData<DietMainPageType> dietType = new MutableLiveData<>();
+
+    public static MutableLiveData<Boolean> getOnRefreshMainRecipe() {
+        return onRefreshMainRecipe;
+    }
+
+    public static    MutableLiveData<Boolean> onRefreshMainRecipe = new MutableLiveData<>();
     public static MutableLiveData<List<RecipeAndLinks>> getRecipeAndLinksMutableLiveData() {
         return recipeAndLinksMutableLiveData;
     }
@@ -27,6 +33,7 @@ public class RecipeState {
     public static MutableLiveData<List<RecipeAndLinks>> getProductLiveData() {
         return productLiveData;
     }
+
 
 
 }

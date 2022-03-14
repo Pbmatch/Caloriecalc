@@ -123,4 +123,9 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
     public int getLayoutManagerOrientation() {
         return LinearLayoutManager.VERTICAL;
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }
