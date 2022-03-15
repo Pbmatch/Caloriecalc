@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+
     >
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -25,7 +26,7 @@
 
         app:showDivider="beginning|middle" />
     <TextView
-        android:id="@+id/recipe_inner_textViewTitle"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/start_dimen"
@@ -36,16 +37,16 @@
         app:layout_constraintTop_toBottomOf="@+id/flex_box" />
 
     <TextView
-        android:id="@+id/recipe_inner_textViewText"
+        android:id="@+id/textViewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/start_dimen"
-        android:text="@string/all"
+
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/text_standart"
         android:textColor="@color/button_green"
 
-        app:layout_constraintTop_toTopOf="@+id/recipe_inner_textViewTitle" />
+        app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_view"
@@ -55,7 +56,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_inner_textViewTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
 
 

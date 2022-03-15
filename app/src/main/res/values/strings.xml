@@ -197,5 +197,11 @@
     <string name="add">Добавить</string>
     <string name="product_toolbar_title">Список продуктов</string>
     <string name="product_toolbar_add_title">Добавление в список продуктов</string>
+    <plurals name="dish_count">
+        <item quantity="one">%s рецепт</item>
+        <item quantity="few">%s рецепта</item>
+        <item quantity="many">%s рецептов</item>
+        <item quantity="other">%s рецептов</item>
+    </plurals>
 
 </resources>

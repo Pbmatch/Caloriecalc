@@ -26,4 +26,9 @@ public class MeasureUtils {
         return i + " "+"Порции";
 
     }
+    public static String getDishCount(final Context context, final long count) {
+        final int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE
+                : count < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) count;
+        return context.getResources().getQuantityString(R.plurals.dish_count, safeCount, count);
+    }
 }

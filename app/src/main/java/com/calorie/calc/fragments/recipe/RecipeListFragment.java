@@ -17,6 +17,9 @@ import com.calorie.calc.R;
 import com.calorie.calc.edamam.network.RecipeRecipient;
 import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
 import com.calorie.calc.info_list.InfoListAdapter;
+import com.calorie.calc.utils.OnScrollBelowItemsListener;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public abstract class RecipeListFragment<T> extends Fragment implements OnRefresh{
@@ -25,7 +28,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
     public RecyclerView itemsList;
     public InfoListAdapter<T> infoListAdapter;
     public RecipeType type;
-
+    protected AtomicBoolean isLoading = new AtomicBoolean();
     public  RecipeRecipient recipeRecipient;
     public MutableLiveData< RecipeSearch> recipeSearch;
 
@@ -68,6 +71,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
         initList(view);
         setListener();
         startLoadData();
+        isLoading.set(true);
         RecipeState.getOnRefreshMainRecipe().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -88,6 +92,14 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
         super.onResume();
 
     }
+    protected void onScrollToBottom() {
+System.out.println("void onScrollToBottom()");
+        //if ( !isLoading.get()) {
+            System.out.println("void onScrollToBottom()loadMoreItems" );
+            loadMoreItems();
+      //  }
+    }
+    public abstract void loadMoreItems();
 
     public abstract boolean isHorizontalItem();
 
@@ -103,6 +115,13 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
         itemsList.setLayoutManager(layoutManager);
         infoListAdapter.setUseRecipeHorizontalItem(isHorizontalItem());
         itemsList.setAdapter(infoListAdapter);
+
+        itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
+            @Override
+            public void onScrolledDown(final RecyclerView recyclerView) {
+                onScrollToBottom();
+            }
+        });
 
 
     }

@@ -76,6 +76,11 @@ public class ProductAddFragment extends ListEmptyAndToolbar<Ingredient> {
     }
 
     @Override
+    public void loadMoreItems() {
+
+    }
+
+    @Override
     public void setToolbar() {
         toolbarText.setText(R.string.product_toolbar_add_title);
          toolbarImageViewRight.setVisibility(View.GONE);

@@ -129,6 +129,11 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
     }
 
     @Override
+    public void loadMoreItems() {
+
+    }
+
+    @Override
     public boolean isHorizontalItem() {
         return false;
     }

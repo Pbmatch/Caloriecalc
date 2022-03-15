@@ -91,29 +91,23 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
                     infoListAdapter.setHeader(null);
                 }
                 infoListAdapter.setInfoItemList(recipeSearch.getHits());
+                isLoading.set(false);
             }
 
         });
 
-       /* recipeState.observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinks>>() {
-            @Override
-            public void onChanged(List<RecipeAndLinks> recipeAndLinks) {
-                if (recipeAndLinks.size() == 0) {
-                    ViewBinding viewBinding = ListRecipeHeaderItemBinding
-                            .inflate(getLayoutInflater(), itemsList, false);
-                    infoListAdapter.setHeader(viewBinding.getRoot());
-                } else {
-                    infoListAdapter.setHeader(null);
-                }
-                infoListAdapter.setInfoItemList(recipeAndLinks);
-            }
-        });*/
+
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override
             public void selected(RecipeAndLinks selectedItem) {
                 NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
             }
         });
+    }
+
+    @Override
+    public void loadMoreItems() {
+       // recipeRecipient.getRecipe(recipeSearch.getValue().getLinks().getNext().getHref());
     }
 
     @Override

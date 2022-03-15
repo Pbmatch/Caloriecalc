@@ -59,6 +59,11 @@ public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType
     }
 
     @Override
+    public void loadMoreItems() {
+
+    }
+
+    @Override
     public  boolean isHorizontalItem() {
         return true;
     }

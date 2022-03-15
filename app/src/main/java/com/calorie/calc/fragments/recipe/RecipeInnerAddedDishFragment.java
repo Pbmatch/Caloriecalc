@@ -56,6 +56,11 @@ public class RecipeInnerAddedDishFragment extends RecipeListFragment<RecipeAndLi
     }
 
     @Override
+    public void loadMoreItems() {
+
+    }
+
+    @Override
     public  boolean isHorizontalItem() {
         return true;
     }

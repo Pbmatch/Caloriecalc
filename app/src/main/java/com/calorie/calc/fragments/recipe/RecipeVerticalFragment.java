@@ -1,9 +1,12 @@
 package com.calorie.calc.fragments.recipe;
 
+import static com.calorie.calc.utils.MeasureUtils.getDishCount;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,12 +24,12 @@ import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.OnClickGesture;
 
-import java.util.List;
-
 
 public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> implements BackPressable {
 
-    SwipeRefreshLayout swipeRefreshLayout;
+   private SwipeRefreshLayout swipeRefreshLayout;
+    private  TextView textView;
+    boolean moreItems = false;
     public RecipeVerticalFragment(MutableLiveData<RecipeSearch> recipeSearch,RecipeType type)
     {
 
@@ -41,6 +44,15 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
         super.onCreate(savedInstanceState);
 
     }
+    @Override
+    public void loadMoreItems() {
+        if(!isLoading.get())
+        {
+            recipeRecipient.getRecipe();
+            isLoading.set(true);
+        }
+       // recipeRecipient.getRecipe(recipeSearch.getValue().getLinks().getNext().getHref());
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -48,6 +60,7 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
         if (recipeRecipient == null)
             recipeRecipient = new RecipeRecipient(getContext(), recipeSearch, type);
         swipeRefreshLayout = view.findViewById(R.id.swipe);
+        textView=view.findViewById(R.id.textViewText);
         swipeRefreshLayout.setOnRefreshListener(this::reloadContent);
 
     }
@@ -69,24 +82,18 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
             @Override
             public void onChanged(RecipeSearch recipeSearch) {
 
+                textView.setText(getDishCount(getContext(),recipeSearch.getCount()));
+                if(isLoading.get())
+                {
+                    infoListAdapter.addInfoItemList(recipeSearch.getHits());
+                    isLoading.set(false);
+                }
+                else
                 infoListAdapter.setInfoItemList(recipeSearch.getHits());
+
+
             }
         });
-
-     /*   recipeState.observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinks>>() {
-            @Override
-            public void onChanged(List<RecipeAndLinks> recipeAndLinks) {
-     *//*           if (recipeAndLinks.size() == 0) {
-                    ViewBinding viewBinding = ListRecipeHeaderItemBinding
-                            .inflate(getLayoutInflater(), itemsList, false);
-                    infoListAdapter.setHeader(viewBinding.getRoot());
-                } else {
-                    infoListAdapter.setHeader(null);
-                }*//*
-                infoListAdapter.setInfoItemList(recipeAndLinks);
-            }
-        });*/
-
 
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override

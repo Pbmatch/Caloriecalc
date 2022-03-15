@@ -32,6 +32,10 @@ public class LikedFragment extends ListEmptyAndToolbar<RecipeAndLinks> {
         });
     }
 
+    @Override
+    public void loadMoreItems() {
+
+    }
 
 
     @Override

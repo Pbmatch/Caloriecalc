@@ -66,6 +66,11 @@ public class ProductContainerFragment extends ListEmptyAndToolbar<Fragment> {
     }
 
     @Override
+    public void loadMoreItems() {
+
+    }
+
+    @Override
     public void setToolbar() {
         toolbarText.setText("Список продуктов");
         toolbarImageViewRight.setVisibility(View.VISIBLE);

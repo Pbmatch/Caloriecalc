@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +35,7 @@ public class RecipeRecipient extends Recipient {
     String APP_KEY_FOOD = "3fb0249a92fd83b77bb0f3e57d62a8e8";
     String APP_ID_FOOD = "df7288a0";
     private Callback<RecipeSearch> callback;
-
+    private Callback<ResponseBody> callback222;
 
     public RecipeRecipient(Context context) {
         super(context);
@@ -52,7 +53,7 @@ public class RecipeRecipient extends Recipient {
 
     @Override
     protected void setCallBack() {
-        callback = new Callback<RecipeSearch>() {
+     callback = new Callback<RecipeSearch>() {
             @Override
             public void onResponse(Call<RecipeSearch> call, Response<RecipeSearch> response) {
                 RecipeState.getProgressBar().setValue(false);
@@ -79,9 +80,47 @@ public class RecipeRecipient extends Recipient {
                 System.out.println("onFailure" + t.toString());
             }
         };
+    /*    callback222 = new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                RecipeState.getProgressBar().setValue(false);
+                if (response.body() != null) {
+
+                  //  RecipeSearch recipeSearch= response.body();
+                    try {
+                        System.out.println("onResponce" + response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //  recipeState.postValue(recipeSearch);
+
+                } else {
+                    try {
+                        System.out.println("onResponceError" + response.errorBody().string() + response.message() + call.toString());
+                        System.out.println("onResponceErrorUrl" +   response.raw().request().url() );
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                RecipeState.getProgressBar().setValue(false);
+                System.out.println("onFailure" + t.toString());
+            }
+        };*/
 
     }
+    public void getRecipe(String url) {
+        RecipeState.getProgressBar().setValue(true);
 
+        url = url.replaceAll(BASEURL,"");
+
+
+        retrofitInterface.recipeNextPage(url).enqueue(callback);
+    }
 
     public void getRecipe() {
         if (!connectOk()) {

@@ -1,9 +1,6 @@
 package com.calorie.calc.fragments.recipe;
 
 import static com.calorie.calc.fragments.recipe.RecipeType.BREAKFAST;
-import static com.calorie.calc.fragments.recipe.RecipeType.DIET_PLAN;
-import static com.calorie.calc.fragments.recipe.RecipeType.DINNER;
-import static com.calorie.calc.fragments.recipe.RecipeType.SNACKS;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,7 +18,6 @@ import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentRecipeMainBinding;
 import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
-import com.calorie.calc.fragments.recipe.diet.RecipeInnerDietFragment;
 
 
 public class RecipeMainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -100,12 +96,12 @@ public class RecipeMainFragment extends Fragment implements SwipeRefreshLayout.O
     }
     void openFragments()
     {
-       NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDietFragment(DIET_PLAN),DIET_PLAN.getContainer());
+      // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDietFragment(DIET_PLAN),DIET_PLAN.getContainer());
       //  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(POPULAR_RECIPE),POPULAR_RECIPE.getContainer());
       // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerAddedDishFragment(ADDED_RECIPE),ADDED_RECIPE.getContainer());
        NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(BREAKFAST),BREAKFAST.getContainer());
-       NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(DINNER),DINNER.getContainer());
-         NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(SNACKS),SNACKS.getContainer());
+     //  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(DINNER),DINNER.getContainer());
+      //   NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(SNACKS),SNACKS.getContainer());
     }
 
     @Override

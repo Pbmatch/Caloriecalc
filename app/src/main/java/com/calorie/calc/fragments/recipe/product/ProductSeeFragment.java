@@ -93,6 +93,11 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
 
     }
 
+    @Override
+    public void loadMoreItems() {
+
+    }
+
     List<Ingredient> getItemCheckedList() {
         List<Ingredient> list = new ArrayList<>();
         for (Ingredient ingItem : item.getIngredients()) {

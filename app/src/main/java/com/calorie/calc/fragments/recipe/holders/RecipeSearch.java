@@ -70,7 +70,7 @@ public class RecipeSearch implements Serializable {
         return serialVersionUID;
     }
 
-    public class Links implements Serializable {
+    public class Links  implements Serializable {
 
         @SerializedName("next")
         @Expose
@@ -89,7 +89,7 @@ public class RecipeSearch implements Serializable {
         }
 
     }
-      class Self implements Serializable
+    public class Self implements Serializable
     {
 
         @SerializedName("href")
@@ -117,7 +117,7 @@ public class RecipeSearch implements Serializable {
         }
 
     }
-      class Next implements Serializable {
+    public  class Next  implements Serializable {
 
         @SerializedName("href")
         @Expose

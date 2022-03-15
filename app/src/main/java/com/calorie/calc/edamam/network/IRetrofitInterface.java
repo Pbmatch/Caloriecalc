@@ -29,6 +29,10 @@ public interface IRetrofitInterface {
             @Query("app_key") String appKey
          );
 
+    @GET
+    Call<RecipeSearch> recipeNextPage(
+            @Url String url
+    );
 
     @GET("recipes/v2/{id}")
     Call<ResponseBody> recipeId(
