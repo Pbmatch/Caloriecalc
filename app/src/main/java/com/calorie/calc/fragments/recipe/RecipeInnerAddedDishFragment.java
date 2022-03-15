@@ -64,4 +64,9 @@ public class RecipeInnerAddedDishFragment extends RecipeListFragment<RecipeAndLi
     public int getLayoutManagerOrientation() {
         return LinearLayoutManager.HORIZONTAL;
     }
+
+    @Override
+    public void reloadContent() {
+
+    }
 }

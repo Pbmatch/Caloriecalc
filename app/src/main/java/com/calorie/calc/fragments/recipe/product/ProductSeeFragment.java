@@ -125,7 +125,7 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
     }
 
     @Override
-    public void refresh() {
+    public void reloadContent() {
 
     }
 }

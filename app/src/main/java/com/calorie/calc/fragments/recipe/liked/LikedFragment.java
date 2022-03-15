@@ -48,4 +48,9 @@ public class LikedFragment extends ListEmptyAndToolbar<RecipeAndLinks> {
     public int getLayoutManagerOrientation() {
         return LinearLayoutManager.VERTICAL;
     }
+
+    @Override
+    public void reloadContent() {
+
+    }
 }

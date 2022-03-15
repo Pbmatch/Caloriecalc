@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.RecipeType;
 import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,10 +20,10 @@ import retrofit2.Response;
 
 public class RecipeRecipient extends Recipient {
 
-    MutableLiveData<List<RecipeAndLinks>> recipeState;
+    MutableLiveData<RecipeSearch> recipeState;
     RecipeType type;
 
-    public RecipeRecipient(Context context, MutableLiveData<List<RecipeAndLinks>> recipeState, RecipeType type) {
+    public RecipeRecipient(Context context, MutableLiveData<RecipeSearch> recipeState, RecipeType type) {
         super(context);
         this.recipeState = recipeState;
         this.type = type;
@@ -61,7 +60,7 @@ public class RecipeRecipient extends Recipient {
 
                     RecipeSearch recipeSearch= response.body();
                     System.out.println("onResponce" + recipeSearch.getCount()+"onResponceSize"+recipeSearch.getHits().size());
-                    recipeState.postValue(recipeSearch.getHits());
+                    recipeState.postValue(recipeSearch);
 
                 } else {
                     try {

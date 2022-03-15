@@ -1,15 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.recipe.RecipeVerticalFragment">
 
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/start_dimen"
+    android:orientation="vertical"
+    tools:context=".fragments.recipe.RecipeListFragment">
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flex_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:flexWrap="wrap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
 
+        app:showDivider="beginning|middle" />
+    <TextView
+        android:id="@+id/recipe_inner_textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_dimen"
+        android:visibility="gone"
+        style="@style/text_title_min"
+        tools:text="Завтрак"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flex_box" />
+
+    <TextView
+        android:id="@+id/recipe_inner_textViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/start_dimen"
+        android:text="@string/all"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/text_standart"
+        android:textColor="@color/button_green"
+
+        app:layout_constraintTop_toTopOf="@+id/recipe_inner_textViewTitle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_view"
+        android:layout_marginTop="@dimen/start_dimen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_inner_textViewTitle" />
 
-</FrameLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

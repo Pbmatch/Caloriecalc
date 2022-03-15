@@ -23,9 +23,11 @@ public abstract class ListEmptyAndToolbar<T>  extends RecipeListFragment<T> {
     protected ImageView toolbarImageViewClose;
     protected ImageView toolbarImageViewRight;
     protected TextView toolbarText;
-
+     public MutableLiveData<List<T>> recipeState;
     public ListEmptyAndToolbar(MutableLiveData<List<T>> recipeState) {
-        super(recipeState);
+
+        super( );
+        this.recipeState=recipeState;
     }
     public ListEmptyAndToolbar( ) {
      super();

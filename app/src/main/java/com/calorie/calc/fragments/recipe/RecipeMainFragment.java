@@ -73,6 +73,7 @@ public class RecipeMainFragment extends Fragment implements SwipeRefreshLayout.O
             }
         });
         RecipeState.getProgressBar().setValue(false);
+
       binding.swipe.setOnRefreshListener(this);
     }
 
@@ -110,5 +111,6 @@ public class RecipeMainFragment extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onRefresh() {
         RecipeState.getOnRefreshMainRecipe().setValue(true);
+        binding.swipe.setRefreshing(false);
     }
 }

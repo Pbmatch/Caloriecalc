@@ -7,19 +7,7 @@
     android:layout_marginTop="@dimen/start_dimen"
     android:orientation="vertical"
     tools:context=".fragments.recipe.RecipeListFragment">
-    <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/flex_box"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
 
-        app:alignContent="stretch"
-        app:alignItems="stretch"
-        app:flexWrap="wrap"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        app:showDivider="beginning|middle" />
     <TextView
         android:id="@+id/recipe_inner_textViewTitle"
         android:layout_width="wrap_content"
@@ -28,7 +16,7 @@
         style="@style/text_title_min"
         tools:text="Завтрак"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flex_box" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/recipe_inner_textViewText"

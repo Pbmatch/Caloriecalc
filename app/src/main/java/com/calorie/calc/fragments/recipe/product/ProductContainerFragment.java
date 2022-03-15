@@ -78,4 +78,9 @@ public class ProductContainerFragment extends ListEmptyAndToolbar<Fragment> {
         });
 
     }
+
+    @Override
+    public void reloadContent() {
+
+    }
 }

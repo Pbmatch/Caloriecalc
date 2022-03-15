@@ -9,14 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.calorie.calc.R;
 import com.calorie.calc.edamam.network.RecipeRecipient;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
 import com.calorie.calc.info_list.InfoListAdapter;
-
-import java.util.List;
 
 
 public abstract class RecipeListFragment<T> extends Fragment implements OnRefresh{
@@ -25,16 +25,19 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
     public RecyclerView itemsList;
     public InfoListAdapter<T> infoListAdapter;
     public RecipeType type;
-    public MutableLiveData<List<T>> recipeState;
+
     public  RecipeRecipient recipeRecipient;
+    public MutableLiveData< RecipeSearch> recipeSearch;
 
     public RecipeListFragment(RecipeType type) {
 
         this.type = type;
     }
 
-    public RecipeListFragment(MutableLiveData<List<T>> recipeState) {
-        this.recipeState = recipeState;
+
+    public RecipeListFragment(MutableLiveData< RecipeSearch> recipeSearch  ,RecipeType type) {
+        this.type = type;
+        this.recipeSearch = recipeSearch;
     }
     public RecipeListFragment( ) {
 
@@ -65,6 +68,12 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
         initList(view);
         setListener();
         startLoadData();
+        RecipeState.getOnRefreshMainRecipe().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                reloadContent();
+            }
+        });
 
     }
 

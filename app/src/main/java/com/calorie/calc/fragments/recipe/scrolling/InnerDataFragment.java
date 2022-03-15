@@ -146,7 +146,7 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
 
 
     @Override
-    public void refresh() {
+    public void reloadContent() {
 
     }
 }

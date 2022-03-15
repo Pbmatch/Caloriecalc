@@ -80,4 +80,9 @@ public class ProductAddFragment extends ListEmptyAndToolbar<Ingredient> {
         toolbarText.setText(R.string.product_toolbar_add_title);
          toolbarImageViewRight.setVisibility(View.GONE);
     }
+
+    @Override
+    public void reloadContent() {
+
+    }
 }

@@ -75,7 +75,7 @@ public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType
     }
 
     @Override
-    public void refresh() {
+    public void reloadContent() {
 
     }
 }
