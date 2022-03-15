@@ -24,11 +24,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-            <include
-                android:id="@+id/srt_toolbar_search_container"
-                layout="@layout/toolbar_recipe_container"
 
-                tools:visibility="visible" />
 
 
 
@@ -43,7 +39,11 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/recipe72"
                 />
+            <include
+                android:id="@+id/toolbar_container"
+                layout="@layout/toolbar_recipe_container"
 
+                tools:visibility="visible" />
 
 
 

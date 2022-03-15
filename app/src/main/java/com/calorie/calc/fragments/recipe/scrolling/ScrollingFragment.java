@@ -24,6 +24,7 @@ import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoListAdapter;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.PicassoHelper;
+import com.calorie.calc.utils.ShareHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,8 +133,23 @@ public class ScrollingFragment extends Fragment implements BackPressable {
 
         setNutreints();
 
+        initToolbar();
 
-
+    }
+    void initToolbar()
+    {
+        binding.toolbarContainer.imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              getParentFragmentManager().popBackStack();
+            }
+        });
+        binding.toolbarContainer.imageViewShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareHandler.send(getContext(),recipeAndLinks.getRecipe().getUrl());
+            }
+        });
     }
 
 
