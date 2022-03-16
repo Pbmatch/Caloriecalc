@@ -25,15 +25,14 @@
 
             <TextView
                 android:id="@+id/toolbarTextViewTitle"
-                style="@style/text_standart"
+                style="@style/text_title_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-
-
+                android:layout_marginStart="@dimen/start_max_dimen"
 
                 android:gravity="center"
-                android:text=" Список продуктов"
+                android:text=""
+
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewBack"
                 app:layout_constraintStart_toEndOf="@+id/imageViewBack"
                 app:layout_constraintTop_toTopOf="@+id/imageViewBack">
@@ -43,10 +42,10 @@
 
             <ImageView
                 android:id="@+id/imageViewBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+
                 android:padding="5dp"
-                android:paddingLeft="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageViewRight"

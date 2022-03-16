@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.calorie.calc.NavigationHelper;
+import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.ListEmptyAndToolbar;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
@@ -40,7 +41,7 @@ public class LikedFragment extends ListEmptyAndToolbar<RecipeAndLinks> {
 
     @Override
     public void setToolbar() {
-
+        toolbarText.setText(R.string.liked);
     }
 
     @Override
