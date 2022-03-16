@@ -1,6 +1,5 @@
 package com.calorie.calc.fragments.recipe.scrolling;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,17 +71,7 @@ public class WebViewFragment extends Fragment implements BackPressable {
         startLoading=true;}
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        System.out.println("void onAttach");
-        super.onAttach(context);
-    }
 
-    @Override
-    public void onResume() {
-        System.out.println("void onResume");
-        super.onResume();
-    }
 
     @Override
     public boolean onBackPressed() {

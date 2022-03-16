@@ -19,6 +19,7 @@ import java.util.List;
 public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType> {
     List<DietMainPageType> dietMainPageTypes = new ArrayList<>();
     TextView textViewtext;
+    TextView  textViewTitle;
     public RecipeInnerDietFragment(RecipeType type) {
         super(type);
     }
@@ -77,6 +78,8 @@ public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType
     public void initViews(View rootView) {
         textViewtext=rootView.findViewById(R.id. recipe_inner_textViewText);
         textViewtext.setVisibility(View.GONE);
+        textViewTitle=rootView.findViewById(R.id. recipe_inner_textViewTitle);
+        textViewTitle.setText(R.string.recipe_1);
     }
 
     @Override

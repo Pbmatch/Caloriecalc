@@ -87,7 +87,11 @@ public class ScrollingFragment extends Fragment implements BackPressable {
             @Override
             public void onChanged(Boolean aBoolean) {
              if(aBoolean)
-                { openScrollingAddFragments(getChildFragmentManager());}
+                {
+                    openScrollingAddFragments(getChildFragmentManager());
+                    binding.rvToDoList.fullScroll(View.FOCUS_UP);
+
+                }
                 else
                     {
 
@@ -188,7 +192,8 @@ public class ScrollingFragment extends Fragment implements BackPressable {
         binding.recViewNutrients.setLayoutManager(layoutManager);
         nutrientInfoListAdapter.setNutrient(true);
         binding.recViewNutrients.setAdapter(nutrientInfoListAdapter);
-        nutrientInfoListAdapter.setInfoItemList(getNutrientList(true));
+
+       // nutrientInfoListAdapter.setInfoItemList(getNutrientList(true));
         binding.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -196,6 +201,8 @@ public class ScrollingFragment extends Fragment implements BackPressable {
                     nutrientInfoListAdapter.setInfoItemList(getNutrientList(isChecked));
             }
         });
+
+        binding.switch1.setChecked(true);
     }
     public List<Nutrient> getNutrientList(boolean checked) {
         if(checked)

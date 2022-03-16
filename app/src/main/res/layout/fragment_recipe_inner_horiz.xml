@@ -4,30 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/start_dimen"
+
     android:orientation="vertical"
     tools:context=".fragments.recipe.RecipeListFragment">
 
     <TextView
         android:id="@+id/recipe_inner_textViewTitle"
+        style="@style/text_title_nano"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/start_dimen"
-        style="@style/text_title_min"
-        tools:text="Завтрак"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Завтрак" />
 
     <TextView
         android:id="@+id/recipe_inner_textViewText"
+        style="@style/text_standart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/start_dimen"
+
         android:text="@string/all"
-        app:layout_constraintEnd_toEndOf="parent"
-        style="@style/text_standart"
         android:textColor="@color/button_green"
 
+        app:layout_constraintBottom_toBottomOf="@+id/recipe_inner_textViewTitle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recipe_inner_textViewTitle" />
 
         <androidx.recyclerview.widget.RecyclerView

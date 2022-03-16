@@ -57,6 +57,7 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
         System.out.println("public void onViewCreated");
         binding = FragmentNavigationRecipeBinding.bind(view);
         binding.bottomNavigation.setOnItemSelectedListener(this);
+
         NavigationState.getOnNavigationClick().setValue(false);
         initFragments();
         binding.fab.setTag(false);
@@ -67,19 +68,20 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
                 if(state)
                 {
                     NavigationState.getOnNavigationClick().setValue(false);
-                    binding.fab.setTag(false);
-                    binding.fab.setImageResource(R.drawable.add);
+                  binding.fab.setTag(false);
+                   binding.fab.setImageResource(R.drawable.add);
                 }
                 else
                 {
-                    loadFragment(scrollingFragment);
+                    binding.bottomNavigation.setSelectedItemId(binding.bottomNavigation.getMenu().getItem(0).getItemId());
                     NavigationState.getOnNavigationClick().setValue(true);
                     binding.fab.setImageResource(R.drawable.close_fab);
-                    binding.fab.setTag(true);
+                   binding.fab.setTag(true);
                 }
 
             }
         });
+
 
     }
 
