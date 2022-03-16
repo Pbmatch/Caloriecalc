@@ -28,6 +28,7 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
     RecipeAndLinks recipeAndLinks;
     Recipe item;
     TextView textViewText;
+    double countPortion;
 
 
 
@@ -56,20 +57,21 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
 
         ListHeaderIngredientItemBinding viewBinding = ListHeaderIngredientItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
-        viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
+        countPortion = item.getYield();
+        viewBinding.textViewText.setText(getIngrTitleString(countPortion));
         viewBinding.buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Ingredient> list = item.getIngredients();
 
-                    double newYield = item.getYield()+1;
+                    double newYield = countPortion+1;
                     for(Ingredient ingredient:list)
                     {
-                        ingredient.setQuantity(ingredient.getQuantity()/item.getYield()*newYield);
+                        ingredient.setQuantity(ingredient.getQuantity()/countPortion*newYield);
 
                     }
-                    item.setYield(newYield);
-                viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
+                countPortion = newYield;
+                viewBinding.textViewText.setText(getIngrTitleString(countPortion));
                     infoListAdapter.notifyDataSetChanged();
 
             }
@@ -78,17 +80,17 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
             @Override
             public void onClick(View v) {
                 List<Ingredient> list = item.getIngredients();
-                if(item.getYield()>1)
+                if(countPortion>1)
                 {
-                    double newYield = item.getYield()-1;
+                    double newYield = countPortion-1;
 
                     for(Ingredient ingredient:list)
                     {
-                        ingredient.setQuantity(ingredient.getQuantity()/item.getYield()*newYield);
+                        ingredient.setQuantity(ingredient.getQuantity()/countPortion*newYield);
 
                     }
-                    item.setYield(newYield);
-                    viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
+                    countPortion = newYield;
+                    viewBinding.textViewText.setText(getIngrTitleString(countPortion));
                     infoListAdapter.notifyDataSetChanged();
                 }
             }

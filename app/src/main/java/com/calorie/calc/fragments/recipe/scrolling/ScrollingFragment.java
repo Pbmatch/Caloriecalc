@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.info_list.InfoListAdapter;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.PicassoHelper;
+import com.calorie.calc.utils.RecipeInverter;
 import com.calorie.calc.utils.ShareHandler;
 
 import java.util.ArrayList;
@@ -40,7 +42,9 @@ public class ScrollingFragment extends Fragment implements BackPressable {
 
     InfoListAdapter<Nutrient> nutrientInfoListAdapter;
     public ScrollingFragment(RecipeAndLinks item) {
+
         this.recipeAndLinks = item;
+        RecipeInverter.invert(recipeAndLinks);
         this.item=item.getRecipe();
     }
 
@@ -158,6 +162,7 @@ public class ScrollingFragment extends Fragment implements BackPressable {
     {
 
         List<Nutrient> energyList=new ArrayList<>();
+
         energyList.add( item.getTotalNutrients().getEnercKcal());
         energyList.add(item.getTotalNutrients().getFat());
         energyList.add(item.getTotalNutrients().getChocdf());
@@ -183,19 +188,22 @@ public class ScrollingFragment extends Fragment implements BackPressable {
         binding.recViewNutrients.setLayoutManager(layoutManager);
         nutrientInfoListAdapter.setNutrient(true);
         binding.recViewNutrients.setAdapter(nutrientInfoListAdapter);
-        nutrientInfoListAdapter.setInfoItemList(getNutrientList());
-    }
-    public List<Nutrient> getNutrientList() {
-        List<Nutrient> list = item.getTotalNutrients().getNutrientList();
+        nutrientInfoListAdapter.setInfoItemList(getNutrientList(true));
+        binding.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-        for(Nutrient nutrient:list)
-        {
-            if(item.getYield()!=0){
-                nutrient.setQuantity(nutrient.getQuantity()/item.getYield());
+                    nutrientInfoListAdapter.setInfoItemList(getNutrientList(isChecked));
             }
+        });
+    }
+    public List<Nutrient> getNutrientList(boolean checked) {
+        if(checked)
+        {
+           return item.getTotalNutrients().getNutrientList();
         }
+        else  return item.getTotalDaily().getNutrientList();
 
-        return list;
     }
 
     @Override

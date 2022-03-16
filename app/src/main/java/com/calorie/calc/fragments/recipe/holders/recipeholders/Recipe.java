@@ -73,7 +73,7 @@ public class Recipe implements Serializable
     private TotalNutrients totalNutrients;
     @SerializedName("totalDaily")
     @Expose
-    private TotalDaily totalDaily;
+    private TotalNutrients totalDaily;
     @SerializedName("digest")
     @Expose
     private List<Digest> digest = new ArrayList<>();
@@ -242,7 +242,7 @@ public class Recipe implements Serializable
         this.totalNutrients = totalNutrients;
     }
 
-    public TotalDaily getTotalDaily() {
+    public TotalNutrients getTotalDaily() {
         return totalDaily;
     }
 

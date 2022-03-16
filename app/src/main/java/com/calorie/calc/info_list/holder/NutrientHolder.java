@@ -25,7 +25,8 @@ public class NutrientHolder extends InfoItemHolder<Nutrient>{
     @Override
     public void updateFromItem(Nutrient infoItem, int position) {
         itemTitleView.setText(infoItem.getLabel());
-        String quan = String.format("%.2f",infoItem.getQuantity());
+
+        String quan = String.format("%.2f",infoItem.getQuantity()/infoItem.getPortion());
         String result=quan +" "+ infoItem.getUnit();
         itemContView.setText(result);
         if(position % 2 != 0) {

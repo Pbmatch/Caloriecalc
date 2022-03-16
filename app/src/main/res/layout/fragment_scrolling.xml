@@ -153,6 +153,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 />
 
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="мг/%"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="@dimen/start_max_dimen"
+
+                        app:layout_constraintTop_toTopOf="@+id/textViewNutrient" />
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rec_view_nutrients"
                         android:layout_width="match_parent"
@@ -163,6 +172,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewNutrient" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 

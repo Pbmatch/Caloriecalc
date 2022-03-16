@@ -16,6 +16,16 @@ public abstract class Nutrient implements Serializable
     @SerializedName("unit")
     @Expose
     private String unit;
+    double portion=1;
+
+    public double getPortion() {
+        return portion;
+    }
+
+    public void setPortion(double portion) {
+        this.portion = portion;
+    }
+
     private final static long serialVersionUID = -4662665335057143265L;
 
     public String getLabel() {
