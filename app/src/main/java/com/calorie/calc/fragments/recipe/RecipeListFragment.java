@@ -30,7 +30,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
     public RecipeType type;
     protected AtomicBoolean isLoading = new AtomicBoolean();
     public  RecipeRecipient recipeRecipient;
-    public MutableLiveData< RecipeSearch> recipeSearch;
+    public MutableLiveData< RecipeSearch> recipeSearch= new MutableLiveData<>();
 
     public RecipeListFragment(RecipeType type) {
 

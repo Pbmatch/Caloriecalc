@@ -27,8 +27,8 @@ import com.calorie.calc.utils.OnClickGesture;
 
 public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> implements BackPressable {
 
-   private SwipeRefreshLayout swipeRefreshLayout;
-    private  TextView textView;
+    protected SwipeRefreshLayout swipeRefreshLayout;
+    protected   TextView textView;
     boolean moreItems = false;
     public RecipeVerticalFragment(MutableLiveData<RecipeSearch> recipeSearch,RecipeType type)
     {

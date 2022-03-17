@@ -1,7 +1,10 @@
 package com.calorie.calc.fragments.recipe.filter;
 
+import static com.calorie.calc.utils.MeasureUtils.getDishCount;
+
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,14 +16,18 @@ import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
 import com.calorie.calc.edamam.network.RecipeRecipient;
+import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.RecipeVerticalFragment;
 import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.query.QueryHandler;
+import com.calorie.calc.fragments.recipe.query.QueryType;
 import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.OnClickGesture;
 import com.google.android.flexbox.FlexboxLayout;
+
+import java.util.List;
 
 public class FilterVerticalFragment extends RecipeVerticalFragment implements BackPressable {
 
@@ -48,6 +55,7 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
        super.onViewCreated(view, savedInstanceState);
 
 
+
     }
 
     @Override
@@ -56,9 +64,9 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
             recipeRecipient = new RecipeRecipient(getContext(), recipeSearch, type);
 
         if (infoListAdapter == null || infoListAdapter.getItemsList() == null || infoListAdapter.getItemsList().size() == 0) {
-            QueryHandler queryHandler = new QueryHandler();
+            QueryHandler queryHandler = RecipeState.getQueryLiveData().getValue();
 
-            recipeRecipient.getRecipe(  queryHandler.build("chicken"));
+            recipeRecipient.getRecipe(  queryHandler.build());
         }
     }
 
@@ -74,9 +82,19 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
                 } else {
                     infoListAdapter.setHeader(null);
                 }
+                textView.setText(getDishCount(getContext(),recipeSearch.getCount()));
                 infoListAdapter.setInfoItemList(recipeSearch.getHits());
+
             }
 
+        });
+        RecipeState.getQueryLiveData().observe(getViewLifecycleOwner(), new Observer<QueryHandler>() {
+            @Override
+            public void onChanged(QueryHandler queryHandler) {
+
+                recipeRecipient.getRecipe(  queryHandler.build());
+                setView(flexboxLayout,queryHandler.getListForButton());
+            }
         });
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override
@@ -101,8 +119,38 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
 
     }
 
+    void setView( FlexboxLayout view, List<QueryType> list) {
+        view.removeAllViews();
+
+        for (QueryType type : list) {
+            if (type.getButton(getContext()).getParent() != null) {
+                ((ViewGroup) type.getButton(getContext()).getParent()).removeView(type.getButton(getContext())); // <- fix
+            }
+            type.getButton(getContext()).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    type.setInclude(false);
+                    ((ViewGroup) type.getButton(getContext()).getParent()).removeView(type.getButton(getContext())); // <- fix
+                    reloadContent();
+
+
+                }
+            });
+
+            view.addView(type.getButton(getContext()));
+
+
+        }
+    }
+
     public boolean onBackPressed() {
         getParentFragmentManager().popBackStack();
         return true;
+    }
+    @Override
+    public void reloadContent() {
+        QueryHandler queryHandler = RecipeState.getQueryLiveData().getValue();
+        recipeRecipient.getRecipe(  queryHandler.build());
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

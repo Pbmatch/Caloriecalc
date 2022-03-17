@@ -67,6 +67,7 @@
             android:ems="10"
             android:hint="@string/recipe_hint"
             android:maxLines="1"
+
             android:singleLine="true"
             android:paddingHorizontal="8dp"
             android:paddingVertical="10dp"

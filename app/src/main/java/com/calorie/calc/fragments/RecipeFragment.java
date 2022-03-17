@@ -1,7 +1,10 @@
 package com.calorie.calc.fragments;
 
+import static com.calorie.calc.NavigationHelper.openFindFragment;
 import static com.calorie.calc.NavigationHelper.openRecipeMainFragment;
+import static com.calorie.calc.fragments.recipe.RecipeState.openFindFragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,12 +14,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
@@ -26,6 +31,8 @@ import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.filter.FilterFragment;
 import com.calorie.calc.fragments.recipe.liked.LikedFragment;
 import com.calorie.calc.fragments.recipe.product.ProductContainerFragment;
+import com.calorie.calc.fragments.recipe.query.Qtype;
+import com.calorie.calc.fragments.recipe.query.QueryHandler;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.VoiceToText;
 
@@ -36,7 +43,7 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
 
 
     FragmentRecipeBinding binding;
-    boolean editTextIsEmpty=true;
+    boolean editTextIsEmpty = true;
     VoiceToText voiceToText;
 
     public RecipeFragment() {
@@ -44,11 +51,9 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
     }
 
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        openRecipeMainFragment(getChildFragmentManager(),new RecipeMainFragment());
+        openRecipeMainFragment(getChildFragmentManager(), new RecipeMainFragment());
         super.onCreate(savedInstanceState);
 
     }
@@ -69,14 +74,36 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       //TODO Перенести инициализацию спискка продуктов
-        if(RecipeState.getProductLiveData().getValue()==null)
-        {RecipeState.getProductLiveData().setValue(new ArrayList<>());}
+        //TODO Перенести инициализацию спискка продуктов
+        if (RecipeState.getProductLiveData().getValue() == null) {
+            RecipeState.getProductLiveData().setValue(new ArrayList<>());
+        }
         voiceToText = new VoiceToText(this);
+
+        binding = FragmentRecipeBinding.bind(view);
+
+        binding.imageViewFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(), new LikedFragment(RecipeState.getRecipeAndLinksMutableLiveData()));
+            }
+        });
+        binding.imageViewShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(), new ProductContainerFragment());
+            }
+        });
+
+        setEditText();
+    }
+
+    void setEditText() {
+
         View.OnClickListener onFilterClick = (new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new FilterFragment());
+                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(), new FilterFragment());
             }
         });
         View.OnClickListener onSendClick = (new View.OnClickListener() {
@@ -85,17 +112,16 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
                 onFindClick();
             }
         });
-        binding = FragmentRecipeBinding.bind(view);
-
-
+        binding.imageViewFilter.setOnClickListener(onFilterClick);
         binding.editTextTextPersonName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                   if(!binding.editTextTextPersonName.getText().toString().isEmpty()) onFindClick();
-                   else Toast.makeText(getContext(),"Введите текст",Toast.LENGTH_LONG).show();
+                    if (!binding.editTextTextPersonName.getText().toString().isEmpty())
+                        onFindClick();
+                    else Toast.makeText(getContext(), "Введите текст", Toast.LENGTH_LONG).show();
                     handled = true;
                 }
                 return handled;
@@ -107,16 +133,13 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
             final int DRAWABLE_RIGHT = 2;
             final int DRAWABLE_BOTTOM = 3;
 
-            if(event.getAction() == MotionEvent.ACTION_UP) {
-                if(event.getRawX() >= (binding.editTextTextPersonName.getRight() - binding.editTextTextPersonName.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                   if(!editTextIsEmpty)
-                   {
-                       binding.editTextTextPersonName.setText("");
-                   }
-                   else
-                   {
-                       voiceToText.start(getActivity(),getContext());
-                   }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (binding.editTextTextPersonName.getRight() - binding.editTextTextPersonName.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (!editTextIsEmpty) {
+                        binding.editTextTextPersonName.setText("");
+                    } else {
+                        voiceToText.start(getActivity(), getContext());
+                    }
 
                     return true;
                 }
@@ -124,56 +147,68 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
             return false;
         });
         binding.editTextTextPersonName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                                                  @Override
+                                                                  public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
+                                                                  }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                                                  @Override
+                                                                  public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
+                                                                  }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().isEmpty())
-                {
-                    binding.editTextTextPersonName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.searching, 0, R.drawable.close, 0);
-                    editTextIsEmpty=false;
-                    binding.imageViewFilter.setImageResource(R.drawable.arrow_right);
-                    binding.imageViewFilter.setOnClickListener(onSendClick);
+                                                                  @Override
+                                                                  public void afterTextChanged(Editable s) {
+                                                                      if (!s.toString().isEmpty()) {
+                                                                          binding.editTextTextPersonName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.searching, 0, R.drawable.close, 0);
+                                                                          editTextIsEmpty = false;
+                                                                          binding.imageViewFilter.setImageResource(R.drawable.arrow_right);
+                                                                          binding.imageViewFilter.setOnClickListener(onSendClick);
 
-                }
-                else{
-                    binding.editTextTextPersonName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.searching, 0, R.drawable.mic, 0);
-                    editTextIsEmpty=true;
-                    binding.imageViewFilter.setImageResource(R.drawable.ic_filter);
-                    binding.imageViewFilter.setOnClickListener(onFilterClick);
+                                                                      } else {
+                                                                          binding.editTextTextPersonName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.searching, 0, R.drawable.mic, 0);
+                                                                          editTextIsEmpty = true;
+                                                                          binding.imageViewFilter.setImageResource(R.drawable.ic_filter);
+                                                                          binding.imageViewFilter.setOnClickListener(onFilterClick);
 
-            }
-        }
-        }
-            );
-        binding.imageViewFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new LikedFragment(RecipeState.getRecipeAndLinksMutableLiveData()));
-            }
-        });
-        binding.imageViewShopping.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(),new ProductContainerFragment());
-            }
-        });
-
-
-
-
+                                                                      }
+                                                                  }
+                                                              }
+        );
 
     }
-    void onFindClick()
-    {}
+
+    void onFindClick() {
+        InputMethodManager imm = (InputMethodManager)
+                getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(binding.editTextTextPersonName.getWindowToken(), 0);
+        System.out.println("void onResume() onFindClick set q" +binding.editTextTextPersonName.getText().toString());
+       QueryHandler handler = RecipeState.getQueryLiveData().getValue();
+        Qtype.QTYPE.setParametr(binding.editTextTextPersonName.getText().toString());
+
+        RecipeState.getQueryLiveData().setValue(handler);
+        binding.editTextTextPersonName.setText("");
+        binding.editTextTextPersonName.clearFocus();
+        if (RecipeState.getQueryLiveData().getValue().needOpenFindFragment()) {
+
+            openFindFragment(getChildFragmentManager());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        openFindFragment.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                System.out.println("void onResume()");
+                if(aBoolean){
+                onFindClick();
+                    openFindFragment.setValue(false);
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onBackPressed() {

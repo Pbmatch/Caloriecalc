@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
+import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.query.CuisineType;
 import com.calorie.calc.fragments.recipe.query.DietType;
 import com.calorie.calc.fragments.recipe.query.DishType;
@@ -47,7 +47,6 @@ public class FilterFragment extends Fragment {
         textViewClear= view.findViewById(R.id.textViewTextRight);
 
         setView(flexHealth,Arrays.asList(HealthType.values()));
-
         setView(flexDiet,Arrays.asList(DietType.values()));
         setView(flexMeal,Arrays.asList(MealType.values()));
         setView(flexDish,Arrays.asList(DishType.values()));
@@ -69,7 +68,9 @@ public class FilterFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragmentManager(), new FilterVerticalFragment());
+
+                RecipeState.openFindFragment.setValue(true);
+                getParentFragmentManager().popBackStack();
             }
         });
 

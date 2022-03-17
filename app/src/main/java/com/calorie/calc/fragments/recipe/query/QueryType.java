@@ -37,6 +37,7 @@ public  interface QueryType {
           void setInclude(Boolean include);
           Button getTextViewButton();
           void  setButton(Button button);
+
           default Button getButton(Context context )
          {
           Button button = getTextViewButton();
@@ -66,6 +67,8 @@ public  interface QueryType {
            public void onClick(View v) {
             QueryType type = (QueryType)v.getTag();
 
+
+            QueryHandler.setRefreshState(true);
             if(type.isIncluded())
             {
              setInclude(false);

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.calorie.calc.fragments.MainFragment;
+import com.calorie.calc.fragments.recipe.filter.FilterVerticalFragment;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.scrolling.InnerAddFragment;
 import com.calorie.calc.fragments.recipe.scrolling.InnerDataFragment;
@@ -41,6 +42,15 @@ public class NavigationHelper {
                    .replace(R.id.recipe_container, fragment,"main")
                    .addToBackStack("main")
                    .commit();
+
+    }
+    public static void openFindFragment(final FragmentManager fragmentManager) {
+       if( fragmentManager.findFragmentById(R.id.recipe_container) instanceof FilterVerticalFragment) return;
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.recipe_container,  new FilterVerticalFragment(),"filter")
+                .addToBackStack("main")
+                .commit();
 
     }
     public static void openRecipeVerticalMainFragment(final FragmentManager fragmentManager, Fragment fragment) {
