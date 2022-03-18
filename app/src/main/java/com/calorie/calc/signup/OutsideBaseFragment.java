@@ -1,6 +1,10 @@
 package com.calorie.calc.signup;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,13 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 
 import com.calorie.calc.R;
 import com.calorie.calc.User;
@@ -94,7 +91,13 @@ public abstract class OutsideBaseFragment extends Fragment implements BackPressa
             public void onChanged(ButtonState buttonState) {
                 if(buttonState instanceof ButtonState.ButtonOff)
                 {binding.button.setEnabled(false);}
-                else {binding.button.setEnabled(true);}
+                else {
+                    binding.button.setEnabled(true);
+                    if(buttonState instanceof ButtonState.ButtonClick)
+                    {
+                         onClick(binding.button);
+                    }
+                }
             }
         });
 

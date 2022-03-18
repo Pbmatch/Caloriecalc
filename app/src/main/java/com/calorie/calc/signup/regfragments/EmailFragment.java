@@ -1,13 +1,14 @@
 package com.calorie.calc.signup.regfragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -76,6 +77,20 @@ public class EmailFragment  extends InsideBaseFragment implements OnKeyboardVisi
             public void afterTextChanged(Editable s) {
                 if(isEmailValid(s.toString())){
                     RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+
+                    binding.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                            boolean handled = false;
+                            if (actionId == EditorInfo.IME_ACTION_DONE&&isEmailValid(s.toString())) {
+                                RegStateHandler.getButtonState().setValue(new ButtonState.ButtonClick());
+                                handled = true;
+                            }
+                            return handled;
+                        }
+                    });
+
                     user.setEmail(s.toString());
                 }
                 else RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());

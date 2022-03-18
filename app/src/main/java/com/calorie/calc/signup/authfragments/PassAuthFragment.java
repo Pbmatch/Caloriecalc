@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentPassAuthBinding;
@@ -61,8 +64,24 @@ public class PassAuthFragment extends InsideBaseFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().length() > 0)
-                {   RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
-                user.setPassword(binding.editText.getText().toString());}
+                {
+                    RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+
+                    binding.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                            boolean handled = false;
+                            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                                RegStateHandler.getButtonState().setValue(new ButtonState.ButtonClick());
+                                handled = true;
+                            }
+                            return handled;
+                        }
+                    });
+                user.setPassword(binding.editText.getText().toString());
+
+                }
                 else RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
             }
         });

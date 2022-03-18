@@ -1,10 +1,9 @@
 package com.calorie.calc.signup.regfragments;
 
-import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import com.calorie.calc.signup.state.ButtonState;
@@ -19,8 +18,8 @@ public class NameFragment8 extends NamePassFragment {
     void setViews() {
         RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
          binding.editText.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(binding.editText, InputMethodManager.SHOW_IMPLICIT);
+      /*  InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(binding.editText, InputMethodManager.SHOW_IMPLICIT);*/
         binding.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -34,8 +33,24 @@ public class NameFragment8 extends NamePassFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-               if(s.toString().length()>0)
+               if(s.toString().length()>0){
                    RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOn());
+
+                   binding.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                       @Override
+                       public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                           boolean handled = false;
+                           if (actionId == EditorInfo.IME_ACTION_DONE) {
+                               RegStateHandler.getButtonState().setValue(new ButtonState.ButtonClick());
+                               handled = true;
+                           }
+                           return handled;
+                       }
+                   });
+
+
+               }
                else RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
             }
         });
