@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +26,7 @@ import java.util.List;
 public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
 
 
-    protected LinearLayout emptyLinearLayout;
+  //  protected LinearLayout emptyLinearLayout;
     RecipeAndLinks recipeAndLinks;
     Recipe item;
     FragmentManager myfragmentManager;
@@ -46,7 +45,7 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        emptyLinearLayout=view.findViewById(R.id.empty_state_view);
+     //  emptyLinearLayout=view.findViewById(R.id.empty_state_view);
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -85,7 +84,7 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
         infoListAdapter.setHeader(viewBinding.getRoot());
         infoListAdapter.setProductEditType(true);
         infoListAdapter.setInfoItemList(getItemCheckedList());
-        emptyLinearLayout.setVisibility(View.GONE);
+       // emptyLinearLayout.setVisibility(View.GONE);
     }
 
     @Override

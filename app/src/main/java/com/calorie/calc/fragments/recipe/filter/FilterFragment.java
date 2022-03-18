@@ -69,7 +69,7 @@ public class FilterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                RecipeState.openFindFragment.setValue(true);
+                RecipeState. getOpenFindFragment().setValue(true);
                 getParentFragmentManager().popBackStack();
             }
         });
@@ -83,6 +83,24 @@ public class FilterFragment extends Fragment {
             if (type.getButton(getContext()).getParent() != null) {
                 ((ViewGroup) type.getButton(getContext()).getParent()).removeView(type.getButton(getContext())); // <- fix
             }
+            type.getButton(getContext()).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    QueryType type = (QueryType)v.getTag();
+                    if(type.isIncluded())
+                    {
+                        type.setInclude(false);
+
+                    }
+                    else
+                    {
+                        type.setInclude(true);
+
+                    }
+
+
+                }
+            });
             view.addView(type.getButton(getContext()));
 
 

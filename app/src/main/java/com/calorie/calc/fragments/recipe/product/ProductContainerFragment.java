@@ -29,6 +29,8 @@ public class ProductContainerFragment extends ListEmptyAndToolbar<Fragment> {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+        emptyImageView.setImageResource(R.drawable.recipe144);
+        emptyTextView.setText(R.string.product_empty);
     }
 
     @Override

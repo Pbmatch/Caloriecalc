@@ -22,7 +22,7 @@ public class VoiceToText {
         this.textInterface = textInterface;
     }
 
-    static   void doPermAudio(Activity activity)
+    static   boolean doPermAudio(Activity activity)
     {
         int MY_PERMISSIONS_RECORD_AUDIO = 1;
 
@@ -34,24 +34,34 @@ public class VoiceToText {
             ActivityCompat.requestPermissions(activity,
                     new String[]{Manifest.permission.RECORD_AUDIO},
                     MY_PERMISSIONS_RECORD_AUDIO);
+            return false;
         }
+        return true;
 
 }
     public void start(Activity activity,Context context )
     {
-        doPermAudio(activity);
-
+        if(!doPermAudio(activity)) return;
+        String language =  "us-US";
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,language);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, language);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, language);
+        intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, language);
+
+      /*  intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);*/
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,
                 context.getPackageName());
 
         SpeechRecognizer recognizer = SpeechRecognizer
                 .createSpeechRecognizer(context);
         RecognitionListener listener = new RecognitionListener() {
+
             @Override
             public void onResults(Bundle results) {
+                textInterface.doneSoundRecord();
                 ArrayList<String> voiceResults = results
                         .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 if (voiceResults == null) {
@@ -87,6 +97,7 @@ public class VoiceToText {
              */
             @Override
             public void onError(int error) {
+                textInterface.doneSoundRecord();
                 System.err.println("Error listening for speech: " + error);
             }
 
@@ -127,9 +138,12 @@ public class VoiceToText {
         };
         recognizer.setRecognitionListener(listener);
         recognizer.startListening(intent);
+        textInterface.startSoundRecord();
     }
     public interface VoiceToTextInterface
     {
+        void startSoundRecord();
+        void doneSoundRecord();
         void getText(String result);
     }
 }

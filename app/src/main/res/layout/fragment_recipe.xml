@@ -62,18 +62,29 @@
             android:drawableLeft="@drawable/searching"
             android:drawableRight="@drawable/mic"
             android:drawablePadding="8dp"
-            android:imeOptions="actionDone"
-            android:inputType="text"
             android:ems="10"
             android:hint="@string/recipe_hint"
+            android:imeOptions="actionDone"
+            android:inputType="text"
             android:maxLines="1"
 
-            android:singleLine="true"
             android:paddingHorizontal="8dp"
             android:paddingVertical="10dp"
+            android:singleLine="true"
             app:layout_constraintEnd_toStartOf="@+id/imageViewFilter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_title" />
+
+        <ProgressBar
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/button_green"
+            android:layout_marginEnd="@dimen/start_dimen"
+            android:id="@+id/editTextProgressBar"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName" />
 
         <ImageView
             android:id="@+id/imageViewFilter"

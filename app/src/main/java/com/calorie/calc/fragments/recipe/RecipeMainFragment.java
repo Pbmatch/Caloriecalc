@@ -27,7 +27,6 @@ import com.calorie.calc.fragments.recipe.diet.RecipeInnerDietFragment;
 public class RecipeMainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
-
     FragmentRecipeMainBinding binding;
 
     public RecipeMainFragment() {
@@ -63,49 +62,47 @@ public class RecipeMainFragment extends Fragment implements SwipeRefreshLayout.O
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding= FragmentRecipeMainBinding.bind(view);
+        binding = FragmentRecipeMainBinding.bind(view);
         RecipeState.getProgressBar().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean)
+                System.out.println("getProgressBar().observe");
+                if (aBoolean)
                     binding.progressBarLoad.setVisibility(View.VISIBLE);
                 else binding.progressBarLoad.setVisibility(View.GONE);
             }
         });
         RecipeState.getProgressBar().setValue(false);
 
-      binding.swipe.setOnRefreshListener(this);
+        binding.swipe.setOnRefreshListener(this);
     }
 
 
+    void initViews() {
 
-
-    void initViews( )
-    {
-
-        if(RecipeState.getDietType().getValue()==null)
-        {
-        DietMainPageType.ALL.setSelect(true);
-        RecipeState.getDietType().setValue(DietMainPageType.ALL);}
+        if (RecipeState.getDietType().getValue() == null) {
+            DietMainPageType.ALL.setSelect(true);
+            RecipeState.getDietType().setValue(DietMainPageType.ALL);
+        }
         buildLists(RecipeState.getDietType().getValue());
         openFragments();
 
 
     }
-    void buildLists(DietMainPageType type)
-    {
+
+    void buildLists(DietMainPageType type) {
         RecipeType.setDietPlanToAll(type);
 
 
     }
-    void openFragments()
-    {
-       NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDietFragment(DIET_PLAN),DIET_PLAN.getContainer());
-      //  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(POPULAR_RECIPE),POPULAR_RECIPE.getContainer());
-      // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerAddedDishFragment(ADDED_RECIPE),ADDED_RECIPE.getContainer());
-       NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(BREAKFAST),BREAKFAST.getContainer());
-      NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(DINNER),DINNER.getContainer());
-  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(SNACKS),SNACKS.getContainer());
+
+    void openFragments() {
+       NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDietFragment(DIET_PLAN), DIET_PLAN.getContainer());
+        //  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(POPULAR_RECIPE),POPULAR_RECIPE.getContainer());
+        // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerAddedDishFragment(ADDED_RECIPE),ADDED_RECIPE.getContainer());
+        NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDishFragment(BREAKFAST), BREAKFAST.getContainer());
+       NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDishFragment(DINNER), DINNER.getContainer());
+        NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDishFragment(SNACKS), SNACKS.getContainer());
     }
 
     @Override

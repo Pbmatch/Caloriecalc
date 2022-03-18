@@ -16,7 +16,7 @@ public enum EnergyType implements QueryType{
     Ener700("600-700","600-700 ккал",""),
     Ener800("700%2B","более 700 ккал","");
 
-    String queryString="mealType";
+    String queryString="calories";
     String parametr;
     boolean included = false;
     String label;

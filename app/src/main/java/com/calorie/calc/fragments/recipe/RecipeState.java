@@ -9,13 +9,13 @@ import com.calorie.calc.fragments.recipe.query.QueryHandler;
 import java.util.List;
 
 public class RecipeState {
-    public static MutableLiveData<List<RecipeAndLinks>> recipeAndLinksMutableLiveData = new MutableLiveData<>();
-    public static MutableLiveData<Boolean> progressBar = new MutableLiveData<>();
-    public static MutableLiveData<List<RecipeAndLinks>> productLiveData = new MutableLiveData<>();
-    public static MutableLiveData<QueryHandler> queryLiveData = new MutableLiveData<>();
-    public static MutableLiveData<DietMainPageType> dietType = new MutableLiveData<>();
-    public static MutableLiveData<Boolean> onRefreshMainRecipe = new MutableLiveData<>();
-    public static MutableLiveData<Boolean> openFindFragment = new MutableLiveData<>();
+    private static MutableLiveData<List<RecipeAndLinks>> recipeAndLinksMutableLiveData = new MutableLiveData<>();
+    private static MutableLiveData<Boolean> progressBar = new MutableLiveData<>();
+    private static MutableLiveData<List<RecipeAndLinks>> productLiveData = new MutableLiveData<>();
+    private static MutableLiveData<QueryHandler> queryLiveData = new MutableLiveData<>();
+    private static MutableLiveData<DietMainPageType> dietType = new MutableLiveData<>();
+    private static MutableLiveData<Boolean> onRefreshMainRecipe = new MutableLiveData<>();
+    private static MutableLiveData<Boolean> openFindFragment = new MutableLiveData<>();
 
     public static MutableLiveData<Boolean> getOnRefreshMainRecipe() {
         return onRefreshMainRecipe;

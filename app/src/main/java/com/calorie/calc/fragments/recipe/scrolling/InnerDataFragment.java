@@ -20,6 +20,7 @@ import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.product.ProductAddFragment;
+import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.List;
 
@@ -111,6 +112,12 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
         infoListAdapter.showFooter(true);
 
         infoListAdapter.setInfoItemList(item.getIngredients());
+        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<Ingredient>() {
+            @Override
+            public void selected(Ingredient selectedItem) {
+
+            }
+        });
         StringBuilder ingredients= new StringBuilder();
         for(String str:item.getIngredientLines())
         {

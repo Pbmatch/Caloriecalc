@@ -35,6 +35,8 @@ public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType
         dietMainPageTypes.add(DietMainPageType. PESTERIAN);
         dietMainPageTypes.add(DietMainPageType.  PALEO );}
         infoListAdapter.setInfoItemList(dietMainPageTypes);
+
+
     }
 
     @Override

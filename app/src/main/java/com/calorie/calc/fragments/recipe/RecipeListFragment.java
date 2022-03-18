@@ -12,8 +12,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.R;
+import com.calorie.calc.databinding.PignateFooterBinding;
 import com.calorie.calc.edamam.network.RecipeRecipient;
 import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
 import com.calorie.calc.info_list.InfoListAdapter;
@@ -52,6 +54,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         if (infoListAdapter == null) {
             infoListAdapter = new InfoListAdapter<T>(getContext());
         }
@@ -63,7 +66,9 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
 
         return inflater.inflate(R.layout.fragment_recipe_inner_horiz, container, false);
     }
-
+    protected ViewBinding getListFooter() {
+        return PignateFooterBinding.inflate(getActivity().getLayoutInflater(), itemsList, false);
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -92,12 +97,25 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
         super.onResume();
 
     }
+    public void setLoading(boolean bool)
+    {
+        showListFooter(bool);
+    }
     protected void onScrollToBottom() {
-System.out.println("void onScrollToBottom()");
-        //if ( !isLoading.get()) {
-            System.out.println("void onScrollToBottom()loadMoreItems" );
-            loadMoreItems();
-      //  }
+
+        if(infoListAdapter.getItemsList()!=null&&infoListAdapter.getItemCount()>5)
+        {  infoListAdapter.setFooter(getListFooter().getRoot());
+            loadMoreItems();}
+
+    }
+
+
+    public void showListFooter(final boolean show) {
+        itemsList.post(() -> {
+            if (infoListAdapter != null && itemsList != null) {
+                infoListAdapter.showFooter(show);
+            }
+        });
     }
     public abstract void loadMoreItems();
 
@@ -116,11 +134,21 @@ System.out.println("void onScrollToBottom()");
         infoListAdapter.setUseRecipeHorizontalItem(isHorizontalItem());
         itemsList.setAdapter(infoListAdapter);
 
+
         itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
             @Override
-            public void onScrolledDown(final RecyclerView recyclerView) {
+            public void onScrolledRight(RecyclerView recyclerView) {
+
                 onScrollToBottom();
             }
+
+            @Override
+            public void onScrolledDown(final RecyclerView recyclerView) {
+
+                onScrollToBottom();
+            }
+
+
         });
 
 

@@ -19,7 +19,9 @@ import java.util.List;
 
 public abstract class ListEmptyAndToolbar<T>  extends RecipeListFragment<T> {
 
-   protected LinearLayout emptyLinearLayout;
+    protected LinearLayout emptyLinearLayout;
+    protected ImageView emptyImageView;
+    protected  TextView emptyTextView;
     protected ImageView toolbarImageViewClose;
     protected ImageView toolbarImageViewRight;
     protected TextView toolbarText;
@@ -51,7 +53,11 @@ public abstract class ListEmptyAndToolbar<T>  extends RecipeListFragment<T> {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+
         emptyLinearLayout =view.findViewById(R.id.empty_state_view);
+        emptyImageView =view.findViewById(R.id.empty_state_desc);
+        emptyTextView =view.findViewById(R.id.empty_state_text);
         toolbarImageViewClose =view.findViewById(R.id.imageViewBack);
         toolbarImageViewRight = view.findViewById(R.id.imageViewRight);
         toolbarText=view.findViewById(R.id.toolbarTextViewTitle);

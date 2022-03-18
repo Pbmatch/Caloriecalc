@@ -122,22 +122,23 @@ public class RecipeRecipient extends Recipient {
         retrofitInterface.recipeNextPage(url).enqueue(callback);
     }
 
-    public void getRecipe() {
+    public void getRecipe(boolean showGlobalProgressBar) {
         if (!connectOk()) {
             return;
         }
 
-        RecipeState.getProgressBar().setValue(true);
+
+        RecipeState.getProgressBar().setValue(showGlobalProgressBar);
       //   param.put("ingr", "chicken");
          retrofitInterface.recipe(APP_ID_RECIPE, APP_KEY_RECIPE, type.getParams()).enqueue(callback);
       //  retrofitInterface.recipeId("recipe_04d73a0b27e84a6680cd370eeecbb636",APP_ID, APP_KEY, param).enqueue(callback);
       //  retrofitInterface.foodParser(APP_ID_FOOD, APP_KEY_FOOD, param).enqueue(callback);
     }
-    public void getRecipe(Map<String, Object> params) {
+    public void getRecipe(Map<String, Object> params, boolean showGlobalProgressBar) {
         if (!connectOk()) {
             return;
         }
-        RecipeState.getProgressBar().setValue(true);
+        RecipeState.getProgressBar().setValue(showGlobalProgressBar);
 
         String query = "";
         for(Map.Entry m:params.entrySet()) {
@@ -157,6 +158,7 @@ public class RecipeRecipient extends Recipient {
             }
         }
         query+="type"+"="+"public"  + "&";
+        query+="random"+"="+"true"  + "&";
         query ="recipes/v2?"+query;
         query = query.substring(0, query.length() - 1);
 

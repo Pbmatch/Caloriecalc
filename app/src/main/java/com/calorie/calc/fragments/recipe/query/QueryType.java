@@ -41,7 +41,9 @@ public  interface QueryType {
           default Button getButton(Context context )
          {
           Button button = getTextViewButton();
-          if (button!=null) return button;
+          if (button!=null){
+              button.setText( getLable());
+              return button;}
           button = new Button(context);
           LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
                   (LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -62,13 +64,10 @@ public  interface QueryType {
 
           button.setSingleLine(true);
           button.setId(View.generateViewId());
-          button.setOnClickListener(new View.OnClickListener() {
+        /*  button.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
             QueryType type = (QueryType)v.getTag();
-
-
-            QueryHandler.setRefreshState(true);
             if(type.isIncluded())
             {
              setInclude(false);
@@ -80,7 +79,7 @@ public  interface QueryType {
 
             }
            }
-          });
+          });*/
           setButton(button);
           setInclude(isIncluded());
           return button;

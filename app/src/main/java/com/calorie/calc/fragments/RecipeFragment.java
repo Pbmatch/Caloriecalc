@@ -2,7 +2,7 @@ package com.calorie.calc.fragments;
 
 import static com.calorie.calc.NavigationHelper.openFindFragment;
 import static com.calorie.calc.NavigationHelper.openRecipeMainFragment;
-import static com.calorie.calc.fragments.recipe.RecipeState.openFindFragment;
+import static com.calorie.calc.fragments.recipe.RecipeState.getOpenFindFragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -32,7 +32,6 @@ import com.calorie.calc.fragments.recipe.filter.FilterFragment;
 import com.calorie.calc.fragments.recipe.liked.LikedFragment;
 import com.calorie.calc.fragments.recipe.product.ProductContainerFragment;
 import com.calorie.calc.fragments.recipe.query.Qtype;
-import com.calorie.calc.fragments.recipe.query.QueryHandler;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.VoiceToText;
 
@@ -183,10 +182,11 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
                 getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(binding.editTextTextPersonName.getWindowToken(), 0);
         System.out.println("void onResume() onFindClick set q" +binding.editTextTextPersonName.getText().toString());
-       QueryHandler handler = RecipeState.getQueryLiveData().getValue();
+
+        if(!binding.editTextTextPersonName.getText().toString().isEmpty())
         Qtype.QTYPE.setParametr(binding.editTextTextPersonName.getText().toString());
 
-        RecipeState.getQueryLiveData().setValue(handler);
+        RecipeState.getQueryLiveData().postValue(RecipeState.getQueryLiveData().getValue());
         binding.editTextTextPersonName.setText("");
         binding.editTextTextPersonName.clearFocus();
         if (RecipeState.getQueryLiveData().getValue().needOpenFindFragment()) {
@@ -198,13 +198,13 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
     @Override
     public void onResume() {
         super.onResume();
-        openFindFragment.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        getOpenFindFragment().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 System.out.println("void onResume()");
                 if(aBoolean){
                 onFindClick();
-                    openFindFragment.setValue(false);
+                    getOpenFindFragment().setValue(false);
                 }
             }
         });
@@ -220,6 +220,18 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void startSoundRecord() {
+        binding.editTextProgressBar.setVisibility(View.VISIBLE);
+        binding.editTextTextPersonName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.searching, 0, 0, 0);
+    }
+
+    @Override
+    public void doneSoundRecord() {
+        binding.editTextProgressBar.setVisibility(View.GONE);
+        binding.editTextTextPersonName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.searching, 0, R.drawable.mic, 0);
     }
 
     @Override

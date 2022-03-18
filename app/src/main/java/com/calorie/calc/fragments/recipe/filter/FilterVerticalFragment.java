@@ -1,7 +1,5 @@
 package com.calorie.calc.fragments.recipe.filter;
 
-import static com.calorie.calc.utils.MeasureUtils.getDishCount;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,29 +8,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewbinding.ViewBinding;
 
-import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
 import com.calorie.calc.edamam.network.RecipeRecipient;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.RecipeVerticalFragment;
-import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.query.QueryHandler;
 import com.calorie.calc.fragments.recipe.query.QueryType;
-import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.BackPressable;
-import com.calorie.calc.utils.OnClickGesture;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.List;
+import java.util.Map;
 
 public class FilterVerticalFragment extends RecipeVerticalFragment implements BackPressable {
 
     FlexboxLayout flexboxLayout;
-
+    boolean observer=false;
+    Map<String, Object> build;
 
     public FilterVerticalFragment( )
     {
@@ -55,7 +48,6 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
        super.onViewCreated(view, savedInstanceState);
 
 
-
     }
 
     @Override
@@ -63,45 +55,32 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
         if (recipeRecipient == null)
             recipeRecipient = new RecipeRecipient(getContext(), recipeSearch, type);
 
-        if (infoListAdapter == null || infoListAdapter.getItemsList() == null || infoListAdapter.getItemsList().size() == 0) {
+       /* if (infoListAdapter == null || infoListAdapter.getItemsList() == null || infoListAdapter.getItemsList().size() == 0) {
             QueryHandler queryHandler = RecipeState.getQueryLiveData().getValue();
 
-            recipeRecipient.getRecipe(  queryHandler.build());
-        }
+            System.out.println("startLoadData()");
+            recipeRecipient.getRecipe(  queryHandler.build(),true);
+        }*/
     }
 
     @Override
     public  void setListener() {
-        recipeSearch.observe(getViewLifecycleOwner(), new Observer<RecipeSearch>() {
-            @Override
-            public void onChanged(RecipeSearch recipeSearch) {
-                if (recipeSearch.getHits().size() == 0) {
-                    ViewBinding viewBinding = ListRecipeHeaderItemBinding
-                            .inflate(getLayoutInflater(), itemsList, false);
-                    infoListAdapter.setHeader(viewBinding.getRoot());
-                } else {
-                    infoListAdapter.setHeader(null);
-                }
-                textView.setText(getDishCount(getContext(),recipeSearch.getCount()));
-                infoListAdapter.setInfoItemList(recipeSearch.getHits());
 
-            }
 
-        });
         RecipeState.getQueryLiveData().observe(getViewLifecycleOwner(), new Observer<QueryHandler>() {
             @Override
             public void onChanged(QueryHandler queryHandler) {
+                if(build==null||!build.equals(queryHandler.build()))
+                {
+                    build= queryHandler.build();
+                    recipeRecipient.getRecipe(  queryHandler.build(),true);
+                }
 
-                recipeRecipient.getRecipe(  queryHandler.build());
                 setView(flexboxLayout,queryHandler.getListForButton());
             }
         });
-        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
-            @Override
-            public void selected(RecipeAndLinks selectedItem) {
-                NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
-            }
-        });
+        super.setListener();
+
     }
 
     @Override
@@ -142,15 +121,27 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
 
         }
     }
+    @Override
+    public void loadMoreItems() {
+        System.out.println("loadMoreItems()");
+        if(!isLoading.get())
+        {
+            QueryHandler queryHandler = RecipeState.getQueryLiveData().getValue();
+            recipeRecipient.getRecipe(  queryHandler.build(),true);
+            showListFooter(true);
+            isLoading.set(true);
+        }
 
+    }
     public boolean onBackPressed() {
         getParentFragmentManager().popBackStack();
         return true;
     }
     @Override
     public void reloadContent() {
+        System.out.println("reloadContent()()");
         QueryHandler queryHandler = RecipeState.getQueryLiveData().getValue();
-        recipeRecipient.getRecipe(  queryHandler.build());
+        recipeRecipient.getRecipe(  queryHandler.build(),true);
         swipeRefreshLayout.setRefreshing(false);
     }
 }

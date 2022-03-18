@@ -1,5 +1,6 @@
 package com.calorie.calc.info_list.holder;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -32,6 +33,17 @@ public class IngredientHolder extends InfoItemHolder<Ingredient> {
         if(pos % 2 != 0) {
             csl.setBackgroundColor(itemBuilder.getContext().getColor(R.color.item_ingredient));
         }
+        else
+        {
+            csl.setBackgroundColor(itemBuilder.getContext().getColor(R.color.white));
+        }
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemBuilder.getOnRecipeClickListener()!=null)
+                    itemBuilder.getOnRecipeClickListener().selected(infoItem);
+            }
+        });
     }
 
     @Override
