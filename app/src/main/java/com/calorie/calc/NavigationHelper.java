@@ -48,22 +48,27 @@ public class NavigationHelper {
        if( fragmentManager.findFragmentById(R.id.recipe_container) instanceof FilterVerticalFragment) return;
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.recipe_container,  new FilterVerticalFragment(),"filter")
-                .addToBackStack("main")
+                .replace(R.id.recipe_second_container,  new FilterVerticalFragment())
+                .addToBackStack(null)
                 .commit();
-
+        fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.recipe_container)).commit();
     }
     public static void openRecipeVerticalMainFragment(final FragmentManager fragmentManager, Fragment fragment) {
 
 
             defaultTransaction(fragmentManager)
-                    .replace(R.id.recipe_container, fragment)
+                    .replace(R.id.recipe_second_container, fragment)
                     .addToBackStack(null)
                     .commit();
+        fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.recipe_container)).commit();
 
 
+    }
+    public static void showRecipeMainHorizFragment(final FragmentManager fragmentManager ) {
 
 
+        fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.recipe_second_container)).commit();
+        fragmentManager.beginTransaction().show(fragmentManager.findFragmentById(R.id.recipe_container)).commit();
 
     }
     public static void openFragment(final FragmentManager fragmentManager, Fragment fragment,int container) {

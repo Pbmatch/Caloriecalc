@@ -2,6 +2,8 @@ package com.calorie.calc.fragments.recipe;
 
 import static com.calorie.calc.fragments.recipe.RecipeType.BREAKFAST;
 import static com.calorie.calc.fragments.recipe.RecipeType.DIET_PLAN;
+import static com.calorie.calc.fragments.recipe.RecipeType.DINNER;
+import static com.calorie.calc.fragments.recipe.RecipeType.SNACKS;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -99,8 +101,8 @@ public class RecipeMainFragment extends Fragment implements SwipeRefreshLayout.O
         //  NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerDishFragment(POPULAR_RECIPE),POPULAR_RECIPE.getContainer());
         // NavigationHelper.openFragment(getChildFragmentManager(),new RecipeInnerAddedDishFragment(ADDED_RECIPE),ADDED_RECIPE.getContainer());
         NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDishFragment(BREAKFAST), BREAKFAST.getContainer());
-     //  NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDishFragment(DINNER), DINNER.getContainer());
-     //   NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDishFragment(SNACKS), SNACKS.getContainer());
+       NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDishFragment(DINNER), DINNER.getContainer());
+     NavigationHelper.openFragment(getChildFragmentManager(), new RecipeInnerDishFragment(SNACKS), SNACKS.getContainer());
     }
 
     @Override

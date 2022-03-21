@@ -1,5 +1,6 @@
 package com.calorie.calc.fragments.recipe;
 
+import static com.calorie.calc.NavigationHelper.showRecipeMainHorizFragment;
 import static com.calorie.calc.utils.MeasureUtils.getDishCount;
 
 import android.os.Bundle;
@@ -176,7 +177,9 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
     }
 
     public boolean onBackPressed() {
-        getParentFragmentManager().popBackStack();
+        System.out.println(" boolean onBackPressed()");
+        showRecipeMainHorizFragment(getParentFragmentManager());
+       // getParentFragmentManager().popBackStack();
         return true;
     }
     @Override

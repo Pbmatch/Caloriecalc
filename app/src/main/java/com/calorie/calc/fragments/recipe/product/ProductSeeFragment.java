@@ -84,7 +84,7 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
         infoListAdapter.setHeader(viewBinding.getRoot());
         infoListAdapter.setProductEditType(true);
         infoListAdapter.setInfoItemList(getItemCheckedList());
-       // emptyLinearLayout.setVisibility(View.GONE);
+     // emptyLinearLayout.setVisibility(View.GONE);
     }
 
     @Override

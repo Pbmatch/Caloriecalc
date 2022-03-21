@@ -1,5 +1,7 @@
 package com.calorie.calc.fragments.recipe.filter;
 
+import static com.calorie.calc.NavigationHelper.showMainFragment;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,7 +57,8 @@ public class FilterFragment extends Fragment {
         imageViewClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragmentManager().popBackStack();
+
+                showMainFragment(getActivity().getSupportFragmentManager());
             }
         });
         textViewClear.setOnClickListener(new View.OnClickListener() {
@@ -68,9 +71,9 @@ public class FilterFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showMainFragment(getActivity().getSupportFragmentManager());
                 RecipeState. getOpenFindFragment().setValue(true);
-                getParentFragmentManager().popBackStack();
+               // getParentFragmentManager().popBackStack();
             }
         });
 

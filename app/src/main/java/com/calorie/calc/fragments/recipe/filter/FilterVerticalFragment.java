@@ -1,5 +1,7 @@
 package com.calorie.calc.fragments.recipe.filter;
 
+import static com.calorie.calc.utils.MeasureUtils.getDishCount;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,19 +11,24 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.edamam.network.RecipeRecipient;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.RecipeVerticalFragment;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.query.QueryHandler;
 import com.calorie.calc.fragments.recipe.query.QueryType;
-import com.calorie.calc.utils.BackPressable;
+import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
+import com.calorie.calc.utils.OnClickGesture;
 import com.google.android.flexbox.FlexboxLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class FilterVerticalFragment extends RecipeVerticalFragment implements BackPressable {
+public class FilterVerticalFragment extends RecipeVerticalFragment  {
 
     FlexboxLayout flexboxLayout;
     boolean observer=false;
@@ -65,7 +72,55 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
 
     @Override
     public  void setListener() {
+        recipeSearch.observe(getViewLifecycleOwner(),new Observer<List<RecipeSearch>>() {
+            @Override
+            public void onChanged(List<RecipeSearch> listRecipeSearch) {
 
+                List<RecipeAndLinks> recipeAndLinks = new ArrayList<>();
+                for (RecipeSearch itemRec : listRecipeSearch) {
+                    recipeAndLinks.addAll(itemRec.getHits());
+                }
+
+
+                System.out.println(" public void onChangedVert" + recipeAndLinks.size());
+                if(!recipeRecipient.isReloadContent()){
+                    for (RecipeAndLinks item:recipeAndLinks)
+                    {
+
+                        if(!infoListAdapter.getItemsList().contains(item))
+                        {infoListAdapter.addItemToItemList(item,infoListAdapter.getItemsList().size());}
+                    }
+                }
+                else
+                {
+                    infoListAdapter.setInfoItemList(recipeAndLinks);
+                    recipeRecipient.setReloadContent(false);
+                }
+
+                isLoading.set(false);
+
+                if (listRecipeSearch.size() > 0){
+                    RecipeSearch item = listRecipeSearch.get(listRecipeSearch.size()-1);
+                    if (item.getCount() == 0) {
+                        emptyLinearLayout.setVisibility(View.VISIBLE);
+                    } else {
+                        emptyLinearLayout.setVisibility(View.GONE);
+                    }
+
+                    textView.setText(getDishCount(getContext(), item.getCount()));
+                }
+
+            }
+
+
+        });
+
+        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
+            @Override
+            public void selected(RecipeAndLinks selectedItem) {
+                NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
+            }
+        });
 
         RecipeState.getQueryLiveData().observe(getViewLifecycleOwner(), new Observer<QueryHandler>() {
             @Override
@@ -73,6 +128,7 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
                 if(build==null||!build.equals(queryHandler.build()))
                 {
                     build= queryHandler.build();
+                    recipeRecipient.setReloadContent(true);
                     recipeRecipient.getRecipe(  queryHandler.build(),true);
                 }
 
@@ -133,13 +189,11 @@ public class FilterVerticalFragment extends RecipeVerticalFragment implements Ba
         }
 
     }
-    public boolean onBackPressed() {
-        getParentFragmentManager().popBackStack();
-        return true;
-    }
+
     @Override
     public void reloadContent() {
         System.out.println("reloadContent()()");
+        recipeRecipient.setReloadContent(true);
         QueryHandler queryHandler = RecipeState.getQueryLiveData().getValue();
         recipeRecipient.getRecipe(  queryHandler.build(),true);
         swipeRefreshLayout.setRefreshing(false);

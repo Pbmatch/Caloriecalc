@@ -81,7 +81,7 @@ public class ProductContainerFragment extends ListEmptyAndToolbar<Fragment> impl
             @Override
             public void onClick(View v) {
                 RecipeState.getProductLiveData().getValue().clear();
-                getParentFragmentManager().popBackStack();
+                getActivity().onBackPressed();
             }
         });
 
