@@ -131,9 +131,12 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
         if (activeFragment instanceof BackPressable) {
 
            if( ((BackPressable) activeFragment).onBackPressed())
-            return false;
+            return true;
             else
-            { getParentFragmentManager().popBackStack();}
+            {
+                return false;
+              //  getParentFragmentManager().popBackStack();
+            }
 
         }
 
@@ -141,6 +144,6 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
 
 
 
-        return true;
+        return false;
     }
 }

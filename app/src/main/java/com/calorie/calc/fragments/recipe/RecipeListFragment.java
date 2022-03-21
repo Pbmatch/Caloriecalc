@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -21,6 +20,7 @@ import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
 import com.calorie.calc.info_list.InfoListAdapter;
 import com.calorie.calc.utils.OnScrollBelowItemsListener;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
@@ -32,7 +32,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
     public RecipeType type;
     protected AtomicBoolean isLoading = new AtomicBoolean();
     public  RecipeRecipient recipeRecipient;
-    public MutableLiveData< RecipeSearch> recipeSearch= new MutableLiveData<>();
+    public MutableLiveData<List< RecipeSearch>> recipeSearch= new MutableLiveData<>();
 
     public RecipeListFragment(RecipeType type) {
 
@@ -40,7 +40,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
     }
 
 
-    public RecipeListFragment(MutableLiveData< RecipeSearch> recipeSearch  ,RecipeType type) {
+    public RecipeListFragment(MutableLiveData<List< RecipeSearch>> recipeSearch  ,RecipeType type) {
         this.type = type;
         this.recipeSearch = recipeSearch;
     }
@@ -77,12 +77,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
         setListener();
         startLoadData();
         isLoading.set(true);
-        RecipeState.getOnRefreshMainRecipe().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                reloadContent();
-            }
-        });
+
 
     }
 
@@ -104,7 +99,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
     protected void onScrollToBottom() {
 
         if(infoListAdapter.getItemsList()!=null&&infoListAdapter.getItemCount()>5)
-        {  infoListAdapter.setFooter(getListFooter().getRoot());
+        {
             loadMoreItems();}
 
     }
@@ -133,7 +128,7 @@ public abstract class RecipeListFragment<T> extends Fragment implements OnRefres
         itemsList.setLayoutManager(layoutManager);
         infoListAdapter.setUseRecipeHorizontalItem(isHorizontalItem());
         itemsList.setAdapter(infoListAdapter);
-
+        infoListAdapter.setFooter(getListFooter().getRoot());
 
         itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
             @Override

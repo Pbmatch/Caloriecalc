@@ -57,8 +57,8 @@ public class NavigationHelper {
 
 
             defaultTransaction(fragmentManager)
-                    .replace(R.id.recipe_container, fragment,"vertic")
-                    .addToBackStack("vertic")
+                    .replace(R.id.recipe_container, fragment)
+                    .addToBackStack(null)
                     .commit();
 
 
@@ -69,30 +69,40 @@ public class NavigationHelper {
     public static void openFragment(final FragmentManager fragmentManager, Fragment fragment,int container) {
 
         defaultTransaction(fragmentManager)
-                .replace(container, fragment,"eee")
-                 .addToBackStack("verrrtic")
+                .replace(container, fragment)
+                 .addToBackStack(null)
                 .commit();
     }
     public static void openSeeFragment(final FragmentManager fragmentManager, Fragment fragment,int container) {
 
         defaultTransaction(fragmentManager)
                 .replace(container, fragment)
-                //.addToBackStack("verrrtic")
                 .commit();
     }
-    public static void openDietFragment(final FragmentManager fragmentManager, Fragment fragment ) {
+    public static void openSecondViewFragment(final FragmentManager fragmentManager, Fragment fragment ) { //liked //see
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.main_activ_container, fragment)
+                .replace(R.id.main_activ_second_container, fragment)
                .addToBackStack(null)
                 .commit();
+        fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.main_activ_container)).commit();
     }
     public static void openNavigationFragment(final FragmentManager fragmentManager, Fragment fragment ) {
 
-        defaultTransaction(fragmentManager)
-                .replace(R.id.main_activ_container, fragment)
+          defaultTransaction(fragmentManager)
+                .replace(R.id.main_activ_second_container, fragment)
                  .addToBackStack(null)
                 .commit();
+
+        fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.main_activ_container)).commit();
+
+    }
+    public static void showMainFragment(final FragmentManager fragmentManager ) {
+
+
+         fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.main_activ_second_container)).commit();
+         fragmentManager.beginTransaction().show(fragmentManager.findFragmentById(R.id.main_activ_container)).commit();
+
     }
 
 
@@ -113,8 +123,9 @@ public class NavigationHelper {
     public static void openAddProductFragment(final FragmentManager fragmentManager,Fragment fragment  ) {
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.main_activ_container,fragment)
+                .replace(R.id.main_activ_second_container,fragment)
                 .addToBackStack(null)
                 .commit();
+
     }
 }

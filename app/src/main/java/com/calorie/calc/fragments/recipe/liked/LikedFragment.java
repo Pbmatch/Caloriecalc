@@ -8,12 +8,13 @@ import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.ListEmptyAndToolbar;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
+import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.List;
 
 
-public class LikedFragment extends ListEmptyAndToolbar<RecipeAndLinks> {
+public class LikedFragment extends ListEmptyAndToolbar<RecipeAndLinks> implements BackPressable {
 
 
 
@@ -57,5 +58,10 @@ public class LikedFragment extends ListEmptyAndToolbar<RecipeAndLinks> {
     @Override
     public void reloadContent() {
 
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 }

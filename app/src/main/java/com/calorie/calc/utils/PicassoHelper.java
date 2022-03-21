@@ -39,7 +39,7 @@ public class PicassoHelper {
     private static boolean shouldLoadImages;
 
     public static void init(final Context context) {
-        picassoCache = new LruCache(10 * 1024 * 1024);
+        picassoCache = new LruCache(50 * 1024 * 1024);
         picassoDownloaderClient = new OkHttpClient.Builder()
                 .cache(new okhttp3.Cache(new File(context.getExternalCacheDir(), "picasso"),
                         50 * 1024 * 1024))

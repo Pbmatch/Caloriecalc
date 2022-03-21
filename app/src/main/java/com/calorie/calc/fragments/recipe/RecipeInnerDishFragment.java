@@ -21,6 +21,9 @@ import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
 import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.OnClickGesture;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> {
 
     public TextView textViewTitle;
@@ -41,8 +44,10 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
             recipeRecipient = new RecipeRecipient(getContext(), recipeSearch, type);
 
         if (infoListAdapter == null || infoListAdapter.getItemsList() == null || infoListAdapter.getItemsList().size() == 0) {
-            recipeRecipient.getRecipe(false);
-            showListFooter(true);
+            recipeRecipient.getRecipe(true);
+            isLoading.set(true);
+
+
         }
 
         RecipeState.getDietType().observe(getViewLifecycleOwner(), new Observer<DietMainPageType>() {
@@ -52,7 +57,7 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
                 if (recipeRecipient.getType().getDietType().equals(dietMainPageType)) return;
                 type.setDietPlanAndBuild(dietMainPageType);
                 recipeRecipient.setType(type);
-                System.out.println("getDietType().observe()Horizontal");
+                recipeRecipient.setReloadContent(true);
                 recipeRecipient.getRecipe(true);
             }
         });
@@ -67,15 +72,29 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
     }
 
     public void initViews(View rootView) {
+        RecipeState.getOnRefreshMainRecipe().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                System.out.println("getOnRefreshMainRecipe().observe");
+                if(aBoolean){
+                    reloadContent();
+                    RecipeState.getOnRefreshMainRecipe().postValue(false);
+                }
 
+            }
+        });
         textViewTitle = rootView.findViewById(R.id.recipe_inner_textViewTitle);
         textViewText = rootView.findViewById(R.id.recipe_inner_textViewText);
         textViewTitle.setText(textTitle);
         textViewText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recipeSearch.getValue().setHits(infoListAdapter.getItemsList());
-                NavigationHelper.openRecipeVerticalMainFragment(getParentFragment().getParentFragmentManager(), new RecipeVerticalFragment(recipeSearch,type));
+             /*   LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                itemsList.setLayoutManager(layoutManager );
+                infoListAdapter.setUseRecipeHorizontalItem(false);
+               recipeSearch.getValue().setHits(infoListAdapter.getItemsList());*/
+                NavigationHelper.openRecipeVerticalMainFragment(getParentFragment().getParentFragmentManager(), new RecipeVerticalFragment( recipeSearch,type));
             }
         });
 
@@ -88,25 +107,42 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
     @Override
     public void setListener() {
         if(recipeSearch!=null)
-        recipeSearch.observe(getViewLifecycleOwner(), new Observer<RecipeSearch>() {
+        recipeSearch.observe(getViewLifecycleOwner(), new Observer<List<RecipeSearch>>() {
             @Override
-            public void onChanged(RecipeSearch recipeSearch) {
+            public void onChanged(List<RecipeSearch> listRecipeSearch) {
 
-                if (recipeSearch.getHits().size() == 0) {
+                List<RecipeAndLinks> recipeAndLinks=new ArrayList<>();
+                for(RecipeSearch itemRec:listRecipeSearch)
+                {
+                    recipeAndLinks.addAll(itemRec.getHits());
+                }
+
+
+
+                if (recipeAndLinks.size() == 0) {
                     ViewBinding viewBinding = ListRecipeHeaderItemBinding
                             .inflate(getLayoutInflater(), itemsList, false);
                     infoListAdapter.setHeader(viewBinding.getRoot());
                 } else {
                     infoListAdapter.setHeader(null);
                 }
-                if(isLoading.get())
+               if(!recipeRecipient.isReloadContent()){
+                for (RecipeAndLinks item:recipeAndLinks)
                 {
-                    infoListAdapter.addInfoItemList(recipeSearch.getHits());
+
+                    if(!infoListAdapter.getItemsList().contains(item))
+                    {infoListAdapter.addItemToItemList(item,infoListAdapter.getItemsList().size());}
+                }
+               }
+               else
+               {
+                   infoListAdapter.setInfoItemList(recipeAndLinks);
+                   recipeRecipient.setReloadContent(false);
+               }
+
+
                     isLoading.set(false);
 
-                }
-                else
-                    infoListAdapter.setInfoItemList(recipeSearch.getHits());
 
                 showListFooter(false);
             }
@@ -148,6 +184,7 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
     @Override
     public void reloadContent() {
         System.out.println("reloadcontent()Horizontal");
+        recipeRecipient.setReloadContent(true);
         recipeRecipient.getRecipe(false);
     }
 }

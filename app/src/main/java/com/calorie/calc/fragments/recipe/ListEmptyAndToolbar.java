@@ -1,5 +1,7 @@
 package com.calorie.calc.fragments.recipe;
 
+import static com.calorie.calc.NavigationHelper.showMainFragment;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,7 +76,8 @@ public abstract class ListEmptyAndToolbar<T>  extends RecipeListFragment<T> {
         toolbarImageViewClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragmentManager().popBackStack();
+                showMainFragment(getActivity().getSupportFragmentManager());
+                //getParentFragmentManager().popBackStack();
             }
         });
     }

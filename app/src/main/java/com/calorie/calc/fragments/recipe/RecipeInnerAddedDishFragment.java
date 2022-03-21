@@ -33,6 +33,7 @@ public class RecipeInnerAddedDishFragment extends RecipeListFragment<RecipeAndLi
                 else {infoListAdapter.setHeader(null);
                 }
                 infoListAdapter.addInfoItemList(recipeAndLinks);
+
             }
         });
     }

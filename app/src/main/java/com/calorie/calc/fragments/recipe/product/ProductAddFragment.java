@@ -18,11 +18,12 @@ import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.utils.BackPressable;
 
 import java.util.List;
 
 
-public class ProductAddFragment extends ListEmptyAndToolbar<Ingredient> {
+public class ProductAddFragment extends ListEmptyAndToolbar<Ingredient> implements BackPressable {
 
 
     Button addProduct;
@@ -84,10 +85,22 @@ public class ProductAddFragment extends ListEmptyAndToolbar<Ingredient> {
     public void setToolbar() {
         toolbarText.setText(R.string.product_toolbar_add_title);
          toolbarImageViewRight.setVisibility(View.GONE);
+        toolbarImageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().popBackStack();
+            }
+        });
     }
 
     @Override
     public void reloadContent() {
 
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        getParentFragmentManager().popBackStack();
+        return true;
     }
 }

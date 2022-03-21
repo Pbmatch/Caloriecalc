@@ -73,7 +73,7 @@ public class DietFragment extends Fragment implements BackPressable {
                DietMainPageType.refreshSelected();
                 selectedItem.setSelect(true);
                 RecipeState.getDietType().setValue(selectedItem);
-                onBackPressed();
+                getActivity().onBackPressed();
             }
         });
 
@@ -81,7 +81,7 @@ public class DietFragment extends Fragment implements BackPressable {
 
     @Override
     public boolean onBackPressed() {
-        getParentFragmentManager().popBackStack();
-        return true;
+
+        return false;
     }
 }

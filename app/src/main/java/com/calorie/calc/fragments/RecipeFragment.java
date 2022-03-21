@@ -84,13 +84,13 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
         binding.imageViewFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(), new LikedFragment(RecipeState.getRecipeAndLinksMutableLiveData()));
+                NavigationHelper.openSecondViewFragment(getParentFragment().getParentFragmentManager(), new LikedFragment(RecipeState.getRecipeAndLinksMutableLiveData()));
             }
         });
         binding.imageViewShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(), new ProductContainerFragment());
+                NavigationHelper.openSecondViewFragment(getParentFragment().getParentFragmentManager(), new ProductContainerFragment());
             }
         });
 
@@ -102,7 +102,7 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
         View.OnClickListener onFilterClick = (new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openDietFragment(getParentFragment().getParentFragmentManager(), new FilterFragment());
+                NavigationHelper.openSecondViewFragment(getParentFragment().getParentFragmentManager(), new FilterFragment());
             }
         });
         View.OnClickListener onSendClick = (new View.OnClickListener() {

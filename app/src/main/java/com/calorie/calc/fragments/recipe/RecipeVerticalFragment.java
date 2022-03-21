@@ -28,6 +28,9 @@ import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.OnClickGesture;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> implements BackPressable {
 
@@ -39,7 +42,7 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
     protected   TextView textView;
     protected NestedScrollView scroll;
 
-    public RecipeVerticalFragment(MutableLiveData<RecipeSearch> recipeSearch,RecipeType type)
+    public RecipeVerticalFragment(MutableLiveData<List<RecipeSearch>> recipeSearch, RecipeType type)
     {
 
         super(recipeSearch,type);
@@ -47,6 +50,7 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
 
     public RecipeVerticalFragment() {
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,32 +106,49 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
 
     @Override
     public  void setListener() {
-        recipeSearch.observe(getViewLifecycleOwner(), new Observer<RecipeSearch>() {
-            @Override
-            public void onChanged(RecipeSearch recipeSearch) {
 
-                if(recipeSearch.getCount()==0)
-                {
-                    emptyLinearLayout.setVisibility(View.VISIBLE);
-                }
-                else
-                    {
-                        emptyLinearLayout.setVisibility(View.GONE);
-                    }
+         recipeSearch.observe(getViewLifecycleOwner(),new Observer<List<RecipeSearch>>() {
+             @Override
+             public void onChanged(List<RecipeSearch> listRecipeSearch) {
 
-                textView.setText(getDishCount(getContext(),recipeSearch.getCount()));
-                if(isLoading.get())
-                {
-                    infoListAdapter.addInfoItemList(recipeSearch.getHits());
-                    isLoading.set(false);
-                    showListFooter(false);
-                }
-                else
-                infoListAdapter.setInfoItemList(recipeSearch.getHits());
+                 List<RecipeAndLinks> recipeAndLinks = new ArrayList<>();
+                 for (RecipeSearch itemRec : listRecipeSearch) {
+                     recipeAndLinks.addAll(itemRec.getHits());
+                 }
 
 
-            }
-        });
+                 System.out.println(" public void onChangedVert" + recipeAndLinks.size());
+                 if(!recipeRecipient.isReloadContent()){
+                     for (RecipeAndLinks item:recipeAndLinks)
+                     {
+
+                         if(!infoListAdapter.getItemsList().contains(item))
+                         {infoListAdapter.addItemToItemList(item,infoListAdapter.getItemsList().size());}
+                     }
+                 }
+                 else
+                 {
+                     infoListAdapter.setInfoItemList(recipeAndLinks);
+                     recipeRecipient.setReloadContent(false);
+                 }
+
+                 isLoading.set(false);
+
+                 if (listRecipeSearch.size() > 0){
+                     RecipeSearch item = listRecipeSearch.get(listRecipeSearch.size()-1);
+                 if (item.getCount() == 0) {
+                     emptyLinearLayout.setVisibility(View.VISIBLE);
+                 } else {
+                     emptyLinearLayout.setVisibility(View.GONE);
+                 }
+
+                 textView.setText(getDishCount(getContext(), item.getCount()));
+             }
+
+             }
+
+
+    });
 
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
             @Override
@@ -136,6 +157,7 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
             }
         });
     }
+
 
     @Override
     public boolean isHorizontalItem() {
@@ -172,6 +194,7 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
     @Override
     public void reloadContent() {
         System.out.println("reloadContent()Vertical");
+        recipeRecipient.setReloadContent(true);
         recipeRecipient.getRecipe(true);
         swipeRefreshLayout.setRefreshing(false);
     }

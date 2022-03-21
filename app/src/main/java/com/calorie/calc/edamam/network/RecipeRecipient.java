@@ -10,6 +10,7 @@ import com.calorie.calc.fragments.recipe.RecipeType;
 import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,12 +22,13 @@ import retrofit2.Response;
 
 public class RecipeRecipient extends Recipient {
 
-    MutableLiveData<RecipeSearch> recipeState;
+    MutableLiveData<List<RecipeSearch>> listRecipeSearch;
     RecipeType type;
+    boolean reloadContent = false;
 
-    public RecipeRecipient(Context context, MutableLiveData<RecipeSearch> recipeState, RecipeType type) {
+    public RecipeRecipient(Context context, MutableLiveData<List<RecipeSearch>> listRecipeSearch, RecipeType type) {
         super(context);
-        this.recipeState = recipeState;
+        this.listRecipeSearch = listRecipeSearch;
         this.type = type;
     }
 
@@ -41,6 +43,14 @@ public class RecipeRecipient extends Recipient {
         super(context);
 
 
+    }
+
+    public boolean isReloadContent() {
+        return reloadContent;
+    }
+
+    public void setReloadContent(boolean reloadContent) {
+        this.reloadContent = reloadContent;
     }
 
     public RecipeType getType() {
@@ -61,7 +71,23 @@ public class RecipeRecipient extends Recipient {
 
                     RecipeSearch recipeSearch= response.body();
                     System.out.println("onResponce" + recipeSearch.getCount()+"onResponceSize"+recipeSearch.getHits().size());
-                    recipeState.postValue(recipeSearch);
+
+                    List<RecipeSearch> recipeSearchList;
+                    recipeSearchList=listRecipeSearch.getValue();
+
+
+
+                    if (recipeSearchList == null||reloadContent)
+                    {
+                        recipeSearchList=new ArrayList<>();
+                    }
+                    if(!recipeSearchList.contains(recipeSearch)) {
+                        recipeSearchList.add(recipeSearch);
+
+                        listRecipeSearch.postValue(recipeSearchList);
+                    }
+
+
 
                 } else {
                     try {
@@ -71,6 +97,7 @@ public class RecipeRecipient extends Recipient {
                         e.printStackTrace();
                     }
                 }
+
 
             }
 
@@ -121,6 +148,7 @@ public class RecipeRecipient extends Recipient {
 
         retrofitInterface.recipeNextPage(url).enqueue(callback);
     }
+
 
     public void getRecipe(boolean showGlobalProgressBar) {
         if (!connectOk()) {

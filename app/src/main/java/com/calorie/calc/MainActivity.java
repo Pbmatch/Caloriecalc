@@ -1,6 +1,7 @@
 package com.calorie.calc;
 
 import static com.calorie.calc.NavigationHelper.openMainFragment;
+import static com.calorie.calc.NavigationHelper.showMainFragment;
 
 import android.content.Intent;
 import android.graphics.Point;
@@ -77,6 +78,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        final Fragment fragmentPanelSecond = getSupportFragmentManager()
+                .findFragmentById(R.id.main_activ_second_container);
+        if (fragmentPanelSecond instanceof BackPressable&&!fragmentPanelSecond.isHidden()) {
+            {
+              if( ! ((BackPressable) fragmentPanelSecond).onBackPressed())
+                  showMainFragment(getSupportFragmentManager());
+            }
+            return;
+        }
+
+
         final Fragment fragmentPanel = getSupportFragmentManager()
                 .findFragmentById(R.id.main_activ_container);
         if (fragmentPanel instanceof BackPressable) {

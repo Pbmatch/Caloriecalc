@@ -46,7 +46,7 @@ public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType
          public void selected(DietMainPageType selectedItem) {
 
             // RecipeState.getDietType().setValue(selectedItem);
-            NavigationHelper.openDietFragment(getActivity().getSupportFragmentManager(),new DietFragment(selectedItem));
+            NavigationHelper.openSecondViewFragment(getActivity().getSupportFragmentManager(),new DietFragment(selectedItem));
          }
      });
 

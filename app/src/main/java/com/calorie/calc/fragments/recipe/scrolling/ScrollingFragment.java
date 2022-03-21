@@ -2,6 +2,7 @@ package com.calorie.calc.fragments.recipe.scrolling;
 
 import static com.calorie.calc.NavigationHelper.openScrollingAddFragments;
 import static com.calorie.calc.NavigationHelper.openScrollingDataFragments;
+import static com.calorie.calc.NavigationHelper.showMainFragment;
 import static com.calorie.calc.fragments.recipe.liked.FabHandler.fabClickState;
 import static com.calorie.calc.fragments.recipe.liked.FabHandler.getFabState;
 
@@ -149,7 +150,8 @@ public class ScrollingFragment extends Fragment implements BackPressable {
         binding.toolbarContainer.imageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getParentFragment().getParentFragmentManager().popBackStack();
+               showMainFragment(getActivity().getSupportFragmentManager());
+               // getParentFragment().getParentFragmentManager().popBackStack();
             }
         });
         binding.toolbarContainer.imageViewShare.setOnClickListener(new View.OnClickListener() {

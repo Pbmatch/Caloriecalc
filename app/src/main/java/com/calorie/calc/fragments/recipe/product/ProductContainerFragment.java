@@ -13,11 +13,12 @@ import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.ListEmptyAndToolbar;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.utils.BackPressable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductContainerFragment extends ListEmptyAndToolbar<Fragment> {
+public class ProductContainerFragment extends ListEmptyAndToolbar<Fragment> implements BackPressable {
 
 
     public ProductContainerFragment() {
@@ -89,5 +90,11 @@ public class ProductContainerFragment extends ListEmptyAndToolbar<Fragment> {
     @Override
     public void reloadContent() {
 
+    }
+
+    @Override
+    public boolean onBackPressed() {
+       // getParentFragmentManager().popBackStack();
+        return false;
     }
 }
