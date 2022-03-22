@@ -187,7 +187,7 @@ public class RecipeRecipient extends Recipient {
         }
         query+="type"+"="+"public"  + "&";
         query+="random"+"="+"true"  + "&";
-        query ="recipes/v2?"+query;
+        query ="api/recipes/v2?"+query;
         query = query.substring(0, query.length() - 1);
 
         retrofitInterface.recipeFilter(query,APP_ID_RECIPE, APP_KEY_RECIPE).enqueue(callback);

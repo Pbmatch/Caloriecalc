@@ -32,6 +32,7 @@ import com.calorie.calc.fragments.recipe.filter.FilterFragment;
 import com.calorie.calc.fragments.recipe.liked.LikedFragment;
 import com.calorie.calc.fragments.recipe.product.ProductContainerFragment;
 import com.calorie.calc.fragments.recipe.query.Qtype;
+import com.calorie.calc.utils.AutoCompleteAdapter;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.VoiceToText;
 
@@ -111,6 +112,12 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
                 onFindClick();
             }
         });
+
+        AutoCompleteAdapter  adapter = new AutoCompleteAdapter (getContext(), R.layout.support_simple_spinner_dropdown_item);
+
+        binding.editTextTextPersonName.setAdapter(adapter);
+
+
         binding.imageViewFilter.setOnClickListener(onFilterClick);
         binding.editTextTextPersonName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

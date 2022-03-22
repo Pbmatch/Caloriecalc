@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 public abstract class Recipient {
 
     protected final Context context;
-    protected final String BASEURL = "https://api.edamam.com/api/";
+    protected final String BASEURL = "https://api.edamam.com/";
     public IRetrofitInterface retrofitInterface;
     private final Retrofit retrofit;
     protected final int CODE_OK=200;

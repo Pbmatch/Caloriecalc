@@ -3,6 +3,7 @@ package com.calorie.calc.edamam.network;
 
 import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -16,7 +17,7 @@ import retrofit2.http.Url;
 public interface IRetrofitInterface {
 
 
-    @GET("recipes/v2")
+    @GET("api/recipes/v2")
     Call<RecipeSearch> recipe(
 
             @Query("app_id") String appId,
@@ -33,8 +34,15 @@ public interface IRetrofitInterface {
     Call<RecipeSearch> recipeNextPage(
             @Url String url
     );
+    @GET("auto-complete")
+    Call<List<String>> getAutoText(
+            @Query("app_id") String appFoodId,
+            @Query("app_key") String appFoodKey,
+             @Query("q") String query,
+            @Query("limit") String limit
+    );
 
-    @GET("recipes/v2/{id}")
+    @GET("api/recipes/v2/{id}")
     Call<ResponseBody> recipeId(
                 @Path("id") String id,
             @Query("app_id") String appId,
