@@ -3,12 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.TrackerFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TRACER" />
+    <com.calorie.calc.utils.SemiCircleArcProgressBar
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        app:percent="30"
+        app:progressBarColor="@color/button_green"
+        app:progressPlaceHolderColor="@color/button_disabled"
+        app:progressBarWidth="20"
+        app:progressPlaceHolderWidth="20"  />
 
 </FrameLayout>
