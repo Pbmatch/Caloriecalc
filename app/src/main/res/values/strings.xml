@@ -202,6 +202,9 @@
     <string name="liked">Избранное</string>
     <string name="product_empty">Добавьте первый рецепт в список \n покупок, и он появится здесь.</string>
     <string name="filter_empty">Не найдено</string>
+    <string name="carbohydrates">Углеводы</string>
+    <string name="fats">Жиры</string>
+    <string name="protein">Белки</string>
     <plurals name="dish_count">
         <item quantity="one">%s рецепт</item>
         <item quantity="few">%s рецепта</item>
