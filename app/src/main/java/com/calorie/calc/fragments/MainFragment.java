@@ -95,8 +95,8 @@ public class MainFragment extends Fragment implements BackPressable, NavigationB
 
         if (activeFragment instanceof BackPressable) {
 
-            ((BackPressable) activeFragment).onBackPressed();
-            return true;
+            return ((BackPressable) activeFragment).onBackPressed();
+         //   return true;
         }
 
 

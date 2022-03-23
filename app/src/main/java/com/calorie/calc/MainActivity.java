@@ -94,12 +94,18 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.main_activ_container);
         if (fragmentPanel instanceof BackPressable) {
             {
-              ((BackPressable) fragmentPanel).onBackPressed();
+             if( ((BackPressable) fragmentPanel).onBackPressed())
+
+                 return;
+             else
+             {
+                 super.onBackPressed();
+             }
             }
             return;
         }
-        else
-            super.onBackPressed();
+
+        super.onBackPressed();
     }
 
     private void setDisplaySize() {

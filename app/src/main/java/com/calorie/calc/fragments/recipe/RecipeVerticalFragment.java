@@ -177,10 +177,12 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
     }
 
     public boolean onBackPressed() {
-        System.out.println(" boolean onBackPressed()");
+        if(!isHidden()){
+        System.out.println(" boolean onBackPressed()Vertical");
         showRecipeMainHorizFragment(getParentFragmentManager());
        // getParentFragmentManager().popBackStack();
-        return true;
+        return true;}
+        else return false;
     }
     @Override
     public void loadMoreItems() {

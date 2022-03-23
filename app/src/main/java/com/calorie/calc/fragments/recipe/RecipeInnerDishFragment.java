@@ -84,7 +84,10 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
             }
         });
         textViewTitle = rootView.findViewById(R.id.recipe_inner_textViewTitle);
+
         textViewText = rootView.findViewById(R.id.recipe_inner_textViewText);
+        textViewTitle.setVisibility(View.INVISIBLE);
+        textViewText.setVisibility(View.INVISIBLE);
         textViewTitle.setText(textTitle);
         textViewText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +113,11 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
         recipeSearch.observe(getViewLifecycleOwner(), new Observer<List<RecipeSearch>>() {
             @Override
             public void onChanged(List<RecipeSearch> listRecipeSearch) {
-
+                if(textViewTitle.getVisibility()==View.INVISIBLE)
+                {
+                textViewTitle.setVisibility(View.VISIBLE);
+                textViewText.setVisibility(View.VISIBLE);
+                }
                 List<RecipeAndLinks> recipeAndLinks=new ArrayList<>();
                 for(RecipeSearch itemRec:listRecipeSearch)
                 {

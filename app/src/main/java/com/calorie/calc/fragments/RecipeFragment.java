@@ -223,15 +223,15 @@ public class RecipeFragment extends Fragment implements BackPressable, VoiceToTe
                 .findFragmentById(R.id.recipe_container);
         if (fragmentPanel instanceof BackPressable) {
 
-            ((BackPressable) fragmentPanel).onBackPressed();
-            return true;
+            return ((BackPressable) fragmentPanel).onBackPressed();
+          //  return true;
         }
         final Fragment fragmentPanelSecond = getChildFragmentManager()
                 .findFragmentById(R.id.recipe_second_container);
         if (fragmentPanelSecond instanceof BackPressable) {
 
-            ((BackPressable) fragmentPanelSecond).onBackPressed();
-            return true;
+            return ((BackPressable) fragmentPanelSecond).onBackPressed();
+           // return true;
         }
 
         return false;
