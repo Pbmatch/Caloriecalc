@@ -16,7 +16,7 @@
     <color name="text_secondary_color">#6A6A6A</color>
     <color name="progress_off">#A7CAC4</color>
     <color name="progress_on">#22B042</color>
-    <color name="password_failure">#F25509</color>
+    <color name="red">#F25509</color>
     <color name="edit_text_recipe">#F5F5ED</color>
     <color name="edit_text_recipesss">#22F5F5ED</color>
     <color name="item_ingredient">#F6F6F6</color>
@@ -27,4 +27,5 @@
     <color name="progress_left">#F6C723</color>
     <color name="progress_center">#EA79DE</color>
     <color name="progress_right">#34D6D0</color>
+
 </resources>

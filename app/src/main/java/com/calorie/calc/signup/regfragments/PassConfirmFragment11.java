@@ -59,7 +59,7 @@ public class PassConfirmFragment11 extends InsideBaseFragment {
                     {
                         binding.editText.setBackgroundResource(R.drawable.edit_text_password_wrong);
                         binding.textViewrules.setText(R.string.registration_pass_text_wrong);
-                        binding.textViewrules.setTextColor(getContext().getColor(R.color.password_failure));
+                        binding.textViewrules.setTextColor(getContext().getColor(R.color.red));
                         RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
                     }
                     else

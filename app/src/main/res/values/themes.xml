@@ -74,6 +74,13 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
 
     </style>
+    <style name="text_standart_light" parent="@android:style/Widget.TextView">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textColor">@color/text_title_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+
+    </style>
     <style name="text_minim" parent="@android:style/Widget.TextView">
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
         <item name="android:textColor">@color/text_secondary_color</item>
