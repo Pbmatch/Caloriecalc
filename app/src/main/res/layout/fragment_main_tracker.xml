@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.tracker.MainTrackerFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_marginVertical="@dimen/start_dimen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/start_dimen"
+        android:id="@+id/csl_water"
+        app:layout_constraintTop_toBottomOf="@+id/rec_view"
+        >
+    <ImageView
+        android:id="@+id/image_view_water"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_water_all"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textView_water_title"
+        style="@style/text_standart_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Water"
+        android:layout_margin="@dimen/start_max_dimen"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_view_water" />
+
+    <TextView
+        android:id="@+id/textView_water_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="500"
+        style="@style/text_title_bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/start_max_dimen"
+        app:layout_constraintStart_toStartOf="@+id/textView_water_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_water_title" />
+    <TextView
+        android:id="@+id/textView_water_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ml"
+        style="@style/text_nano"
+        android:textColor="@color/white"
+        android:layout_marginStart="@dimen/start_max_dimen"
+        app:layout_constraintStart_toEndOf="@+id/textView_water_count"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_water_count" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_view_activ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_marginVertical="@dimen/start_dimen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/csl_water" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_view_measure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_marginVertical="@dimen/start_dimen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rec_view_activ" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/start_dimen"
+        android:id="@+id/csl_note"
+        app:layout_constraintTop_toBottomOf="@+id/rec_view_measure"
+        >
+
+        <TextView
+            android:id="@+id/textView_note_title"
+            style="@style/text_standart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Заметки"
+            android:layout_margin="@dimen/start_max_dimen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_note_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="@dimen/start_dimen"
+            android:text="@string/add_to_note"
+            android:textColor="@color/button_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_note_title" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/start_dimen"
+        android:id="@+id/csl_foto"
+        app:layout_constraintTop_toBottomOf="@+id/csl_note"
+        >
+
+        <TextView
+            android:id="@+id/textView_foto_title"
+            style="@style/text_standart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Фото"
+            android:layout_margin="@dimen/start_max_dimen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec_view_foto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:layout_marginVertical="@dimen/start_dimen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_foto_title" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

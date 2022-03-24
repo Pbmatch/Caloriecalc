@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/breakfastcolor" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_max_dimen"
+        android:text="Завтрак"
+        style="@style/text_standart"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/textView_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_dimen"
+        android:text="(ккал)"
+        style="@style/text_minim"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_title"
+        app:layout_constraintStart_toEndOf="@+id/textView_title"
+         />
+
+    <ImageView
+        android:id="@+id/imageView_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_dimen"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/textView_measure"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:srcCompat="@drawable/dropdown" />
+
+    <ImageView
+        android:id="@+id/imageView_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:padding="3dp"
+        android:layout_marginEnd="@dimen/start_max_dimen"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView_arrow"
+        app:srcCompat="@drawable/add_green" />
+</androidx.constraintlayout.widget.ConstraintLayout>

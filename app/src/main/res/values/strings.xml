@@ -193,6 +193,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="add_to_shopping">+ ДОБАВИТЬ В СПИСОК ПОКУПОК</string>
+    <string name="add_to_note">+ ДОБАВИТЬ ЗАМЕТКУ</string>
     <string name="ingredients">Ингредиенты</string>
     <string name="add">Добавить</string>
     <string name="product_toolbar_title">Список продуктов</string>

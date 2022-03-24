@@ -147,6 +147,15 @@
         app:trackCornerRadius="15dp"
         app:trackThickness="15dp" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/tracker_main_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/start_dimen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/linear_progress_center" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
