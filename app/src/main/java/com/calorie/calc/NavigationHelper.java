@@ -44,6 +44,15 @@ public class NavigationHelper {
                    .commit();
 
     }
+    public static void openTracerMainFragment(final FragmentManager fragmentManager, Fragment fragment) {
+
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.tracker_main_container, fragment)
+                .addToBackStack(null)
+                .commit();
+
+    }
     public static void openFindFragment(final FragmentManager fragmentManager) {
        if( fragmentManager.findFragmentById(R.id.recipe_container) instanceof FilterVerticalFragment) return;
 
@@ -84,6 +93,16 @@ public class NavigationHelper {
                 .replace(container, fragment)
                 .commit();
     }
+    public static void openFoodIntakeContainerFragment(final FragmentManager fragmentManager, Fragment fragment ) { //liked //see
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.meal_time_container,fragment)
+                .addToBackStack(null)
+                .commit();
+     //   fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.main_activ_container)).commit();
+    }
+
+
     public static void openSecondViewFragment(final FragmentManager fragmentManager, Fragment fragment ) { //liked //see
 
         defaultTransaction(fragmentManager)

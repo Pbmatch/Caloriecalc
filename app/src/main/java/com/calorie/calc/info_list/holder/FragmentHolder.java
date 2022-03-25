@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
-import com.calorie.calc.fragments.recipe.product.ProductSeeFragment;
 import com.calorie.calc.info_list.InfoItemBuilder;
 
 public class FragmentHolder extends InfoItemHolder<Fragment>{
@@ -32,9 +31,9 @@ public class FragmentHolder extends InfoItemHolder<Fragment>{
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
         layout.addView(frameLayout);
-        ProductSeeFragment productSeeFragment = (ProductSeeFragment) infoItem;
+        IFragment productSeeFragment = (IFragment) infoItem;
 
-        NavigationHelper.openSeeFragment(productSeeFragment.getMyfragmentManager(),productSeeFragment,frameLayout.getId());
+        NavigationHelper.openSeeFragment(productSeeFragment.getMyfragmentManager(),(Fragment) productSeeFragment,frameLayout.getId());
 
     }
 

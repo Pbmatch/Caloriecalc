@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".fragments.tracker.MainTrackerFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_view"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/meal_time_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/start_dimen"
         android:id="@+id/csl_water"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view"
+        app:layout_constraintTop_toBottomOf="@+id/meal_time_container"
         >
     <ImageView
         android:id="@+id/image_view_water"

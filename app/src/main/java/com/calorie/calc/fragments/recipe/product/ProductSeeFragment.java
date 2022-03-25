@@ -19,11 +19,12 @@ import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.info_list.holder.IFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
+public class ProductSeeFragment extends RecipeListFragment<Ingredient> implements IFragment {
 
 
   //  protected LinearLayout emptyLinearLayout;
@@ -37,7 +38,7 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> {
         this.item = item.getRecipe();
         this.myfragmentManager=fragmentManager;
     }
-
+    @Override
     public FragmentManager getMyfragmentManager() {
         return myfragmentManager;
     }

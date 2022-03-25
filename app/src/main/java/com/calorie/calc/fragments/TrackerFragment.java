@@ -1,14 +1,16 @@
 package com.calorie.calc.fragments;
 
+import static com.calorie.calc.NavigationHelper.openTracerMainFragment;
+
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.calorie.calc.R;
+import com.calorie.calc.fragments.tracker.MainTrackerFragment;
 
 
 public class TrackerFragment extends Fragment {
@@ -20,16 +22,11 @@ public class TrackerFragment extends Fragment {
 
 
 
-    public static TrackerFragment newInstance(String param1, String param2) {
-        TrackerFragment fragment = new TrackerFragment();
-        Bundle args = new Bundle();
 
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        openTracerMainFragment(getChildFragmentManager(),new MainTrackerFragment());
         super.onCreate(savedInstanceState);
 
     }
