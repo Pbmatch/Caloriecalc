@@ -27,5 +27,9 @@
     <color name="progress_left">#F6C723</color>
     <color name="progress_center">#EA79DE</color>
     <color name="progress_right">#34D6D0</color>
+    <color name="meal_time_background">#EFF5F5</color>
+
+    <color name="add_foto_background">#EFFCEB</color>
+
 
 </resources>

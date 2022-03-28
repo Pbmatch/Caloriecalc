@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.RecipeType;
-import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearchItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,11 +22,11 @@ import retrofit2.Response;
 
 public class RecipeRecipient extends Recipient {
 
-    MutableLiveData<List<RecipeSearch>> listRecipeSearch;
+    MutableLiveData<List<RecipeSearchItem>> listRecipeSearch;
     RecipeType type;
     boolean reloadContent = false;
 
-    public RecipeRecipient(Context context, MutableLiveData<List<RecipeSearch>> listRecipeSearch, RecipeType type) {
+    public RecipeRecipient(Context context, MutableLiveData<List<RecipeSearchItem>> listRecipeSearch, RecipeType type) {
         super(context);
         this.listRecipeSearch = listRecipeSearch;
         this.type = type;
@@ -36,7 +36,7 @@ public class RecipeRecipient extends Recipient {
     String APP_ID_RECIPE = "4772da4b";
     String APP_KEY_FOOD = "3fb0249a92fd83b77bb0f3e57d62a8e8";
     String APP_ID_FOOD = "df7288a0";
-    private Callback<RecipeSearch> callback;
+    private Callback<RecipeSearchItem> callback;
     private Callback<ResponseBody> callback222;
 
     public RecipeRecipient(Context context) {
@@ -63,28 +63,28 @@ public class RecipeRecipient extends Recipient {
 
     @Override
     protected void setCallBack() {
-     callback = new Callback<RecipeSearch>() {
+     callback = new Callback<RecipeSearchItem>() {
             @Override
-            public void onResponse(Call<RecipeSearch> call, Response<RecipeSearch> response) {
+            public void onResponse(Call<RecipeSearchItem> call, Response<RecipeSearchItem> response) {
                 RecipeState.getProgressBar().setValue(false);
                 if (response.body() != null) {
 
-                    RecipeSearch recipeSearch= response.body();
-                    System.out.println("onResponce" + recipeSearch.getCount()+"onResponceSize"+recipeSearch.getHits().size());
+                    RecipeSearchItem recipeSearchItem = response.body();
+                    System.out.println("onResponce" + recipeSearchItem.getCount()+"onResponceSize"+ recipeSearchItem.getHits().size());
 
-                    List<RecipeSearch> recipeSearchList;
-                    recipeSearchList=listRecipeSearch.getValue();
+                    List<RecipeSearchItem> recipeSearchItemList;
+                    recipeSearchItemList =listRecipeSearch.getValue();
 
 
 
-                    if (recipeSearchList == null||reloadContent)
+                    if (recipeSearchItemList == null||reloadContent)
                     {
-                        recipeSearchList=new ArrayList<>();
+                        recipeSearchItemList =new ArrayList<>();
                     }
-                    if(!recipeSearchList.contains(recipeSearch)) {
-                        recipeSearchList.add(recipeSearch);
+                    if(!recipeSearchItemList.contains(recipeSearchItem)) {
+                        recipeSearchItemList.add(recipeSearchItem);
 
-                        listRecipeSearch.postValue(recipeSearchList);
+                        listRecipeSearch.postValue(recipeSearchItemList);
                     }
 
 
@@ -102,7 +102,7 @@ public class RecipeRecipient extends Recipient {
             }
 
             @Override
-            public void onFailure(Call<RecipeSearch> call, Throwable t) {
+            public void onFailure(Call<RecipeSearchItem> call, Throwable t) {
                 RecipeState.getProgressBar().setValue(false);
                 System.out.println("onFailure" + t.toString());
             }
@@ -113,7 +113,7 @@ public class RecipeRecipient extends Recipient {
                 RecipeState.getProgressBar().setValue(false);
                 if (response.body() != null) {
 
-                  //  RecipeSearch recipeSearch= response.body();
+                  //  RecipeSearchItem recipeSearch= response.body();
                     try {
                         System.out.println("onResponce" + response.body().string());
                     } catch (IOException e) {

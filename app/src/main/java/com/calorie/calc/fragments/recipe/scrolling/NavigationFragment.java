@@ -13,14 +13,14 @@ import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentNavigationRecipeBinding;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.utils.BackPressable;
 import com.google.android.material.navigation.NavigationBarView;
 
 
 public class NavigationFragment extends Fragment implements BackPressable, NavigationBarView.OnItemSelectedListener {
 
-    RecipeAndLinks recipeAndLinks;
+    RecipeAndLinksItem recipeAndLinksItem;
     private Fragment scrollingFragment;
     private WebViewFragment webView;
     String url;
@@ -28,10 +28,10 @@ public class NavigationFragment extends Fragment implements BackPressable, Navig
     private Fragment activeFragment;
     FragmentNavigationRecipeBinding binding;
 
-    public NavigationFragment(RecipeAndLinks recipeAndLinks) {
-        this.recipeAndLinks = recipeAndLinks;
-        url=recipeAndLinks.getRecipe().getUrl();
-        scrollingFragment = new ScrollingFragment(recipeAndLinks);
+    public NavigationFragment(RecipeAndLinksItem recipeAndLinksItem) {
+        this.recipeAndLinksItem = recipeAndLinksItem;
+        url= recipeAndLinksItem.getRecipe().getUrl();
+        scrollingFragment = new ScrollingFragment(recipeAndLinksItem);
         webView = new WebViewFragment(url);
         activeFragment = scrollingFragment;
     }

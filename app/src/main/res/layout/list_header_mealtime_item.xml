@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/meal_time_background">
 
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_16"
@@ -23,9 +24,9 @@
         android:layout_marginStart="@dimen/start_max_dimen"
         android:text="Завтрак"
         style="@style/text_standart"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewTitle"
+        app:layout_constraintStart_toEndOf="@+id/imageViewTitle"
+        app:layout_constraintTop_toTopOf="@+id/imageViewTitle" />
 
     <TextView
         android:id="@+id/textView_measure"
@@ -44,9 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/start_dimen"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewTitle"
         app:layout_constraintStart_toEndOf="@+id/textView_measure"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageViewTitle"
         app:srcCompat="@drawable/dropdown" />
 
     <ImageView

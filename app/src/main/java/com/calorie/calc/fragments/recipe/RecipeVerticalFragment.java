@@ -23,8 +23,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.edamam.network.RecipeRecipient;
-import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearchItem;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.OnClickGesture;
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> implements BackPressable {
+public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinksItem> implements BackPressable {
 
     protected LinearLayout emptyLinearLayout;
     protected ImageView emptyImageView;
@@ -43,7 +43,7 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
     protected   TextView textView;
     protected NestedScrollView scroll;
 
-    public RecipeVerticalFragment(MutableLiveData<List<RecipeSearch>> recipeSearch, RecipeType type)
+    public RecipeVerticalFragment(MutableLiveData<List<RecipeSearchItem>> recipeSearch, RecipeType type)
     {
 
         super(recipeSearch,type);
@@ -108,19 +108,19 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
     @Override
     public  void setListener() {
 
-         recipeSearch.observe(getViewLifecycleOwner(),new Observer<List<RecipeSearch>>() {
+         recipeSearch.observe(getViewLifecycleOwner(),new Observer<List<RecipeSearchItem>>() {
              @Override
-             public void onChanged(List<RecipeSearch> listRecipeSearch) {
+             public void onChanged(List<RecipeSearchItem> listRecipeSearchItems) {
 
-                 List<RecipeAndLinks> recipeAndLinks = new ArrayList<>();
-                 for (RecipeSearch itemRec : listRecipeSearch) {
-                     recipeAndLinks.addAll(itemRec.getHits());
+                 List<RecipeAndLinksItem> recipeAndLinkItems = new ArrayList<>();
+                 for (RecipeSearchItem itemRec : listRecipeSearchItems) {
+                     recipeAndLinkItems.addAll(itemRec.getHits());
                  }
 
 
-                 System.out.println(" public void onChangedVert" + recipeAndLinks.size());
+                 System.out.println(" public void onChangedVert" + recipeAndLinkItems.size());
                  if(!recipeRecipient.isReloadContent()){
-                     for (RecipeAndLinks item:recipeAndLinks)
+                     for (RecipeAndLinksItem item: recipeAndLinkItems)
                      {
 
                          if(!infoListAdapter.getItemsList().contains(item))
@@ -129,14 +129,14 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
                  }
                  else
                  {
-                     infoListAdapter.setInfoItemList(recipeAndLinks);
+                     infoListAdapter.setInfoItemList(recipeAndLinkItems);
                      recipeRecipient.setReloadContent(false);
                  }
 
                  isLoading.set(false);
 
-                 if (listRecipeSearch.size() > 0){
-                     RecipeSearch item = listRecipeSearch.get(listRecipeSearch.size()-1);
+                 if (listRecipeSearchItems.size() > 0){
+                     RecipeSearchItem item = listRecipeSearchItems.get(listRecipeSearchItems.size()-1);
                  if (item.getCount() == 0) {
                      emptyLinearLayout.setVisibility(View.VISIBLE);
                  } else {
@@ -151,9 +151,9 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinks> i
 
     });
 
-        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
+        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinksItem>() {
             @Override
-            public void selected(RecipeAndLinks selectedItem) {
+            public void selected(RecipeAndLinksItem selectedItem) {
                  NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
             }
         });

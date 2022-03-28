@@ -1,10 +1,10 @@
 package com.calorie.calc.utils;
 
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 
 public class RecipeInverter {
-    public static RecipeAndLinks invert(RecipeAndLinks  item)
+    public static RecipeAndLinksItem invert(RecipeAndLinksItem item)
     {
 
           double portionCount = item.getRecipe().getYield();

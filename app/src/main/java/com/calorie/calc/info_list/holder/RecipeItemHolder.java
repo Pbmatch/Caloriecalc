@@ -11,11 +11,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public abstract class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
+public abstract class RecipeItemHolder extends InfoItemHolder <RecipeAndLinksItem>{
 
     protected ImageView itemThumbnailView;
     protected TextView itemTitleView;
@@ -36,7 +36,7 @@ public abstract class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
     }
 
     @Override
-    public void updateFromItem(RecipeAndLinks infoItem,int pos) {
+    public void updateFromItem(RecipeAndLinksItem infoItem, int pos) {
 
         Recipe recipe = infoItem.getRecipe();
         itemKkalView.setText(
@@ -58,7 +58,7 @@ public abstract class RecipeItemHolder extends InfoItemHolder <RecipeAndLinks>{
 
 
     @Override
-    public void updateState(RecipeAndLinks infoItem) {
+    public void updateState(RecipeAndLinksItem infoItem) {
 
     }
 

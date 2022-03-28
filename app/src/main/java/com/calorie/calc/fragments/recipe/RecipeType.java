@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +23,7 @@ public enum RecipeType {
     private int titleRecource;
     private int container;
     private DietMainPageType dietMainPageType;
-    MutableLiveData<List<RecipeAndLinks>> recipeState = new MutableLiveData<>();
+    MutableLiveData<List<RecipeAndLinksItem>> recipeState = new MutableLiveData<>();
     Map<String, Object> params;
 
     RecipeType(int title, String mealType, int container) {
@@ -92,11 +92,11 @@ public enum RecipeType {
         this.params = params;
     }
 
-    public MutableLiveData<List<RecipeAndLinks>> getRecipeState() {
+    public MutableLiveData<List<RecipeAndLinksItem>> getRecipeState() {
         return recipeState;
     }
 
-    public void setRecipeState(MutableLiveData<List<RecipeAndLinks>> recipeState) {
+    public void setRecipeState(MutableLiveData<List<RecipeAndLinksItem>> recipeState) {
         this.recipeState = recipeState;
     }
 }

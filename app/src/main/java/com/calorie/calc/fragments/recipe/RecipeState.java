@@ -3,15 +3,15 @@ package com.calorie.calc.fragments.recipe;
 import androidx.lifecycle.MutableLiveData;
 
 import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.query.QueryHandler;
 
 import java.util.List;
 
 public class RecipeState {
-    private static MutableLiveData<List<RecipeAndLinks>> recipeAndLinksMutableLiveData = new MutableLiveData<>();
+    private static MutableLiveData<List<RecipeAndLinksItem>> recipeAndLinksMutableLiveData = new MutableLiveData<>();
     private static MutableLiveData<Boolean> progressBar = new MutableLiveData<>();
-    private static MutableLiveData<List<RecipeAndLinks>> productLiveData = new MutableLiveData<>();
+    private static MutableLiveData<List<RecipeAndLinksItem>> productLiveData = new MutableLiveData<>();
     private static MutableLiveData<QueryHandler> queryLiveData = new MutableLiveData<>();
     private static MutableLiveData<DietMainPageType> dietType = new MutableLiveData<>();
     private static MutableLiveData<Boolean> onRefreshMainRecipe = new MutableLiveData<>();
@@ -21,7 +21,7 @@ public class RecipeState {
         return onRefreshMainRecipe;
     }
 
-    public static MutableLiveData<List<RecipeAndLinks>> getRecipeAndLinksMutableLiveData() {
+    public static MutableLiveData<List<RecipeAndLinksItem>> getRecipeAndLinksMutableLiveData() {
         return recipeAndLinksMutableLiveData;
     }
 
@@ -33,7 +33,7 @@ public class RecipeState {
         return progressBar;
     }
 
-    public static MutableLiveData<List<RecipeAndLinks>> getProductLiveData() {
+    public static MutableLiveData<List<RecipeAndLinksItem>> getProductLiveData() {
         return productLiveData;
     }
 

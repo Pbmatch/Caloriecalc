@@ -22,7 +22,7 @@ import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentScrollingBinding;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.info_list.InfoListAdapter;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.PicassoHelper;
@@ -37,22 +37,22 @@ public class ScrollingFragment extends Fragment implements BackPressable {
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     FragmentScrollingBinding binding;
     InfoListAdapter<Nutrient> energyInfoListAdapter;
-    RecipeAndLinks recipeAndLinks;
+    RecipeAndLinksItem recipeAndLinksItem;
     Recipe item;
 
 
     InfoListAdapter<Nutrient> nutrientInfoListAdapter;
-    public ScrollingFragment(RecipeAndLinks item) {
+    public ScrollingFragment(RecipeAndLinksItem item) {
 
-        this.recipeAndLinks = item;
-        RecipeInverter.invert(recipeAndLinks);
+        this.recipeAndLinksItem = item;
+        RecipeInverter.invert(recipeAndLinksItem);
         this.item=item.getRecipe();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        openScrollingDataFragments(getChildFragmentManager(),recipeAndLinks);
+        openScrollingDataFragments(getChildFragmentManager(), recipeAndLinksItem);
 
     }
 
@@ -104,15 +104,15 @@ public class ScrollingFragment extends Fragment implements BackPressable {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fabClickState(recipeAndLinks,getContext(),binding.fab);
+                fabClickState(recipeAndLinksItem,getContext(),binding.fab);
             }
         });
-        if(getFabState(recipeAndLinks))
+        if(getFabState(recipeAndLinksItem))
         {
             binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favorite));
-            recipeAndLinks.setLiked(true);
+            recipeAndLinksItem.setLiked(true);
         }
-        else {binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favoriteblank));  recipeAndLinks.setLiked(false);}
+        else {binding.fab.setImageDrawable(getContext().getDrawable(R.drawable.favoriteblank));  recipeAndLinksItem.setLiked(false);}
 
         binding.textViewTitle.setText(item.getLabel());
         String time="";
@@ -157,7 +157,7 @@ public class ScrollingFragment extends Fragment implements BackPressable {
         binding.toolbarContainer.imageViewShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareHandler.send(getContext(),recipeAndLinks.getRecipe().getUrl());
+                ShareHandler.send(getContext(), recipeAndLinksItem.getRecipe().getUrl());
             }
         });
     }

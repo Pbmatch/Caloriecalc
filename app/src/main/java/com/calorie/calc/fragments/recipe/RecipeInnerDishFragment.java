@@ -16,15 +16,15 @@ import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
 import com.calorie.calc.databinding.PignateHorizontalFooterBinding;
 import com.calorie.calc.edamam.network.RecipeRecipient;
 import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
-import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearchItem;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> {
+public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinksItem> {
 
     public TextView textViewTitle;
     public TextView textViewText;
@@ -110,23 +110,23 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
     @Override
     public void setListener() {
         if(recipeSearch!=null)
-        recipeSearch.observe(getViewLifecycleOwner(), new Observer<List<RecipeSearch>>() {
+        recipeSearch.observe(getViewLifecycleOwner(), new Observer<List<RecipeSearchItem>>() {
             @Override
-            public void onChanged(List<RecipeSearch> listRecipeSearch) {
+            public void onChanged(List<RecipeSearchItem> listRecipeSearchItems) {
                 if(textViewTitle.getVisibility()==View.INVISIBLE)
                 {
                 textViewTitle.setVisibility(View.VISIBLE);
                 textViewText.setVisibility(View.VISIBLE);
                 }
-                List<RecipeAndLinks> recipeAndLinks=new ArrayList<>();
-                for(RecipeSearch itemRec:listRecipeSearch)
+                List<RecipeAndLinksItem> recipeAndLinkItems =new ArrayList<>();
+                for(RecipeSearchItem itemRec: listRecipeSearchItems)
                 {
-                    recipeAndLinks.addAll(itemRec.getHits());
+                    recipeAndLinkItems.addAll(itemRec.getHits());
                 }
 
 
 
-                if (recipeAndLinks.size() == 0) {
+                if (recipeAndLinkItems.size() == 0) {
                     ViewBinding viewBinding = ListRecipeHeaderItemBinding
                             .inflate(getLayoutInflater(), itemsList, false);
                     infoListAdapter.setHeader(viewBinding.getRoot());
@@ -134,7 +134,7 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
                     infoListAdapter.setHeader(null);
                 }
                if(!recipeRecipient.isReloadContent()){
-                for (RecipeAndLinks item:recipeAndLinks)
+                for (RecipeAndLinksItem item: recipeAndLinkItems)
                 {
 
                     if(!infoListAdapter.getItemsList().contains(item))
@@ -143,7 +143,7 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
                }
                else
                {
-                   infoListAdapter.setInfoItemList(recipeAndLinks);
+                   infoListAdapter.setInfoItemList(recipeAndLinkItems);
                    recipeRecipient.setReloadContent(false);
                }
 
@@ -157,9 +157,9 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinks> 
         });
 
 
-        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
+        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinksItem>() {
             @Override
-            public void selected(RecipeAndLinks selectedItem) {
+            public void selected(RecipeAndLinksItem selectedItem) {
                 NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
             }
         });

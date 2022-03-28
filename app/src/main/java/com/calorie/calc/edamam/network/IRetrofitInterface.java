@@ -1,7 +1,7 @@
 package com.calorie.calc.edamam.network;
 
 
-import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearchItem;
 
 import java.util.List;
 import java.util.Map;
@@ -18,20 +18,20 @@ public interface IRetrofitInterface {
 
 
     @GET("api/recipes/v2")
-    Call<RecipeSearch> recipe(
+    Call<RecipeSearchItem> recipe(
 
             @Query("app_id") String appId,
             @Query("app_key") String appKey,
             @QueryMap  Map<String, Object> options);
     @GET
-    Call<RecipeSearch> recipeFilter(
+    Call<RecipeSearchItem> recipeFilter(
             @Url String url,
             @Query("app_id") String appId,
             @Query("app_key") String appKey
          );
 
     @GET
-    Call<RecipeSearch> recipeNextPage(
+    Call<RecipeSearchItem> recipeNextPage(
             @Url String url
     );
     @GET("auto-complete")

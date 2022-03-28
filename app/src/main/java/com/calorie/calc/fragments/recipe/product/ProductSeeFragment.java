@@ -18,7 +18,7 @@ import com.calorie.calc.fragments.recipe.RecipeListFragment;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.info_list.holder.IFragment;
 
 import java.util.ArrayList;
@@ -28,13 +28,13 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> implement
 
 
   //  protected LinearLayout emptyLinearLayout;
-    RecipeAndLinks recipeAndLinks;
+    RecipeAndLinksItem recipeAndLinksItem;
     Recipe item;
     FragmentManager myfragmentManager;
 
-    public ProductSeeFragment(RecipeAndLinks item, FragmentManager fragmentManager) {
+    public ProductSeeFragment(RecipeAndLinksItem item, FragmentManager fragmentManager) {
         super();
-        this.recipeAndLinks = item;
+        this.recipeAndLinksItem = item;
         this.item = item.getRecipe();
         this.myfragmentManager=fragmentManager;
     }
@@ -65,10 +65,10 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> implement
         viewBinding.imageViewDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               List<RecipeAndLinks> list= RecipeState.getProductLiveData().getValue();
-               for(RecipeAndLinks item:list)
+               List<RecipeAndLinksItem> list= RecipeState.getProductLiveData().getValue();
+               for(RecipeAndLinksItem item:list)
                {
-                   if(item.getRecipe().getLabel().equals(recipeAndLinks.getRecipe().getLabel()))
+                   if(item.getRecipe().getLabel().equals(recipeAndLinksItem.getRecipe().getLabel()))
                    {
                        list.remove(item);
                        break;

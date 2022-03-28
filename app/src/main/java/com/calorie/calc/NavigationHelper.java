@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.calorie.calc.fragments.MainFragment;
 import com.calorie.calc.fragments.recipe.filter.FilterVerticalFragment;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.scrolling.InnerAddFragment;
 import com.calorie.calc.fragments.recipe.scrolling.InnerDataFragment;
 import com.jakewharton.processphoenix.ProcessPhoenix;
@@ -130,7 +130,7 @@ public class NavigationHelper {
     }
 
 
-    public static void openScrollingDataFragments(final FragmentManager fragmentManager, RecipeAndLinks item) {
+    public static void openScrollingDataFragments(final FragmentManager fragmentManager, RecipeAndLinksItem item) {
 
         defaultTransaction(fragmentManager)
                 .replace(R.id.container_data_view, new InnerDataFragment(item))

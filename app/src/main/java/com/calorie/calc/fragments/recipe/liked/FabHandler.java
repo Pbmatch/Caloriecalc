@@ -3,7 +3,7 @@ package com.calorie.calc.fragments.recipe.liked;
 import android.content.Context;
 
 import com.calorie.calc.R;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -11,33 +11,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FabHandler {
-    public  static void fabClickState(RecipeAndLinks recipeAndLinks, Context context, FloatingActionButton fab)
+    public  static void fabClickState(RecipeAndLinksItem recipeAndLinksItem, Context context, FloatingActionButton fab)
     {
 
 
 
-        if(!recipeAndLinks.isLiked())
+        if(!recipeAndLinksItem.isLiked())
         {
             fab.setImageDrawable(context.getDrawable(R.drawable.favorite));
-            recipeAndLinks.setLiked(true);
+            recipeAndLinksItem.setLiked(true);
             if( RecipeState.getRecipeAndLinksMutableLiveData().getValue()==null)
                 RecipeState.getRecipeAndLinksMutableLiveData().setValue(new ArrayList<>());
-            RecipeState.getRecipeAndLinksMutableLiveData().getValue().add(recipeAndLinks);
+            RecipeState.getRecipeAndLinksMutableLiveData().getValue().add(recipeAndLinksItem);
         }
         else
         {
             fab.setImageDrawable(context.getDrawable(R.drawable.favoriteblank));
-            recipeAndLinks.setLiked(false);
+            recipeAndLinksItem.setLiked(false);
             if( RecipeState.getRecipeAndLinksMutableLiveData().getValue()==null)
                 RecipeState.getRecipeAndLinksMutableLiveData().setValue(new ArrayList<>());
-            RecipeState.getRecipeAndLinksMutableLiveData().getValue().remove(recipeAndLinks);
+            RecipeState.getRecipeAndLinksMutableLiveData().getValue().remove(recipeAndLinksItem);
         }
     }
-    public  static boolean getFabState(RecipeAndLinks recipeAndLinks) {
+    public  static boolean getFabState(RecipeAndLinksItem recipeAndLinksItem) {
         if (RecipeState.getRecipeAndLinksMutableLiveData().getValue() != null) {
-            List<RecipeAndLinks> list = RecipeState.getRecipeAndLinksMutableLiveData().getValue();
-            for (RecipeAndLinks item : list) {
-                if (item.getRecipe().getLabel().equals(recipeAndLinks.getRecipe().getLabel()))
+            List<RecipeAndLinksItem> list = RecipeState.getRecipeAndLinksMutableLiveData().getValue();
+            for (RecipeAndLinksItem item : list) {
+                if (item.getRecipe().getLabel().equals(recipeAndLinksItem.getRecipe().getLabel()))
                     return true;
             }
 

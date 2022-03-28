@@ -10,6 +10,7 @@
         android:id="@+id/meal_time_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="100dp"
         android:scrollbars="vertical"
         android:layout_marginVertical="@dimen/start_dimen"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/csl_water" />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_view_measure"
+        android:id="@+id/rec_view_bodysize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
@@ -87,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/start_dimen"
         android:id="@+id/csl_note"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view_measure"
+        app:layout_constraintTop_toBottomOf="@+id/rec_view_bodysize"
         >
 
         <TextView

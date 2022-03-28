@@ -17,7 +17,7 @@ import com.calorie.calc.fragments.recipe.ListEmptyAndToolbar;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.utils.BackPressable;
 
 import java.util.List;
@@ -27,11 +27,11 @@ public class ProductAddFragment extends ListEmptyAndToolbar<Ingredient> implemen
 
 
     Button addProduct;
-    RecipeAndLinks recipeAndLinks;
+    RecipeAndLinksItem recipeAndLinksItem;
     Recipe item;
-    public ProductAddFragment(RecipeAndLinks item) {
+    public ProductAddFragment(RecipeAndLinksItem item) {
         super();
-        this.recipeAndLinks = item;
+        this.recipeAndLinksItem = item;
         this.item=item.getRecipe();
     }
 
@@ -67,8 +67,8 @@ public class ProductAddFragment extends ListEmptyAndToolbar<Ingredient> implemen
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<RecipeAndLinks> list = RecipeState.getProductLiveData().getValue();
-                list.add(recipeAndLinks);
+                List<RecipeAndLinksItem> list = RecipeState.getProductLiveData().getValue();
+                list.add(recipeAndLinksItem);
                 getParentFragmentManager().popBackStack();
 
               //  RecipeState.getProductLiveData().setValue(list);

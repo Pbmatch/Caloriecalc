@@ -1,18 +1,18 @@
 package com.calorie.calc.fragments.recipe.holders.recipeholders;
 
-import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearchItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class RecipeAndLinks implements Serializable {
+public class RecipeAndLinksItem implements Serializable {
     @SerializedName("recipe")
     @Expose
     private Recipe recipe;
     @SerializedName("_links")
     @Expose
-    private RecipeSearch.Links links;
+    private RecipeSearchItem.Links links;
     private final static long serialVersionUID = 4169649893548118679L;
 
 
@@ -34,11 +34,11 @@ public class RecipeAndLinks implements Serializable {
         this.recipe = recipe;
     }
 
-    public RecipeSearch.Links getLinks() {
+    public RecipeSearchItem.Links getLinks() {
         return links;
     }
 
-    public void setLinks(RecipeSearch.Links links) {
+    public void setLinks(RecipeSearchItem.Links links) {
         this.links = links;
     }
 }

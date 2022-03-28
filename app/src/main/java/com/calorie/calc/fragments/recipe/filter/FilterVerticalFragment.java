@@ -16,8 +16,8 @@ import com.calorie.calc.R;
 import com.calorie.calc.edamam.network.RecipeRecipient;
 import com.calorie.calc.fragments.recipe.RecipeState;
 import com.calorie.calc.fragments.recipe.RecipeVerticalFragment;
-import com.calorie.calc.fragments.recipe.holders.RecipeSearch;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.RecipeSearchItem;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.query.QueryHandler;
 import com.calorie.calc.fragments.recipe.query.QueryType;
 import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
@@ -72,19 +72,19 @@ public class FilterVerticalFragment extends RecipeVerticalFragment  {
 
     @Override
     public  void setListener() {
-        recipeSearch.observe(getViewLifecycleOwner(),new Observer<List<RecipeSearch>>() {
+        recipeSearch.observe(getViewLifecycleOwner(),new Observer<List<RecipeSearchItem>>() {
             @Override
-            public void onChanged(List<RecipeSearch> listRecipeSearch) {
+            public void onChanged(List<RecipeSearchItem> listRecipeSearchItems) {
 
-                List<RecipeAndLinks> recipeAndLinks = new ArrayList<>();
-                for (RecipeSearch itemRec : listRecipeSearch) {
-                    recipeAndLinks.addAll(itemRec.getHits());
+                List<RecipeAndLinksItem> recipeAndLinkItems = new ArrayList<>();
+                for (RecipeSearchItem itemRec : listRecipeSearchItems) {
+                    recipeAndLinkItems.addAll(itemRec.getHits());
                 }
 
 
-                System.out.println(" public void onChangedVert" + recipeAndLinks.size());
+                System.out.println(" public void onChangedVert" + recipeAndLinkItems.size());
                 if(!recipeRecipient.isReloadContent()){
-                    for (RecipeAndLinks item:recipeAndLinks)
+                    for (RecipeAndLinksItem item: recipeAndLinkItems)
                     {
 
                         if(!infoListAdapter.getItemsList().contains(item))
@@ -93,14 +93,14 @@ public class FilterVerticalFragment extends RecipeVerticalFragment  {
                 }
                 else
                 {
-                    infoListAdapter.setInfoItemList(recipeAndLinks);
+                    infoListAdapter.setInfoItemList(recipeAndLinkItems);
                     recipeRecipient.setReloadContent(false);
                 }
 
                 isLoading.set(false);
 
-                if (listRecipeSearch.size() > 0){
-                    RecipeSearch item = listRecipeSearch.get(listRecipeSearch.size()-1);
+                if (listRecipeSearchItems.size() > 0){
+                    RecipeSearchItem item = listRecipeSearchItems.get(listRecipeSearchItems.size()-1);
                     if (item.getCount() == 0) {
                         emptyLinearLayout.setVisibility(View.VISIBLE);
                     } else {
@@ -115,9 +115,9 @@ public class FilterVerticalFragment extends RecipeVerticalFragment  {
 
         });
 
-        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinks>() {
+        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinksItem>() {
             @Override
-            public void selected(RecipeAndLinks selectedItem) {
+            public void selected(RecipeAndLinksItem selectedItem) {
                 NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(), new NavigationFragment(selectedItem));
             }
         });

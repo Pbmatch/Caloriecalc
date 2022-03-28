@@ -8,23 +8,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.databinding.ListRecipeHeaderItemBinding;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 
 import java.util.List;
 
-public class RecipeInnerAddedDishFragment extends RecipeListFragment<RecipeAndLinks> {
+public class RecipeInnerAddedDishFragment extends RecipeListFragment<RecipeAndLinksItem> {
 
-    static private  MutableLiveData<List<RecipeAndLinks>> likedRecipeState = new MutableLiveData<List<RecipeAndLinks>>();
+    static private  MutableLiveData<List<RecipeAndLinksItem>> likedRecipeState = new MutableLiveData<List<RecipeAndLinksItem>>();
     public RecipeInnerAddedDishFragment(RecipeType type) {
         super(type);
     }
 
     @Override
     public  void startLoadData() {
-        likedRecipeState.observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinks>>() {
+        likedRecipeState.observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinksItem>>() {
             @Override
-            public void onChanged(List<RecipeAndLinks> recipeAndLinks) {
-                if(recipeAndLinks.size()==0)
+            public void onChanged(List<RecipeAndLinksItem> recipeAndLinkItems) {
+                if(recipeAndLinkItems.size()==0)
                 {
                     ViewBinding viewBinding = ListRecipeHeaderItemBinding
                             .inflate(getLayoutInflater(), itemsList, false);
@@ -32,7 +32,7 @@ public class RecipeInnerAddedDishFragment extends RecipeListFragment<RecipeAndLi
                 }
                 else {infoListAdapter.setHeader(null);
                 }
-                infoListAdapter.addInfoItemList(recipeAndLinks);
+                infoListAdapter.addInfoItemList(recipeAndLinkItems);
 
             }
         });

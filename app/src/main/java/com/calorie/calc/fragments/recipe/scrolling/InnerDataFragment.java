@@ -18,7 +18,7 @@ import com.calorie.calc.databinding.ListHeaderIngredientItemBinding;
 import com.calorie.calc.fragments.recipe.RecipeListFragment;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.product.ProductAddFragment;
 import com.calorie.calc.utils.OnClickGesture;
 
@@ -26,16 +26,16 @@ import java.util.List;
 
 
 public class InnerDataFragment extends RecipeListFragment<Ingredient> {
-    RecipeAndLinks recipeAndLinks;
+    RecipeAndLinksItem recipeAndLinksItem;
     Recipe item;
     TextView textViewText;
     double countPortion;
 
 
 
-    public InnerDataFragment(RecipeAndLinks item) {
+    public InnerDataFragment(RecipeAndLinksItem item) {
         super();
-        this.recipeAndLinks = item;
+        this.recipeAndLinksItem = item;
         this.item=item.getRecipe();
     }
 
@@ -105,7 +105,7 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
         viewBindingFooter.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAddProductFragment(getActivity().getSupportFragmentManager(),new ProductAddFragment(recipeAndLinks));
+                openAddProductFragment(getActivity().getSupportFragmentManager(),new ProductAddFragment(recipeAndLinksItem));
             }
         });
         infoListAdapter.setFooter(viewBindingFooter.getRoot());

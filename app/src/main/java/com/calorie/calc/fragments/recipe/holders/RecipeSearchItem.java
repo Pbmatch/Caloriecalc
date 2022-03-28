@@ -1,6 +1,6 @@
 package com.calorie.calc.fragments.recipe.holders;
 
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeSearch implements Serializable {
+public class RecipeSearchItem implements Serializable {
     @SerializedName("from")
     @Expose
     private long from;
@@ -23,7 +23,7 @@ public class RecipeSearch implements Serializable {
     private Links links;
     @SerializedName("hits")
     @Expose
-    private List<RecipeAndLinks> hits = new ArrayList<>();
+    private List<RecipeAndLinksItem> hits = new ArrayList<>();
     private final static long serialVersionUID = -819237844779022930L;
 
     public long getFrom() {
@@ -58,11 +58,11 @@ public class RecipeSearch implements Serializable {
         this.links = links;
     }
 
-    public List<RecipeAndLinks> getHits() {
+    public List<RecipeAndLinksItem> getHits() {
         return hits;
     }
 
-    public void setHits(List<RecipeAndLinks> hits) {
+    public void setHits(List<RecipeAndLinksItem> hits) {
         this.hits = hits;
     }
 

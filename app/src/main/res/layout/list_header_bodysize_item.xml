@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+
+android:layout_marginTop="@dimen/start_dimen"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+<TextView
+    android:id="@+id/textView_title"
+    style="@style/text_standart"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Измерения"
+    android:layout_margin="@dimen/start_max_dimen"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="@style/text_title"
+        android:text="58"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title" />
+    <TextView
+        android:id="@+id/textView_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_dimen"
+        style="@style/text_minim_big"
+        android:text="kg"
+
+        app:layout_constraintStart_toEndOf="@+id/textView_count"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_count" />
+    <TextView
+        android:id="@+id/textView_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/start_dimen"
+        style="@style/text_minim"
+        android:text="Обновлено 7 дней назад  "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_count" />
+    <TextView
+        android:id="@+id/textView_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/start_max_dimen"
+        style="@style/text_standart"
+        android:textColor="@color/button_green"
+        android:text="Обновить"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_date" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/button_selector"
+        android:elevation="2dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:padding="12dp"
+        android:stateListAnimator="@null"
+        android:text="БОЛЬШЕ ПАРАМЕТРОВ С ПРЕМИУМОМ"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_update" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

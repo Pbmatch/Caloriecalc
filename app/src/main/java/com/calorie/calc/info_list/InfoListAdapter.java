@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 import com.calorie.calc.info_list.holder.DietCheckboxHolder;
 import com.calorie.calc.info_list.holder.DietHolder;
@@ -169,7 +169,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             return FOOTER_TYPE;
         }
 
-        if(infoItemList.get(position) instanceof RecipeAndLinks){
+        if(infoItemList.get(position) instanceof RecipeAndLinksItem){
         return useRecipeHorizontalItem ? RECIPE_HORIZONTAL_MINI_HOLDER_TYPE: useRecipeLikedItem? RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE
                 :RECIPE_VERTICAL_BIG_HOLDER_TYPE;}
 

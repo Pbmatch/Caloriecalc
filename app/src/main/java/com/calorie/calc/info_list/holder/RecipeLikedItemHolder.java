@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.calorie.calc.R;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.utils.DisplaySize;
 import com.calorie.calc.utils.PicassoHelper;
@@ -22,7 +22,7 @@ public class RecipeLikedItemHolder extends RecipeItemHolder {
     }
 
     @Override
-    public void updateFromItem(RecipeAndLinks infoItem, int pos) {
+    public void updateFromItem(RecipeAndLinksItem infoItem, int pos) {
         super.updateFromItem(infoItem, pos);
         if(getFabState(infoItem))
         {

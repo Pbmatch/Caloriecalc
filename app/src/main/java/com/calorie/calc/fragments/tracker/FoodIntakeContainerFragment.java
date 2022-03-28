@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.R;
@@ -50,11 +51,11 @@ public class FoodIntakeContainerFragment extends ListFragment<Fragment> implemen
 
 
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new FoodIntakeFragment(getChildFragmentManager()));
-        fragmentList.add(new FoodIntakeFragment(getChildFragmentManager()));
-        fragmentList.add(new FoodIntakeFragment(getChildFragmentManager()));
-        fragmentList.add(new FoodIntakeFragment(getChildFragmentManager()));
-        fragmentList.add(new FoodIntakeFragment(getChildFragmentManager()));
+       // fragmentList.add(new FoodIntakeFragment(getChildFragmentManager()));
+       fragmentList.add(new FoodIntakeFragment(getChildFragmentManager(),MealTime.BREAKFAST));
+        fragmentList.add(new FoodIntakeFragment(getChildFragmentManager(),MealTime.DINNER));
+        fragmentList.add(new FoodIntakeFragment(getChildFragmentManager(),MealTime.LUNCH));
+       fragmentList.add(new FoodIntakeFragment(getChildFragmentManager(),MealTime.SNACK));
 
         infoListAdapter.setInfoItemList(fragmentList);
 
@@ -78,7 +79,7 @@ public class FoodIntakeContainerFragment extends ListFragment<Fragment> implemen
 
     @Override
     public int getLayoutManagerOrientation() {
-        return 0;
+        return LinearLayoutManager.VERTICAL;
     }
 
     @Override

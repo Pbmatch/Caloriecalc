@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.ListEmptyAndToolbar;
 import com.calorie.calc.fragments.recipe.RecipeState;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.utils.BackPressable;
 
 import java.util.ArrayList;
@@ -44,12 +44,12 @@ public class ProductContainerFragment extends ListEmptyAndToolbar<Fragment> impl
     @Override
     public void startLoadData() {
         // super.startLoadData();
-        List<RecipeAndLinks> list=RecipeState.getProductLiveData().getValue();
+        List<RecipeAndLinksItem> list=RecipeState.getProductLiveData().getValue();
         if(list==null||list.isEmpty())
             emptyLinearLayout.setVisibility(View.VISIBLE);
         else {
             List<Fragment> fragmentList = new ArrayList<>();
-            for(RecipeAndLinks item:list)
+            for(RecipeAndLinksItem item:list)
             {
                fragmentList.add(new ProductSeeFragment(item,getChildFragmentManager()));
 

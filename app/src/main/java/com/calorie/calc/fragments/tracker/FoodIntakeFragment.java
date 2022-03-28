@@ -9,25 +9,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.R;
+import com.calorie.calc.databinding.ListFooterMealtimeItemBinding;
 import com.calorie.calc.databinding.ListHeaderMealtimeItemBinding;
-import com.calorie.calc.fragments.recipe.RecipeListFragment;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinks;
+import com.calorie.calc.fragments.recipe.ListFragment;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.info_list.holder.IFragment;
 
 
-public class FoodIntakeFragment extends RecipeListFragment<RecipeAndLinks> implements IFragment {
+public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> implements IFragment {
 
 
 
-
+ MealTime mealTime;
 
     FragmentManager myfragmentManager;
 
-    public FoodIntakeFragment(  FragmentManager fragmentManager) {
-        super();
 
+   public FoodIntakeFragment(  FragmentManager fragmentManager) {
+      super();
+      this.myfragmentManager=fragmentManager;
+   }
+
+    public FoodIntakeFragment(  FragmentManager fragmentManager,MealTime mealTime) {
+        super();
+       this.mealTime=mealTime;
 
         this.myfragmentManager=fragmentManager;
     }
@@ -51,13 +59,21 @@ public class FoodIntakeFragment extends RecipeListFragment<RecipeAndLinks> imple
     }
 
     @Override
+    protected ViewBinding getListFooter() {
+        return ListFooterMealtimeItemBinding
+                .inflate(getLayoutInflater(), itemsList, false);
+    }
+
+    @Override
     public void startLoadData() {
         // super.startLoadData();
-        ListHeaderMealtimeItemBinding viewBinding = ListHeaderMealtimeItemBinding
+       ListHeaderMealtimeItemBinding viewBinding = ListHeaderMealtimeItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
+        viewBinding.textViewTitle.setText(mealTime.getTitle());
+        viewBinding.imageViewTitle.setImageDrawable( getContext().getDrawable(mealTime.getResourceImageView()));
 
-        infoListAdapter.setHeader(viewBinding.getRoot());
-
+      infoListAdapter.setHeader(viewBinding.getRoot());
+        showListFooter(true);
     //    infoListAdapter.setInfoItemList(getItemCheckedList());
         // emptyLinearLayout.setVisibility(View.GONE);
     }
