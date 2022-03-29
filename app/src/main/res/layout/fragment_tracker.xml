@@ -12,16 +12,21 @@
     android:layout_height="match_parent"
     tools:context=".fragments.TrackerFragment">
 
+    <include
+        layout="@layout/toolbar_calendar"
+        android:id="@+id/toolbarId"
+
+        />
 
     <com.calorie.calc.utils.SemiCircleArcProgressBar
         android:id="@+id/semiCircleArcProgressBar"
         android:layout_width="240dp"
         android:layout_height="130dp"
-        android:layout_marginTop="40dp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarId"
         app:percent="30"
         app:progressBarColor="@color/button_green"
         app:progressBarWidth="50"
@@ -33,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Съедено \n 500Ккал"
+        android:layout_marginTop="@dimen/start_dimen"
         android:layout_marginEnd="-8dp"
         app:layout_constraintEnd_toStartOf="@+id/semiCircleArcProgressBar"
         app:layout_constraintTop_toTopOf="@+id/semiCircleArcProgressBar" />
@@ -42,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="-8dp"
-
+        android:layout_marginTop="@dimen/start_dimen"
         android:text="Созжено \n 200Ккал"
         app:layout_constraintStart_toEndOf="@+id/semiCircleArcProgressBar"
         app:layout_constraintTop_toTopOf="@+id/semiCircleArcProgressBar" />
