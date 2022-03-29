@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/item_constraintL"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/csl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/textViewTitle"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="4dp"
-
-        android:text=" "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title"/>
-
+        android:layout_margin="@dimen/start_max_dimen"
+        app:srcCompat="@drawable/cycling" />
     <TextView
-        android:id="@+id/textViewCount"
+        android:id="@+id/textViewTitle"
+        style="@style/text_minim_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text=" "
-        tools:text="25"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
+        android:layout_marginStart="@dimen/start_dimen"
+        android:text="Ходьба"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

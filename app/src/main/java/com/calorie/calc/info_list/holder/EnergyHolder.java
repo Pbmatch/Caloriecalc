@@ -10,9 +10,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.info_list.InfoItemBuilder;
+import com.calorie.calc.info_list.InfoItemHolder;
 import com.calorie.calc.utils.DisplaySize;
 
-public class EnergyHolder extends InfoItemHolder< Nutrient>{
+public class EnergyHolder extends InfoItemHolder< Nutrient> {
 
     private TextView itemTitleView;
     private  TextView itemKkalView;

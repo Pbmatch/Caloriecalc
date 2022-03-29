@@ -2,7 +2,7 @@ package com.calorie.calc.fragments.recipe.holders;
 
 import java.io.Serializable;
 
-public class PhysicalExerciseItem implements Serializable {
+public class ExerciseItem implements Serializable {
     String title;
     int time;
     double energy;

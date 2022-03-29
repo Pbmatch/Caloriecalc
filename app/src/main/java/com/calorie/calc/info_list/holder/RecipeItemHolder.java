@@ -13,9 +13,10 @@ import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Recipe;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.info_list.InfoItemBuilder;
+import com.calorie.calc.info_list.InfoItemHolder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public abstract class RecipeItemHolder extends InfoItemHolder <RecipeAndLinksItem>{
+public abstract class RecipeItemHolder extends InfoItemHolder<RecipeAndLinksItem> {
 
     protected ImageView itemThumbnailView;
     protected TextView itemTitleView;

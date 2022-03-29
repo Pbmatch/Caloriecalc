@@ -20,7 +20,6 @@ import com.calorie.calc.info_list.holder.DietHolder;
 import com.calorie.calc.info_list.holder.EnergyHolder;
 import com.calorie.calc.info_list.holder.FallbackViewHolder;
 import com.calorie.calc.info_list.holder.FragmentHolder;
-import com.calorie.calc.info_list.holder.InfoItemHolder;
 import com.calorie.calc.info_list.holder.IngredientHolder;
 import com.calorie.calc.info_list.holder.NutrientHolder;
 import com.calorie.calc.info_list.holder.ProductEditHolder;

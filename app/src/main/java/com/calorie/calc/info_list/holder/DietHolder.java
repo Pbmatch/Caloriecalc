@@ -8,9 +8,10 @@ import android.widget.TextView;
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 import com.calorie.calc.info_list.InfoItemBuilder;
+import com.calorie.calc.info_list.InfoItemHolder;
 import com.calorie.calc.utils.PicassoHelper;
 
-public class DietHolder  extends InfoItemHolder<DietMainPageType>{
+public class DietHolder  extends InfoItemHolder<DietMainPageType> {
     private ImageView itemThumbnailView;
     private TextView itemTitleView;
     private  TextView itemKkalView;

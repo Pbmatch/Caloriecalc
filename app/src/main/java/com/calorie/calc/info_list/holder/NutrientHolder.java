@@ -8,8 +8,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.info_list.InfoItemBuilder;
+import com.calorie.calc.info_list.InfoItemHolder;
 
-public class NutrientHolder extends InfoItemHolder<Nutrient>{
+public class NutrientHolder extends InfoItemHolder<Nutrient> {
     private TextView itemTitleView;
     private  TextView itemContView;
     private ConstraintLayout csl;

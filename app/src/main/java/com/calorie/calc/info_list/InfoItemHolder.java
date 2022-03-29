@@ -1,11 +1,9 @@
-package com.calorie.calc.info_list.holder;
+package com.calorie.calc.info_list;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.calorie.calc.info_list.InfoItemBuilder;
 
 public abstract class InfoItemHolder<T> extends RecyclerView.ViewHolder {
     protected final InfoItemBuilder itemBuilder;

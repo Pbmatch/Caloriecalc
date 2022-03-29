@@ -11,8 +11,9 @@ import androidx.fragment.app.Fragment;
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.info_list.InfoItemBuilder;
+import com.calorie.calc.info_list.InfoItemHolder;
 
-public class FragmentHolder extends InfoItemHolder<Fragment>{
+public class FragmentHolder extends InfoItemHolder<Fragment> {
 
     ConstraintLayout layout;
       FragmentHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {

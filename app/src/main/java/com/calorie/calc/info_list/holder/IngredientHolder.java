@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.info_list.InfoItemBuilder;
+import com.calorie.calc.info_list.InfoItemHolder;
 
 public class IngredientHolder extends InfoItemHolder<Ingredient> {
     private TextView itemTitleView;

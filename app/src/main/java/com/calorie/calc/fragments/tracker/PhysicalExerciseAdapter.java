@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.databinding.ListHeaderActivItemBinding;
-import com.calorie.calc.fragments.recipe.holders.PhysicalExerciseItem;
+import com.calorie.calc.fragments.recipe.holders.ExerciseItem;
 
-public class PhysicalExerciseAdapter  extends ListAdapter<PhysicalExerciseItem>{
+public class PhysicalExerciseAdapter  extends ListAdapter<ExerciseItem>{
 
 
     public PhysicalExerciseAdapter(RecyclerView itemsList, Context context) {
