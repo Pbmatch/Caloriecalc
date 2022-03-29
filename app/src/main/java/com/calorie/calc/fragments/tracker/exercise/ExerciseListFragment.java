@@ -1,4 +1,4 @@
-package com.calorie.calc.fragments.tracker.bodysize;
+package com.calorie.calc.fragments.tracker.exercise;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,12 +10,11 @@ import androidx.viewbinding.ViewBinding;
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.ListFragment;
 
+public class ExerciseListFragment extends ListFragment {
 
-public class BodyListFragment extends ListFragment {
 
+    public ExerciseListFragment() {
 
-    public BodyListFragment() {
-        // Required empty public constructor
     }
 
 
