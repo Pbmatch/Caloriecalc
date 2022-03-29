@@ -89,7 +89,17 @@
         app:layout_constraintEnd_toEndOf="@+id/linear_progress_start"
         app:layout_constraintStart_toStartOf="@+id/linear_progress_start"
         app:layout_constraintBottom_toTopOf="@+id/linear_progress_start" />
+    <TextView
+        android:id="@+id/textView_progress_start_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ещё 63 г"
+        style="@style/text_minim_big"
+        android:layout_marginTop="@dimen/min_margin"
 
+        app:layout_constraintEnd_toEndOf="@+id/linear_progress_start"
+        app:layout_constraintStart_toStartOf="@+id/linear_progress_start"
+        app:layout_constraintTop_toBottomOf="@+id/linear_progress_start" />
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/linear_progress_start"
         android:layout_width="80dp"
@@ -114,7 +124,17 @@
         app:layout_constraintEnd_toEndOf="@+id/linear_progress_center"
         app:layout_constraintStart_toStartOf="@+id/linear_progress_center"
         app:layout_constraintBottom_toTopOf="@+id/linear_progress_center" />
+    <TextView
+        android:id="@+id/textView_progress_center_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ещё 63 г"
+        style="@style/text_minim_big"
+        android:layout_marginTop="@dimen/min_margin"
 
+        app:layout_constraintEnd_toEndOf="@+id/linear_progress_center"
+        app:layout_constraintStart_toStartOf="@+id/linear_progress_center"
+        app:layout_constraintTop_toBottomOf="@+id/linear_progress_center" />
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/linear_progress_center"
         android:layout_width="80dp"
@@ -140,6 +160,19 @@
         app:layout_constraintEnd_toEndOf="@+id/linear_progress_end"
         app:layout_constraintStart_toStartOf="@+id/linear_progress_end"
         app:layout_constraintBottom_toTopOf="@+id/linear_progress_end" />
+
+    <TextView
+        android:id="@+id/textView_progress_end_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ещё 63 г"
+        style="@style/text_minim_big"
+        android:layout_marginTop="@dimen/min_margin"
+
+        app:layout_constraintEnd_toEndOf="@+id/linear_progress_end"
+        app:layout_constraintStart_toStartOf="@+id/linear_progress_end"
+        app:layout_constraintTop_toBottomOf="@+id/linear_progress_end" />
+
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/linear_progress_end"
         android:layout_width="80dp"
@@ -161,7 +194,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/linear_progress_center" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_progress_center_bottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
