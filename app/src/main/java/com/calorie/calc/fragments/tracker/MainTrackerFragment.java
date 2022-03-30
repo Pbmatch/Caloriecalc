@@ -55,9 +55,9 @@ public class MainTrackerFragment extends Fragment {
         recyclerViewFoto=view.findViewById(R.id.rec_view_foto);
         recyclerViewBodySize = view.findViewById(R.id.rec_view_bodysize);
 
-        physicalExerciseAdapter = new PhysicalExerciseAdapter(recyclerViewExercise,getContext());
-        bodySizeAdapter=new BodySizeAdapter(recyclerViewBodySize,getContext());
-        fotoAdapter=new FotoAdapter(recyclerViewFoto,getContext());
+        physicalExerciseAdapter = new PhysicalExerciseAdapter(recyclerViewExercise,getContext(),getActivity().getSupportFragmentManager());
+        bodySizeAdapter=new BodySizeAdapter(recyclerViewBodySize,getContext(),getActivity().getSupportFragmentManager());
+        fotoAdapter=new FotoAdapter(recyclerViewFoto,getContext(),getActivity().getSupportFragmentManager());
 
         openFoodIntakeContainerFragment(getChildFragmentManager(),new FoodIntakeContainerFragment());
     }

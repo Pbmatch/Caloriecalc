@@ -1,17 +1,31 @@
-package com.calorie.calc.fragments.recipe.holders;
+package com.calorie.calc.data;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class BodySizeItem implements Serializable {
+public class BodySizeItem implements Serializable,MiniItem {
     String title;
     String unit;
     Date time;
     int countOfUnit;
     int imageResource;
 
+    public BodySizeItem(String title, int imageResource) {
+        this.title = title;
+        this.imageResource = imageResource;
+    }
+
+    public BodySizeItem() {
+    }
+
+    @Override
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public int getImageResource() {
+        return imageResource;
     }
 
     public void setTitle(String title) {
@@ -42,9 +56,7 @@ public class BodySizeItem implements Serializable {
         this.countOfUnit = countOfUnit;
     }
 
-    public int getImageResource() {
-        return imageResource;
-    }
+
 
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;

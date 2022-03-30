@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/start_dimen"
         android:layout_marginTop="@dimen/dimen_16"
-        android:text="Хотьба"
+        android:text="Талия"
         app:layout_constraintStart_toEndOf="@+id/imageView"
 
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         style="@style/text_minim"
         android:layout_marginTop="@dimen/min_dimen"
         android:layout_marginBottom="@dimen/start_dimen"
-        android:text="15 мин"
+        android:text="15.11.21"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textViewTitle"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
@@ -52,8 +52,8 @@
         android:id="@+id/imageView_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/start_max_dimen"
-        android:padding="3dp"
+        android:layout_marginEnd="@dimen/start_dimen"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

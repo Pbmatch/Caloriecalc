@@ -2,6 +2,7 @@ package com.calorie.calc.fragments.tracker;
 
 import android.content.Context;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -13,13 +14,15 @@ public abstract class ListAdapter <T> {
     protected    RecyclerView itemsList;
     private Context context;
     public InfoListAdapter<T> infoListAdapter;
+    protected   FragmentManager fragmentManager;
     public Context getContext() {
         return context;
     }
 
-    public ListAdapter(RecyclerView itemsList, Context context) {
+    public ListAdapter(RecyclerView itemsList, Context context, FragmentManager fragmentManager) {
         this.itemsList = itemsList;
         this.context = context;
+        this.fragmentManager=fragmentManager;
         if (infoListAdapter == null) {
             infoListAdapter = new InfoListAdapter<>(getContext());
         }
@@ -27,7 +30,7 @@ public abstract class ListAdapter <T> {
     }
     public abstract ViewBinding getListFooter();
     public abstract ViewBinding getListHeader();
-
+    public abstract void setDataToList();
     private void initList( ) {
 
 
@@ -36,6 +39,7 @@ public abstract class ListAdapter <T> {
         itemsList.setLayoutManager(layoutManager);
 
         itemsList.setAdapter(infoListAdapter);
+        setDataToList();
         if(getListFooter()!=null) {
             infoListAdapter.setFooter(getListFooter().getRoot());
             infoListAdapter.showFooter(true);

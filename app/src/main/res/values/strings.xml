@@ -208,6 +208,7 @@
     <string name="carbohydrates">Углеводы</string>
     <string name="fats">Жиры</string>
     <string name="protein">Белки</string>
+    <string name="add_execise">Добавить активность</string>
     <plurals name="dish_count">
         <item quantity="one">%s рецепт</item>
         <item quantity="few">%s рецепта</item>

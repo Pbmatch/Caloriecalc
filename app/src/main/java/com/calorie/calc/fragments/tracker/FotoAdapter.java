@@ -3,20 +3,21 @@ package com.calorie.calc.fragments.tracker;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.databinding.ListFooterFotoBinding;
-import com.calorie.calc.fragments.recipe.holders.FotoItem;
+import com.calorie.calc.data.FotoItem;
 
 public class FotoAdapter extends ListAdapter<FotoItem>{
 
 
 
 
-    public FotoAdapter(RecyclerView itemsList, Context context) {
-        super(itemsList, context);
+    public FotoAdapter(RecyclerView itemsList, Context context, FragmentManager fragmentManager) {
+        super(itemsList, context, fragmentManager);
     }
 
     @Override
@@ -30,6 +31,12 @@ public class FotoAdapter extends ListAdapter<FotoItem>{
     {
         return   null;
     }
+
+    @Override
+    public void setDataToList() {
+
+    }
+
     @Override
     @RecyclerView.Orientation
     int getLayoutManagerOrientation()

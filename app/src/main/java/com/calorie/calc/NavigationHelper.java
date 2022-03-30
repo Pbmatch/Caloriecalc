@@ -121,10 +121,13 @@ public class NavigationHelper {
         fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.main_activ_container)).commit();
 
     }
+
+
+
+
     public static void showMainFragment(final FragmentManager fragmentManager ) {
 
-
-         fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.main_activ_second_container)).commit();
+        fragmentManager.beginTransaction().hide(fragmentManager.findFragmentById(R.id.main_activ_second_container)).commit();
          fragmentManager.beginTransaction().show(fragmentManager.findFragmentById(R.id.main_activ_container)).commit();
 
     }

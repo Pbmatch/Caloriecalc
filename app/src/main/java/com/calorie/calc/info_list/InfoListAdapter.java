@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.calorie.calc.data.MiniItem;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
@@ -21,6 +22,7 @@ import com.calorie.calc.info_list.holder.EnergyHolder;
 import com.calorie.calc.info_list.holder.FallbackViewHolder;
 import com.calorie.calc.info_list.holder.FragmentHolder;
 import com.calorie.calc.info_list.holder.IngredientHolder;
+import com.calorie.calc.info_list.holder.MiniItemHolder;
 import com.calorie.calc.info_list.holder.NutrientHolder;
 import com.calorie.calc.info_list.holder.ProductEditHolder;
 import com.calorie.calc.info_list.holder.ProductHolder;
@@ -49,6 +51,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int PRODUCT_HOLDER_TYPE = 0x108;
     private static final int PRODUCT_EDIT_HOLDER_TYPE = 0x109;
     private static final int FRAGMENT_HOLDER_TYPE = 0x110;
+    private static final int MINI_HOLDER_TYPE = 0x111;
     private boolean isNutrient=false;
 
 
@@ -200,6 +203,12 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             return FRAGMENT_HOLDER_TYPE;
 
         }
+        if(infoItemList.get(position) instanceof MiniItem)
+        {
+
+            return MINI_HOLDER_TYPE;
+
+        }
 
 
 
@@ -232,7 +241,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             case NUTRIENT_HOLDER_TYPE: return new NutrientHolder(infoItemBuilder,parent);
             case DIET_CHECKBOX_HOLDER_TYPE:return new DietCheckboxHolder(infoItemBuilder,parent);
             case FRAGMENT_HOLDER_TYPE:return new FragmentHolder(infoItemBuilder,parent);
-
+            case MINI_HOLDER_TYPE:return new MiniItemHolder(infoItemBuilder,parent);
             case HEADER_TYPE:
                 return new HFHolder(header);
             case FOOTER_TYPE:

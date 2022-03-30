@@ -1,10 +1,12 @@
 package com.calorie.calc;
 
+import com.calorie.calc.data.BodySizeItem;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class User {
-
-
     GoalWeight goalWeight;
     Lifestyle lifestyle;
     Gender gender;
@@ -15,6 +17,15 @@ public class User {
     String name;
     String email;
     String password;
+    List<BodySizeItem> bodySizeItemList = new ArrayList<>();
+
+    public List<BodySizeItem> getBodySizeItemList() {
+        return bodySizeItemList;
+    }
+
+    public void setBodySizeItemList(List<BodySizeItem> bodySizeItemList) {
+        this.bodySizeItemList = bodySizeItemList;
+    }
 
     public GoalWeight getGoalWeight() {
         return goalWeight;

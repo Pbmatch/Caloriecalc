@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");;
     ActivityMainBinding binding;
+    static User user = new User();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Caloriecalc);
@@ -119,4 +120,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        MainActivity.user = user;
+    }
 }
