@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.tracker.bodysize.BodyListFragment">
+    tools:context=".fragments.tracker.miniitem.bodysize.BodyListFragment">
 
     <include
         layout="@layout/toolbar_lite"
@@ -75,7 +75,7 @@
         android:gravity="center"
         android:padding="12dp"
         android:stateListAnimator="@null"
-        android:text="ДОБАВИТЬ"
+        android:text="@string/add_button"
         android:textColor="@color/white"
         android:textSize="16dp"
 

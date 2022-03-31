@@ -12,8 +12,6 @@ import com.calorie.calc.data.ExerciseItem;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.info_list.InfoItemHolder;
 
-import java.util.Date;
-
 public class ExerciseHolder extends InfoItemHolder<ExerciseItem> {
 
     private TextView textViewTitle;
@@ -38,9 +36,8 @@ public class ExerciseHolder extends InfoItemHolder<ExerciseItem> {
     @Override
     public void updateFromItem(ExerciseItem infoItem, int position) {
         textViewTitle.setText(infoItem.getTitle());
-        Date date = new Date();
-        date.setTime(infoItem.getTime());
-        textViewText.setText(date.toString());
+
+        textViewText.setText(infoItem.getDate().toString());
         textViewCount.setText(String.valueOf(infoItem.getEnergy()));
         imageView.setImageResource(infoItem.getImageResource());
         csl.setOnClickListener(new View.OnClickListener() {

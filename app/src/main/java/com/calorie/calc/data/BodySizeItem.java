@@ -36,15 +36,15 @@ public class BodySizeItem implements Serializable,MiniItem {
     public void setTitle(String title) {
         this.title = title;
     }
-
+    @Override
     public String getUnit(Context context) {
         return OptionsUnit.getBodySizeUnit(context);
     }
-
+    @Override
     public int getImageResourceBig() {
         return imageResourceBig;
     }
-
+    @Override
     public Date getDate() {
         return date;
     }

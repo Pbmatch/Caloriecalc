@@ -8,8 +8,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
+import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.data.ExerciseItem;
 import com.calorie.calc.databinding.ListHeaderActivItemBinding;
+import com.calorie.calc.fragments.tracker.miniitem.exercise.ExerciseListFragment;
 
 public class PhysicalExerciseAdapter  extends ListAdapter<ExerciseItem>{
 
@@ -36,7 +38,12 @@ public class PhysicalExerciseAdapter  extends ListAdapter<ExerciseItem>{
        {headerBinding.textViewAdd.setVisibility(View.GONE);
            headerBinding.imageViewAdd.setVisibility(View.VISIBLE);
        }
-
+        headerBinding.textViewAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openNavigationFragment(fragmentManager,new ExerciseListFragment());
+            }
+        });
         return   headerBinding;
     }
 

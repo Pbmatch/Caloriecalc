@@ -1,6 +1,4 @@
-package com.calorie.calc.fragments.tracker.bodysize;
-
-import static com.calorie.calc.NavigationHelper.openAddProductFragment;
+package com.calorie.calc.fragments.tracker.miniitem;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,23 +11,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.R;
-import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.databinding.ListHeaderTextviewBinding;
 import com.calorie.calc.fragments.recipe.ListFragment;
 import com.calorie.calc.utils.BackPressable;
-import com.calorie.calc.utils.DefaultItemsCreator;
 import com.calorie.calc.utils.OnClickGesture;
 
+import java.util.List;
 
-public class BodyListFragment extends ListFragment<BodySizeItem> implements BackPressable {
+public abstract class MiniItemListFragment<T> extends ListFragment<T> implements BackPressable {
 
 
-   private TextView toolbarTitle;
+    private TextView toolbarTitle;
     private ImageView toolbarBack;
-    public BodyListFragment() {
-        // Required empty public constructor
-    }
 
+    public MiniItemListFragment() {
+
+    }
 
 
     @Override
@@ -50,6 +47,14 @@ public class BodyListFragment extends ListFragment<BodySizeItem> implements Back
         return null;
     }
 
+    public abstract void onHeaderClick();
+
+    public abstract List<T> getList();
+
+    public abstract String getToolbarTitle();
+
+    public abstract void onItemClick(T selectedItem);
+
     @Override
     public void startLoadData() {
         ListHeaderTextviewBinding viewBinding = ListHeaderTextviewBinding
@@ -58,15 +63,15 @@ public class BodyListFragment extends ListFragment<BodySizeItem> implements Back
         viewBinding.textViewHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAddProductFragment(getActivity().getSupportFragmentManager(),new BodyCreateSizeFragment());
+                onHeaderClick();
             }
         });
         infoListAdapter.setHeader(viewBinding.getRoot());
-        infoListAdapter.setInfoItemList(DefaultItemsCreator.getDefaultBodySizeItemList());
-        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<BodySizeItem>() {
+        infoListAdapter.setInfoItemList(getList());
+        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<T>() {
             @Override
-            public void selected(BodySizeItem selectedItem) {
-                openAddProductFragment(getActivity().getSupportFragmentManager(),new BodySetSizeFragment(selectedItem));
+            public void selected(T selectedItem) {
+                onItemClick(selectedItem);
             }
         });
 
@@ -97,11 +102,11 @@ public class BodyListFragment extends ListFragment<BodySizeItem> implements Back
     public void initViews(View rootView) {
         toolbarTitle = rootView.findViewById(R.id.toolbarTextViewTitle);
         toolbarBack = rootView.findViewById(R.id.toolbarImageViewBack);
-        toolbarTitle.setText("Добавление измерений");
+        toolbarTitle.setText(getToolbarTitle());
         toolbarBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               getActivity().onBackPressed();
+                getActivity().onBackPressed();
             }
         });
     }

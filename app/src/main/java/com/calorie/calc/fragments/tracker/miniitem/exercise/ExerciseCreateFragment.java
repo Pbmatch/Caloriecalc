@@ -1,4 +1,4 @@
-package com.calorie.calc.fragments.tracker.exercise;
+package com.calorie.calc.fragments.tracker.miniitem.exercise;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

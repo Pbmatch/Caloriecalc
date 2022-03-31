@@ -11,7 +11,7 @@ import androidx.viewbinding.ViewBinding;
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.databinding.ListHeaderBodysizeItemBinding;
 import com.calorie.calc.data.BodySizeItem;
-import com.calorie.calc.fragments.tracker.bodysize.BodyListFragment;
+import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyListFragment;
 
 public class BodySizeAdapter  extends ListAdapter<BodySizeItem>{
 
@@ -37,7 +37,12 @@ public class BodySizeAdapter  extends ListAdapter<BodySizeItem>{
                 NavigationHelper.openNavigationFragment(fragmentManager,new BodyListFragment());
             }
         });
+        binding.textViewUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         return   binding;
     }
 
