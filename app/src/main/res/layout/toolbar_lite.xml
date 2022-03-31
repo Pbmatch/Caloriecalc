@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageViewBack"
+        android:id="@+id/toolbarImageViewBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="left"
@@ -26,13 +26,13 @@
         android:gravity="center"
         android:text=""
 
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewBack"
-        app:layout_constraintStart_toEndOf="@+id/imageViewBack"
-        app:layout_constraintTop_toTopOf="@+id/imageViewBack" />
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarImageViewBack"
+        app:layout_constraintStart_toEndOf="@+id/toolbarImageViewBack"
+        app:layout_constraintTop_toTopOf="@+id/toolbarImageViewBack" />
 
 
     <ImageView
-        android:id="@+id/imageViewRight"
+        android:id="@+id/toolbarImageViewRight"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="right"

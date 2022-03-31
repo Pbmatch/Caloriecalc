@@ -147,7 +147,7 @@ public class ScrollingFragment extends Fragment implements BackPressable {
     }
     void initToolbar()
     {
-        binding.toolbarContainer.imageViewBack.setOnClickListener(new View.OnClickListener() {
+        binding.toolbarContainer.toolbarImageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                showMainFragment(getActivity().getSupportFragmentManager());

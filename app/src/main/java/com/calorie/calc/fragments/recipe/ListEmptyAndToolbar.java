@@ -60,8 +60,8 @@ public abstract class ListEmptyAndToolbar<T>  extends RecipeListFragment<T> {
         emptyLinearLayout =view.findViewById(R.id.empty_state_view);
         emptyImageView =view.findViewById(R.id.empty_state_desc);
         emptyTextView =view.findViewById(R.id.empty_state_text);
-        toolbarImageViewClose =view.findViewById(R.id.imageViewBack);
-        toolbarImageViewRight = view.findViewById(R.id.imageViewRight);
+        toolbarImageViewClose =view.findViewById(R.id.toolbarImageViewBack);
+        toolbarImageViewRight = view.findViewById(R.id.toolbarImageViewRight);
         toolbarText=view.findViewById(R.id.toolbarTextViewTitle);
         super.onViewCreated(view, savedInstanceState);
         setToolbar();

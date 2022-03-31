@@ -39,8 +39,8 @@ public class BodySizeHolder  extends InfoItemHolder<BodySizeItem> {
     public void updateFromItem(BodySizeItem infoItem, int position) {
         textViewTitle.setText(infoItem.getTitle());
 
-        textViewText.setText(infoItem.getTime().toString());
-        textViewCount.setText(infoItem.getUnit()+infoItem.getUnit());
+        textViewText.setText(infoItem.getDate().toString());
+        textViewCount.setText(infoItem.getCountOfUnit()+infoItem.getUnit(itemBuilder.getContext()));
         imageView.setImageResource(infoItem.getImageResource());
         csl.setOnClickListener(new View.OnClickListener() {
             @Override

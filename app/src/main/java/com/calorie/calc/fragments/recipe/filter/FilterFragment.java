@@ -45,7 +45,7 @@ public class FilterFragment extends Fragment {
         FlexboxLayout flexDish = view.findViewById(R.id.flex_box_Dishtype);
         FlexboxLayout flexCuisine = view.findViewById(R.id.flex_box_CuisineType);
         FlexboxLayout flexEnergy = view.findViewById(R.id.flex_box_EnergyType);
-        imageViewClose= view.findViewById(R.id.imageViewBack);
+        imageViewClose= view.findViewById(R.id.toolbarImageViewBack);
         textViewClear= view.findViewById(R.id.textViewTextRight);
 
         setView(flexHealth,Arrays.asList(HealthType.values()));

@@ -18,7 +18,7 @@
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="@dimen/start_dimen"
         style="@style/text_title_min"
         android:text="Свой параметр"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,19 +30,19 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/waistbig"
+        android:layout_marginTop="@dimen/start_max_dimen"
+        android:src="@drawable/measurementsbig"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
 
     <AutoCompleteTextView
-        android:id="@+id/editText"
+        android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_32"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edititext_find_recipe"
         android:drawablePadding="8dp"
         android:ems="10"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <AutoCompleteTextView
-        android:id="@+id/editTextVolume"
+        android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_16"
@@ -77,7 +77,7 @@
         android:singleLine="true"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
 
 
@@ -103,14 +103,14 @@
         />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="@dimen/start_max_dimen"
         android:text="см"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextVolume"
-        app:layout_constraintStart_toEndOf="@+id/editTextVolume"
-        app:layout_constraintTop_toTopOf="@+id/editTextVolume" />
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toTopOf="@+id/editText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

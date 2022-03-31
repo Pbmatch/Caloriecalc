@@ -1,5 +1,7 @@
 package com.calorie.calc;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.calorie.calc.data.BodySizeItem;
 
 import java.util.ArrayList;
@@ -17,14 +19,13 @@ public class User {
     String name;
     String email;
     String password;
-    List<BodySizeItem> bodySizeItemList = new ArrayList<>();
+    MutableLiveData<List<BodySizeItem>> bodySizeItemList = new MutableLiveData<>();
 
-    public List<BodySizeItem> getBodySizeItemList() {
+    public MutableLiveData<List<BodySizeItem>> getBodySizeItemList() {
+        if (bodySizeItemList.getValue() == null)
+            bodySizeItemList.setValue(new ArrayList<>());
+
         return bodySizeItemList;
-    }
-
-    public void setBodySizeItemList(List<BodySizeItem> bodySizeItemList) {
-        this.bodySizeItemList = bodySizeItemList;
     }
 
     public GoalWeight getGoalWeight() {

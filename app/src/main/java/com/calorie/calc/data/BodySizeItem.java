@@ -1,18 +1,23 @@
 package com.calorie.calc.data;
 
+import android.content.Context;
+
+import com.calorie.calc.utils.OptionsUnit;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class BodySizeItem implements Serializable,MiniItem {
     String title;
-    String unit;
-    Date time;
+    Date date;
     int countOfUnit;
     int imageResource;
+    int imageResourceBig;
 
-    public BodySizeItem(String title, int imageResource) {
+    public BodySizeItem(String title, int imageResource, int imageResourceBig) {
         this.title = title;
         this.imageResource = imageResource;
+        this.imageResourceBig = imageResourceBig;
     }
 
     public BodySizeItem() {
@@ -32,20 +37,20 @@ public class BodySizeItem implements Serializable,MiniItem {
         this.title = title;
     }
 
-    public String getUnit() {
-        return unit;
+    public String getUnit(Context context) {
+        return OptionsUnit.getBodySizeUnit(context);
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public int getImageResourceBig() {
+        return imageResourceBig;
     }
 
-    public Date getTime() {
-        return time;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getCountOfUnit() {

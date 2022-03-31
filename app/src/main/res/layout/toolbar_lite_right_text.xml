@@ -33,15 +33,15 @@
 
 
 
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewBack"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBack"
-                app:layout_constraintTop_toTopOf="@+id/imageViewBack">
+                app:layout_constraintBottom_toBottomOf="@+id/toolbarImageViewBack"
+                app:layout_constraintStart_toEndOf="@+id/toolbarImageViewBack"
+                app:layout_constraintTop_toTopOf="@+id/toolbarImageViewBack">
 
             </TextView>
 
 
             <ImageView
-                android:id="@+id/imageViewBack"
+                android:id="@+id/toolbarImageViewBack"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
 

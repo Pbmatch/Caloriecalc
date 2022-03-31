@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,14 +16,16 @@ import com.calorie.calc.R;
 import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.databinding.ListHeaderTextviewBinding;
 import com.calorie.calc.fragments.recipe.ListFragment;
-import com.calorie.calc.utils.Constants;
+import com.calorie.calc.utils.BackPressable;
+import com.calorie.calc.utils.DefaultItemsCreator;
 import com.calorie.calc.utils.OnClickGesture;
 
 
-public class BodyListFragment extends ListFragment<BodySizeItem> {
+public class BodyListFragment extends ListFragment<BodySizeItem> implements BackPressable {
 
 
    private TextView toolbarTitle;
+    private ImageView toolbarBack;
     public BodyListFragment() {
         // Required empty public constructor
     }
@@ -59,7 +62,7 @@ public class BodyListFragment extends ListFragment<BodySizeItem> {
             }
         });
         infoListAdapter.setHeader(viewBinding.getRoot());
-        infoListAdapter.setInfoItemList(Constants.getDefaultBodySizeItemList());
+        infoListAdapter.setInfoItemList(DefaultItemsCreator.getDefaultBodySizeItemList());
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<BodySizeItem>() {
             @Override
             public void selected(BodySizeItem selectedItem) {
@@ -93,12 +96,23 @@ public class BodyListFragment extends ListFragment<BodySizeItem> {
     @Override
     public void initViews(View rootView) {
         toolbarTitle = rootView.findViewById(R.id.toolbarTextViewTitle);
+        toolbarBack = rootView.findViewById(R.id.toolbarImageViewBack);
         toolbarTitle.setText("Добавление измерений");
-
+        toolbarBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               getActivity().onBackPressed();
+            }
+        });
     }
 
     @Override
     public void reloadContent() {
 
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 }

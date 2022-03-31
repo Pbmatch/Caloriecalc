@@ -27,7 +27,7 @@ public class VipIdHolderUtils {
       SharedPreferences.Editor prefsEditor = defaultPreferences.edit();
       Gson gson = new Gson();
       String json = gson.toJson(vipStatus);
-      prefsEditor.putString(Constants.KEY_VIP_ID, json);
+      prefsEditor.putString(DefaultItemsCreator.KEY_VIP_ID, json);
       prefsEditor.commit();
 
   }
@@ -37,7 +37,7 @@ public class VipIdHolderUtils {
     {
         SharedPreferences defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         Gson gson = new Gson();
-        String json = defaultPreferences.getString(Constants.KEY_VIP_ID, "");
+        String json = defaultPreferences.getString(DefaultItemsCreator.KEY_VIP_ID, "");
         VipStatus obj = gson.fromJson(json, VipStatus.class);
         return obj;
     }
