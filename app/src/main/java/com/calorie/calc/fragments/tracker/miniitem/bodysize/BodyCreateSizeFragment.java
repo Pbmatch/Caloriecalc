@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.calorie.calc.MainActivity;
 import com.calorie.calc.R;
 import com.calorie.calc.data.BodySizeItem;
@@ -16,6 +19,8 @@ import java.util.Date;
 
 public class BodyCreateSizeFragment extends MiniItemCreateFragment {
 
+
+
     @Override
     public String getUnitText() {
         return OptionsUnit.getBodySizeUnit(getContext());
@@ -25,20 +30,23 @@ public class BodyCreateSizeFragment extends MiniItemCreateFragment {
     public boolean checkButtonEnable() {
         return editText.getText().toString().length() > 0
                 && !editText.getText().toString().equals("0")
+                && editTextName.getText().toString().length() > 0
                 && editTextName.getText().toString().length() > 0;
 
     }
 
-    @Override
-    public boolean checkEnabled(String s) {
-        return !s.equals("0") && editTextName.getText().toString().length() != 0;
 
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_body_create, container, false);
+        return inflater.inflate(R.layout.body_test, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     @Override

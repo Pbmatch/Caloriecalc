@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
     tools:context=".fragments.tracker.miniitem.bodysize.BodyListFragment">
 
     <include
@@ -37,47 +38,51 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
 
-    <AutoCompleteTextView
-        android:id="@+id/editTextName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayoutName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_16"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/edititext_find_recipe"
-        android:drawablePadding="8dp"
-        android:ems="10"
-        android:hint="Название параметра"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:maxLines="1"
-        android:padding="16dp"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="10dp"
-        android:singleLine="true"
+        android:layout_marginTop="@dimen/dimen_16"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" >
 
-    <AutoCompleteTextView
-        android:id="@+id/editText"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название параметра"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editTextLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_32"
-        android:background="@drawable/edititext_find_recipe"
-        android:drawablePadding="8dp"
-        android:ems="10"
-        android:hint="Объем"
-        android:imeOptions="actionDone"
-        android:inputType="number"
-        android:maxLines="1"
-        android:padding="16dp"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="10dp"
-        android:singleLine="true"
-
+        android:layout_marginTop="@dimen/dimen_16"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutName" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="150dp"
+            android:hint="Объем"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -109,8 +114,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="@dimen/start_max_dimen"
         android:text="см"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintStart_toEndOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/editText" />
+        app:layout_constraintBottom_toBottomOf="@+id/editTextLayout"
+        app:layout_constraintStart_toEndOf="@+id/editTextLayout"
+        app:layout_constraintTop_toTopOf="@+id/editTextLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

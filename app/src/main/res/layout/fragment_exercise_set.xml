@@ -55,7 +55,7 @@
         android:background="@drawable/edittext_selector"
         android:hint="0"
         android:imeOptions="actionDone"
-        android:inputType="text"
+        android:inputType="number"
         android:ems="10"
         android:maxLines="1"
         android:padding="16dp"

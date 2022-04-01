@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
+import com.google.android.material.appbar.AppBarLayout;
 
 public abstract class MiniItemCreateFragment extends Fragment implements View.OnClickListener {
 
@@ -26,7 +27,8 @@ public abstract class MiniItemCreateFragment extends Fragment implements View.On
     protected EditText editTextName;
     protected ImageView imageView;
     protected ImageView toolbarImageViewBack;
-
+    protected TextWatcher textWatcher;
+    AppBarLayout app_bar;
     public MiniItemCreateFragment() {
         // Required empty public constructor
     }
@@ -41,18 +43,20 @@ public abstract class MiniItemCreateFragment extends Fragment implements View.On
 
     public abstract boolean checkButtonEnable();
 
-    public abstract boolean checkEnabled(String s);
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        editTextName= view.findViewById(R.id.editTextName);
         button = view.findViewById(R.id.button);
+        imageView = view.findViewById(R.id.imageView);
         textViewUnit = view.findViewById(R.id.textViewUnit);
         editText = view.findViewById(R.id.editText);
         button = view.findViewById(R.id.button);
-        button = view.findViewById(R.id.button);
+        app_bar = view.findViewById(R.id.app_bar);
 
+        toolbarImageViewBack= view.findViewById(R.id.toolbarImageViewBack);
         button.setEnabled(false);
         textViewUnit.setText(getUnitText());
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -70,8 +74,7 @@ public abstract class MiniItemCreateFragment extends Fragment implements View.On
             }
         });
         button.setOnClickListener(this);
-
-        editText.addTextChangedListener(new TextWatcher() {
+        textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -84,12 +87,15 @@ public abstract class MiniItemCreateFragment extends Fragment implements View.On
 
             @Override
             public void afterTextChanged(Editable s) {
-
-
-                button.setEnabled(checkEnabled(s.toString()));
+                if(app_bar!=null)
+                app_bar.setExpanded(false);
+               // imageView.setImageResource(R.drawable.measurements);
+                button.setEnabled(checkButtonEnable());
 
             }
-        });
+        };
+        editText.addTextChangedListener(textWatcher);
+        editTextName.addTextChangedListener(textWatcher);
         toolbarImageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
