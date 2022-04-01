@@ -11,16 +11,12 @@ import android.view.Display;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 
-import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.databinding.ActivityMainBinding;
 import com.calorie.calc.signup.RegistrationActivity;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.DisplaySize;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,12 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setDisplaySize();
         openMainFragment(getSupportFragmentManager());
-        user.getBodySizeItemList().observe(this, new Observer<List<BodySizeItem>>() {
-            @Override
-            public void onChanged(List<BodySizeItem> bodySizeItems) {
-                System.out.println("public void onChanged " +bodySizeItems.size());
-            }
-        });
+
 
 
     /*    IngredientsApi apiInstance = new IngredientsApi();

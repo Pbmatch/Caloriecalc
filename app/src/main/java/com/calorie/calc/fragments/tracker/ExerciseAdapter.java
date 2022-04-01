@@ -16,10 +16,10 @@ import com.calorie.calc.fragments.tracker.miniitem.exercise.ExerciseListFragment
 
 import java.util.List;
 
-public class PhysicalExerciseAdapter  extends ListAdapter<ExerciseItem> implements Observer<List<ExerciseItem>> {
+public class ExerciseAdapter extends ListAdapter<ExerciseItem> implements Observer<List<ExerciseItem>> {
 
     ListHeaderActivItemBinding headerBinding;
-    public PhysicalExerciseAdapter(RecyclerView itemsList, Context context, FragmentManager fragmentManager) {
+    public ExerciseAdapter(RecyclerView itemsList, Context context, FragmentManager fragmentManager) {
         super(itemsList, context,fragmentManager);
     }
      @Override
@@ -35,13 +35,19 @@ public class PhysicalExerciseAdapter  extends ListAdapter<ExerciseItem> implemen
                 .inflate(LayoutInflater.from(getContext()), itemsList, false);
        setVisible(infoListAdapter.getItemCount()==0);
 
-        headerBinding.textViewAdd.setOnClickListener(new View.OnClickListener() {
+
+
+               View.OnClickListener onAddItemClick =  new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavigationHelper.openNavigationFragment(fragmentManager,new ExerciseListFragment());
             }
-        });
+        };
+
+        headerBinding.imageViewAdd.setOnClickListener(onAddItemClick);
+        headerBinding.textViewAdd.setOnClickListener(onAddItemClick);
         return   headerBinding;
+
     }
 
     @Override

@@ -17,7 +17,12 @@ public class MutableList<T extends List<Y>,Y> extends MutableLiveData<T> {
         return;
     }
     this.getValue().add(item);
-    this.setValue(this.getValue());
+    notifyDataSetChanged();
 }
+    public void notifyDataSetChanged()
+    {
+
+        this.setValue(this.getValue());
+    }
 
 }

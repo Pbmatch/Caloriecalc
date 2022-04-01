@@ -53,7 +53,7 @@ public class BodySizeHolder  extends InfoItemHolder<BodySizeItem> {
             @Override
             public void onClick(View v) {
                 if(itemBuilder.getOnRecipeClickListener()!=null)
-                    itemBuilder.getOnRecipeClickListener().held(infoItem);
+                    itemBuilder.getOnRecipeClickListener().selected(infoItem);
             }
         });
 

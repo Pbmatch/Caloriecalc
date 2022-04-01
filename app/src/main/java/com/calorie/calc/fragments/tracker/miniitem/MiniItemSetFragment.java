@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.calorie.calc.R;
 import com.calorie.calc.data.MiniItem;
 
-public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment {
+public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment implements View.OnClickListener {
 
 
     protected T selectedItem;
@@ -87,15 +87,7 @@ public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment {
                 return handled;
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                setDataToUser();
-                getParentFragmentManager().popBackStack();
-            }
-        });
+        button.setOnClickListener(this);
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -122,4 +114,6 @@ public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment {
             }
         });
     }
+
+
 }

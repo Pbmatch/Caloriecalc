@@ -49,4 +49,10 @@ public class ExerciseSetFragment extends MiniItemSetFragment<ExerciseItem> {
 
         return inflater.inflate(R.layout.fragment_exercise_set, container, false);
     }
+    @Override
+    public void onClick(View v) {
+
+        setDataToUser();
+        getParentFragmentManager().popBackStack();
+    }
 }

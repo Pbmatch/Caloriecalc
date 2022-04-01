@@ -1,5 +1,7 @@
 package com.calorie.calc;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.data.ExerciseItem;
 import com.calorie.calc.utils.MutableList;
@@ -18,6 +20,7 @@ public class User {
     String name;
     String email;
     String password;
+    MutableLiveData<BodySizeItem> weightItem=new MutableLiveData<>();
     MutableList<List<BodySizeItem>,BodySizeItem> bodySizeItemList = new MutableList<>();
     MutableList<List<ExerciseItem>,ExerciseItem> exerciseItemList = new MutableList<>();
 
@@ -29,6 +32,12 @@ public class User {
     public MutableList<List<ExerciseItem>,ExerciseItem> getExerciseItemList() {
 
         return exerciseItemList;
+    }
+
+    public MutableLiveData<BodySizeItem> getWeightItem() {
+        if(weightItem.getValue()==null)
+            weightItem.setValue(new BodySizeItem("Вес",R.drawable.weightscale, R.drawable.weightscale));
+        return weightItem;
     }
 
     public GoalWeight getGoalWeight() {

@@ -42,6 +42,11 @@ public class BodySetSizeFragment extends MiniItemSetFragment<BodySizeItem> {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_body_setsize, container, false);
     }
+    @Override
+    public void onClick(View v) {
 
+        setDataToUser();
+        getParentFragmentManager().popBackStack();
+    }
 
 }

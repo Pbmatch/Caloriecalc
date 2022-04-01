@@ -23,7 +23,7 @@ public class MainTrackerFragment extends Fragment {
     RecyclerView recyclerViewBodySize;
     RecyclerView recyclerViewFoto;
 
-   PhysicalExerciseAdapter physicalExerciseAdapter;
+   ExerciseAdapter exerciseAdapter;
    BodySizeAdapter bodySizeAdapter;
     FotoAdapter fotoAdapter;
 
@@ -57,10 +57,10 @@ public class MainTrackerFragment extends Fragment {
         recyclerViewFoto=view.findViewById(R.id.rec_view_foto);
         recyclerViewBodySize = view.findViewById(R.id.rec_view_bodysize);
         System.out.println("onViewCreated"  );
-        physicalExerciseAdapter = new PhysicalExerciseAdapter(recyclerViewExercise,getContext(),getActivity().getSupportFragmentManager());
+        exerciseAdapter = new ExerciseAdapter(recyclerViewExercise,getContext(),getActivity().getSupportFragmentManager());
         bodySizeAdapter=new BodySizeAdapter(recyclerViewBodySize,getContext(),getActivity().getSupportFragmentManager());
         MainActivity.getUser().getBodySizeItemList().observe(getViewLifecycleOwner(), bodySizeAdapter);
-        MainActivity.getUser().getExerciseItemList().observe(getViewLifecycleOwner(),physicalExerciseAdapter);
+        MainActivity.getUser().getExerciseItemList().observe(getViewLifecycleOwner(), exerciseAdapter);
         fotoAdapter=new FotoAdapter(recyclerViewFoto,getContext(),getActivity().getSupportFragmentManager());
 
         openFoodIntakeContainerFragment(getChildFragmentManager(),new FoodIntakeContainerFragment());
