@@ -11,6 +11,7 @@ import com.calorie.calc.R;
 import com.calorie.calc.data.ExerciseItem;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.info_list.InfoItemHolder;
+import com.calorie.calc.utils.OptionsUnit;
 
 public class ExerciseHolder extends InfoItemHolder<ExerciseItem> {
 
@@ -37,7 +38,7 @@ public class ExerciseHolder extends InfoItemHolder<ExerciseItem> {
     public void updateFromItem(ExerciseItem infoItem, int position) {
         textViewTitle.setText(infoItem.getTitle());
 
-        textViewText.setText(infoItem.getDate().toString());
+        textViewText.setText(infoItem.getTimeMins() + OptionsUnit.getExerciseItemTimeUnit(itemBuilder.getContext()));
         textViewCount.setText(String.valueOf(infoItem.getEnergy()));
         imageView.setImageResource(infoItem.getImageResource());
         csl.setOnClickListener(new View.OnClickListener() {

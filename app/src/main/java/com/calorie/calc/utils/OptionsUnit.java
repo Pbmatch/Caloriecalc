@@ -14,7 +14,7 @@ public   class OptionsUnit {
     }
 
 
-    public static String getExerciseItemUnit(Context context) {
+    public static String getExerciseItemTimeUnit(Context context) {
         return context.getString(R.string.time);
     }
     public static String getExerciseItemEnergyUnit(Context context) {

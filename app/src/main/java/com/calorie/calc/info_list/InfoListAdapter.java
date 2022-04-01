@@ -11,14 +11,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.calorie.calc.data.BodySizeItem;
+import com.calorie.calc.data.ExerciseItem;
 import com.calorie.calc.data.MiniItem;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
+import com.calorie.calc.info_list.holder.BodySizeHolder;
 import com.calorie.calc.info_list.holder.DietCheckboxHolder;
 import com.calorie.calc.info_list.holder.DietHolder;
 import com.calorie.calc.info_list.holder.EnergyHolder;
+import com.calorie.calc.info_list.holder.ExerciseHolder;
 import com.calorie.calc.info_list.holder.FallbackViewHolder;
 import com.calorie.calc.info_list.holder.FragmentHolder;
 import com.calorie.calc.info_list.holder.IngredientHolder;
@@ -52,10 +56,12 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int PRODUCT_EDIT_HOLDER_TYPE = 0x109;
     private static final int FRAGMENT_HOLDER_TYPE = 0x110;
     private static final int MINI_HOLDER_TYPE = 0x111;
+    private static final int BODYSIZE_HOLDER_TYPE = 0x112;
+    private static final int EXERCISE_HOLDER_TYPE = 0x113;
     private boolean isNutrient=false;
 
 
-
+    private boolean isMiniItem=false;
     private boolean isProductFragment=false;
     private boolean isProductEditType=false;
     private final InfoItemBuilder infoItemBuilder;
@@ -72,6 +78,10 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void setUseRecipeHorizontalItem(boolean useRecipeHorizontalItem) {
         this.useRecipeHorizontalItem = useRecipeHorizontalItem;
+    }
+
+    public void setMiniItem(boolean miniItem) {
+        isMiniItem = miniItem;
     }
 
     public boolean isNutrient() {
@@ -206,7 +216,14 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
         if(infoItemList.get(position) instanceof MiniItem)
         {
 
-            return MINI_HOLDER_TYPE;
+
+          if(isMiniItem)return MINI_HOLDER_TYPE;
+
+           if( infoItemList.get(position) instanceof ExerciseItem)
+               return EXERCISE_HOLDER_TYPE;
+
+            if( infoItemList.get(position) instanceof BodySizeItem)
+                return BODYSIZE_HOLDER_TYPE;
 
         }
 
@@ -242,6 +259,9 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             case DIET_CHECKBOX_HOLDER_TYPE:return new DietCheckboxHolder(infoItemBuilder,parent);
             case FRAGMENT_HOLDER_TYPE:return new FragmentHolder(infoItemBuilder,parent);
             case MINI_HOLDER_TYPE:return new MiniItemHolder(infoItemBuilder,parent);
+            case EXERCISE_HOLDER_TYPE:return new ExerciseHolder(infoItemBuilder,parent);
+            case BODYSIZE_HOLDER_TYPE:return new BodySizeHolder(infoItemBuilder,parent);
+
             case HEADER_TYPE:
                 return new HFHolder(header);
             case FOOTER_TYPE:

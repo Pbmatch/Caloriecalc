@@ -27,9 +27,11 @@ public class BodySetSizeFragment extends MiniItemSetFragment<BodySizeItem> {
     @Override
     public  void setDataToUser()
     {
-        selectedItem.setCountOfUnit(Integer.getInteger(editText.getText().toString(),0));
+        selectedItem.setCountOfUnit(Integer.parseInt(editText.getText().toString()));
         selectedItem.setDate(new Date());
-        MainActivity.getUser().getBodySizeItemList().getValue().add(selectedItem);
+
+        MainActivity.getUser().getBodySizeItemList().additem(selectedItem);
+
     }
 
 

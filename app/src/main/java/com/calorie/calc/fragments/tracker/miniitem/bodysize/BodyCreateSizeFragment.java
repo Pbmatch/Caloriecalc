@@ -54,8 +54,8 @@ public class BodyCreateSizeFragment extends MiniItemCreateFragment {
         BodySizeItem selectedItem = new BodySizeItem(editTextName.getText().toString(),
                 R.drawable.measurements, R.drawable.measurementsbig);
         selectedItem.setDate(new Date());
-        selectedItem.setCountOfUnit(Integer.getInteger(editText.getText().toString(), 0));
-        MainActivity.getUser().getBodySizeItemList().getValue().add(selectedItem);
+        selectedItem.setCountOfUnit(Integer.parseInt(editText.getText().toString()));
+        MainActivity.getUser().getBodySizeItemList().additem(selectedItem);
         getParentFragmentManager().popBackStack();
     }
 }

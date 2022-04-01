@@ -1,11 +1,9 @@
 package com.calorie.calc;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.data.ExerciseItem;
+import com.calorie.calc.utils.MutableList;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,17 +18,15 @@ public class User {
     String name;
     String email;
     String password;
-    MutableLiveData<List<BodySizeItem>> bodySizeItemList = new MutableLiveData<>();
-    MutableLiveData<List<ExerciseItem>> exerciseItemList = new MutableLiveData<>();
-    public MutableLiveData<List<BodySizeItem>> getBodySizeItemList() {
-        if (bodySizeItemList.getValue() == null)
-            bodySizeItemList.setValue(new ArrayList<>());
+    MutableList<List<BodySizeItem>,BodySizeItem> bodySizeItemList = new MutableList<>();
+    MutableList<List<ExerciseItem>,ExerciseItem> exerciseItemList = new MutableList<>();
+
+    public MutableList<List<BodySizeItem>,BodySizeItem> getBodySizeItemList() {
+
         return bodySizeItemList;
     }
 
-    public MutableLiveData<List<ExerciseItem>> getExerciseItemList() {
-        if (exerciseItemList.getValue() == null)
-            exerciseItemList.setValue(new ArrayList<>());
+    public MutableList<List<ExerciseItem>,ExerciseItem> getExerciseItemList() {
 
         return exerciseItemList;
     }

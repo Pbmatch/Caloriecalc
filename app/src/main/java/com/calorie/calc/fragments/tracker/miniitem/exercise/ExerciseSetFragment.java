@@ -30,7 +30,8 @@ public class ExerciseSetFragment extends MiniItemSetFragment<ExerciseItem> {
     @Override
     public void setDataToUser()
     {
-        MainActivity.getUser().getExerciseItemList().getValue().add(selectedItem);
+        selectedItem.setTimeMins(Integer.parseInt(editText.getText().toString()));
+        MainActivity.getUser().getExerciseItemList().additem(selectedItem);
     }
 
     @Override

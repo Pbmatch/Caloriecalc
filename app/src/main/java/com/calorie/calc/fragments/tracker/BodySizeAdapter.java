@@ -5,15 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.NavigationHelper;
-import com.calorie.calc.databinding.ListHeaderBodysizeItemBinding;
 import com.calorie.calc.data.BodySizeItem;
+import com.calorie.calc.databinding.ListHeaderBodysizeItemBinding;
 import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyListFragment;
 
-public class BodySizeAdapter  extends ListAdapter<BodySizeItem>{
+import java.util.List;
+
+public class BodySizeAdapter  extends ListAdapter<BodySizeItem> implements Observer<List<BodySizeItem>> {
 
 
     public BodySizeAdapter(RecyclerView itemsList, Context context, FragmentManager fragmentManager) {
@@ -51,4 +54,9 @@ public class BodySizeAdapter  extends ListAdapter<BodySizeItem>{
 
     }
 
+    @Override
+    public void onChanged(List<BodySizeItem> bodySizeItems) {
+        System.out.println("void onChanged"+bodySizeItems.size());
+        infoListAdapter.setInfoItemList(bodySizeItems);
+    }
 }

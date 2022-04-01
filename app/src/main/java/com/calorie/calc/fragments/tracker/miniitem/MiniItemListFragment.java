@@ -67,6 +67,7 @@ public abstract class MiniItemListFragment<T> extends ListFragment<T> implements
             }
         });
         infoListAdapter.setHeader(viewBinding.getRoot());
+        infoListAdapter.setMiniItem(true);
         infoListAdapter.setInfoItemList(getList());
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<T>() {
             @Override

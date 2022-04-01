@@ -73,6 +73,6 @@ public class ExerciseItem implements Serializable, MiniItem {
 
     @Override
     public String getUnit(Context context) {
-        return OptionsUnit.getExerciseItemUnit(context);
+        return OptionsUnit.getExerciseItemTimeUnit(context);
     }
 }

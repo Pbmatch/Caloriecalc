@@ -23,8 +23,8 @@ public class ExerciseCreateFragment extends MiniItemCreateFragment {
 
 
 
-   EditText editTextTime;
-   TextView textViewText;
+  private EditText editTextTime;
+    private TextView textViewText;
 
     public ExerciseCreateFragment() {
 
@@ -75,7 +75,7 @@ public class ExerciseCreateFragment extends MiniItemCreateFragment {
         selectedItem.setDate(new Date());
         selectedItem.setTimeMins(Integer.parseInt(editTextTime.getText().toString()));
         selectedItem.setEnergy(Double.parseDouble(editText.getText().toString()));
-        MainActivity.getUser().getExerciseItemList().getValue().add(selectedItem);
+        MainActivity.getUser().getExerciseItemList().additem(selectedItem);
         getParentFragmentManager().popBackStack();
     }
 
