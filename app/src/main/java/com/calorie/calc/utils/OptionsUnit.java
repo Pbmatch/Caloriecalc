@@ -20,4 +20,12 @@ public   class OptionsUnit {
     public static String getExerciseItemEnergyUnit(Context context) {
         return context.getString(R.string.kkal);
     }
+    public static String getWeightItemUnit(Context context) {
+        return context.getString(R.string.weight_unit);
+    }
+    public static String getWeightCount(final Context context, final long count) {
+        final int safeCount = count > Integer.MAX_VALUE ? Integer.MAX_VALUE
+                : count < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) count;
+        return context.getResources().getQuantityString(R.plurals.day_count, safeCount, count);
+    }
 }

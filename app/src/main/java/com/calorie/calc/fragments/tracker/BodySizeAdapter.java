@@ -15,13 +15,18 @@ import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.databinding.ListHeaderBodysizeItemBinding;
 import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyListFragment;
 import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyUpdateFragment;
+import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyWeightFragment;
 import com.calorie.calc.utils.OnClickGesture;
+import com.calorie.calc.utils.OptionsUnit;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class BodySizeAdapter  extends ListAdapter<BodySizeItem> implements Observer<List<BodySizeItem>> {
 
 
+    ListHeaderBodysizeItemBinding binding;
     public BodySizeAdapter(RecyclerView itemsList, Context context, FragmentManager fragmentManager) {
         super(itemsList, context,fragmentManager);
     }
@@ -31,10 +36,30 @@ public class BodySizeAdapter  extends ListAdapter<BodySizeItem> implements Obser
 
         return null;
     }
+    public Observer<BodySizeItem> getWeightObserver()
+    {
+       return  new Observer<BodySizeItem>() {
+            @Override
+            public void onChanged(BodySizeItem bodySizeItem) {
+                binding.textViewCount.setText(String.valueOf(bodySizeItem.getCountOfUnit()));
+                binding.textViewMeasure.setText(OptionsUnit.getWeightItemUnit(getContext()));
+                System.out.println("setDataToUser onChanged"+bodySizeItem.getCountOfUnit());
+                Date dateNow = new Date();
+                long days=0;
+                if(bodySizeItem.getDate()!=null)
+                { long diff = dateNow.getTime() - bodySizeItem.getDate().getTime();
+
+                 days = TimeUnit.MILLISECONDS.toDays(diff);}
+                binding.textViewDate.setText("Обновлено "+OptionsUnit.getWeightCount(getContext(),days)+" назад");
+            }
+        };
+    }
     @Override
     public ViewBinding getListHeader()
     {
-        ListHeaderBodysizeItemBinding binding = ListHeaderBodysizeItemBinding
+
+
+        binding = ListHeaderBodysizeItemBinding
                 .inflate(LayoutInflater.from(getContext()), itemsList, false);
         binding.button.setVisibility(View.GONE); //TODO PREMIUM
 
@@ -54,7 +79,7 @@ public class BodySizeAdapter  extends ListAdapter<BodySizeItem> implements Obser
         binding.textViewUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openNavigationFragment(fragmentManager,new BodyUpdateFragment(MainActivity.getUser().getWeightItem().getValue(),true));
+                NavigationHelper.openNavigationFragment(fragmentManager,new BodyWeightFragment(MainActivity.getUser().getWeightItem().getValue() ));
             }
         });
         return   binding;

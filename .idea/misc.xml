@@ -119,6 +119,7 @@
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_succes.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_succes_remind.xml" value="0.1703125" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_success_auth.xml" value="0.1703125" />
+        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_tracer_list.xml" value="0.25815217391304346" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_tracker.xml" value="0.4151957022256332" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/fragment_web_view.xml" value="0.24791666666666667" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/list_activ_item.xml" value="0.8150943689560214" />
@@ -157,9 +158,11 @@
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/menu_items.xml" value="0.302536231884058" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/pignate_footer.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/pignate_horizontal_footer.xml" value="0.1921875" />
+        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/toolbar_calendar.xml" value="0.25815217391304346" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/toolbar_layout.xml" value="0.2988679352838745" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/toolbar_lite.xml" value="0.19924529018924966" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/toolbar_lite_right_text.xml" value="0.19924529018924966" />
+        <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/toolbar_mini_list.xml" value="0.25815217391304346" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/layout/toolbar_recipe_container.xml" value="0.2264151024877837" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/menu/bottom_navigation.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/01/AndroidStudioProjects/Caloriecalc/app/src/main/res/menu/bottom_navigation_recipe.xml" value="0.2989583333333333" />

@@ -59,6 +59,7 @@ public class MainTrackerFragment extends Fragment {
         System.out.println("onViewCreated"  );
         exerciseAdapter = new ExerciseAdapter(recyclerViewExercise,getContext(),getActivity().getSupportFragmentManager());
         bodySizeAdapter=new BodySizeAdapter(recyclerViewBodySize,getContext(),getActivity().getSupportFragmentManager());
+        MainActivity.getUser().getWeightItem().observe(getViewLifecycleOwner(), bodySizeAdapter.getWeightObserver());
         MainActivity.getUser().getBodySizeItemList().observe(getViewLifecycleOwner(), bodySizeAdapter);
         MainActivity.getUser().getExerciseItemList().observe(getViewLifecycleOwner(), exerciseAdapter);
         fotoAdapter=new FotoAdapter(recyclerViewFoto,getContext(),getActivity().getSupportFragmentManager());

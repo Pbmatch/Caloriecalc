@@ -12,6 +12,8 @@ import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.info_list.InfoItemHolder;
 
+import java.text.SimpleDateFormat;
+
 public class BodySizeHolder  extends InfoItemHolder<BodySizeItem> {
 
     private TextView textViewTitle;
@@ -38,8 +40,9 @@ public class BodySizeHolder  extends InfoItemHolder<BodySizeItem> {
     @Override
     public void updateFromItem(BodySizeItem infoItem, int position) {
         textViewTitle.setText(infoItem.getTitle());
+        SimpleDateFormat fmtOut = new SimpleDateFormat("dd.MM.yy");
 
-        textViewText.setText(infoItem.getDate().toString());
+        textViewText.setText( fmtOut.format(infoItem.getDate()));
         textViewCount.setText(infoItem.getCountOfUnit()+infoItem.getUnit(itemBuilder.getContext()));
         imageView.setImageResource(infoItem.getImageResource());
         csl.setOnClickListener(new View.OnClickListener() {

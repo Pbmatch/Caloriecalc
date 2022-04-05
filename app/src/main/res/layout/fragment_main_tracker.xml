@@ -16,12 +16,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewWater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       
+        android:layout_marginVertical="@dimen/start_max_dimen"
+        app:layout_constraintTop_toBottomOf="@+id/meal_time_container">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/start_dimen"
         android:id="@+id/csl_water"
-        app:layout_constraintTop_toBottomOf="@+id/meal_time_container"
+
         >
     <ImageView
         android:id="@+id/image_view_water"
@@ -63,32 +70,55 @@
         app:layout_constraintStart_toEndOf="@+id/textView_water_count"
         app:layout_constraintBottom_toBottomOf="@+id/textView_water_count" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewActiv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       
+        android:layout_marginVertical="@dimen/start_max_dimen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewWater">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_view_activ"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         android:layout_marginVertical="@dimen/start_dimen"
+       />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewBodySize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       
+        android:layout_marginVertical="@dimen/start_max_dimen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/csl_water" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewActiv">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_view_bodysize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         android:layout_marginVertical="@dimen/start_dimen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view_activ" />
-
+        />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       
+        android:layout_marginVertical="@dimen/start_max_dimen"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewBodySize">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/start_dimen"
         android:id="@+id/csl_note"
-        app:layout_constraintTop_toBottomOf="@+id/rec_view_bodysize"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewBodySize"
         >
 
         <TextView
@@ -115,12 +145,22 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewFoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       
+        android:layout_marginVertical="@dimen/start_max_dimen"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewNote"
+        app:layout_constraintBottom_toBottomOf="parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/start_dimen"
         android:id="@+id/csl_foto"
-        app:layout_constraintTop_toBottomOf="@+id/csl_note"
+
         >
 
         <TextView
@@ -145,5 +185,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

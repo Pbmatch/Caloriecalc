@@ -39,7 +39,7 @@ public abstract class ListAdapter <T> {
         itemsList.setLayoutManager(layoutManager);
 
         itemsList.setAdapter(infoListAdapter);
-        setDataToList();
+
         if(getListFooter()!=null) {
             infoListAdapter.setFooter(getListFooter().getRoot());
             infoListAdapter.showFooter(true);
@@ -48,6 +48,7 @@ public abstract class ListAdapter <T> {
             infoListAdapter.setHeader(getListHeader().getRoot());
 
         }
+        setDataToList();
     }
     @RecyclerView.Orientation
     int getLayoutManagerOrientation()
