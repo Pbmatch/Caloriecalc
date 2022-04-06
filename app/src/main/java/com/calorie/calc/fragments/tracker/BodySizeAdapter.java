@@ -14,6 +14,7 @@ import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.databinding.ListHeaderBodysizeItemBinding;
 import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyListFragment;
+import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyListWithToolbarFragment;
 import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyUpdateFragment;
 import com.calorie.calc.fragments.tracker.miniitem.bodysize.BodyWeightFragment;
 import com.calorie.calc.utils.OnClickGesture;
@@ -80,6 +81,12 @@ public class BodySizeAdapter  extends ListAdapter<BodySizeItem> implements Obser
             @Override
             public void onClick(View v) {
                 NavigationHelper.openNavigationFragment(fragmentManager,new BodyWeightFragment(MainActivity.getUser().getWeightItem().getValue() ));
+            }
+        });
+        binding.textViewTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openNavigationFragment(fragmentManager,new BodyListWithToolbarFragment());
             }
         });
         return   binding;

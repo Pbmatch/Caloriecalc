@@ -217,6 +217,7 @@
     <string name="time">мин</string>
     <string name="burned">Сожжено калорий</string>
     <string name="exercise">Активность</string>
+    <string name="measure">Измерения</string>
     <plurals name="dish_count">
         <item quantity="one">%s рецепт</item>
         <item quantity="few">%s рецепта</item>

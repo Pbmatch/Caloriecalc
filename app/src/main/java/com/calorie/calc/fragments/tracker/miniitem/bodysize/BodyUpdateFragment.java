@@ -52,10 +52,7 @@ public class BodyUpdateFragment extends BodySetSizeFragment implements BackPress
         });
     }
 
-    @Override
-    public boolean onBackPressed() {
-        return false;
-    }
+
     @Override
     public void onClick(View v) {
         editText.setEnabled(false);
