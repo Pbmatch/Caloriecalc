@@ -97,12 +97,12 @@ public class BodySizeAdapter  extends ListAdapter<BodySizeItem> implements Obser
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<BodySizeItem>() {
             @Override
             public void selected(BodySizeItem selectedItem) {
-                NavigationHelper.openNavigationFragment(fragmentManager,new BodyUpdateFragment(selectedItem));
+                NavigationHelper.openNavigationFragment(fragmentManager,new BodyUpdateFragment(selectedItem,true));
             }
 
             @Override
             public void held(BodySizeItem selectedItem) {
-                NavigationHelper.openNavigationFragment(fragmentManager,new BodyUpdateFragment(selectedItem));
+                NavigationHelper.openNavigationFragment(fragmentManager,new BodyUpdateFragment(selectedItem,true));
             }
         });
     }

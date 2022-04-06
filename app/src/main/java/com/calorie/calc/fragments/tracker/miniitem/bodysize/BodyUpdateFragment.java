@@ -15,8 +15,11 @@ import java.util.Date;
 
 public class BodyUpdateFragment extends BodySetSizeFragment implements BackPressable {
 
-    public BodyUpdateFragment(BodySizeItem selectedItem) {
+    private boolean backPressedMainContainer;
+
+    public BodyUpdateFragment(BodySizeItem selectedItem,boolean backPressedMainContainer) {
         super(selectedItem);
+        this.backPressedMainContainer=backPressedMainContainer;
     }
     public BodyUpdateFragment(BodySizeItem selectedItem,Boolean singleItem) {
         super(selectedItem);
@@ -59,5 +62,21 @@ public class BodyUpdateFragment extends BodySetSizeFragment implements BackPress
         setDataToUser();
 
         getActivity().onBackPressed();
+    }
+    @Override
+    public boolean onBackPressed() {
+
+        if (backPressedMainContainer) {
+            return false;
+        } else {
+            if (getParentFragmentManager().getBackStackEntryCount() != 0) {
+
+                getParentFragmentManager().popBackStack();
+                return true;
+            }
+
+
+            return false;
+        }
     }
 }

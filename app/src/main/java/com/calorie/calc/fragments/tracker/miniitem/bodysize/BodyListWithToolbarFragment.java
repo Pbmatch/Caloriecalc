@@ -104,7 +104,7 @@ public class BodyListWithToolbarFragment extends ListFragment<BodySizeItem> impl
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<BodySizeItem>() {
             @Override
             public void selected(BodySizeItem selectedItem) {
-                NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(),new BodyUpdateFragment(selectedItem));
+                NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(),new BodyUpdateFragment(selectedItem,false));
             }
         });
     }

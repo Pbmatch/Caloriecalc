@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class BodyWeightFragment extends BodyUpdateFragment{
     public BodyWeightFragment(BodySizeItem selectedItem) {
-        super(selectedItem);
+        super(selectedItem,true);
     }
 
     @Override
