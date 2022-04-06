@@ -1,5 +1,6 @@
 package com.calorie.calc.fragments.tracker.miniitem.exercise;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +69,13 @@ public class ExerciseListWithToolbarFragment  extends ListFragment<ExerciseItem>
      infoListAdapter.setOnItemSelectedListener(new OnClickGesture<ExerciseItem>() {
       @Override
       public void selected(ExerciseItem selectedItem) {
-       //TODO OPEN DIALOG DELETE
+          DeleteDialog dialog = new DeleteDialog(new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  infoListAdapter.deleteItemFromItemList(selectedItem);
+              }
+          });
+          dialog.show(getParentFragmentManager(),"");
       }
      });
     }
