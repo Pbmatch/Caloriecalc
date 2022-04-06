@@ -102,6 +102,12 @@ public class RecipeInnerDishFragment extends RecipeListFragment<RecipeAndLinksIt
         });
 
     }
+
+    @Override
+    public ViewBinding getListHeader() {
+        return null;
+    }
+
     @Override
     protected ViewBinding getListFooter() {
         return PignateHorizontalFooterBinding.inflate(getActivity().getLayoutInflater(), itemsList, false);

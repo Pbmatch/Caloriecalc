@@ -45,7 +45,7 @@ public class ExerciseAdapter extends ListAdapter<ExerciseItem> implements Observ
                View.OnClickListener onAddItemClick =  new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openNavigationFragment(fragmentManager,new ExerciseListFragment());
+                NavigationHelper.openNavigationFragment(fragmentManager,new ExerciseListFragment(true));
             }
         };
 

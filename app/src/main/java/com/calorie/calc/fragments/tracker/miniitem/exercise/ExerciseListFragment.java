@@ -11,6 +11,10 @@ import java.util.List;
 
 public class ExerciseListFragment extends MiniItemListFragment<ExerciseItem>  {
 
+    public ExerciseListFragment(boolean backPressedMainContainer) {
+        super(backPressedMainContainer);
+    }
+
     @Override
     public void onHeaderClick() {
         openAddProductFragment(getActivity().getSupportFragmentManager(),new ExerciseCreateFragment());

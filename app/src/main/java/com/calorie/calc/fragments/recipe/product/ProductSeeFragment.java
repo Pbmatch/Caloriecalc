@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.ListHeaderProductItemBinding;
@@ -60,7 +61,7 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> implement
     @Override
     public void startLoadData() {
         // super.startLoadData();
-        ListHeaderProductItemBinding viewBinding = ListHeaderProductItemBinding
+        /*ListHeaderProductItemBinding viewBinding = ListHeaderProductItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
         viewBinding.imageViewDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +79,11 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> implement
                 infoListAdapter.setInfoItemList(new ArrayList<>());
 
             }
-        });
+        });*/
 
-        viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
+       /* viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
         viewBinding.textViewTitle.setText(item.getLabel());
-        infoListAdapter.setHeader(viewBinding.getRoot());
+        infoListAdapter.setHeader(viewBinding.getRoot());*/
         infoListAdapter.setProductEditType(true);
         infoListAdapter.setInfoItemList(getItemCheckedList());
      // emptyLinearLayout.setVisibility(View.GONE);
@@ -115,8 +116,34 @@ public class ProductSeeFragment extends RecipeListFragment<Ingredient> implement
 
     }
 
+    @Override
+    public ViewBinding getListHeader() {
+        ListHeaderProductItemBinding viewBinding = ListHeaderProductItemBinding
+                .inflate(getLayoutInflater(), itemsList, false);
+        viewBinding.imageViewDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<RecipeAndLinksItem> list= RecipeState.getProductLiveData().getValue();
+                for(RecipeAndLinksItem item:list)
+                {
+                    if(item.getRecipe().getLabel().equals(recipeAndLinksItem.getRecipe().getLabel()))
+                    {
+                        list.remove(item);
+                        break;
+                    }
+                }
+                infoListAdapter.setHeader(null);
+                infoListAdapter.setInfoItemList(new ArrayList<>());
 
+            }
+        });
 
+        viewBinding.textViewText.setText(getIngrTitleString(item.getYield()));
+        viewBinding.textViewTitle.setText(item.getLabel());
+        infoListAdapter.setHeader(viewBinding.getRoot());
+
+        return viewBinding;
+    }
 
 
     @Override

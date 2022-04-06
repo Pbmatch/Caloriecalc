@@ -51,6 +51,12 @@ public class RecipeInnerAddedDishFragment extends RecipeListFragment<RecipeAndLi
         });*/
 
     }
+
+    @Override
+    public ViewBinding getListHeader() {
+        return null;
+    }
+
     @Override
     public  void setListener() {
 

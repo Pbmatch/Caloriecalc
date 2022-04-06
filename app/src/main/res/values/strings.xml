@@ -195,7 +195,7 @@
     </string>
     <string name="add_to_shopping">+ ДОБАВИТЬ В СПИСОК ПОКУПОК</string>
     <string name="add_to_note">+ ДОБАВИТЬ ЗАМЕТКУ</string>
-    <string name="add_to_activ">+ ДОБАВИТЬ АКТИВНОСТЬ</string>
+    <string name="add_to_exercise">+ ДОБАВИТЬ АКТИВНОСТЬ</string>
     <string name="add_to_foto">+ ДОБАВИТЬ ФОТО</string>
     <string name="ingredients">Ингредиенты</string>
     <string name="add">Добавить</string>
@@ -215,6 +215,8 @@
     <string name="add_body_size">Добавление измерений</string>
     <string name="add_exercise">Добавление активности</string>
     <string name="time">мин</string>
+    <string name="burned">Сожжено калорий</string>
+    <string name="exercise">Активность</string>
     <plurals name="dish_count">
         <item quantity="one">%s рецепт</item>
         <item quantity="few">%s рецепта</item>

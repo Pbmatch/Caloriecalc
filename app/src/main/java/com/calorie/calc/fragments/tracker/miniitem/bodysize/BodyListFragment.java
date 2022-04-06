@@ -12,6 +12,10 @@ import java.util.List;
 
 public class BodyListFragment extends MiniItemListFragment<BodySizeItem> {
 
+    public BodyListFragment(boolean backPressedMainContainer) {
+        super(backPressedMainContainer);
+    }
+
     @Override
     public void onHeaderClick() {
         openAddProductFragment(getActivity().getSupportFragmentManager(), new BodyCreateSizeFragment());
@@ -31,4 +35,6 @@ public class BodyListFragment extends MiniItemListFragment<BodySizeItem> {
     public void onItemClick(BodySizeItem selectedItem) {
         openAddProductFragment(getActivity().getSupportFragmentManager(), new BodySetSizeFragment(selectedItem));
     }
+
+
 }

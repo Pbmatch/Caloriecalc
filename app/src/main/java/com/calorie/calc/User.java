@@ -14,6 +14,16 @@ public class User {
     Lifestyle lifestyle;
     Gender gender;
     Date birthDate;
+    Date date = new Date(); //TODO date
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     int height;
     int weight;
     int needWeight;

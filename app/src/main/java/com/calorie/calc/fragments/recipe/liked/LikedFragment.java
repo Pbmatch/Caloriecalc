@@ -2,6 +2,7 @@ package com.calorie.calc.fragments.recipe.liked;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
@@ -53,6 +54,11 @@ public class LikedFragment extends ListEmptyAndToolbar<RecipeAndLinksItem> imple
     @Override
     public int getLayoutManagerOrientation() {
         return LinearLayoutManager.VERTICAL;
+    }
+
+    @Override
+    public ViewBinding getListHeader() {
+        return null;
     }
 
     @Override

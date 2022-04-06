@@ -23,9 +23,11 @@ public abstract class MiniItemListFragment<T> extends ListFragment<T> implements
 
     private TextView toolbarTitle;
     private ImageView toolbarBack;
+    boolean backPressedMainContainer;
 
-    public MiniItemListFragment() {
 
+    public MiniItemListFragment(boolean backPressedMainContainer ) {
+    this.backPressedMainContainer=backPressedMainContainer;
     }
 
 
@@ -57,16 +59,7 @@ public abstract class MiniItemListFragment<T> extends ListFragment<T> implements
 
     @Override
     public void startLoadData() {
-        ListHeaderTextviewBinding viewBinding = ListHeaderTextviewBinding
-                .inflate(getLayoutInflater(), itemsList, false);
-        viewBinding.textViewHeader.setText("+ДОБАВИТЬ СВОЙ ПАРАМЕТР");
-        viewBinding.textViewHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onHeaderClick();
-            }
-        });
-        infoListAdapter.setHeader(viewBinding.getRoot());
+
         infoListAdapter.setMiniItem(true);
         infoListAdapter.setInfoItemList(getList());
         infoListAdapter.setOnItemSelectedListener(new OnClickGesture<T>() {
@@ -77,6 +70,20 @@ public abstract class MiniItemListFragment<T> extends ListFragment<T> implements
         });
 
 
+    }
+    @Override
+    public ViewBinding getListHeader() {
+        ListHeaderTextviewBinding viewBinding = ListHeaderTextviewBinding
+                .inflate(getLayoutInflater(), itemsList, false);
+        viewBinding.textViewHeader.setText("+ДОБАВИТЬ СВОЙ ПАРАМЕТР");
+        viewBinding.textViewHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onHeaderClick();
+            }
+        });
+        infoListAdapter.setHeader(viewBinding.getRoot());
+        return viewBinding;
     }
 
     @Override
@@ -119,6 +126,18 @@ public abstract class MiniItemListFragment<T> extends ListFragment<T> implements
 
     @Override
     public boolean onBackPressed() {
-        return false;
+
+        if (backPressedMainContainer) {
+            return false;
+        } else {
+            if (getParentFragmentManager().getBackStackEntryCount() != 0) {
+
+                getParentFragmentManager().popBackStack();
+                return true;
+            }
+
+
+            return false;
+        }
     }
 }

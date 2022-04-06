@@ -56,7 +56,7 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
     @Override
     public void startLoadData() {
 
-        ListHeaderIngredientItemBinding viewBinding = ListHeaderIngredientItemBinding
+    /*    ListHeaderIngredientItemBinding viewBinding = ListHeaderIngredientItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
         countPortion = item.getYield();
         viewBinding.textViewText.setText(getIngrTitleString(countPortion));
@@ -96,7 +96,7 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
                 }
             }
         });
-        infoListAdapter.setHeader(viewBinding.getRoot());
+        infoListAdapter.setHeader(viewBinding.getRoot());*/
 
 
         ViewBinding viewBindingFooter = ListFooterIngredientItemBinding
@@ -156,6 +156,53 @@ public class InnerDataFragment extends RecipeListFragment<Ingredient> {
     public void initViews(View rootView) {
         textViewText = rootView.findViewById(R.id.textViewText);
 
+    }
+
+    @Override
+    public ViewBinding getListHeader() {
+        ListHeaderIngredientItemBinding viewBinding = ListHeaderIngredientItemBinding
+                .inflate(getLayoutInflater(), itemsList, false);
+        countPortion = item.getYield();
+        viewBinding.textViewText.setText(getIngrTitleString(countPortion));
+        viewBinding.buttonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Ingredient> list = item.getIngredients();
+
+                double newYield = countPortion+1;
+                for(Ingredient ingredient:list)
+                {
+                    ingredient.setQuantity(ingredient.getQuantity()/countPortion*newYield);
+
+                }
+                countPortion = newYield;
+                viewBinding.textViewText.setText(getIngrTitleString(countPortion));
+                infoListAdapter.notifyDataSetChanged();
+
+            }
+        });
+        viewBinding.buttonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Ingredient> list = item.getIngredients();
+                if(countPortion>1)
+                {
+                    double newYield = countPortion-1;
+
+                    for(Ingredient ingredient:list)
+                    {
+                        ingredient.setQuantity(ingredient.getQuantity()/countPortion*newYield);
+
+                    }
+                    countPortion = newYield;
+                    viewBinding.textViewText.setText(getIngrTitleString(countPortion));
+                    infoListAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+        infoListAdapter.setHeader(viewBinding.getRoot());
+
+        return viewBinding;
     }
 
 

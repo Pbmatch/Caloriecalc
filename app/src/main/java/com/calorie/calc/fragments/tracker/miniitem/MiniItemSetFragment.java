@@ -19,8 +19,9 @@ import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
 import com.calorie.calc.data.MiniItem;
+import com.calorie.calc.utils.BackPressable;
 
-public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment implements View.OnClickListener {
+public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment implements View.OnClickListener, BackPressable {
 
 
     protected T selectedItem;
@@ -115,5 +116,11 @@ public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment i
         });
     }
 
-
+    @Override
+    public boolean onBackPressed() {
+        if( getParentFragmentManager().getBackStackEntryCount()!=0)
+        {getParentFragmentManager().popBackStack();
+            return true;}
+        return false;
+    }
 }

@@ -22,15 +22,15 @@
     android:layout_gravity="center">
     <TextView
         android:id="@+id/toolbarTextViewTitle"
-        style="@style/text_title_nano"
+        style="@style/text_standart_big"
+        android:text="Активносить"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/start_max_dimen"
+        android:layout_marginHorizontal="@dimen/start_dimen"
+
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarImageViewBack"
-        app:layout_constraintStart_toEndOf="@+id/toolbarImageViewBack"
-        app:layout_constraintTop_toTopOf="@+id/toolbarImageViewBack" />
+        />
 
     <TextView
         android:id="@+id/toolbarTextViewText"
@@ -38,11 +38,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/start_max_dimen"
+        android:layout_marginHorizontal="@dimen/start_dimen"
+
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarImageViewBack"
-        app:layout_constraintStart_toEndOf="@+id/toolbarImageViewBack"
-        app:layout_constraintTop_toTopOf="@+id/toolbarImageViewBack" />
+       />
 
 </LinearLayout>
 </androidx.appcompat.widget.Toolbar>

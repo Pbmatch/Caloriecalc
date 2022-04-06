@@ -87,6 +87,11 @@ public class FoodIntakeContainerFragment extends ListFragment<Fragment> implemen
 
     }
 
+    @Override
+    public ViewBinding getListHeader() {
+        return null;
+    }
+
 
     @Override
     public void reloadContent() {

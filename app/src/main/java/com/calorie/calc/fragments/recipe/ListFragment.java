@@ -99,6 +99,8 @@ public abstract class ListFragment<T> extends Fragment implements OnRefresh {
 
     public abstract void initViews(View rootView);
 
+    public abstract ViewBinding getListHeader();
+
     public void initList(View rootView) {
 
         itemsList = rootView.findViewById(R.id.rec_view);
@@ -109,7 +111,10 @@ public abstract class ListFragment<T> extends Fragment implements OnRefresh {
         itemsList.setAdapter(infoListAdapter);
         if(getListFooter()!=null)
         infoListAdapter.setFooter(getListFooter().getRoot());
+        if(getListHeader()!=null) {
+            infoListAdapter.setHeader(getListHeader().getRoot());
 
+        }
         itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
             @Override
             public void onScrolledRight(RecyclerView recyclerView) {

@@ -19,6 +19,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
@@ -174,6 +175,11 @@ public class RecipeVerticalFragment extends RecipeListFragment<RecipeAndLinksIte
     public void initViews(View rootView) {
 
 
+    }
+
+    @Override
+    public ViewBinding getListHeader() {
+        return null;
     }
 
     public boolean onBackPressed() {

@@ -67,12 +67,12 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
     @Override
     public void startLoadData() {
         // super.startLoadData();
-       ListHeaderMealtimeItemBinding viewBinding = ListHeaderMealtimeItemBinding
+    /*   ListHeaderMealtimeItemBinding viewBinding = ListHeaderMealtimeItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
         viewBinding.textViewTitle.setText(mealTime.getTitle());
         viewBinding.imageViewTitle.setImageDrawable( getContext().getDrawable(mealTime.getResourceImageView()));
 
-      infoListAdapter.setHeader(viewBinding.getRoot());
+      infoListAdapter.setHeader(viewBinding.getRoot());*/
         showListFooter(true);
     //    infoListAdapter.setInfoItemList(getItemCheckedList());
         // emptyLinearLayout.setVisibility(View.GONE);
@@ -105,8 +105,15 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
 
     }
 
-
-
+    @Override
+    public ViewBinding getListHeader() {
+        ListHeaderMealtimeItemBinding viewBinding = ListHeaderMealtimeItemBinding
+                .inflate(getLayoutInflater(), itemsList, false);
+        viewBinding.textViewTitle.setText(mealTime.getTitle());
+        viewBinding.imageViewTitle.setImageDrawable( getContext().getDrawable(mealTime.getResourceImageView()));
+        return viewBinding;
+       /* infoListAdapter.setHeader(viewBinding.getRoot());;*/
+    }
 
 
     @Override

@@ -16,9 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
+import com.calorie.calc.utils.BackPressable;
 import com.google.android.material.appbar.AppBarLayout;
 
-public abstract class MiniItemCreateFragment extends Fragment implements View.OnClickListener {
+public abstract class MiniItemCreateFragment extends Fragment implements View.OnClickListener, BackPressable {
 
 
     protected Button button;
@@ -103,5 +104,11 @@ public abstract class MiniItemCreateFragment extends Fragment implements View.On
             }
         });
     }
-
+    @Override
+    public boolean onBackPressed() {
+        if( getParentFragmentManager().getBackStackEntryCount()!=0)
+        {getParentFragmentManager().popBackStack();
+            return true;}
+        return false;
+    }
 }

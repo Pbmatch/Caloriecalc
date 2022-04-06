@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
@@ -82,6 +83,11 @@ public class RecipeInnerDietFragment extends RecipeListFragment<DietMainPageType
         textViewtext.setVisibility(View.GONE);
         textViewTitle=rootView.findViewById(R.id. recipe_inner_textViewTitle);
         textViewTitle.setText(R.string.recipe_1);
+    }
+
+    @Override
+    public ViewBinding getListHeader() {
+        return null;
     }
 
     @Override

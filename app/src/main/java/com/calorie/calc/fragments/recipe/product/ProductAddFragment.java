@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.ListHeaderProductItemBinding;
@@ -79,6 +80,11 @@ public class ProductAddFragment extends ListEmptyAndToolbar<Ingredient> implemen
     @Override
     public void loadMoreItems() {
 
+    }
+
+    @Override
+    public ViewBinding getListHeader() {
+        return null;
     }
 
     @Override

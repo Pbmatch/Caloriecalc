@@ -73,7 +73,7 @@ public class BodySizeAdapter  extends ListAdapter<BodySizeItem> implements Obser
         binding.imageViewAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigationHelper.openNavigationFragment(fragmentManager,new BodyListFragment());
+                NavigationHelper.openNavigationFragment(fragmentManager,new BodyListFragment(true));
             }
         });
         binding.textViewUpdate.setOnClickListener(new View.OnClickListener() {
