@@ -218,6 +218,9 @@
     <string name="burned">Сожжено калорий</string>
     <string name="exercise">Активность</string>
     <string name="measure">Измерения</string>
+    <string name="note_hint">Текст заметки</string>
+    <string name="clear_note">Очистить заметку</string>
+    <string name="note_title">Заметка</string>
     <plurals name="dish_count">
         <item quantity="one">%s рецепт</item>
         <item quantity="few">%s рецепта</item>

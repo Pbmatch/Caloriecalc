@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.data.ExerciseItem;
+import com.calorie.calc.data.NoteItem;
 import com.calorie.calc.utils.MutableList;
 
 import java.util.Date;
@@ -31,6 +32,14 @@ public class User {
     String email;
     String password;
     MutableLiveData<BodySizeItem> weightItem=new MutableLiveData<>();
+
+    public MutableLiveData<NoteItem> getNoteItem() {
+        if(noteItem.getValue()==null)
+            noteItem.setValue(new NoteItem("",new Date()));
+        return noteItem;
+    }
+
+    MutableLiveData<NoteItem> noteItem=new MutableLiveData<>();
     MutableList<List<BodySizeItem>,BodySizeItem> bodySizeItemList = new MutableList<>();
     MutableList<List<ExerciseItem>,ExerciseItem> exerciseItemList = new MutableList<>();
 

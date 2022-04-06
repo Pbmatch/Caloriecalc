@@ -7,14 +7,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.calorie.calc.MainActivity;
+import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
+import com.calorie.calc.data.NoteItem;
 
 
 public class MainTrackerFragment extends Fragment {
@@ -22,10 +27,12 @@ public class MainTrackerFragment extends Fragment {
    RecyclerView recyclerViewExercise;
     RecyclerView recyclerViewBodySize;
     RecyclerView recyclerViewFoto;
+    ConstraintLayout csl_note;
 
    ExerciseAdapter exerciseAdapter;
    BodySizeAdapter bodySizeAdapter;
     FotoAdapter fotoAdapter;
+    TextView textViewNote;
 
     public MainTrackerFragment() {
 
@@ -56,6 +63,8 @@ public class MainTrackerFragment extends Fragment {
         recyclerViewExercise =view.findViewById(R.id.rec_view_activ);
         recyclerViewFoto=view.findViewById(R.id.rec_view_foto);
         recyclerViewBodySize = view.findViewById(R.id.rec_view_bodysize);
+        textViewNote=view.findViewById(R.id.textView_note_text);
+        csl_note =view.findViewById(R.id.csl_note);
         System.out.println("onViewCreated"  );
         exerciseAdapter = new ExerciseAdapter(recyclerViewExercise,getContext(),getActivity().getSupportFragmentManager());
         bodySizeAdapter=new BodySizeAdapter(recyclerViewBodySize,getContext(),getActivity().getSupportFragmentManager());
@@ -65,6 +74,34 @@ public class MainTrackerFragment extends Fragment {
         fotoAdapter=new FotoAdapter(recyclerViewFoto,getContext(),getActivity().getSupportFragmentManager());
 
         openFoodIntakeContainerFragment(getChildFragmentManager(),new FoodIntakeContainerFragment());
+
+        note();
+    }
+    void note()
+    {
+        csl_note.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(),new NoteFragment());
+
+        }
+    });
+        MainActivity.getUser().getNoteItem().observe(getViewLifecycleOwner(), new Observer<NoteItem>() {
+            @Override
+            public void onChanged(NoteItem noteItem) {
+                if(noteItem.getText().isEmpty())
+                {
+                    textViewNote.setText(getString(R.string.add_to_note));
+                    textViewNote.setTextColor(getContext().getColor(R.color.button_green));
+                }
+                else
+                {
+                    textViewNote.setText(noteItem.getText());
+                    textViewNote.setTextColor(getContext().getColor(R.color.filter_gray));
+                }
+            }
+        });
+
     }
 
     @Override
