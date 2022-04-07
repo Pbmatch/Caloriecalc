@@ -20,6 +20,7 @@ import com.calorie.calc.MainActivity;
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.data.NoteItem;
+import com.calorie.calc.fragments.tracker.detailed.DetailedFragment;
 
 
 public class MainTrackerFragment extends Fragment {
@@ -33,6 +34,7 @@ public class MainTrackerFragment extends Fragment {
    BodySizeAdapter bodySizeAdapter;
     FotoAdapter fotoAdapter;
     TextView textViewNote;
+
 
     public MainTrackerFragment() {
 
@@ -63,6 +65,7 @@ public class MainTrackerFragment extends Fragment {
         recyclerViewExercise =view.findViewById(R.id.rec_view_activ);
         recyclerViewFoto=view.findViewById(R.id.rec_view_foto);
         recyclerViewBodySize = view.findViewById(R.id.rec_view_bodysize);
+
         textViewNote=view.findViewById(R.id.textView_note_text);
         csl_note =view.findViewById(R.id.csl_note);
         System.out.println("onViewCreated"  );
@@ -74,6 +77,8 @@ public class MainTrackerFragment extends Fragment {
         fotoAdapter=new FotoAdapter(recyclerViewFoto,getContext(),getActivity().getSupportFragmentManager());
 
         openFoodIntakeContainerFragment(getChildFragmentManager(),new FoodIntakeContainerFragment());
+
+
 
         note();
     }
