@@ -44,6 +44,16 @@
        />
 
 </LinearLayout>
+    <ImageView
+    android:id="@+id/toolbarImageViewRight"
+    android:layout_width="35dp"
+    android:layout_height="35dp"
+    android:layout_gravity="right"
+        android:layout_marginEnd="@dimen/start_max_dimen"
+
+    android:padding="5dp"
+
+     />
 </androidx.appcompat.widget.Toolbar>
 
 
