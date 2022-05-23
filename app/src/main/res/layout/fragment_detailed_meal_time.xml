@@ -60,22 +60,22 @@
             style="@style/text_minim_big"
             android:layout_marginBottom="@dimen/min_margin"
 
-            app:layout_constraintEnd_toEndOf="@+id/linear_progress_start"
-            app:layout_constraintStart_toStartOf="@+id/linear_progress_start"
-            app:layout_constraintBottom_toTopOf="@+id/linear_progress_start" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_progress_protein"
+            app:layout_constraintStart_toStartOf="@+id/linear_progress_protein"
+            app:layout_constraintBottom_toTopOf="@+id/linear_progress_protein" />
         <TextView
-            android:id="@+id/textView_progress_start_bottom"
+            android:id="@+id/textView_progress_start_protein"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ещё 63 г"
             style="@style/text_minim_big"
             android:layout_marginTop="@dimen/min_margin"
 
-            app:layout_constraintEnd_toEndOf="@+id/linear_progress_start"
-            app:layout_constraintStart_toStartOf="@+id/linear_progress_start"
-            app:layout_constraintTop_toBottomOf="@+id/linear_progress_start" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_progress_protein"
+            app:layout_constraintStart_toStartOf="@+id/linear_progress_protein"
+            app:layout_constraintTop_toBottomOf="@+id/linear_progress_protein" />
         <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/linear_progress_start"
+            android:id="@+id/linear_progress_protein"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/start_dimen"
@@ -83,7 +83,7 @@
             app:indicatorColor="@color/progress_left"
             android:progress="15"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linear_progress_center"
+            app:layout_constraintTop_toTopOf="@+id/linear_progress_fat"
             app:trackCornerRadius="15dp"
             app:trackThickness="15dp" />
 
@@ -96,31 +96,31 @@
             android:layout_marginBottom="@dimen/min_margin"
 
             android:text="@string/fats"
-            app:layout_constraintBottom_toTopOf="@+id/linear_progress_center"
-            app:layout_constraintEnd_toEndOf="@+id/linear_progress_center"
-            app:layout_constraintStart_toStartOf="@+id/linear_progress_center"
+            app:layout_constraintBottom_toTopOf="@+id/linear_progress_fat"
+            app:layout_constraintEnd_toEndOf="@+id/linear_progress_fat"
+            app:layout_constraintStart_toStartOf="@+id/linear_progress_fat"
             app:layout_constraintTop_toBottomOf="@+id/semiCircleArcProgressBar" />
         <TextView
-            android:id="@+id/textView_progress_center_bottom"
+            android:id="@+id/textView_progress_center_fat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ещё 63 г"
             style="@style/text_minim_big"
             android:layout_marginTop="@dimen/min_margin"
 
-            app:layout_constraintEnd_toEndOf="@+id/linear_progress_center"
-            app:layout_constraintStart_toStartOf="@+id/linear_progress_center"
-            app:layout_constraintTop_toBottomOf="@+id/linear_progress_center" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_progress_fat"
+            app:layout_constraintStart_toStartOf="@+id/linear_progress_fat"
+            app:layout_constraintTop_toBottomOf="@+id/linear_progress_fat" />
         <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/linear_progress_center"
+            android:id="@+id/linear_progress_fat"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:indeterminate="false"
             app:indicatorColor="@color/progress_center"
             android:progress="15"
-            app:layout_constraintStart_toEndOf="@+id/linear_progress_start"
+            app:layout_constraintStart_toEndOf="@+id/linear_progress_protein"
             android:layout_marginTop="@dimen/min_margin"
-            app:layout_constraintEnd_toStartOf="@+id/linear_progress_end"
+            app:layout_constraintEnd_toStartOf="@+id/linear_progress_carb"
             app:layout_constraintTop_toBottomOf="@+id/textView_progress_center"
             app:trackCornerRadius="15dp"
             app:trackThickness="@dimen/trackThickness" />
@@ -133,24 +133,24 @@
             style="@style/text_minim_big"
             android:layout_marginBottom="@dimen/min_margin"
 
-            app:layout_constraintEnd_toEndOf="@+id/linear_progress_end"
-            app:layout_constraintStart_toStartOf="@+id/linear_progress_end"
-            app:layout_constraintBottom_toTopOf="@+id/linear_progress_end" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_progress_carb"
+            app:layout_constraintStart_toStartOf="@+id/linear_progress_carb"
+            app:layout_constraintBottom_toTopOf="@+id/linear_progress_carb" />
 
         <TextView
-            android:id="@+id/textView_progress_end_bottom"
+            android:id="@+id/textView_progress_end_carb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ещё 63 г"
             style="@style/text_minim_big"
             android:layout_marginTop="@dimen/min_margin"
 
-            app:layout_constraintEnd_toEndOf="@+id/linear_progress_end"
-            app:layout_constraintStart_toStartOf="@+id/linear_progress_end"
-            app:layout_constraintTop_toBottomOf="@+id/linear_progress_end" />
+            app:layout_constraintEnd_toEndOf="@+id/linear_progress_carb"
+            app:layout_constraintStart_toStartOf="@+id/linear_progress_carb"
+            app:layout_constraintTop_toBottomOf="@+id/linear_progress_carb" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/linear_progress_end"
+            android:id="@+id/linear_progress_carb"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:indeterminate="false"
@@ -158,7 +158,7 @@
             android:progress="15"
             app:indicatorColor="@color/progress_right"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linear_progress_center"
+            app:layout_constraintTop_toTopOf="@+id/linear_progress_fat"
             app:trackCornerRadius="15dp"
             app:trackThickness="15dp" />
 
@@ -170,7 +170,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/textView_progress_center_bottom" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_progress_center_fat" />
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"

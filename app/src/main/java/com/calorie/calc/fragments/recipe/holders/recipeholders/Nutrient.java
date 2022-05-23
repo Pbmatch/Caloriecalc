@@ -12,10 +12,20 @@ public abstract class Nutrient implements Serializable
     private String label;
     @SerializedName("quantity")
     @Expose
-    private double quantity;
+    protected double quantity;
     @SerializedName("unit")
     @Expose
     private String unit;
+
+    public Nutrient() {
+    }
+
+    public Nutrient(String label, double quantity, String unit) {
+        this.label = label;
+        this.quantity = quantity;
+        this.unit = unit;
+    }
+
     double portion=1;
 
     public double getPortion() {

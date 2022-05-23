@@ -16,6 +16,13 @@ public class TotalNutrients implements Serializable {
     @SerializedName("FAT")
     @Expose
     private Fat fat;
+    @SerializedName("CHOCDF")
+    @Expose
+    private Chocdf chocdf;      //Carbohydrate
+    @SerializedName("PROCNT")
+    @Expose
+    private Procnt procnt;   //protein
+
     @SerializedName("FASAT")
     @Expose
     private Fasat fasat;
@@ -28,9 +35,6 @@ public class TotalNutrients implements Serializable {
     @SerializedName("FAPU")
     @Expose
     private Fapu fapu;
-    @SerializedName("CHOCDF")
-    @Expose
-    private Chocdf chocdf;
     @SerializedName("CHOCDF.net")
     @Expose
     private CHOCDFNet cHOCDFNet;
@@ -43,9 +47,7 @@ public class TotalNutrients implements Serializable {
     @SerializedName("SUGAR.added")
     @Expose
     private SUGARAdded sUGARAdded;
-    @SerializedName("PROCNT")
-    @Expose
-    private Procnt procnt;
+
     @SerializedName("CHOLE")
     @Expose
     private Chole chole;
@@ -481,13 +483,41 @@ public class TotalNutrients implements Serializable {
     }
 
 
-    private class EnercKcal extends Nutrient {
+    public class EnercKcal extends Nutrient {
+        public EnercKcal() {
+        }
+        public EnercKcal(String label, double v, String g) {
+            super(label,v,g);
+        }
     }
 
-    private class Fat extends Nutrient {
+    public class Fat extends Nutrient {
+        public Fat(String label, double v, String g) {
+            super(label,v,g);
+        }
+
+        public Fat() {
+        }
+    }
+    public class Chocdf extends Nutrient {
+        public Chocdf(String label, double v, String g) {
+            super(label,v,g);
+        }
+
+        public Chocdf() {
+        }
+
+    }
+    public class Procnt extends Nutrient {
+        public Procnt(String label, double v, String g) {
+            super(label,v,g);
+        }
+
+        public Procnt() {
+        }
     }
 
-    private class Fasat extends Nutrient {
+    public class Fasat extends Nutrient {
     }
 
     private class Fatrn extends Nutrient {
@@ -499,8 +529,7 @@ public class TotalNutrients implements Serializable {
     private class Fapu extends Nutrient {
     }
 
-    private class Chocdf extends Nutrient {
-    }
+
 
     private class CHOCDFNet extends Nutrient {
     }
@@ -514,8 +543,7 @@ public class TotalNutrients implements Serializable {
     private class SUGARAdded extends Nutrient {
     }
 
-    private class Procnt extends Nutrient {
-    }
+
 
     private class Chole extends Nutrient {
     }

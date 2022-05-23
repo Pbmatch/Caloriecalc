@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.calorie.calc.R;
+import com.calorie.calc.databinding.FragmentDetailedBinding;
 import com.calorie.calc.utils.BackPressable;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -20,9 +22,12 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class DetailedFragment extends Fragment implements BackPressable {
 
-    ViewPager2 viewPager;
-    DemoCollectionAdapter demoCollectionAdapter;
-    ImageView imageViewToolbarBack;
+   private ViewPager2 viewPager;
+    private ViewPagerAdapter viewPagerAdapter;
+    private ImageView imageViewToolbarBack;
+    private TextView toolbarTextViewTitle;
+    private ImageView imageViewToolbarShare;
+    private  FragmentDetailedBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,10 +45,14 @@ public class DetailedFragment extends Fragment implements BackPressable {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        demoCollectionAdapter = new DemoCollectionAdapter(this);
+        binding = FragmentDetailedBinding.bind(view);
+
+        viewPagerAdapter = new ViewPagerAdapter(this);
         imageViewToolbarBack =view.findViewById(R.id.toolbarImageViewBack);
+        toolbarTextViewTitle =view.findViewById(R.id.toolbarTextViewTitle);
+        imageViewToolbarShare  =view.findViewById(R.id.imageViewShare);
         viewPager = view.findViewById(R.id.pager);
-        viewPager.setAdapter(demoCollectionAdapter);
+        viewPager.setAdapter(viewPagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> tab.setText("OBJECT " + (position + 1))
@@ -62,8 +71,8 @@ public class DetailedFragment extends Fragment implements BackPressable {
         return false;
     }
 
-    public class DemoCollectionAdapter extends FragmentStateAdapter {
-        public DemoCollectionAdapter(Fragment fragment) {
+    public class ViewPagerAdapter extends FragmentStateAdapter {
+        public ViewPagerAdapter(Fragment fragment) {
             super(fragment);
         }
 
@@ -71,7 +80,7 @@ public class DetailedFragment extends Fragment implements BackPressable {
         @Override
         public Fragment createFragment(int position) {
             // Return a NEW fragment instance in createFragment(int)
-            Fragment fragment = new MealTimeDetailedFragment();
+            Fragment fragment = new PagerMealTimeDetailedFragment();
 
             return fragment;
         }

@@ -32,6 +32,7 @@ import com.calorie.calc.info_list.holder.ProductEditHolder;
 import com.calorie.calc.info_list.holder.ProductHolder;
 import com.calorie.calc.info_list.holder.RecipeHorizontalMiniItemHolder;
 import com.calorie.calc.info_list.holder.RecipeLikedItemHolder;
+import com.calorie.calc.info_list.holder.RecipeTrackerHolder;
 import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.ArrayList;
@@ -58,6 +59,9 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int MINI_HOLDER_TYPE = 0x111;
     private static final int BODYSIZE_HOLDER_TYPE = 0x112;
     private static final int EXERCISE_HOLDER_TYPE = 0x113;
+    private static final int RECIPE_TRACKER_HOLDER_TYPE = 0x114;
+
+
     private boolean isNutrient=false;
 
 
@@ -72,12 +76,17 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private boolean useBigVariant=false;
     private boolean useMiniVariant = false;
     private boolean useGridVariant = false;
+    private boolean useTrackerVariant = false;
     private boolean showFooter = false;
     private View header = null;
     private View footer = null;
 
     public void setUseRecipeHorizontalItem(boolean useRecipeHorizontalItem) {
         this.useRecipeHorizontalItem = useRecipeHorizontalItem;
+    }
+
+    public void setUseTrackerVariant(boolean useTrackerVariant) {
+        this.useTrackerVariant = useTrackerVariant;
     }
 
     public void setMiniItem(boolean miniItem) {
@@ -182,7 +191,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         if(infoItemList.get(position) instanceof RecipeAndLinksItem){
-        return useRecipeHorizontalItem ? RECIPE_HORIZONTAL_MINI_HOLDER_TYPE: useRecipeLikedItem? RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE
+        return useTrackerVariant? RECIPE_TRACKER_HOLDER_TYPE: useRecipeHorizontalItem ? RECIPE_HORIZONTAL_MINI_HOLDER_TYPE: useRecipeLikedItem? RECIPE_VERTICAL_BIG_LIKED_HOLDER_TYPE
                 :RECIPE_VERTICAL_BIG_HOLDER_TYPE;}
 
         if(infoItemList.get(position) instanceof DietMainPageType)
@@ -261,6 +270,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             case MINI_HOLDER_TYPE:return new MiniItemHolder(infoItemBuilder,parent);
             case EXERCISE_HOLDER_TYPE:return new ExerciseHolder(infoItemBuilder,parent);
             case BODYSIZE_HOLDER_TYPE:return new BodySizeHolder(infoItemBuilder,parent);
+            case RECIPE_TRACKER_HOLDER_TYPE:return new RecipeTrackerHolder(infoItemBuilder,parent);
 
             case HEADER_TYPE:
                 return new HFHolder(header);

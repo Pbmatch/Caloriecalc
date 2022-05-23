@@ -8,15 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
+import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.ListFooterMealtimeItemBinding;
 import com.calorie.calc.databinding.ListHeaderMealtimeItemBinding;
 import com.calorie.calc.fragments.recipe.ListFragment;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
+import com.calorie.calc.fragments.tracker.detailed.DetailedMealTimeFragment;
 import com.calorie.calc.info_list.holder.IFragment;
+
+import java.util.List;
 
 
 public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> implements IFragment {
@@ -49,6 +54,7 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
 
         //  emptyLinearLayout=view.findViewById(R.id.empty_state_view);
         super.onViewCreated(view, savedInstanceState);
+        infoListAdapter.setUseTrackerVariant(true);
     }
 
     @Override
@@ -66,6 +72,20 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
 
     @Override
     public void startLoadData() {
+
+
+
+       mealTime.getRecipeAndLinksItems().observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinksItem>>() {
+           @Override
+           public void onChanged(List<RecipeAndLinksItem> recipeAndLinksItems) {
+
+               infoListAdapter.setInfoItemList(recipeAndLinksItems);
+           }
+       });
+
+
+
+
         // super.startLoadData();
     /*   ListHeaderMealtimeItemBinding viewBinding = ListHeaderMealtimeItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
@@ -111,6 +131,12 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
                 .inflate(getLayoutInflater(), itemsList, false);
         viewBinding.textViewTitle.setText(mealTime.getTitle());
         viewBinding.imageViewTitle.setImageDrawable( getContext().getDrawable(mealTime.getResourceImageView()));
+        viewBinding.textViewTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(),new DetailedMealTimeFragment(mealTime));
+            }
+        });
         return viewBinding;
        /* infoListAdapter.setHeader(viewBinding.getRoot());;*/
     }

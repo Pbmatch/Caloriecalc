@@ -89,7 +89,7 @@ public class ScrollingFragment extends Fragment implements BackPressable {
             public void onChanged(Boolean aBoolean) {
              if(aBoolean)
                 {
-                    openScrollingAddFragments(getChildFragmentManager());
+                    openScrollingAddFragments(getChildFragmentManager(),recipeAndLinksItem);
                     binding.rvToDoList.fullScroll(View.FOCUS_UP);
 
                 }

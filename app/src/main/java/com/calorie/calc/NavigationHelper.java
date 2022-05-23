@@ -140,10 +140,10 @@ public class NavigationHelper {
                 .addToBackStack(null)
                 .commit();
     }
-    public static void openScrollingAddFragments(final FragmentManager fragmentManager  ) {
+    public static void openScrollingAddFragments(final FragmentManager fragmentManager,RecipeAndLinksItem item  ) {
 
         defaultTransaction(fragmentManager)
-                .replace(R.id.container_data_view,new  InnerAddFragment())
+                .replace(R.id.container_data_view,new  InnerAddFragment(item))
                 .addToBackStack(null)
                 .commit();
     }

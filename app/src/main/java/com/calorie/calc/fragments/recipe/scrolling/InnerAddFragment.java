@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
@@ -13,14 +14,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
+import com.calorie.calc.fragments.tracker.MealTime;
 import com.calorie.calc.utils.BackPressable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
 public class InnerAddFragment extends Fragment implements BackPressable {
 
+    MealTime itemSelected;
+    RecipeAndLinksItem recipeAndLinksItem;
+
+    public InnerAddFragment(RecipeAndLinksItem recipeAndLinksItem) {
+        this.recipeAndLinksItem = recipeAndLinksItem;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +65,10 @@ public class InnerAddFragment extends Fragment implements BackPressable {
         listMeal.add("Ужин");
         listMeal.add("Перекус");
 
+        List<MealTime> listMeal22 = Arrays.asList(MealTime.values());
+
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),  R.layout.dropdown_menu_popup_item,
                 list);
 
@@ -63,17 +77,41 @@ public class InnerAddFragment extends Fragment implements BackPressable {
                 view.findViewById(R.id.editTextSpinnerPortion);
         editTextFilledExposedDropdown.setAdapter(adapter);
 
-        ArrayAdapter<String> adapterMeal = new ArrayAdapter<String>(
+        ArrayAdapter<MealTime> adapterMeal = new ArrayAdapter<MealTime>(
                 getContext(),
                 R.layout.dropdown_menu_popup_item,
-                listMeal);
+               MealTime.values());
+
         AutoCompleteTextView editTextFilledExposedDropdownMeal =
                 view.findViewById(R.id.editTextSpinnerMealtime);
         editTextFilledExposedDropdownMeal.setAdapter(adapterMeal);
+        editTextFilledExposedDropdownMeal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               /* System.out.println("itemSelected.onItemSelected"+position);
+                itemSelected=(MealTime) parent.getSelectedItem();*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        editTextFilledExposedDropdownMeal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("itemSelected.onItemSelected"+position);
+                itemSelected=adapterMeal.getItem(position);
+            }
+        });
 
         view.findViewById(R.id.buttonAdd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                System.out.println("itemSelected.getRecipeAndLinksItems()"+itemSelected.getTitle());
+                itemSelected.getRecipeAndLinksItems().additem(recipeAndLinksItem);
+
                 Toast.makeText(getContext(),"Добавлено",Toast.LENGTH_LONG).show();
                 getParentFragmentManager().popBackStack();
             }

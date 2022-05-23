@@ -24,6 +24,18 @@ public class MainActivity extends AppCompatActivity {
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");;
     ActivityMainBinding binding;
     static User user = new User();
+     // поломался туулбар в регисрации
+    //Если не выбрать время еды в добавлении вылетает ошибка, сделать дефолт какойто
+
+    //на главной сделать нормально отображение названия/описания/калорий блюд
+    //добавить фуутер
+    //сделать норм подсчет калорий/бжу
+    //обработать нажатие на стрелку свернуть
+    // Отображение завтрака
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Caloriecalc);
