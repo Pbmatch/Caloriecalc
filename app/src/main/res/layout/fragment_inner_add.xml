@@ -71,7 +71,7 @@
             android:inputType="none"
             style="@style/editTextStyle"
             android:enabled="false"
-            android:text="Ужин" />
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 

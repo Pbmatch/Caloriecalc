@@ -12,6 +12,13 @@ public class MeasureUtils {
       return i+context.getString(R.string.kkal);
 
     }
+    public static String getStringFromDouble(double kKal)
+    {
+        Double d = kKal;
+        Integer i = d.intValue();
+        return String.valueOf(i);
+
+    }
     public static String getNutrientString(double kKal,  String unit)
     {
         Double d = kKal;

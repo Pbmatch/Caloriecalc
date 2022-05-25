@@ -33,7 +33,17 @@ public void updateFromItem(RecipeAndLinksItem infoItem, int pos) {
 
         Recipe recipe = infoItem.getRecipe();
         textViewTitle.setText(recipe.getLabel());
+        textViewCount.setText(String.valueOf(infoItem.getAdapterMealTime().getCalories()));
+        textViewText.setText(String.valueOf(infoItem.getAdapterMealTime().getYield()));
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                        if(itemBuilder.getOnRecipeClickListener()!=null)
+                                itemBuilder.getOnRecipeClickListener().held(infoItem);
 
+                        return true;
+                }
+        });
 
         itemView.setOnClickListener(new View.OnClickListener() {
 @Override

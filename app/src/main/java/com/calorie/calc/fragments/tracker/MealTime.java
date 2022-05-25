@@ -7,7 +7,10 @@ import com.calorie.calc.fragments.recipe.holders.recipeholders.TotalNutrients;
 import com.calorie.calc.utils.MutableList;
 import com.calorie.calc.utils.OptionsUnit;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public enum MealTime {
     BREAKFAST("Завтрак", R.drawable.breakfastcolor,
@@ -60,26 +63,95 @@ public enum MealTime {
     public TotalNutrients.Procnt getProcnt() {
         return procnt;
     }
-    public  Nutrient getDone(Nutrient item)
+    private   double getDone(Nutrient item)
+    {
+
+        if(item==null)
+        {
+            return 0;
+        }
+        else
+        {
+            return item.getQuantity();
+        }
+
+
+    }
+    public double getTotalFat()
+    {
+      return  getDone(getDoneNutrient(TotalNutrients.Fat.class));
+
+    }
+    public double getTotalProcNt()
+    {
+        return   getDone(getDoneNutrient(TotalNutrients.Procnt.class));
+
+    }
+    public double getTotalChockDf()
+    {
+        return   getDone(getDoneNutrient(TotalNutrients.Chocdf.class));
+
+    }
+    public double getTotalEnergy()
+    {
+        return   getDone(getDoneNutrient(TotalNutrients.EnercKcal.class));
+
+    }
+    private   Nutrient getDoneNutrient(Class< ? extends Nutrient> className)
     {
 
 
-      for (RecipeAndLinksItem recipeAndLinksItem: getRecipeAndLinksItems().getValue())
-      {
-         for(Nutrient nutrient: recipeAndLinksItem.getRecipe().getTotalNutrients().getNutrientList())
-         {
 
-           System.out.println(item.getClass());
-             System.out.println(nutrient.getClass());
-           if(item.getClass().equals( nutrient.getClass()))
-             {
-                 System.out.println("item.getClass().equals( nutrient.getClass()"+nutrient.getClass());
-                 item.setQuantity(item.getQuantity()+nutrient.getQuantity());
-             }
+            for(Nutrient nutrient: getNutrientListForAllAddedMeals())
+            {
+                if(className.equals( nutrient.getClass()))
+                {
+                   return nutrient;
+                }
 
-         }
-      }
-      return item;
+            }
+
+        return null;
+    }
+    public List<Nutrient> getNutrientListForAllAddedMeals()
+    {
+        List<Nutrient> nutrientList=new ArrayList<>();
+        Map<Class< ? extends Nutrient>,Nutrient> map= getNutrientsMap(getRecipeAndLinksItems().getValue());
+        for (Map.Entry<Class< ? extends Nutrient>,Nutrient> entry: map.entrySet())
+        {
+            nutrientList.add(entry.getValue());
+        }
+         return nutrientList;
+
+    }
+
+    public Map<Class< ? extends Nutrient>,Nutrient> getNutrientsMap(List<RecipeAndLinksItem> itemList)
+    {
+        Map<Class< ? extends Nutrient>,Nutrient> map= new HashMap<>();
+        if (itemList!=null)
+        for (RecipeAndLinksItem recipeAndLinksItem: itemList)
+        {
+            for(Nutrient nutrient: recipeAndLinksItem.getRecipe().getTotalNutrients().getNutrientList())
+            {
+
+                if(!map.containsKey(nutrient.getClass()))
+                {
+                    map.put(nutrient.getClass(),nutrient);
+
+                }
+                else
+                {
+                    double quant  = map.get(nutrient.getClass()).getQuantity();
+                    map.get(nutrient.getClass()).setQuantity(quant+nutrient.getQuantity());
+
+                }
+
+
+
+            }
+        }
+        return map;
+
     }
 
     MutableList<List<RecipeAndLinksItem>,RecipeAndLinksItem> recipeAndLinksItems = new MutableList<>();

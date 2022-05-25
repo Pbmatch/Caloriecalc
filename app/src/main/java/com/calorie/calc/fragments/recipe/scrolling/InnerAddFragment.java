@@ -14,9 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.calorie.calc.R;
+import com.calorie.calc.fragments.recipe.holders.AdapterMealTime;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.tracker.MealTime;
 import com.calorie.calc.utils.BackPressable;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +29,7 @@ public class InnerAddFragment extends Fragment implements BackPressable {
 
     MealTime itemSelected;
     RecipeAndLinksItem recipeAndLinksItem;
+    TextInputEditText editTextPorionsNumber;
 
     public InnerAddFragment(RecipeAndLinksItem recipeAndLinksItem) {
         this.recipeAndLinksItem = recipeAndLinksItem;
@@ -55,6 +58,8 @@ public class InnerAddFragment extends Fragment implements BackPressable {
 
     void initView(View view)
     {
+        editTextPorionsNumber = view.findViewById(R.id.editTextNumberPortion);
+
         List<String> list = new ArrayList<>();
         list.add("Порция");
         list.add("Грамм");
@@ -108,11 +113,21 @@ public class InnerAddFragment extends Fragment implements BackPressable {
         view.findViewById(R.id.buttonAdd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //todo изменить относительно порции или грамов до того как отправить далее
+                  if(editTextPorionsNumber.getText().toString().isEmpty())
+                  {
+                      Toast.makeText(getContext(),"Укажите кол-во порций ",Toast.LENGTH_LONG).show();
+                      return;
+                  }
+                  if (itemSelected==null)
+                  {
+                      Toast.makeText(getContext(),"Выберите время приёма пищи",Toast.LENGTH_LONG).show();
+                      return;
+                  }
 
-                System.out.println("itemSelected.getRecipeAndLinksItems()"+itemSelected.getTitle());
+                recipeAndLinksItem.setAdapterMealTime(new AdapterMealTime().setYield(Integer.parseInt(editTextPorionsNumber.getText().toString())));
                 itemSelected.getRecipeAndLinksItems().additem(recipeAndLinksItem);
-
-                Toast.makeText(getContext(),"Добавлено",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Добавлено в "+itemSelected.getTitle(),Toast.LENGTH_LONG).show();
                 getParentFragmentManager().popBackStack();
             }
         });

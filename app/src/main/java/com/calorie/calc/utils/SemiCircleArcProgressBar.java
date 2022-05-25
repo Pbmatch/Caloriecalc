@@ -32,6 +32,11 @@ public class SemiCircleArcProgressBar extends View
     private int left = 0;
     private int right = 0;
     private int bottom = 0;
+    OnProgressChangeListener progressChangeListener;
+
+    public void setProgressChangeListener(OnProgressChangeListener progressChangeListener) {
+        this.progressChangeListener = progressChangeListener;
+    }
 
     //Constructors
     public SemiCircleArcProgressBar(Context context)
@@ -133,7 +138,10 @@ public class SemiCircleArcProgressBar extends View
 
     public void setPercent(int percent)
     {
+        if(progressChangeListener!=null)
+            progressChangeListener.onChange(percent);
         this.percent = percent;
+
         postInvalidate();
     }
 
@@ -154,5 +162,9 @@ public class SemiCircleArcProgressBar extends View
             }
 
         }, 0, 12);
+    }
+    public interface OnProgressChangeListener
+    {
+        void onChange(int progress);
     }
 }

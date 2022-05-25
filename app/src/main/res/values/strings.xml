@@ -215,6 +215,7 @@
     <string name="add_body_size">Добавление измерений</string>
     <string name="add_exercise">Добавление активности</string>
     <string name="time">мин</string>
+    <string name="gramm">г</string>
     <string name="burned">Сожжено калорий</string>
     <string name="exercise">Активность</string>
     <string name="measure">Измерения</string>

@@ -1,5 +1,8 @@
 package com.calorie.calc.fragments.tracker.detailed;
 
+import static com.calorie.calc.utils.MeasureUtils.getEnergyString;
+import static com.calorie.calc.utils.MeasureUtils.getStringFromDouble;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,38 +12,42 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentDetailedMealTimeBinding;
+import com.calorie.calc.databinding.ListHeaderNutrientItemBinding;
 import com.calorie.calc.fragments.recipe.ListFragment;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
-import com.calorie.calc.fragments.recipe.holders.recipeholders.TotalNutrients;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
 import com.calorie.calc.fragments.tracker.MealTime;
+import com.calorie.calc.info_list.InfoListAdapter;
 import com.calorie.calc.utils.BackPressable;
 import com.calorie.calc.utils.SemiCircleArcProgressBar;
 import com.calorie.calc.utils.progressbar.CalculateProgressIndicator;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.calorie.calc.utils.progressbar.LinearProgressIndicatorHandler;
+
+import java.util.List;
 
 
-public class DetailedMealTimeFragment extends ListFragment<Nutrient> implements BackPressable {
+public class DetailedMealTimeFragment extends ListFragment<RecipeAndLinksItem> implements BackPressable {
 
 
     private  MealTime mealTime;
     private  TextView textViewEnergy;
-    private TextView textViewFat;
-    private TextView textViewProtein;
-    private TextView textViewCarb;
-    private LinearProgressIndicator progressIndicatorFat;
-    private LinearProgressIndicator progressIndicatorProtein;
-    private LinearProgressIndicator progressIndicatorCarb;
+
+    LinearProgressIndicatorHandler fatProgress;
+    LinearProgressIndicatorHandler proteinProgress;
+    LinearProgressIndicatorHandler carbProgress;
     private SemiCircleArcProgressBar semiCircleArcProgressBar;
     private  FragmentDetailedMealTimeBinding binding;
     private Button buttonAdd;
     private Button buttonFastAdd;
-    private RecyclerView recyclerViewRecipe;
-
+    private RecyclerView recyclerViewNutrient;
+    public InfoListAdapter<Nutrient> infoListAdapterNutrients;
 
 
 
@@ -51,7 +58,9 @@ public class DetailedMealTimeFragment extends ListFragment<Nutrient> implements 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (infoListAdapterNutrients == null) {
+            infoListAdapterNutrients = new InfoListAdapter<Nutrient>(getContext());
+        }
     }
 
     @Override
@@ -71,32 +80,58 @@ public class DetailedMealTimeFragment extends ListFragment<Nutrient> implements 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding = FragmentDetailedMealTimeBinding.bind(view);
-        textViewEnergy= binding.textViewTotalEnergy;
-        textViewProtein=binding.textViewProgressStartProtein;
-        textViewFat=binding.textViewProgressCenterFat;
-        textViewCarb=binding.textViewProgressEndCarb;
-        progressIndicatorFat=binding.linearProgressFat;
-        progressIndicatorProtein=binding.linearProgressProtein;
-        progressIndicatorCarb=binding.linearProgressCarb;
-        semiCircleArcProgressBar=binding.semiCircleArcProgressBar;
+
+
+
+
         buttonAdd=binding.button;
         buttonFastAdd=binding.buttonAddLite;
-        recyclerViewRecipe=binding.recViewRecipe;
+        recyclerViewNutrient =binding.recViewRecipe;
 
-        textViewEnergy.setText("Всего"+mealTime.getEnercKcal().getQuantity() + "Съедено"+mealTime.getDone(new TotalNutrients().new EnercKcal()).getQuantity());
+
+        semiCircleArcProgressBar=binding.semiCircleArcProgressBar;
+        textViewEnergy= binding.textViewTotalEnergy;
+
+        fatProgress = new LinearProgressIndicatorHandler(binding.linearProgressFat,R.color.progress_center,getContext(),binding.textViewProgressCenterFat);
+        proteinProgress = new LinearProgressIndicatorHandler(binding.linearProgressProtein,R.color.progress_left,getContext(),binding.textViewProgressStartProtein);
+        carbProgress = new LinearProgressIndicatorHandler(binding.linearProgressCarb,R.color.progress_right,getContext(),binding.textViewProgressEndCarb);
+        infoListAdapter.setUseTrackerVariant(true);
         initProgressBar();
     }
     void initProgressBar()
     {
-        progressIndicatorFat.setProgress(CalculateProgressIndicator.getProgress(mealTime.getDone(new TotalNutrients().new Fat()).getQuantity(),mealTime.getFat().getQuantity()));
-        progressIndicatorProtein.setProgress(CalculateProgressIndicator.getProgress(mealTime.getDone(new TotalNutrients().new Procnt()).getQuantity(),mealTime.getProcnt().getQuantity()));
-        progressIndicatorCarb.setProgress(CalculateProgressIndicator.getProgress(mealTime.getDone(new TotalNutrients().new Chocdf()).getQuantity(),mealTime.getChocdf().getQuantity()));
-        semiCircleArcProgressBar.setPercent(CalculateProgressIndicator.getProgress(mealTime.getDone(new TotalNutrients().new EnercKcal()).getQuantity(),mealTime.getEnercKcal().getQuantity()));
+        semiCircleArcProgressBar.setProgressChangeListener(new SemiCircleArcProgressBar.OnProgressChangeListener() {
+            @Override
+            public void onChange(int progress) {
+                if(progress>99)
+                {semiCircleArcProgressBar.setProgressBarColor(R.color.red);}
+                else
+                {semiCircleArcProgressBar.setProgressBarColor(R.color.progress_on);}
+            }
+        });
+
+
+        textViewEnergy.setText(getStringFromDouble(mealTime.getTotalEnergy()) + "из"+"\n" +getEnergyString(mealTime.getEnercKcal().getQuantity(),getContext()));
+        fatProgress.setProgress(mealTime.getTotalFat() ,mealTime.getFat().getQuantity());
+        proteinProgress.setProgress(mealTime.getTotalProcNt() ,mealTime.getProcnt().getQuantity());
+        carbProgress.setProgress(mealTime.getTotalChockDf(),mealTime.getChocdf().getQuantity());
+        semiCircleArcProgressBar.setPercent(CalculateProgressIndicator.getProgress(mealTime.getTotalEnergy(),mealTime.getEnercKcal().getQuantity()));
+
+
     }
+
+
 
     @Override
     public void startLoadData() {
+        mealTime.getRecipeAndLinksItems().observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinksItem>>() {
+            @Override
+            public void onChanged(List<RecipeAndLinksItem> recipeAndLinksItems) {
 
+                infoListAdapter.setInfoItemList(recipeAndLinksItems);
+            }
+        });
+        infoListAdapterNutrients.setInfoItemList(mealTime.getNutrientListForAllAddedMeals());
     }
 
     @Override
@@ -116,14 +151,37 @@ public class DetailedMealTimeFragment extends ListFragment<Nutrient> implements 
 
     @Override
     public int getLayoutManagerOrientation() {
-        return 0;
+        return RecyclerView.VERTICAL;
     }
 
     @Override
     public void initViews(View rootView) {
+        recyclerViewNutrient = rootView.findViewById(R.id.rec_view_recipe);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(getLayoutManagerOrientation());
+        infoListAdapterNutrients.setNutrient(true);
+        recyclerViewNutrient.setLayoutManager(layoutManager);
+        infoListAdapterNutrients.setUseRecipeHorizontalItem(isHorizontalItem());
+        recyclerViewNutrient.setAdapter(infoListAdapterNutrients);
+        if(getListFooter()!=null)
+            infoListAdapterNutrients.setFooter(getListFooter().getRoot());
+        if(getListHeaderNutrient()!=null) {
+            infoListAdapterNutrients.setHeader(getListHeaderNutrient().getRoot());
 
+        }
     }
 
+    public ViewBinding getListHeaderNutrient() {
+        ListHeaderNutrientItemBinding viewBinding = ListHeaderNutrientItemBinding
+                .inflate(getLayoutInflater(), recyclerViewNutrient, false);
+        viewBinding.textViewTitle.setText("Калории");
+        viewBinding.textViewCount.setText(
+                String.format("%.2f",mealTime.getTotalEnergy()));
+
+
+        return viewBinding;
+        /* infoListAdapter.setHeader(viewBinding.getRoot());;*/
+    }
     @Override
     public ViewBinding getListHeader() {
         return null;
