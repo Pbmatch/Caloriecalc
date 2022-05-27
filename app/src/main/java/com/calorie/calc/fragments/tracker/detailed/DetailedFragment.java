@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentDetailedBinding;
+import com.calorie.calc.fragments.tracker.MealTime;
 import com.calorie.calc.utils.BackPressable;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -55,7 +56,7 @@ public class DetailedFragment extends Fragment implements BackPressable {
         viewPager.setAdapter(viewPagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         new TabLayoutMediator(tabLayout, viewPager,
-                (tab, position) -> tab.setText("OBJECT " + (position + 1))
+                (tab, position) -> tab.setText( MealTime.values()[position].getTitle())
         ).attach();
         imageViewToolbarBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,14 +81,14 @@ public class DetailedFragment extends Fragment implements BackPressable {
         @Override
         public Fragment createFragment(int position) {
             // Return a NEW fragment instance in createFragment(int)
-            Fragment fragment = new PagerMealTimeDetailedFragment();
+            Fragment fragment = new PagerMealTimeDetailedFragment(MealTime.values()[position]);
 
             return fragment;
         }
 
         @Override
         public int getItemCount() {
-            return 5;
+            return MealTime.values().length;
         }
     }
 

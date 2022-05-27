@@ -4,27 +4,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.calorie.calc.R;
 import com.calorie.calc.databinding.FragmentPagerMealTimeDetailedBinding;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
+import com.calorie.calc.fragments.tracker.MealTime;
+import com.calorie.calc.utils.progressbar.LinearProgressIndicatorHandler;
+
+import java.util.List;
 
 
 public class PagerMealTimeDetailedFragment extends Fragment {
 
 
-   private TextView textViewFat;
-    private TextView textViewProtein;
-    private  TextView textViewCarb;
-    private LinearProgressIndicator progressIndicatorFat;
-    private LinearProgressIndicator progressIndicatorProtein;
-    private LinearProgressIndicator progressIndicatorCarb;
-    private LinearProgressIndicator progressIndicatorEnergy;
+    private  MealTime mealTime;
+
+    public PagerMealTimeDetailedFragment( MealTime mealTime) {
+
+        this.mealTime = mealTime;
+    }
+    private LinearProgressIndicatorHandler fatProgress;
+    private LinearProgressIndicatorHandler proteinProgress;
+    private LinearProgressIndicatorHandler carbProgress;
+    private LinearProgressIndicatorHandler energProgress;
+
+
        FragmentPagerMealTimeDetailedBinding binding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,12 +52,30 @@ public class PagerMealTimeDetailedFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding= FragmentPagerMealTimeDetailedBinding.bind(view);
-        textViewFat=binding.textViewProgressFatBottom;
-        textViewProtein=binding.textViewProgressProteinBottom;
-        textViewCarb=binding.textViewProgressCarbBottom;
-        progressIndicatorEnergy=binding.linearProgressCalorie;
-        progressIndicatorProtein=binding.linearProgressProtein;
-        progressIndicatorCarb=binding.linearProgressCarb;
-        progressIndicatorFat=binding.linearProgressFat;
+
+        energProgress=fatProgress = new LinearProgressIndicatorHandler(binding.linearProgressCalorie,R.color.progress_on,getContext(),null);
+        fatProgress = new LinearProgressIndicatorHandler(binding.linearProgressFat,R.color.progress_center,getContext(),binding.textViewProgressFatBottom);
+        proteinProgress = new LinearProgressIndicatorHandler(binding.linearProgressProtein,R.color.progress_left,getContext(),binding.textViewProgressProteinBottom);
+        carbProgress = new LinearProgressIndicatorHandler(binding.linearProgressCarb,R.color.progress_right,getContext(),binding.textViewProgressCarbBottom);
+        mealTime.getRecipeAndLinksItems().observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinksItem>>() {
+            @Override
+            public void onChanged(List<RecipeAndLinksItem> recipeAndLinksItems) {
+                initProgressBar();
+            }
+        });
+        initProgressBar();
     }
+    void initProgressBar()
+    {
+
+
+        energProgress.setProgress(mealTime.getTotalEnergy() ,mealTime.getEnercKcal().getQuantity());
+        fatProgress.setProgress(mealTime.getTotalFat() ,mealTime.getFat().getQuantity());
+        proteinProgress.setProgress(mealTime.getTotalProcNt() ,mealTime.getProcnt().getQuantity());
+        carbProgress.setProgress(mealTime.getTotalChockDf(),mealTime.getChocdf().getQuantity());
+
+
+
+    }
+
 }
