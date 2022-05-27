@@ -10,7 +10,7 @@ import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.info_list.InfoItemBuilder;
 import com.calorie.calc.info_list.InfoItemHolder;
 
-public class NutrientHolder extends InfoItemHolder<Nutrient> {
+public abstract class NutrientHolder extends InfoItemHolder<Nutrient> {
     private TextView itemTitleView;
     private  TextView itemContView;
     private ConstraintLayout csl;
@@ -27,7 +27,10 @@ public class NutrientHolder extends InfoItemHolder<Nutrient> {
     public void updateFromItem(Nutrient infoItem, int position) {
         itemTitleView.setText(infoItem.getLabel());
 
-        String quan = String.format("%.2f",infoItem.getQuantity()/infoItem.getPortion());
+
+
+        // String.format("%.2f",infoItem.getQuantityOnePortion());
+        String quan =getQuan(infoItem);
         String result=quan +" "+ infoItem.getUnit();
         itemContView.setText(result);
         if(position % 2 != 0) {
@@ -39,4 +42,6 @@ public class NutrientHolder extends InfoItemHolder<Nutrient> {
     public void updateState(Nutrient infoItem) {
 
     }
+    public abstract String getQuan(Nutrient infoItem);
+
 }

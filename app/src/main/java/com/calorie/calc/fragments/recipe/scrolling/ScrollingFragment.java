@@ -194,7 +194,7 @@ public class ScrollingFragment extends Fragment implements BackPressable {
         binding.recViewNutrients.setLayoutManager(layoutManager);
         nutrientInfoListAdapter.setNutrient(true);
         binding.recViewNutrients.setAdapter(nutrientInfoListAdapter);
-
+        nutrientInfoListAdapter.setNutrientMainType(false);
        // nutrientInfoListAdapter.setInfoItemList(getNutrientList(true));
         binding.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

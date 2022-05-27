@@ -25,4 +25,38 @@ public class RecipeInverter {
 
       return item;
     }
+    public static RecipeAndLinksItem invertToMealTime(RecipeAndLinksItem item,double choosePortions)
+    {
+
+        double portionCount = item.getRecipe().getYield();
+        for(Nutrient nutrient:item.getRecipe().getTotalNutrients().getNutrientList())
+        {
+            if(nutrient!=null) {
+                nutrient.setPortion(choosePortions);
+                if(portionCount!=0&&choosePortions!=0)
+                {
+                    nutrient.setQuantity(nutrient.getQuantity()/portionCount*choosePortions);
+                }
+
+            }
+
+
+        }
+
+        for(Nutrient nutrient:item.getRecipe().getTotalDaily().getNutrientList())
+        {
+            if(nutrient!=null) {
+                nutrient.setPortion(choosePortions);
+                if(portionCount!=0&&choosePortions!=0)
+                {
+                    nutrient.setQuantity(nutrient.getQuantity()/portionCount*choosePortions);
+                }
+
+            }
+
+        }
+
+
+        return item;
+    }
 }

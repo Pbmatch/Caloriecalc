@@ -1,5 +1,7 @@
 package com.calorie.calc.info_list.holder;
 
+import static com.calorie.calc.utils.MeasureUtils.getStringFromDouble;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,10 +33,11 @@ public RecipeTrackerHolder(final InfoItemBuilder infoItemBuilder, final ViewGrou
 @Override
 public void updateFromItem(RecipeAndLinksItem infoItem, int pos) {
 
+
         Recipe recipe = infoItem.getRecipe();
         textViewTitle.setText(recipe.getLabel());
-        textViewCount.setText(String.valueOf(infoItem.getAdapterMealTime().getCalories()));
-        textViewText.setText(String.valueOf(infoItem.getAdapterMealTime().getYield()));
+        textViewCount.setText(getStringFromDouble(infoItem.getAdapterMealTime().getCalories()));
+        textViewText.setText(infoItem.getAdapterMealTime().getMeasureString());
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

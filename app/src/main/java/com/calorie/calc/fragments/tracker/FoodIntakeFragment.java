@@ -1,5 +1,9 @@
 package com.calorie.calc.fragments.tracker;
 
+import static com.calorie.calc.utils.MeasureUtils.getEnergyString;
+import static com.calorie.calc.utils.MeasureUtils.getStringFromDouble;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +22,11 @@ import com.calorie.calc.databinding.ListFooterMealtimeItemBinding;
 import com.calorie.calc.databinding.ListHeaderMealtimeItemBinding;
 import com.calorie.calc.fragments.recipe.ListFragment;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
+import com.calorie.calc.fragments.recipe.scrolling.NavigationFragment;
 import com.calorie.calc.fragments.tracker.detailed.DetailedMealTimeFragment;
+import com.calorie.calc.fragments.tracker.miniitem.exercise.DeleteDialog;
 import com.calorie.calc.info_list.holder.IFragment;
+import com.calorie.calc.utils.OnClickGesture;
 
 import java.util.List;
 
@@ -31,7 +38,7 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
  MealTime mealTime;
 
     FragmentManager myfragmentManager;
-
+    ListFooterMealtimeItemBinding footerBinding;
 
    public FoodIntakeFragment(  FragmentManager fragmentManager) {
       super();
@@ -63,11 +70,35 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_food_intake, container, false);
     }
-
+      double mealTimeRecomended=0;
     @Override
     protected ViewBinding getListFooter() {
-        return ListFooterMealtimeItemBinding
+        footerBinding = ListFooterMealtimeItemBinding
                 .inflate(getLayoutInflater(), itemsList, false);
+        mealTimeRecomended=mealTime.getEnercKcal().getQuantity();
+
+        footerBinding.textViewRecommended.setText(getString(R.string.footer_recipe)+getEnergyString(mealTimeRecomended,getContext()));
+        footerChange();
+        return footerBinding;
+    }
+    void footerChange()
+    {
+
+        footerBinding.textView5.setVisibility(mealTime.getTotalEnergy() == 0 ? View.GONE : View.VISIBLE);
+
+        if(mealTime.getTotalEnergy()<mealTimeRecomended)
+        {footerBinding.imageView5.setVisibility(View.GONE);
+            footerBinding.textView6.setVisibility(View.GONE);
+
+
+        }
+        else
+        {
+            footerBinding.imageView5.setVisibility(View.VISIBLE);
+            footerBinding.textView6.setVisibility(View.VISIBLE);
+            footerBinding.textView6.setText(getStringFromDouble(mealTime.getTotalEnergy()-mealTimeRecomended));
+        }
+        footerBinding.textView5.setText(getStringFromDouble(mealTime.getTotalEnergy()));
     }
 
     @Override
@@ -80,6 +111,7 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
            public void onChanged(List<RecipeAndLinksItem> recipeAndLinksItems) {
 
                infoListAdapter.setInfoItemList(recipeAndLinksItems);
+               footerChange();
            }
        });
 
@@ -100,7 +132,26 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
 
     @Override
     public void setListener() {
+        infoListAdapter.setOnItemSelectedListener(new OnClickGesture<RecipeAndLinksItem>() {
+            @Override
+            public void selected(RecipeAndLinksItem selectedItem) {
+                NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(),new NavigationFragment(selectedItem));
+            }
 
+            @Override
+            public void held(RecipeAndLinksItem selectedItem) {
+                DeleteDialog dialog = new DeleteDialog(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mealTime.getRecipeAndLinksItems().removeItem(selectedItem);
+
+                    }
+                });
+                dialog.show(getParentFragmentManager(),"");
+
+                super.held(selectedItem);
+            }
+        });
     }
 
     @Override
@@ -131,6 +182,13 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
                 .inflate(getLayoutInflater(), itemsList, false);
         viewBinding.textViewTitle.setText(mealTime.getTitle());
         viewBinding.imageViewTitle.setImageDrawable( getContext().getDrawable(mealTime.getResourceImageView()));
+        viewBinding.imageViewArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         viewBinding.textViewTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

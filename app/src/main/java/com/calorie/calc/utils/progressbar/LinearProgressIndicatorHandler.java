@@ -34,7 +34,8 @@ public class LinearProgressIndicatorHandler
 
         private void setTextViewProgress(double total, double dailyNorm)
         {
-            textView.setText(String.format("%.1f",total)+"/"+
+           if (textView!=null)
+               textView.setText(String.format("%.1f",total)+"/"+
                     String.format("%.1f",dailyNorm)+" "+context.getString(R.string.gramm)
             );
 

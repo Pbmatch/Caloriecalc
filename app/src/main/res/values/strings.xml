@@ -102,7 +102,7 @@
     <string name="primal_text">  Very similar to Paleo, except dairy is allowed - think raw and full fat milk, butter, ghee, etc.</string>
     <string name="whole30_text"> Allowed ingredients include meat, fish/seafood, eggs, vegetables, fresh fruit, coconut oil, olive oil, small amounts of dried fruit and nuts/seeds. Ingredients not allowed include added sweeteners (natural and artificial, except small amounts of fruit juice), dairy (except clarified butter or ghee), alcohol, grains, legumes (except green beans, sugar snap peas, and snow peas), and food additives, such as carrageenan, MSG, and sulfites.</string>
     <string name="all_text"> Какой то текст для диеты без ограничений </string>
-    <string name="kkal">ккал</string>
+    <string name="kkal"> ккал</string>
     <string name="weight_unit">кг</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -222,6 +222,7 @@
     <string name="note_hint">Текст заметки</string>
     <string name="clear_note">Очистить заметку</string>
     <string name="note_title">Заметка</string>
+    <string name="footer_recipe">Рекомендовано:</string>
     <plurals name="dish_count">
         <item quantity="one">%s рецепт</item>
         <item quantity="few">%s рецепта</item>

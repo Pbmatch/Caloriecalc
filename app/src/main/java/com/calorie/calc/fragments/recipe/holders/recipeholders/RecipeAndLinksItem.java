@@ -16,6 +16,7 @@ public class RecipeAndLinksItem implements Serializable {
     private RecipeSearchItem.Links links;
     private final static long serialVersionUID = 4169649893548118679L;
     private AdapterMealTime adapterMealTime;
+    private boolean show =true;
 
 
     boolean liked=false;
@@ -26,6 +27,14 @@ public class RecipeAndLinksItem implements Serializable {
 
     public void setAdapterMealTime(AdapterMealTime adapterMealTime) {
         this.adapterMealTime = adapterMealTime;
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 
     public boolean isLiked() {

@@ -17,7 +17,20 @@ public abstract class Nutrient implements Serializable
     @Expose
     private String unit;
 
+
+    double portion=1;
+    protected double summQuantity=0;
+
+
     public Nutrient() {
+    }
+
+    public double getSummQuantity() {
+        return summQuantity;
+    }
+
+    public void setSummQuantity(double summQuantity) {
+        this.summQuantity = summQuantity;
     }
 
     public Nutrient(String label, double quantity, String unit) {
@@ -26,7 +39,7 @@ public abstract class Nutrient implements Serializable
         this.unit = unit;
     }
 
-    double portion=1;
+
 
     public double getPortion() {
         return portion;
@@ -49,6 +62,11 @@ public abstract class Nutrient implements Serializable
     public double getQuantity() {
         return quantity;
     }
+
+    public double getQuantityOnePortion() {
+        return quantity/portion;
+    }
+
 
     public void setQuantity(double quantity) {
         this.quantity = quantity;

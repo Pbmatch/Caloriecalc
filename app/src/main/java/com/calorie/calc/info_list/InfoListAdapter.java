@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.data.ExerciseItem;
 import com.calorie.calc.data.MiniItem;
+import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Ingredient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
-import com.calorie.calc.fragments.recipe.diet.DietMainPageType;
 import com.calorie.calc.info_list.holder.BodySizeHolder;
 import com.calorie.calc.info_list.holder.DietCheckboxHolder;
 import com.calorie.calc.info_list.holder.DietHolder;
@@ -27,7 +27,8 @@ import com.calorie.calc.info_list.holder.FallbackViewHolder;
 import com.calorie.calc.info_list.holder.FragmentHolder;
 import com.calorie.calc.info_list.holder.IngredientHolder;
 import com.calorie.calc.info_list.holder.MiniItemHolder;
-import com.calorie.calc.info_list.holder.NutrientHolder;
+import com.calorie.calc.info_list.holder.NutrientMainHolder;
+import com.calorie.calc.info_list.holder.NutrientScrollingHolder;
 import com.calorie.calc.info_list.holder.ProductEditHolder;
 import com.calorie.calc.info_list.holder.ProductHolder;
 import com.calorie.calc.info_list.holder.RecipeHorizontalMiniItemHolder;
@@ -51,7 +52,7 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int DIET_HOLDER_TYPE = 0x103;
     private static final int ENERGY_HOLDER_TYPE = 0x104;
     private static final int INGREDIENT_HOLDER_TYPE = 0x105;
-    private static final int NUTRIENT_HOLDER_TYPE = 0x106;
+    private static final int NUTRIENT_SCROLL_HOLDER_TYPE = 0x106;
     private static final int DIET_CHECKBOX_HOLDER_TYPE = 0x107;
     private static final int PRODUCT_HOLDER_TYPE = 0x108;
     private static final int PRODUCT_EDIT_HOLDER_TYPE = 0x109;
@@ -60,10 +61,10 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int BODYSIZE_HOLDER_TYPE = 0x112;
     private static final int EXERCISE_HOLDER_TYPE = 0x113;
     private static final int RECIPE_TRACKER_HOLDER_TYPE = 0x114;
-
+    private static final int NUTRIENT_MAIN_HOLDER_TYPE = 0x115;
 
     private boolean isNutrient=false;
-
+    private boolean isNutrientMainType=true;
 
     private boolean isMiniItem=false;
     private boolean isProductFragment=false;
@@ -87,6 +88,14 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void setUseTrackerVariant(boolean useTrackerVariant) {
         this.useTrackerVariant = useTrackerVariant;
+    }
+
+    public boolean isNutrientMainType() {
+        return isNutrientMainType;
+    }
+
+    public void setNutrientMainType(boolean nutrientMainType) {
+        isNutrientMainType = nutrientMainType;
     }
 
     public void setMiniItem(boolean miniItem) {
@@ -202,7 +211,8 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
         if(infoItemList.get(position) instanceof Nutrient )
         {
             return isNutrient?
-                    NUTRIENT_HOLDER_TYPE:
+                    isNutrientMainType?
+                    NUTRIENT_MAIN_HOLDER_TYPE:NUTRIENT_SCROLL_HOLDER_TYPE:
                     ENERGY_HOLDER_TYPE;
 
         }
@@ -264,7 +274,8 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
             case PRODUCT_EDIT_HOLDER_TYPE: return new ProductEditHolder(infoItemBuilder,parent);
             case PRODUCT_HOLDER_TYPE: return new ProductHolder(infoItemBuilder,parent);
 
-            case NUTRIENT_HOLDER_TYPE: return new NutrientHolder(infoItemBuilder,parent);
+            case NUTRIENT_SCROLL_HOLDER_TYPE: return new NutrientScrollingHolder(infoItemBuilder,parent);
+            case NUTRIENT_MAIN_HOLDER_TYPE: return new NutrientMainHolder(infoItemBuilder,parent);
             case DIET_CHECKBOX_HOLDER_TYPE:return new DietCheckboxHolder(infoItemBuilder,parent);
             case FRAGMENT_HOLDER_TYPE:return new FragmentHolder(infoItemBuilder,parent);
             case MINI_HOLDER_TYPE:return new MiniItemHolder(infoItemBuilder,parent);

@@ -24,5 +24,16 @@ public class MutableList<T extends List<Y>,Y> extends MutableLiveData<T> {
 
         this.setValue(this.getValue());
     }
-
+    public void removeItem(Y item)
+    {
+        if(this.getValue()==null)
+        {
+            return;
+        }
+        if(this.getValue().contains(item))
+        {
+            this.getValue().remove(item);
+        }
+        notifyDataSetChanged();
+    }
 }

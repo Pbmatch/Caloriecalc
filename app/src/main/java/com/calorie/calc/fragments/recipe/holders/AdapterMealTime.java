@@ -5,19 +5,31 @@ import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import java.util.List;
 
 public class AdapterMealTime {
-    int yield=0;
+    double yield=0;
     private double calories=0;
+    private double gram=0;
+
+    public String getMeasureString() {
+        return measureString;
+    }
+
+    public AdapterMealTime setMeasureString(String measureString) {
+        this.measureString = measureString;
+        return this;
+    }
+
+    String measureString="";
 
 
     public List<Nutrient> getNutrientList(List<Nutrient> list) {
 
         return list;
     }
-    public int getYield() {
+    public double getYield() {
         return yield;
     }
 
-    public AdapterMealTime setYield(int yield) {
+    public AdapterMealTime setYield(double yield) {
         this.yield = yield;
         return this;
     }
@@ -26,7 +38,24 @@ public class AdapterMealTime {
         return calories;
     }
 
-    public void setCalories(double calories) {
+    public AdapterMealTime setCalories(double calories) {
         this.calories = calories;
+        return this;
     }
+    public enum MeasureEnum
+    {
+        Portion("Portion"),
+        Gram("Gram");
+
+        String title;
+
+        MeasureEnum(String title) {
+            this.title = title;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+    }
+
 }

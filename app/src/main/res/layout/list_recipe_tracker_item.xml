@@ -8,13 +8,16 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
+        style="@style/text_standart"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/start_dimen"
-        style="@style/text_standart"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:singleLine="true"
 
-        android:text=" aaaaaaaaa"
 
+        app:layout_constraintEnd_toStartOf="@+id/textViewCount"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
@@ -23,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/start_dimen"
         style="@style/text_minim"
-        android:text=" ssssssssssssssssssss"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
