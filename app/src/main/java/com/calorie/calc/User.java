@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.calorie.calc.data.BodySizeItem;
 import com.calorie.calc.data.ExerciseItem;
 import com.calorie.calc.data.NoteItem;
+import com.calorie.calc.fragments.recipe.holders.WaterMiniItem;
 import com.calorie.calc.utils.MutableList;
 
 import java.util.Date;
@@ -42,10 +43,15 @@ public class User {
     MutableLiveData<NoteItem> noteItem=new MutableLiveData<>();
     MutableList<List<BodySizeItem>,BodySizeItem> bodySizeItemList = new MutableList<>();
     MutableList<List<ExerciseItem>,ExerciseItem> exerciseItemList = new MutableList<>();
-
+    MutableLiveData<WaterMiniItem> waterItem  = new MutableLiveData<>();
     public MutableList<List<BodySizeItem>,BodySizeItem> getBodySizeItemList() {
 
         return bodySizeItemList;
+    }
+    public MutableLiveData<WaterMiniItem> getWaterItem() {
+        if(waterItem.getValue()==null)
+            waterItem.setValue(new WaterMiniItem("Всего выпито",R.drawable.glasswater, R.drawable.glasswater));
+        return waterItem;
     }
 
     public MutableList<List<ExerciseItem>,ExerciseItem> getExerciseItemList() {

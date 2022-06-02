@@ -13,7 +13,11 @@ public   class OptionsUnit {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(Constants.KEY_BODY_SIZE_UNIT,"см");
     }
-
+    public  static String getWaterUnit(Context context)
+    {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(Constants.KEY_BODY_SIZE_UNIT,"мл");
+    }
 
     public static String getExerciseItemTimeUnit(Context context) {
         return context.getString(R.string.time);

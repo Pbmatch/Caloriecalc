@@ -38,9 +38,7 @@ public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment i
         this.selectedItem = selectedItem;
     }
 
-    public MiniItemSetFragment() {
-        // Required empty public constructor
-    }
+
 
 
     @Override
@@ -115,6 +113,7 @@ public abstract class MiniItemSetFragment<T extends MiniItem> extends Fragment i
             }
         });
     }
+
 
     @Override
     public boolean onBackPressed() {

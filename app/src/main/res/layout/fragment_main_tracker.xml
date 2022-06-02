@@ -43,7 +43,7 @@
         style="@style/text_standart_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Water"
+        android:text="@string/water"
         android:layout_margin="@dimen/start_max_dimen"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"

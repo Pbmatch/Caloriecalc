@@ -224,6 +224,8 @@
     <string name="clear_note">Очистить заметку</string>
     <string name="note_title">Заметка</string>
     <string name="footer_recipe">Рекомендовано:</string>
+    <string name="save">Сохранить</string>
+    <string name="water">Water</string>
     <plurals name="dish_count">
         <item quantity="one">%s рецепт</item>
         <item quantity="few">%s рецепта</item>

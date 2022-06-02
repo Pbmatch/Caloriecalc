@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,20 +21,24 @@ import com.calorie.calc.MainActivity;
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
 import com.calorie.calc.data.NoteItem;
-import com.calorie.calc.fragments.tracker.detailed.DetailedFragment;
+import com.calorie.calc.fragments.recipe.holders.WaterMiniItem;
 
 
 public class MainTrackerFragment extends Fragment {
 
-   RecyclerView recyclerViewExercise;
-    RecyclerView recyclerViewBodySize;
-    RecyclerView recyclerViewFoto;
-    ConstraintLayout csl_note;
+  private RecyclerView recyclerViewExercise;
+    private  RecyclerView recyclerViewBodySize;
+    private  RecyclerView recyclerViewFoto;
+    private ConstraintLayout csl_note;
+    private  ImageView imageViewWater;
+    private TextView textViewWaterCount;
+    private TextView textViewWaterMeasure;
 
-   ExerciseAdapter exerciseAdapter;
-   BodySizeAdapter bodySizeAdapter;
-    FotoAdapter fotoAdapter;
-    TextView textViewNote;
+
+    private ExerciseAdapter exerciseAdapter;
+    private BodySizeAdapter bodySizeAdapter;
+    private  FotoAdapter fotoAdapter;
+    private  TextView textViewNote;
 
 
     public MainTrackerFragment() {
@@ -65,10 +70,12 @@ public class MainTrackerFragment extends Fragment {
         recyclerViewExercise =view.findViewById(R.id.rec_view_activ);
         recyclerViewFoto=view.findViewById(R.id.rec_view_foto);
         recyclerViewBodySize = view.findViewById(R.id.rec_view_bodysize);
-
+        imageViewWater = view.findViewById(R.id.image_view_water);
         textViewNote=view.findViewById(R.id.textView_note_text);
         csl_note =view.findViewById(R.id.csl_note);
-        System.out.println("onViewCreated"  );
+        textViewWaterCount = view.findViewById(R.id.textView_water_count);
+        textViewWaterMeasure=view.findViewById(R.id.textView_water_measure);
+
         exerciseAdapter = new ExerciseAdapter(recyclerViewExercise,getContext(),getActivity().getSupportFragmentManager());
         bodySizeAdapter=new BodySizeAdapter(recyclerViewBodySize,getContext(),getActivity().getSupportFragmentManager());
         MainActivity.getUser().getWeightItem().observe(getViewLifecycleOwner(), bodySizeAdapter.getWeightObserver());
@@ -77,9 +84,21 @@ public class MainTrackerFragment extends Fragment {
         fotoAdapter=new FotoAdapter(recyclerViewFoto,getContext(),getActivity().getSupportFragmentManager());
 
         openFoodIntakeContainerFragment(getChildFragmentManager(),new FoodIntakeContainerFragment());
+        imageViewWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.getUser().getWaterItem();
+                NavigationHelper.openNavigationFragment(getActivity().getSupportFragmentManager(),new WaterAddFragment(MainActivity.getUser().getWaterItem().getValue()));
+            }
+        });
 
-
-
+        MainActivity.getUser().getWaterItem().observe(getViewLifecycleOwner(), new Observer<WaterMiniItem>() {
+            @Override
+            public void onChanged(WaterMiniItem waterMiniItem) {
+                textViewWaterCount.setText(String.valueOf(waterMiniItem.getCountOfUnit()));
+                textViewWaterMeasure.setText(waterMiniItem.getUnit(getContext()));
+            }
+        });
         note();
     }
     void note()
