@@ -1,13 +1,18 @@
 package com.calorie.calc.fragments.tracker;
 
+import static com.calorie.calc.utils.Config.ROTATION_ANIMATE_CONTROLS_DURATION;
 import static com.calorie.calc.utils.MeasureUtils.getEnergyString;
+import static com.calorie.calc.utils.MeasureUtils.getGramNutrientString;
 import static com.calorie.calc.utils.MeasureUtils.getStringFromDouble;
+import static com.calorie.calc.utils.ViewUtils.animateRotation;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +23,7 @@ import androidx.viewbinding.ViewBinding;
 
 import com.calorie.calc.NavigationHelper;
 import com.calorie.calc.R;
-import com.calorie.calc.databinding.ListFooterMealtimeItemBinding;
+import com.calorie.calc.databinding.ListFooterMealtimeReachItemBinding;
 import com.calorie.calc.databinding.ListHeaderMealtimeItemBinding;
 import com.calorie.calc.fragments.recipe.ListFragment;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
@@ -38,7 +43,8 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
  MealTime mealTime;
 
     FragmentManager myfragmentManager;
-    ListFooterMealtimeItemBinding footerBinding;
+    FooterHolder footerHolder;
+
 
    public FoodIntakeFragment(  FragmentManager fragmentManager) {
       super();
@@ -60,8 +66,10 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         //  emptyLinearLayout=view.findViewById(R.id.empty_state_view);
+        footerHolder=new FooterHolder();
         super.onViewCreated(view, savedInstanceState);
         infoListAdapter.setUseTrackerVariant(true);
+
     }
 
     @Override
@@ -71,34 +79,18 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
         return inflater.inflate(R.layout.fragment_food_intake, container, false);
     }
       double mealTimeRecomended=0;
+
     @Override
     protected ViewBinding getListFooter() {
-        footerBinding = ListFooterMealtimeItemBinding
-                .inflate(getLayoutInflater(), itemsList, false);
-        mealTimeRecomended=mealTime.getEnercKcal().getQuantity();
+        if(mealTime.getRecipeAndLinksItems().getValue()==null||mealTime.getRecipeAndLinksItems().getValue().size()==0)
+       {
+           return footerHolder.getReachListFooter(false);}
+      else
+      {
 
-        footerBinding.textViewRecommended.setText(getString(R.string.footer_recipe)+getEnergyString(mealTimeRecomended,getContext()));
-        footerChange();
-        return footerBinding;
-    }
-    void footerChange()
-    {
+           return footerHolder.getReachListFooter(true);
+      }
 
-        footerBinding.textView5.setVisibility(mealTime.getTotalEnergy() == 0 ? View.GONE : View.VISIBLE);
-
-        if(mealTime.getTotalEnergy()<mealTimeRecomended)
-        {footerBinding.imageView5.setVisibility(View.GONE);
-            footerBinding.textView6.setVisibility(View.GONE);
-
-
-        }
-        else
-        {
-            footerBinding.imageView5.setVisibility(View.VISIBLE);
-            footerBinding.textView6.setVisibility(View.VISIBLE);
-            footerBinding.textView6.setText(getStringFromDouble(mealTime.getTotalEnergy()-mealTimeRecomended));
-        }
-        footerBinding.textView5.setText(getStringFromDouble(mealTime.getTotalEnergy()));
     }
 
     @Override
@@ -109,9 +101,17 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
        mealTime.getRecipeAndLinksItems().observe(getViewLifecycleOwner(), new Observer<List<RecipeAndLinksItem>>() {
            @Override
            public void onChanged(List<RecipeAndLinksItem> recipeAndLinksItems) {
-
+               System.out.println("getReachListFooterOnChanged");
                infoListAdapter.setInfoItemList(recipeAndLinksItems);
-               footerChange();
+
+               if (recipeAndLinksItems.size()>0) {
+                   footerHolder.fullFooterChange(true);
+                  // footerHolder.reachFooterBinding.linear.setVisibility(View.VISIBLE);
+               } else {
+                   footerHolder.fullFooterChange(false);
+                  // footerHolder.reachFooterBinding.linear.setVisibility(View.GONE);
+               } //footerHolder.fullFooterChange(true);
+
            }
        });
 
@@ -185,7 +185,20 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
         viewBinding.imageViewArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+              int rotate;
+            if(infoListAdapter.isRoll())
+            {
+                infoListAdapter.setRoll(false);
+               rotate=0;
+            }
+            else
+            {
+                infoListAdapter.setRoll(true);
+                rotate=180;
+            }
+                animateRotation(viewBinding.imageViewArrow,
+                        ROTATION_ANIMATE_CONTROLS_DURATION, rotate);
+            infoListAdapter.notifyDataSetChanged();
             }
         });
 
@@ -212,6 +225,55 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
 
     @Override
     public void reloadContent() {
+
+    }
+    class FooterHolder
+    {
+
+
+        private  ListFooterMealtimeReachItemBinding reachFooterBinding;
+
+
+        protected ViewBinding getReachListFooter(boolean visible) {
+
+            reachFooterBinding = ListFooterMealtimeReachItemBinding
+                    .inflate(getLayoutInflater(), itemsList, false);
+            mealTimeRecomended=mealTime.getEnercKcal().getQuantity();
+            reachFooterBinding.textViewRecommended.setText(getString(R.string.footer_recipe)+getEnergyString(mealTimeRecomended,getContext()));
+            fullFooterChange(  visible);
+            return reachFooterBinding;
+
+        }
+      private   void liteFooterChange(ImageView imageView, TextView textViewCount, TextView textViewExtra)
+        {
+
+             textViewCount.setVisibility(mealTime.getTotalEnergy() == 0 ? View.GONE : View.VISIBLE);
+
+            if(mealTime.getTotalEnergy()<mealTimeRecomended)
+            { imageView.setVisibility(View.GONE);
+                 textViewExtra.setVisibility(View.GONE);
+
+
+            }
+            else
+            {
+                 imageView.setVisibility(View.VISIBLE);
+                 textViewExtra.setVisibility(View.VISIBLE);
+                 textViewExtra.setText(getStringFromDouble(mealTime.getTotalEnergy()-mealTimeRecomended));
+            }
+             textViewCount.setText(getStringFromDouble(mealTime.getTotalEnergy()));
+        }
+        protected   void fullFooterChange(boolean visible)
+        {
+            liteFooterChange(reachFooterBinding.imageView5,reachFooterBinding.textViewCount,reachFooterBinding.textViewExtra);
+            if (visible) reachFooterBinding.linear.setVisibility(View.VISIBLE);
+            else reachFooterBinding.linear.setVisibility(View.GONE);
+
+            reachFooterBinding.textViewProteinCount.setText(getGramNutrientString(mealTime.getTotalProcNt(),getContext()));
+            reachFooterBinding.textViewFatCount.setText(getGramNutrientString(mealTime.getTotalFat(),getContext()));
+            reachFooterBinding.textViewCarbCount.setText(getGramNutrientString(mealTime.getTotalChockDf(),getContext()));
+        }
+
 
     }
 }

@@ -17,17 +17,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="540"
         style="@style/text_standart"
         android:layout_marginHorizontal="@dimen/min_dimen"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/textViewExtra"
         app:layout_constraintTop_toTopOf="@+id/textView_recommended" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewExtra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/min_dimen"
@@ -35,7 +35,7 @@
         style="@style/text_standart_light"
         android:textColor="@color/red"
         app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
+        app:layout_constraintTop_toTopOf="@+id/textViewCount" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -43,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/min_dimen"
 
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewExtra"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textViewCount"
         app:srcCompat="@drawable/excess" />
 </androidx.constraintlayout.widget.ConstraintLayout>

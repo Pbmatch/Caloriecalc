@@ -64,6 +64,10 @@ public class DetailedMealTimeFragment extends ListFragment<RecipeAndLinksItem> i
     //обработать калорийность и порции
     //обработать нажатие и долгое нажатие, добавить диалоговое окно и в удалении продуктов тоже
 
+
+    //todo закидка рецепта в счетчик меняет его изнутри
+    //кривой диалог удаления
+
     public DetailedMealTimeFragment(MealTime mealTime) {
         this.mealTime = mealTime;
     }
@@ -235,7 +239,7 @@ public class DetailedMealTimeFragment extends ListFragment<RecipeAndLinksItem> i
             }
         });
 
-      //  viewBinding.switch1.setChecked(true);
+         viewBinding.switch1.setChecked(true);
 
         return viewBinding;
         /* infoListAdapter.setHeader(viewBinding.getRoot());;*/

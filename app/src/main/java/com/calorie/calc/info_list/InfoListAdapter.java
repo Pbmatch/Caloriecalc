@@ -136,8 +136,15 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public void setFooter(final View view) {
-        this.footer = view;
+    public void setFooter(final View footer) {
+         final boolean changed = footer != this.footer;
+
+        this.footer = footer;
+      // if (changed) {
+         //  notifyItemChanged(getItemCount());
+          notifyDataSetChanged();
+      //  }
+       // this.footer = view;
     }
 
     public void showFooter(final boolean show) {
@@ -181,7 +188,17 @@ public class InfoListAdapter <T> extends RecyclerView.Adapter<RecyclerView.ViewH
                     + "header = " + header + ", footer = " + footer + ", "
                     + "showFooter = " + showFooter);
         }
+        if(roll) return 1;
         return count;
+    }
+    boolean roll=false;
+
+    public void setRoll(boolean roll) {
+        this.roll = roll;
+    }
+
+    public boolean isRoll() {
+        return roll;
     }
 
     @Override

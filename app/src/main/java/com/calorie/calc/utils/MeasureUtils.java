@@ -38,4 +38,13 @@ public class MeasureUtils {
                 : count < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) count;
         return context.getResources().getQuantityString(R.plurals.dish_count, safeCount, count);
     }
+    public static String getGramNutrientString(double kKal, Context context)
+    {
+        if(kKal==0)
+        {
+            return context.getString(R.string.no_data);
+        }
+        return String.format("%.1f",kKal) +context.getString(R.string.gramm);
+
+    }
 }
