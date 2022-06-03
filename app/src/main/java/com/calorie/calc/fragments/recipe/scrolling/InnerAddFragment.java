@@ -124,7 +124,7 @@ public class InnerAddFragment extends Fragment implements BackPressable {
             }
         });
 
-
+        measureEnumItemSelected=adapter.getItem(0);
 
         view.findViewById(R.id.buttonAdd).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,9 +145,7 @@ public class InnerAddFragment extends Fragment implements BackPressable {
                   String measureString="";
                   if(measureEnumItemSelected.equals(AdapterMealTime.MeasureEnum.Gram))
                   {
-                     /* portion=Double.parseDouble(editTextPorionsNumber.getText().toString())/
-                              recipeAndLinksItem.getRecipe().getTotalWeight()/
-                              recipeAndLinksItem.getRecipe().getYield();*/
+
                       portion =Double.parseDouble(editTextPorionsNumber.getText().toString())/
                               (recipeAndLinksItem.getRecipe().getTotalWeight()/ recipeAndLinksItem.getRecipe().getYield());
 
@@ -160,13 +158,10 @@ public class InnerAddFragment extends Fragment implements BackPressable {
                 measureString = editTextPorionsNumber.getText().toString()+" "+measureEnumItemSelected.getTitle();
 
                 RecipeInverter.invertToMealTime(recipeAndLinksItem,portion);
-                System.out.println("(measureEnumItemSelected.equals(AdapterMealTime.MeasureEnum.Gram) getTotalWeight" + recipeAndLinksItem.getRecipe().getTotalWeight());
-                System.out.println("(measureEnumItemSelected.equals(AdapterMealTime.MeasureEnum.Gram) getCalories" + recipeAndLinksItem.getRecipe().getCalories());
-                System.out.println("(measureEnumItemSelected.equals(AdapterMealTime.MeasureEnum.Gram) getYield" + recipeAndLinksItem.getRecipe().getYield());
-                System.out.println("(measureEnumItemSelected.equals(AdapterMealTime.MeasureEnum.Gram) portion" + portion);
+
                 calories=(recipeAndLinksItem.getRecipe().getCalories()/recipeAndLinksItem.getRecipe().getYield());
                 calories=calories*portion;
-                System.out.println("(measureEnumItemSelected.equals(AdapterMealTime.MeasureEnum.Gram) calories" + calories);
+
                   recipeAndLinksItem.setAdapterMealTime(new AdapterMealTime()
                           .setYield(portion)
                           .setMeasureString(measureString)

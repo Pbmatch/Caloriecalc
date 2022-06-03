@@ -72,6 +72,7 @@ public class ExerciseListWithToolbarFragment  extends ListFragment<ExerciseItem>
           DeleteDialog dialog = new DeleteDialog(new DialogInterface.OnClickListener() {
               @Override
               public void onClick(DialogInterface dialog, int which) {
+                  MainActivity.getUser().getExerciseItemList().removeItem(selectedItem);
                   infoListAdapter.deleteItemFromItemList(selectedItem);
               }
           });

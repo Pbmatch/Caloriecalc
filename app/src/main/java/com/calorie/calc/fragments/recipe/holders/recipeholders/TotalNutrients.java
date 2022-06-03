@@ -1,6 +1,5 @@
 package com.calorie.calc.fragments.recipe.holders.recipeholders;
 
-import com.calorie.calc.fragments.recipe.holders.AdapterMealTime;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -118,14 +117,14 @@ public class TotalNutrients implements Serializable {
     @SerializedName("WATER")
     @Expose
     private Water water;
-
+    List<Nutrient> inverterNutrientList = new ArrayList<>();
     public List<Nutrient> getNutrientList() {
         initNutrientsList();
         return nutrientList;
     }
-    public List<Nutrient> getNutrientListForMealTime(AdapterMealTime mealTimeAdapter) {
-        initNutrientsList();
-        return mealTimeAdapter.getNutrientList(nutrientList);
+    public List<Nutrient> getNutrientListForMealTime() {
+       // initNutrientsList();
+        return inverterNutrientList;
 
     }
 

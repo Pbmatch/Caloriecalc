@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.calorie.calc.R;
+import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.TotalNutrients;
 
 public   class OptionsUnit {
@@ -33,109 +34,166 @@ public   class OptionsUnit {
                 : count < Integer.MIN_VALUE ? Integer.MIN_VALUE : (int) count;
         return context.getResources().getQuantityString(R.plurals.day_count, safeCount, count);
     }
-    public static TotalNutrients.Fat getFat(String stringMealTime)
+
+    public static Nutrient createDefaultNutrient(String stringMealTime, NormallyHolder holder)
     {
+        double quantity=0;
         switch (stringMealTime)
         {
             case "BREAKFAST" :{
-                return new TotalNutrients().new Fat("Fat",50.0,"g");
-
-                }
+                quantity = holder.BREAKFASTquantity();
+                break;
+            }
             case      "LUNCH":{
-                return new TotalNutrients().new Fat("Fat",20.0,"g");
-
+                quantity = holder.LUNCHquantity();
+                break;
             }
             case      "DINNER":{
-                return new TotalNutrients().new Fat("Fat",150.0,"g");
-
+                quantity = holder.DINNERquantity();
+                break;
             }
             case        "SNACK":{
-                return new TotalNutrients().new Fat("Fat",80.0,"g");
-
+                quantity = holder.SNACKquantity();
+                break;
             }
+            default:quantity = holder.getSumm();
 
         }
-        TotalNutrients.Fat fat = new TotalNutrients().new Fat("Fat",100.0,"g");
-        return fat;
+
+        return holder.createNutrient(quantity);
 
     }
-    public static TotalNutrients.EnercKcal getEnergy(String stringMealTime)
+
+
+   interface NormallyHolder
     {
-        switch (stringMealTime)
+          double BREAKFASTquantity();
+          double LUNCHquantity();
+          double DINNERquantity();
+        double SNACKquantity();
+        Nutrient createNutrient(double quantity);
+       default double getSumm()
         {
-            case "BREAKFAST" :{
-                return  new TotalNutrients().new EnercKcal("Energy",450.0,"kcal");
-
-            }
-            case      "LUNCH":{
-                return  new TotalNutrients().new EnercKcal("Energy",500.0,"kcal");
-
-            }
-            case      "DINNER":{
-                return new TotalNutrients().new EnercKcal("Energy",500.0,"kcal");
-
-            }
-            case        "SNACK":{
-                return  new TotalNutrients().new EnercKcal("Energy",200.0,"kcal");
-
-            }
-
+            return    BREAKFASTquantity()+
+                    LUNCHquantity()+
+             DINNERquantity()+
+              SNACKquantity();
         }
-        return  new TotalNutrients().new EnercKcal("Energy",100.0,"kcal");
-
-
     }
-    public static TotalNutrients.Procnt getProtein(String stringMealTime)
+    public   static class NormallyProteinHolder implements NormallyHolder
     {
-        switch (stringMealTime)
-        {
-            case "BREAKFAST" :{
-                return  new TotalNutrients().new Procnt("Protein",22.0,"g");
 
-            }
-            case      "LUNCH":{
-                return  new TotalNutrients().new Procnt("Protein",28.0,"g");
-
-            }
-            case      "DINNER":{
-                return new TotalNutrients().new Procnt("Protein",30.0,"g");
-
-            }
-            case        "SNACK":{
-                return  new TotalNutrients().new Procnt("Protein",15.0,"g");
-
-            }
-
+        @Override
+        public double BREAKFASTquantity() {
+            return 22;
         }
-        return  new TotalNutrients().new Procnt("Protein",10.0,"g");
 
+        @Override
+        public  double LUNCHquantity() {
+            return 28;
+        }
 
+        @Override
+        public double DINNERquantity() {
+            return 30;
+        }
+
+        @Override
+        public double SNACKquantity() {
+            return 15;
+        }
+
+        @Override
+        public Nutrient createNutrient(double quantity) {
+            return new TotalNutrients().new Procnt("Protein",quantity,"g");
+        }
     }
-    public static TotalNutrients.Chocdf getCarb(String stringMealTime)
+
+
+
+    public   static class NormallyEnergyHolder implements NormallyHolder
     {
-        switch (stringMealTime)
-        {
-            case "BREAKFAST" :{
-                return  new TotalNutrients().new Chocdf("Carb",32.0,"g");
 
-            }
-            case      "LUNCH":{
-                return  new TotalNutrients().new Chocdf("Carb",38.0,"g");
-
-            }
-            case      "DINNER":{
-                return new TotalNutrients().new Chocdf("Carb",40.0,"g");
-
-            }
-            case        "SNACK":{
-                return  new TotalNutrients().new Chocdf("Carb",35.0,"g");
-
-            }
-
+        @Override
+       public double BREAKFASTquantity() {
+            return 450;
         }
-        return  new TotalNutrients().new Chocdf("Carb",30.0,"g");
 
+        @Override
+        public  double LUNCHquantity() {
+            return 500;
+        }
 
+        @Override
+        public double DINNERquantity() {
+            return 500;
+        }
+
+        @Override
+        public double SNACKquantity() {
+            return 200;
+        }
+
+        @Override
+        public Nutrient createNutrient(double quantity) {
+            return new TotalNutrients().new EnercKcal("Energy",quantity,"kcal");
+        }
+    }
+    public   static class NormallyFatHolder implements NormallyHolder
+    {
+
+        @Override
+        public double BREAKFASTquantity() {
+            return 50;
+        }
+
+        @Override
+        public  double LUNCHquantity() {
+            return 20;
+        }
+
+        @Override
+        public double DINNERquantity() {
+            return 150;
+        }
+
+        @Override
+        public double SNACKquantity() {
+            return 80;
+        }
+
+        @Override
+        public Nutrient createNutrient(double quantity) {
+            return new TotalNutrients().new Fat("Fat",quantity,"g");
+        }
+    }
+    public   static class NormallyCarbHolder implements NormallyHolder
+    {
+
+        @Override
+        public double BREAKFASTquantity() {
+            return 32;
+        }
+
+        @Override
+        public  double LUNCHquantity() {
+            return 38;
+        }
+
+        @Override
+        public double DINNERquantity() {
+            return 40;
+        }
+
+        @Override
+        public double SNACKquantity() {
+            return 35;
+        }
+
+        @Override
+        public Nutrient createNutrient(double quantity) {
+            return new TotalNutrients().new Chocdf("Carb",quantity,"g");
+        }
     }
 
 }

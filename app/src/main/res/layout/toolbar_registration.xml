@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/srt_toolbar_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="_srt_"
+        android:lines="2"
+        />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/srt_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="?android:textColor"
+        android:gravity="center_vertical"
+        android:minHeight="?attr/actionBarSize"
+        >
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+</LinearLayout>

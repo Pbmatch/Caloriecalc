@@ -238,7 +238,7 @@ public class FoodIntakeFragment extends ListFragment<RecipeAndLinksItem> impleme
 
             reachFooterBinding = ListFooterMealtimeReachItemBinding
                     .inflate(getLayoutInflater(), itemsList, false);
-            mealTimeRecomended=mealTime.getEnercKcal().getQuantity();
+            mealTimeRecomended=mealTime.getPlanEnercKcal().getQuantity();
             reachFooterBinding.textViewRecommended.setText(getString(R.string.footer_recipe)+getEnergyString(mealTimeRecomended,getContext()));
             fullFooterChange(  visible);
             return reachFooterBinding;

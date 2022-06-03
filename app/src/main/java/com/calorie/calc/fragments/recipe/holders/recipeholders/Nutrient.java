@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public abstract class Nutrient implements Serializable
+public abstract class Nutrient implements Serializable,Cloneable
 {
     @SerializedName("label")
     @Expose
@@ -78,5 +78,16 @@ public abstract class Nutrient implements Serializable
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    @Override
+    public Nutrient clone() {
+        try {
+            Nutrient clone = (Nutrient) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

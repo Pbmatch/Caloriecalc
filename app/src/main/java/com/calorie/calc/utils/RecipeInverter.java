@@ -35,7 +35,10 @@ public class RecipeInverter {
                 nutrient.setPortion(choosePortions);
                 if(portionCount!=0&&choosePortions!=0)
                 {
-                    nutrient.setQuantity(nutrient.getQuantity()/portionCount*choosePortions);
+                    Nutrient invertNutrient = nutrient.clone();
+                    invertNutrient.setQuantity(nutrient.getQuantity()/portionCount*choosePortions);
+                    item.getRecipe().getTotalNutrients().getNutrientListForMealTime().add(invertNutrient);
+                  //  nutrient.setQuantity(nutrient.getQuantity()/portionCount*choosePortions);
                 }
 
             }
@@ -49,7 +52,10 @@ public class RecipeInverter {
                 nutrient.setPortion(choosePortions);
                 if(portionCount!=0&&choosePortions!=0)
                 {
-                    nutrient.setQuantity(nutrient.getQuantity()/portionCount*choosePortions);
+                    Nutrient invertNutrient = nutrient.clone();
+                    invertNutrient.setQuantity(nutrient.getQuantity()/portionCount*choosePortions);
+                    item.getRecipe().getTotalDaily().getNutrientListForMealTime().add(invertNutrient);
+                  //  nutrient.setQuantity(nutrient.getQuantity()/portionCount*choosePortions);
                 }
 
             }

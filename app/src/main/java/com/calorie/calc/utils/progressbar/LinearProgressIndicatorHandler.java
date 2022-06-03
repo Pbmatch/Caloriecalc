@@ -8,11 +8,10 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 public class LinearProgressIndicatorHandler
 {
-        private LinearProgressIndicator progressIndicator;
-
-    private int progressColor;
-    private  Context context;
-    private TextView textView;
+    protected LinearProgressIndicator progressIndicator;
+    protected int progressColor;
+    protected  Context context;
+    protected TextView textView;
 
     public LinearProgressIndicatorHandler(LinearProgressIndicator progressIndicator, int progressColor, Context context, TextView textView) {
         this.progressIndicator = progressIndicator;
@@ -32,8 +31,9 @@ public class LinearProgressIndicatorHandler
             setTextViewProgress(total,dailyNorm);
         }
 
-        private void setTextViewProgress(double total, double dailyNorm)
+        protected void setTextViewProgress(double total, double dailyNorm)
         {
+
            if (textView!=null)
                textView.setText(String.format("%.1f",total)+"/"+
                     String.format("%.1f",dailyNorm)+" "+context.getString(R.string.gramm)

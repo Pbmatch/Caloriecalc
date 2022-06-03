@@ -9,7 +9,7 @@ public class MeasureUtils {
     {
         Double d = kKal;
         Integer i = d.intValue();
-      return i+context.getString(R.string.kkal);
+      return i+" "+context.getString(R.string.kkal);
 
     }
     public static String getStringFromDouble(double kKal)

@@ -118,26 +118,14 @@ public class DetailedMealTimeFragment extends ListFragment<RecipeAndLinksItem> i
     }
     void initProgressBar()
     {
-        semiCircleArcProgressBar.setProgressChangeListener(new SemiCircleArcProgressBar.OnProgressChangeListener() {
-            @Override
-            public void onChange(int progress) {
-                if(progress>99)
-                {
-                    semiCircleArcProgressBar.setProgressBarColor(getContext().getColor(R.color.red));
-                }
-                else
-                {
-                    semiCircleArcProgressBar.setProgressBarColor(getContext().getColor(R.color.progress_on));
-                }
-            }
-        });
 
 
-        textViewEnergy.setText(getStringFromDouble(mealTime.getTotalEnergy()) + " из"+"\n" +getEnergyString(mealTime.getEnercKcal().getQuantity(),getContext()));
-        fatProgress.setProgress(mealTime.getTotalFat() ,mealTime.getFat().getQuantity());
-        proteinProgress.setProgress(mealTime.getTotalProcNt() ,mealTime.getProcnt().getQuantity());
-        carbProgress.setProgress(mealTime.getTotalChockDf(),mealTime.getChocdf().getQuantity());
-        semiCircleArcProgressBar.setPercent(CalculateProgressIndicator.getProgress(mealTime.getTotalEnergy(),mealTime.getEnercKcal().getQuantity()));
+
+        textViewEnergy.setText(getStringFromDouble(mealTime.getTotalEnergy()) + " из"+"\n" +getEnergyString(mealTime.getPlanEnercKcal().getQuantity(),getContext()));
+        fatProgress.setProgress(mealTime.getTotalFat() ,mealTime.getPlanFat().getQuantity());
+        proteinProgress.setProgress(mealTime.getTotalProcNt() ,mealTime.getPlanProcnt().getQuantity());
+        carbProgress.setProgress(mealTime.getTotalChockDf(),mealTime.getPlanChocdf().getQuantity());
+        semiCircleArcProgressBar.setPercent(CalculateProgressIndicator.getProgress(mealTime.getTotalEnergy(),mealTime.getPlanEnercKcal().getQuantity()));
 
 
     }

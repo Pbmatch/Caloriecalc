@@ -138,8 +138,16 @@ public class SemiCircleArcProgressBar extends View
 
     public void setPercent(int percent)
     {
-        if(progressChangeListener!=null)
-            progressChangeListener.onChange(percent);
+        if(percent<0) return;
+
+        if(percent>99)
+        {
+            setProgressBarColor(getContext().getColor(R.color.red));
+        }
+        else
+        {
+           setProgressBarColor(getContext().getColor(R.color.progress_on));
+        }
         this.percent = percent;
 
         postInvalidate();

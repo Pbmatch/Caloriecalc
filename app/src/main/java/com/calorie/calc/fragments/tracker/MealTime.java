@@ -1,7 +1,5 @@
 package com.calorie.calc.fragments.tracker;
 
-import android.util.Log;
-
 import com.calorie.calc.R;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.Nutrient;
 import com.calorie.calc.fragments.recipe.holders.recipeholders.RecipeAndLinksItem;
@@ -16,30 +14,32 @@ import java.util.Map;
 
 public enum MealTime {
     BREAKFAST("Завтрак", R.drawable.breakfastcolor,
-            OptionsUnit.getEnergy( "BREAKFAST"),
-            OptionsUnit.getFat("BREAKFAST"),
-            OptionsUnit.getCarb("BREAKFAST"),
-            OptionsUnit.getProtein("BREAKFAST")),
+            (TotalNutrients.EnercKcal)OptionsUnit.createDefaultNutrient( "BREAKFAST",new OptionsUnit.NormallyEnergyHolder()),
+            (TotalNutrients.Fat) OptionsUnit.createDefaultNutrient("BREAKFAST",new OptionsUnit.NormallyFatHolder()),
+            (TotalNutrients.Chocdf) OptionsUnit.createDefaultNutrient("BREAKFAST",new OptionsUnit.NormallyCarbHolder()),
+            (TotalNutrients.Procnt) OptionsUnit.createDefaultNutrient("BREAKFAST",new OptionsUnit.NormallyProteinHolder())),
 
     LUNCH("Обед", R.drawable.lunchcolor,
-            OptionsUnit.getEnergy( "LUNCH"),
-            OptionsUnit.getFat("LUNCH"),
-            OptionsUnit.getCarb("LUNCH"),
-            OptionsUnit.getProtein("LUNCH")),
-
+            (TotalNutrients.EnercKcal)OptionsUnit.createDefaultNutrient( "LUNCH",new OptionsUnit.NormallyEnergyHolder()),
+            (TotalNutrients.Fat) OptionsUnit.createDefaultNutrient("LUNCH",new OptionsUnit.NormallyFatHolder()),
+            (TotalNutrients.Chocdf) OptionsUnit.createDefaultNutrient("LUNCH",new OptionsUnit.NormallyCarbHolder()),
+            (TotalNutrients.Procnt) OptionsUnit.createDefaultNutrient("LUNCH",new OptionsUnit.NormallyProteinHolder())),
 
 
     DINNER("Ужин", R.drawable.dinnercolor,
-            OptionsUnit.getEnergy( "DINNER"),
-            OptionsUnit.getFat("DINNER"),
-            OptionsUnit.getCarb("DINNER"),
-            OptionsUnit.getProtein("DINNER")),
+            (TotalNutrients.EnercKcal)OptionsUnit.createDefaultNutrient( "DINNER",new OptionsUnit.NormallyEnergyHolder()),
+            (TotalNutrients.Fat) OptionsUnit.createDefaultNutrient("DINNER",new OptionsUnit.NormallyFatHolder()),
+            (TotalNutrients.Chocdf) OptionsUnit.createDefaultNutrient("DINNER",new OptionsUnit.NormallyCarbHolder()),
+            (TotalNutrients.Procnt) OptionsUnit.createDefaultNutrient("DINNER",new OptionsUnit.NormallyProteinHolder())),
 
     SNACK("Перекус", R.drawable.bitecolor,
-            OptionsUnit.getEnergy( "SNACK"),
-            OptionsUnit.getFat("SNACK"),
-            OptionsUnit.getCarb("SNACK"),
-            OptionsUnit.getProtein("SNACK"));
+            (TotalNutrients.EnercKcal)OptionsUnit.createDefaultNutrient( "SNACK",new OptionsUnit.NormallyEnergyHolder()),
+            (TotalNutrients.Fat) OptionsUnit.createDefaultNutrient("SNACK",new OptionsUnit.NormallyFatHolder()),
+            (TotalNutrients.Chocdf) OptionsUnit.createDefaultNutrient("SNACK",new OptionsUnit.NormallyCarbHolder()),
+            (TotalNutrients.Procnt) OptionsUnit.createDefaultNutrient("SNACK",new OptionsUnit.NormallyProteinHolder())),
+
+    ;
+
 
     private final String title;
     private final int resourceImageView;
@@ -50,19 +50,19 @@ public enum MealTime {
     public TotalNutrients.Procnt procnt;   //protein
 
 
-    public TotalNutrients.EnercKcal getEnercKcal() {
+    public TotalNutrients.EnercKcal getPlanEnercKcal() {
         return enercKcal;
     }
 
-    public TotalNutrients.Fat getFat() {
+    public TotalNutrients.Fat getPlanFat() {
         return fat;
     }
 
-    public TotalNutrients.Chocdf getChocdf() {
+    public TotalNutrients.Chocdf getPlanChocdf() {
         return chocdf;
     }
 
-    public TotalNutrients.Procnt getProcnt() {
+    public TotalNutrients.Procnt getPlanProcnt() {
         return procnt;
     }
     private   double getDone(Nutrient item)
@@ -74,9 +74,7 @@ public enum MealTime {
         }
         else
         {
-            Log.d("TAG","getNutrientsMap item Label" + item.getLabel());
-            Log.d("TAG","getNutrientsMap item getQuantity" + item.getQuantity());
-            Log.d("TAG","getNutrientsMap item getSummQuantity" + item.getSummQuantity());
+
             return item.getSummQuantity();
         }
 
@@ -124,11 +122,11 @@ public enum MealTime {
         Map<Class< ? extends Nutrient>,Nutrient> map;
         if(isGram)
         {
-            map= getNutrientsMap(getRecipeAndLinksItems().getValue(),(item)->{return item.getRecipe().getTotalNutrients().getNutrientList(); });
+            map= getNutrientsMap(getRecipeAndLinksItems().getValue(),(item)->{return item.getRecipe().getTotalNutrients().getNutrientListForMealTime(); });
         }
         else
         {
-            map= getNutrientsMap(getRecipeAndLinksItems().getValue(),(item)->{return item.getRecipe().getTotalDaily().getNutrientList(); });
+            map= getNutrientsMap(getRecipeAndLinksItems().getValue(),(item)->{return item.getRecipe().getTotalDaily().getNutrientListForMealTime(); });
         }
 
 
@@ -156,16 +154,13 @@ public enum MealTime {
                    if (!map.containsKey(nutrient.getClass())) {
                        nutrient.setSummQuantity(nutrient.getQuantity());
                        map.put(nutrient.getClass(), nutrient);
-                       Log.d("TAG", "getNutrientsMap quant Label" + nutrient.getLabel());
-                       Log.d("TAG", "getNutrientsMap quant getQuantity" + nutrient.getQuantity());
-                       Log.d("TAG", "getNutrientsMap quant getSummQuantity" + nutrient.getSummQuantity());
+
 
 
                    } else {
 
                        double quant = map.get(nutrient.getClass()).getSummQuantity();
-                       Log.d("TAG", "getNutrientsMap quant" + quant);
-                       Log.d("TAG", "getNutrientsMap nutrient.getQuantity()" + nutrient.getQuantity());
+
                        map.get(nutrient.getClass()).setSummQuantity(quant + nutrient.getQuantity());
                        //     Log.d("TAG","getNutrientsMap getSummQuantity" + map.get(nutrient.getClass()).getSummQuantity());
 
@@ -202,7 +197,7 @@ public enum MealTime {
     public int getResourceImageView() {
         return resourceImageView;
     }
-    interface FuncInterf
+   public interface FuncInterf
     {
         List<Nutrient> getNutrients(RecipeAndLinksItem item);
 

@@ -37,7 +37,7 @@
         android:id="@+id/textView_eaten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Съедено \n 500Ккал"
+
         android:layout_marginTop="@dimen/start_dimen"
         android:layout_marginEnd="-8dp"
         app:layout_constraintEnd_toStartOf="@+id/semiCircleArcProgressBar"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="-8dp"
         android:layout_marginTop="@dimen/start_dimen"
-        android:text="Созжено \n 200Ккал"
+        android:text="Созжено \n 0 Ккал"
         app:layout_constraintStart_toEndOf="@+id/semiCircleArcProgressBar"
         app:layout_constraintTop_toTopOf="@+id/semiCircleArcProgressBar" />
 
@@ -86,22 +86,22 @@
         style="@style/text_minim_big"
         android:layout_marginBottom="@dimen/min_margin"
 
-        app:layout_constraintEnd_toEndOf="@+id/linear_progress_start"
-        app:layout_constraintStart_toStartOf="@+id/linear_progress_start"
-        app:layout_constraintBottom_toTopOf="@+id/linear_progress_start" />
+        app:layout_constraintEnd_toEndOf="@+id/linearProgressProtein"
+        app:layout_constraintStart_toStartOf="@+id/linearProgressProtein"
+        app:layout_constraintBottom_toTopOf="@+id/linearProgressProtein" />
     <TextView
-        android:id="@+id/textView_progress_start_bottom"
+        android:id="@+id/textViewProgressStartProtein"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ещё 63 г"
         style="@style/text_minim_big"
         android:layout_marginTop="@dimen/min_margin"
 
-        app:layout_constraintEnd_toEndOf="@+id/linear_progress_start"
-        app:layout_constraintStart_toStartOf="@+id/linear_progress_start"
-        app:layout_constraintTop_toBottomOf="@+id/linear_progress_start" />
+        app:layout_constraintEnd_toEndOf="@+id/linearProgressProtein"
+        app:layout_constraintStart_toStartOf="@+id/linearProgressProtein"
+        app:layout_constraintTop_toBottomOf="@+id/linearProgressProtein" />
     <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/linear_progress_start"
+        android:id="@+id/linearProgressProtein"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/start_dimen"
@@ -109,7 +109,7 @@
         app:indicatorColor="@color/progress_left"
         android:progress="15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linear_progress_center"
+        app:layout_constraintTop_toTopOf="@+id/linearProgressFat"
         app:trackCornerRadius="15dp"
         app:trackThickness="15dp" />
 
@@ -121,30 +121,30 @@
         style="@style/text_minim_big"
         android:layout_marginBottom="@dimen/min_margin"
 
-        app:layout_constraintEnd_toEndOf="@+id/linear_progress_center"
-        app:layout_constraintStart_toStartOf="@+id/linear_progress_center"
-        app:layout_constraintBottom_toTopOf="@+id/linear_progress_center" />
+        app:layout_constraintEnd_toEndOf="@+id/linearProgressFat"
+        app:layout_constraintStart_toStartOf="@+id/linearProgressFat"
+        app:layout_constraintBottom_toTopOf="@+id/linearProgressFat" />
     <TextView
-        android:id="@+id/textView_progress_center_bottom"
+        android:id="@+id/textViewProgressCenterFat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ещё 63 г"
         style="@style/text_minim_big"
         android:layout_marginTop="@dimen/min_margin"
 
-        app:layout_constraintEnd_toEndOf="@+id/linear_progress_center"
-        app:layout_constraintStart_toStartOf="@+id/linear_progress_center"
-        app:layout_constraintTop_toBottomOf="@+id/linear_progress_center" />
+        app:layout_constraintEnd_toEndOf="@+id/linearProgressFat"
+        app:layout_constraintStart_toStartOf="@+id/linearProgressFat"
+        app:layout_constraintTop_toBottomOf="@+id/linearProgressFat" />
     <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/linear_progress_center"
+        android:id="@+id/linearProgressFat"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:indeterminate="false"
         app:indicatorColor="@color/progress_center"
         android:progress="15"
-        app:layout_constraintStart_toEndOf="@+id/linear_progress_start"
+        app:layout_constraintStart_toEndOf="@+id/linearProgressProtein"
         android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toStartOf="@+id/linear_progress_end"
+        app:layout_constraintEnd_toStartOf="@+id/linearProgressCarb"
         app:layout_constraintTop_toBottomOf="@+id/textView_detailed"
         app:trackCornerRadius="15dp"
         app:trackThickness="15dp" />
@@ -157,24 +157,24 @@
         style="@style/text_minim_big"
         android:layout_marginBottom="@dimen/min_margin"
 
-        app:layout_constraintEnd_toEndOf="@+id/linear_progress_end"
-        app:layout_constraintStart_toStartOf="@+id/linear_progress_end"
-        app:layout_constraintBottom_toTopOf="@+id/linear_progress_end" />
+        app:layout_constraintEnd_toEndOf="@+id/linearProgressCarb"
+        app:layout_constraintStart_toStartOf="@+id/linearProgressCarb"
+        app:layout_constraintBottom_toTopOf="@+id/linearProgressCarb" />
 
     <TextView
-        android:id="@+id/textView_progress_end_bottom"
+        android:id="@+id/textViewProgressEndCarb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ещё 63 г"
         style="@style/text_minim_big"
         android:layout_marginTop="@dimen/min_margin"
 
-        app:layout_constraintEnd_toEndOf="@+id/linear_progress_end"
-        app:layout_constraintStart_toStartOf="@+id/linear_progress_end"
-        app:layout_constraintTop_toBottomOf="@+id/linear_progress_end" />
+        app:layout_constraintEnd_toEndOf="@+id/linearProgressCarb"
+        app:layout_constraintStart_toStartOf="@+id/linearProgressCarb"
+        app:layout_constraintTop_toBottomOf="@+id/linearProgressCarb" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/linear_progress_end"
+        android:id="@+id/linearProgressCarb"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:indeterminate="false"
@@ -182,7 +182,7 @@
         android:progress="15"
         app:indicatorColor="@color/progress_right"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linear_progress_center"
+        app:layout_constraintTop_toTopOf="@+id/linearProgressFat"
         app:trackCornerRadius="15dp"
         app:trackThickness="15dp" />
 
@@ -194,7 +194,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/textView_progress_center_bottom" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewProgressCenterFat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

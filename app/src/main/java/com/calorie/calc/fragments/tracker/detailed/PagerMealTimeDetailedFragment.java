@@ -69,10 +69,10 @@ public class PagerMealTimeDetailedFragment extends Fragment {
     {
 
 
-        energProgress.setProgress(mealTime.getTotalEnergy() ,mealTime.getEnercKcal().getQuantity());
-        fatProgress.setProgress(mealTime.getTotalFat() ,mealTime.getFat().getQuantity());
-        proteinProgress.setProgress(mealTime.getTotalProcNt() ,mealTime.getProcnt().getQuantity());
-        carbProgress.setProgress(mealTime.getTotalChockDf(),mealTime.getChocdf().getQuantity());
+        energProgress.setProgress(mealTime.getTotalEnergy() ,mealTime.getPlanEnercKcal().getQuantity());
+        fatProgress.setProgress(mealTime.getTotalFat() ,mealTime.getPlanFat().getQuantity());
+        proteinProgress.setProgress(mealTime.getTotalProcNt() ,mealTime.getPlanProcnt().getQuantity());
+        carbProgress.setProgress(mealTime.getTotalChockDf(),mealTime.getPlanChocdf().getQuantity());
 
 
 

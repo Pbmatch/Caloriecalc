@@ -39,7 +39,7 @@ public class PassConfirmFragment11 extends InsideBaseFragment {
     void setViews() {
 
         RegStateHandler.getButtonState().setValue(new ButtonState.ButtonOff());
-
+        binding.textViewTitle.setText(R.string.registration_pass_title_second);
         binding.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

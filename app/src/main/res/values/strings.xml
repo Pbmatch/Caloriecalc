@@ -226,6 +226,11 @@
     <string name="footer_recipe">Рекомендовано:</string>
     <string name="save">Сохранить</string>
     <string name="water">Water</string>
+    <string name="more">ещё</string>
+    <string name="eaten">Съедено </string>
+    <string name="burned_lite">Сожжено </string>
+    <string name="from">из</string>
+
     <plurals name="dish_count">
         <item quantity="one">%s рецепт</item>
         <item quantity="few">%s рецепта</item>
